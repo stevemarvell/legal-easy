@@ -2,6 +2,7 @@
   "name": "random-number-frontend",
   "version": "1.0.0",
   "private": true,
+  "main": "index.js",
   "scripts": {
     "start": "npx serve public -p $PORT",
     "dev": "node dev.js",
