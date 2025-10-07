@@ -29,12 +29,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set Backend URL Environment Variable
+      - name: Set Environment Variables
         uses: docker://ghcr.io/railwayapp/cli:latest
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         with:
-          args: variables --service=${{ secrets.RAILWAY_FRONTEND_SERVICE_ID }} set BACKEND_URL=${{ secrets.RAILWAY_BACKEND_URL }}
+          args: variables --service=${{ secrets.RAILWAY_FRONTEND_SERVICE_ID }} set BACKEND_URL=${{ secrets.RAILWAY_BACKEND_URL }} RAILPACK_SPA_OUTPUT_DIR=public
 
       - name: Deploy to Railway
         uses: docker://ghcr.io/railwayapp/cli:latest

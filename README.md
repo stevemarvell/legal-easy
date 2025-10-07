@@ -68,9 +68,10 @@ Or open `frontend/public/index.html` directly in your browser.
 **Frontend:**
 1. Create another Railway service
 2. Set root directory to `frontend`
-3. Railway will use `railway.json` configuration
-4. Set environment variable `BACKEND_URL` to your backend URL
-5. Frontend URL: `https://your-frontend-name.railway.app`
+3. Set environment variables:
+   - `BACKEND_URL` to your backend URL
+   - `RAILPACK_SPA_OUTPUT_DIR` to `public` (for static site deployment)
+4. Frontend URL: `https://your-frontend-name.railway.app`
 
 **Configuration:**
 - Backend uses `Procfile` for deployment configuration
