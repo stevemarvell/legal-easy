@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Random Number Demo</title>
+    <style>
+      body { font-family: system-ui, Arial, sans-serif; margin: 2rem; }
+      .card { max-width: 480px; padding: 1.5rem; border: 1px solid #ddd; border-radius: 8px; }
+      #output { font-size: 2rem; margin-top: 1rem; }
+      button { padding: 0.5rem 1rem; font-size: 1rem; }
+    </style>
+    <script>
+      // Optional: set BACKEND_URL here if not using localhost
+      // window.BACKEND_URL = "https://your-backend-url";
+    </script>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Random Number</h1>
+      <p>Click the button to fetch a random number from the backend.</p>
+      <button id="btn">Get Random Number</button>
+      <div id="output">—</div>
+    </div>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
