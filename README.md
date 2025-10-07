@@ -73,7 +73,8 @@ Or open `frontend/public/index.html` directly in your browser.
 5. Frontend URL: `https://your-frontend-name.railway.app`
 
 **Configuration:**
-- Both services have `railway.json` files with build/deploy settings
+- Backend uses `Procfile` for deployment configuration
+- Frontend uses `package.json` start script for deployment
 - Backend URL is auto-detected locally, injected via environment variable on Railway
 
 ## API Endpoints

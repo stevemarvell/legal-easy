@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "start": "npx serve public -p $PORT",
     "dev": "node dev.js",
     "build": "node build.js",
     "prepare": "node build.js",
@@ -12,5 +13,8 @@
   "devDependencies": {
     "typescript": "^5.6.3",
     "rimraf": "^6.0.1"
+  },
+  "dependencies": {
+    "serve": "^14.2.1"
   }
 }
