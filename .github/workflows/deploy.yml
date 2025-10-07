@@ -19,7 +19,7 @@ jobs:
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         with:
-          args: up --service=${{ secrets.RAILWAY_BACKEND_SERVICE_ID }} --detach
+          args: up --service=${{ secrets.RAILWAY_BACKEND_SERVICE_ID }} --detach --directory=backend
 
   deploy-frontend:
     name: Deploy Frontend
@@ -29,9 +29,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Set Backend URL Environment Variable
+        uses: docker://ghcr.io/railwayapp/cli:latest
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+        with:
+          args: variables --service=${{ secrets.RAILWAY_FRONTEND_SERVICE_ID }} set BACKEND_URL=${{ secrets.RAILWAY_BACKEND_URL }}
+
       - name: Deploy to Railway
         uses: docker://ghcr.io/railwayapp/cli:latest
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         with:
-          args: up --service=${{ secrets.RAILWAY_FRONTEND_SERVICE_ID }} --detach
+          args: up --service=${{ secrets.RAILWAY_FRONTEND_SERVICE_ID }} --detach --directory=frontend

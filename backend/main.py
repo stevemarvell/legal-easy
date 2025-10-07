@@ -4,17 +4,18 @@ import random
 
 app = FastAPI(title="Random Number API")
 
-# CORS: allow only known frontend origins (and localhost for local dev)
-# Update these if your frontend domains change.
+# CORS: allow frontend origins
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
+        "http://localhost:8080",  # Frontend dev server
+        "http://127.0.0.1:8080",
         "https://frontend.railway.com:8888",
         "https://frontend-production-497b.up.railway.app:8888",
     ],
     allow_origin_regex=r"^https?://(localhost|127\.0\.0\.1)(:\d{1,5})?$",
-    allow_credentials=False,  # set to True only if you actually use cookies/auth across origins
-    allow_methods=["GET"],  # narrow to used methods
+    allow_credentials=False,
+    allow_methods=["GET", "POST", "PUT", "DELETE"],
     allow_headers=["*"]
 )
 
