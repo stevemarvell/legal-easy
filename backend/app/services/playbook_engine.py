@@ -140,43 +140,87 @@ class PlaybookEngine:
             return "Weak"
     
     def _should_apply_rule(self, case: Case, rule: PlaybookRule) -> bool:
-        """Determine if a rule should be applied to a case (simplified logic for demo)"""
-        # This is simplified demo logic. In a real system, this would parse
-        # rule conditions and evaluate them against case facts
+        """Determine if a rule should be applied to a case (enhanced logic for demo)"""
+        # This is enhanced demo logic that analyzes case content more thoroughly
         
         case_type_lower = case.case_type.lower()
         condition_lower = rule.condition.lower()
+        summary_lower = case.summary.lower()
         
         # Employment dispute rules
         if case_type_lower == "employment dispute":
-            if "termination" in condition_lower and "termination" in case.summary.lower():
-                return True
-            if "age" in condition_lower and "age" in case.summary.lower():
-                return True
-            if "retaliation" in condition_lower and "retaliation" in case.summary.lower():
-                return True
-            if "harassment" in condition_lower and "harassment" in case.summary.lower():
-                return True
+            if "termination_within_protected_period" in condition_lower:
+                return "termination" in summary_lower and ("reporting" in summary_lower or "complaint" in summary_lower)
+            if "age_over_40_and_replaced_by_younger" in condition_lower:
+                return "age" in summary_lower and ("discrimination" in summary_lower or "younger" in summary_lower)
+            if "documented_performance_issues" in condition_lower:
+                return "performance" in summary_lower
+            if "hostile_work_environment_pattern" in condition_lower:
+                return "harassment" in summary_lower or "hostile" in summary_lower
+            if "whistleblower_activity" in condition_lower:
+                return "reporting" in summary_lower or "violation" in summary_lower
+            if "pregnancy_or_family_leave_involved" in condition_lower:
+                return "pregnancy" in summary_lower or "family leave" in summary_lower or "maternity" in summary_lower
+            if "disability_accommodation_denied" in condition_lower:
+                return "disability" in summary_lower or "accommodation" in summary_lower
         
         # Contract breach rules
         elif case_type_lower == "contract breach":
-            if "contract" in condition_lower and "contract" in case.summary.lower():
-                return True
-            if "breach" in condition_lower and "breach" in case.summary.lower():
-                return True
-            if "non_compete" in condition_lower and "non-compete" in case.summary.lower():
-                return True
+            if "clear_contract_terms_violated" in condition_lower:
+                return "breach" in summary_lower and "contract" in summary_lower
+            if "ambiguous_contract_language" in condition_lower:
+                return "ambiguous" in summary_lower or "unclear" in summary_lower
+            if "non_compete_violation" in condition_lower:
+                return "non-compete" in summary_lower or "restrictive covenant" in summary_lower
+            if "damages_easily_calculable" in condition_lower:
+                return any(char.isdigit() for char in case.summary) or "damages" in summary_lower
+            if "ongoing_harm_occurring" in condition_lower:
+                return "ongoing" in summary_lower or "continuing" in summary_lower
+            if "force_majeure_claimed" in condition_lower:
+                return "force majeure" in summary_lower or "impossible" in summary_lower
+            if "statute_of_frauds_issue" in condition_lower:
+                return "written" in summary_lower or "oral" in summary_lower
         
         # Debt claim rules
         elif case_type_lower == "debt claim":
-            if "debt" in condition_lower and ("debt" in case.summary.lower() or "payment" in case.summary.lower()):
-                return True
-            if "documentation" in condition_lower:
-                return True  # Assume we have documentation for demo cases
+            if "clear_debt_documentation" in condition_lower:
+                return "invoice" in summary_lower or "contract" in summary_lower or "agreement" in summary_lower
+            if "debtor_disputes_amount" in condition_lower:
+                return "disputes" in summary_lower or "claims" in summary_lower
+            if "debtor_claims_defective_services" in condition_lower:
+                return "quality" in summary_lower or "defective" in summary_lower or "breach" in summary_lower
+            if "debt_over_statute_limitations" in condition_lower:
+                # Check if case is old (simplified check)
+                return False  # Assume demo cases are recent
+            if "debtor_has_assets" in condition_lower:
+                return True  # Assume debtors have some assets for demo
+            if "consumer_debt_fdcpa_applies" in condition_lower:
+                return "consumer" in summary_lower
+            if "debtor_filed_bankruptcy" in condition_lower:
+                return "bankruptcy" in summary_lower
+            if "personal_guarantee_exists" in condition_lower:
+                return "guarantee" in summary_lower or "personal" in summary_lower
         
-        # Default: apply rule with 30% probability for demo variety
+        # Fallback: apply rule based on general relevance
+        return self._general_rule_relevance(case, rule)
+    
+    def _general_rule_relevance(self, case: Case, rule: PlaybookRule) -> bool:
+        """Determine general rule relevance based on keywords and context"""
+        summary_words = set(case.summary.lower().split())
+        condition_words = set(rule.condition.lower().split())
+        
+        # Calculate word overlap
+        overlap = len(summary_words.intersection(condition_words))
+        
+        # Apply rule if there's significant word overlap or high rule weight
+        if overlap >= 2:
+            return True
+        elif overlap >= 1 and rule.weight >= 0.8:
+            return True
+        
+        # Default: apply rule with probability based on weight for demo variety
         import random
-        return random.random() < 0.3
+        return random.random() < (rule.weight * 0.4)
     
     def _calculate_case_strength(self, total_weight: float, rule_count: int) -> str:
         """Calculate case strength based on applied rules and weights"""
@@ -185,9 +229,12 @@ class PlaybookEngine:
         
         avg_weight = total_weight / rule_count
         
-        if avg_weight >= 0.8 and rule_count >= 3:
+        # Enhanced scoring system
+        strength_score = (avg_weight * 0.7) + (min(rule_count / 5.0, 1.0) * 0.3)
+        
+        if strength_score >= 0.75:
             return "Strong"
-        elif avg_weight >= 0.6 and rule_count >= 2:
+        elif strength_score >= 0.55:
             return "Moderate"
         else:
             return "Weak"

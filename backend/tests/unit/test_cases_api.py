@@ -5,7 +5,9 @@ from fastapi import HTTPException
 from datetime import datetime
 from main import app
 from app.models.case import Case, CaseStatistics
+from app.models.playbook import CaseAssessment
 from app.services.case_service import CaseService
+from app.services.playbook_engine import PlaybookEngine
 
 
 class TestCasesAPI:
@@ -234,3 +236,127 @@ class TestCasesAPI:
             assert field in data
             assert isinstance(data[field], int)
             assert data[field] >= 0
+    
+    @pytest.fixture
+    def mock_case_assessment(self):
+        """Mock case assessment for testing"""
+        return CaseAssessment(
+            case_id="case-001",
+            playbook_used="Employment Law Playbook",
+            case_strength="Strong",
+            key_issues=["Wrongful termination claim", "Retaliation for protected activity"],
+            recommended_actions=["investigate_retaliation_claim", "document_harassment_incidents"],
+            monetary_assessment=(200000, 1000000),
+            applied_rules=["rule-001", "rule-004"],
+            reasoning="Case shows strong prospects based on 2 applicable rules. Key factors support the client's position in this employment dispute matter."
+        )
+    
+    @patch.object(CaseService, 'get_case_by_id')
+    @patch.object(PlaybookEngine, 'generate_case_assessment')
+    def test_get_case_assessment_success(self, mock_generate_assessment, mock_get_case, client, mock_cases, mock_case_assessment):
+        """Test successful generation of case assessment"""
+        mock_get_case.return_value = mock_cases[0]
+        mock_generate_assessment.return_value = mock_case_assessment
+        
+        response = client.get("/cases/case-001/assessment")
+        
+        assert response.status_code == 200
+        data = response.json()
+        assert data["case_id"] == "case-001"
+        assert data["playbook_used"] == "Employment Law Playbook"
+        assert data["case_strength"] == "Strong"
+        assert len(data["key_issues"]) == 2
+        assert len(data["recommended_actions"]) == 2
+        assert len(data["applied_rules"]) == 2
+        assert data["monetary_assessment"] == [200000, 1000000]
+        assert "strong prospects" in data["reasoning"]
+        
+        mock_get_case.assert_called_once_with("case-001")
+        mock_generate_assessment.assert_called_once_with(mock_cases[0])
+    
+    @patch.object(CaseService, 'get_case_by_id')
+    def test_get_case_assessment_case_not_found(self, mock_get_case, client):
+        """Test case assessment when case doesn't exist"""
+        mock_get_case.return_value = None
+        
+        response = client.get("/cases/case-999/assessment")
+        
+        assert response.status_code == 404
+        data = response.json()
+        assert "Case with ID case-999 not found" in data["detail"]
+        mock_get_case.assert_called_once_with("case-999")
+    
+    @patch.object(CaseService, 'get_case_by_id')
+    @patch.object(PlaybookEngine, 'generate_case_assessment')
+    def test_get_case_assessment_no_playbook(self, mock_generate_assessment, mock_get_case, client, mock_cases):
+        """Test case assessment when no playbook is available"""
+        mock_get_case.return_value = mock_cases[0]
+        mock_generate_assessment.return_value = None
+        
+        response = client.get("/cases/case-001/assessment")
+        
+        assert response.status_code == 404
+        data = response.json()
+        assert "No playbook available for case type: Employment Dispute" in data["detail"]
+        mock_get_case.assert_called_once_with("case-001")
+        mock_generate_assessment.assert_called_once_with(mock_cases[0])
+    
+    @patch.object(CaseService, 'get_case_by_id')
+    @patch.object(PlaybookEngine, 'generate_case_assessment')
+    def test_get_case_assessment_service_error(self, mock_generate_assessment, mock_get_case, client, mock_cases):
+        """Test error handling in case assessment endpoint"""
+        mock_get_case.return_value = mock_cases[0]
+        mock_generate_assessment.side_effect = Exception("Playbook engine error")
+        
+        response = client.get("/cases/case-001/assessment")
+        
+        assert response.status_code == 500
+        data = response.json()
+        assert "Failed to generate case assessment" in data["detail"]
+        assert "Playbook engine error" in data["detail"]
+    
+    @patch.object(CaseService, 'get_case_by_id')
+    def test_get_case_assessment_case_service_error(self, mock_get_case, client):
+        """Test error handling when case service fails"""
+        mock_get_case.side_effect = Exception("Case service error")
+        
+        response = client.get("/cases/case-001/assessment")
+        
+        assert response.status_code == 500
+        data = response.json()
+        assert "Failed to generate case assessment" in data["detail"]
+        assert "Case service error" in data["detail"]
+    
+    @patch.object(CaseService, 'get_case_by_id')
+    @patch.object(PlaybookEngine, 'generate_case_assessment')
+    def test_get_case_assessment_response_schema(self, mock_generate_assessment, mock_get_case, client, mock_cases, mock_case_assessment):
+        """Test that case assessment response matches expected schema"""
+        mock_get_case.return_value = mock_cases[0]
+        mock_generate_assessment.return_value = mock_case_assessment
+        
+        response = client.get("/cases/case-001/assessment")
+        
+        assert response.status_code == 200
+        data = response.json()
+        
+        # Check all required fields are present
+        required_fields = ["case_id", "playbook_used", "case_strength", "key_issues", 
+                          "recommended_actions", "monetary_assessment", "applied_rules", "reasoning"]
+        for field in required_fields:
+            assert field in data
+        
+        # Check field types
+        assert isinstance(data["case_id"], str)
+        assert isinstance(data["playbook_used"], str)
+        assert data["case_strength"] in ["Strong", "Moderate", "Weak"]
+        assert isinstance(data["key_issues"], list)
+        assert isinstance(data["recommended_actions"], list)
+        assert isinstance(data["applied_rules"], list)
+        assert isinstance(data["reasoning"], str)
+        
+        # Check monetary assessment format
+        if data["monetary_assessment"] is not None:
+            assert isinstance(data["monetary_assessment"], list)
+            assert len(data["monetary_assessment"]) == 2
+            assert all(isinstance(x, int) for x in data["monetary_assessment"])
+            assert data["monetary_assessment"][0] <= data["monetary_assessment"][1]
