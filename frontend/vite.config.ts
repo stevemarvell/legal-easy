@@ -11,5 +11,8 @@ export default defineConfig({
     preview: {
         port: 8080,
         host: true
+    },
+    define: {
+        __BACKEND_URL__: JSON.stringify(process.env.BACKEND_URL || 'http://localhost:8000')
     }
 })

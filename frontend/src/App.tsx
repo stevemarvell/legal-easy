@@ -3,13 +3,8 @@ import './App.css'
 
 // Auto-detect backend URL based on environment
 function getBackendUrl(): string {
-  // Check if manually set in window
-  if ((window as any).BACKEND_URL) {
-    return (window as any).BACKEND_URL;
-  }
-
-  // Default to localhost for local development
-  return "http://localhost:8000";
+  // Use Vite's build-time environment variable injection
+  return __BACKEND_URL__;
 }
 
 function App() {
