@@ -5,8 +5,46 @@ import random
 
 app = FastAPI(
     title="AI Legal Platform API",
-    description="API for AI-powered legal case management and document analysis",
-    version="1.0.0"
+    description="""
+    ## AI-Powered Legal Case Management and Document Analysis API
+
+    This API provides comprehensive legal case management capabilities with AI-powered document analysis.
+    
+    ### Key Features:
+    - **Case Management**: Create, retrieve, and manage legal cases
+    - **Document Analysis**: AI-powered analysis of legal documents
+    - **Statistics & Analytics**: Dashboard statistics and case insights
+    - **Legal Research**: AI-assisted legal research capabilities
+    - **Playbook Engine**: Automated legal workflow management
+
+    ### Authentication:
+    Currently, this API does not require authentication for demo purposes.
+    
+    ### Rate Limiting:
+    No rate limiting is currently implemented.
+    
+    ### Support:
+    For API support, please contact the development team.
+    """,
+    version="1.0.0",
+    contact={
+        "name": "AI Legal Platform Team",
+        "email": "support@ailegalplatform.com",
+    },
+    license_info={
+        "name": "MIT License",
+        "url": "https://opensource.org/licenses/MIT",
+    },
+    servers=[
+        {
+            "url": "http://localhost:8000",
+            "description": "Development server"
+        },
+        {
+            "url": "https://api.ailegalplatform.com",
+            "description": "Production server"
+        }
+    ]
 )
 
 # CORS: allow frontend origins
@@ -35,6 +73,11 @@ def get_random():
     """Return a random integer between 0 and 100 inclusive."""
     return {"value": random.randint(0, 100)}
 
+@app.get("/health")
+def health_check():
+    """Health check endpoint for monitoring and deployment."""
+    return {"status": "healthy", "service": "AI Legal Platform API"}
+
 @app.get("/")
 def root():
     return {
@@ -44,6 +87,7 @@ def root():
             "cases": "/cases",
             "documents": "/documents", 
             "playbooks": "/playbooks",
-            "legal_research": "/legal-research"
+            "legal_research": "/legal-research",
+            "health": "/health"
         }
     }
