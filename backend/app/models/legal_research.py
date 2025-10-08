@@ -26,3 +26,7 @@ class SearchQuery(BaseModel):
     query: str
     filters: Optional[Dict[str, str]] = None
     limit: int = 10
+    min_relevance_score: float = 0.0
+    legal_area: Optional[str] = None
+    document_type: Optional[str] = None
+    sort_by: str = "relevance"  # "relevance", "document_type", "legal_area"

@@ -9,10 +9,14 @@ rag_service = RAGService()
 
 @router.post("/search", response_model=List[SearchResult])
 async def search_legal_corpus(query: SearchQuery):
-    """Search legal document corpus using RAG"""
+    """Search legal document corpus using RAG with advanced filtering and ranking"""
     results = rag_service.search_legal_corpus(
         query.query, 
-        top_k=query.limit
+        top_k=query.limit,
+        min_relevance_score=query.min_relevance_score,
+        legal_area=query.legal_area,
+        document_type=query.document_type,
+        sort_by=query.sort_by
     )
     return results
 
@@ -48,3 +52,29 @@ async def get_relevant_clauses(context: str, legal_area: str = None):
 async def get_corpus_statistics():
     """Get statistics about the legal corpus"""
     return rag_service.get_corpus_statistics()
+
+
+@router.get("/filters")
+async def get_available_filters():
+    """Get available filter options for legal research"""
+    return {
+        "legal_areas": [
+            "Employment Law",
+            "Contract Law", 
+            "Liability and Risk",
+            "Intellectual Property",
+            "Contract Termination",
+            "General"
+        ],
+        "document_types": [
+            "Contract Template",
+            "Legal Clause",
+            "Case Law",
+            "Statute/Regulation"
+        ],
+        "sort_options": [
+            "relevance",
+            "document_type", 
+            "legal_area"
+        ]
+    }
