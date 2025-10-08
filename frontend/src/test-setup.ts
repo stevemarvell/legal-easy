@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom'
-import { vi } from 'vitest'
+import { beforeEach, vi } from 'vitest'
 
 // Mock global variables
 Object.defineProperty(globalThis, '__BACKEND_URL__', {
