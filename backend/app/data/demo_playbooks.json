@@ -1,144 +1,253 @@
-{
-  "playbooks": [
-    {
-      "id": "employment-dispute-playbook",
-      "case_type": "Employment Dispute",
-      "name": "Employment Dispute Resolution Playbook",
-      "rules": [
-        {
-          "id": "emp-rule-001",
-          "condition": "wrongful_termination_claim",
-          "action": "review_employment_contract_and_company_policies",
-          "weight": 0.8,
-          "description": "Analyze employment contract terms and company termination policies"
+[
+  {
+    "id": "employment-dispute",
+    "case_type": "Employment Dispute",
+    "name": "Employment Law Playbook",
+    "rules": [
+      {
+        "id": "rule-001",
+        "condition": "termination_within_protected_period",
+        "action": "investigate_retaliation_claim",
+        "weight": 0.9,
+        "description": "If termination occurred within 90 days of protected activity, investigate potential retaliation"
+      },
+      {
+        "id": "rule-002",
+        "condition": "age_over_40_and_replaced_by_younger",
+        "action": "assess_age_discrimination",
+        "weight": 0.8,
+        "description": "If employee is over 40 and replaced by significantly younger person, assess age discrimination"
+      },
+      {
+        "id": "rule-003",
+        "condition": "documented_performance_issues",
+        "action": "evaluate_pretextual_reasons",
+        "weight": 0.7,
+        "description": "If performance issues are documented, evaluate whether they are pretextual"
+      },
+      {
+        "id": "rule-004",
+        "condition": "hostile_work_environment_pattern",
+        "action": "document_harassment_incidents",
+        "weight": 0.8,
+        "description": "If pattern of hostile behavior exists, document all incidents and witnesses"
+      },
+      {
+        "id": "rule-005",
+        "condition": "whistleblower_activity",
+        "action": "assess_retaliation_protection",
+        "weight": 0.9,
+        "description": "If employee engaged in whistleblowing, assess protection under relevant statutes"
+      }
+    ],
+    "decision_tree": {
+      "root": "assess_termination_type",
+      "nodes": {
+        "assess_termination_type": {
+          "question": "What type of employment issue occurred?",
+          "options": {
+            "wrongful_termination": "evaluate_wrongful_termination",
+            "discrimination": "evaluate_discrimination",
+            "retaliation": "evaluate_retaliation",
+            "harassment": "evaluate_harassment"
+          }
         },
-        {
-          "id": "emp-rule-002", 
-          "condition": "discrimination_allegation",
-          "action": "gather_evidence_of_discriminatory_behavior",
-          "weight": 0.9,
-          "description": "Collect evidence of discriminatory actions or statements"
+        "evaluate_wrongful_termination": {
+          "question": "Was there an employment contract or policy violation?",
+          "options": {
+            "yes": "strong_case_assessment",
+            "no": "evaluate_at_will_exceptions"
+          }
         },
-        {
-          "id": "emp-rule-003",
-          "condition": "performance_issues_documented",
-          "action": "assess_legitimacy_of_performance_concerns",
-          "weight": 0.7,
-          "description": "Evaluate whether performance issues justify termination"
-        }
-      ],
-      "decision_tree": {
-        "root": "discrimination_present",
-        "branches": {
-          "discrimination_present": {
-            "yes": "strong_case",
-            "no": "performance_review"
-          },
-          "performance_review": {
-            "poor": "weak_case",
-            "good": "moderate_case"
+        "evaluate_discrimination": {
+          "question": "Is the employee in a protected class?",
+          "options": {
+            "yes": "assess_discriminatory_treatment",
+            "no": "weak_case_assessment"
+          }
+        },
+        "evaluate_retaliation": {
+          "question": "Did employee engage in protected activity?",
+          "options": {
+            "yes": "assess_causal_connection",
+            "no": "weak_case_assessment"
           }
         }
-      },
-      "monetary_ranges": {
-        "settlement": [15000, 75000],
-        "damages": [25000, 150000]
-      },
-      "escalation_paths": ["mediation", "EEOC_filing", "litigation"]
+      }
     },
-    {
-      "id": "contract-breach-playbook",
-      "case_type": "Contract Breach",
-      "name": "Contract Breach Analysis Playbook",
-      "rules": [
-        {
-          "id": "contract-rule-001",
-          "condition": "material_breach_identified",
-          "action": "calculate_damages_and_losses",
-          "weight": 0.9,
-          "description": "Assess the materiality of the breach and calculate financial impact"
-        },
-        {
-          "id": "contract-rule-002",
-          "condition": "force_majeure_claimed",
-          "action": "evaluate_force_majeure_validity",
-          "weight": 0.6,
-          "description": "Determine if force majeure clause applies to the breach"
-        },
-        {
-          "id": "contract-rule-003",
-          "condition": "cure_period_available",
-          "action": "assess_cure_attempts_and_timeline",
-          "weight": 0.5,
-          "description": "Review attempts to cure breach within specified timeframe"
-        }
-      ],
-      "decision_tree": {
-        "root": "material_breach",
-        "branches": {
-          "material_breach": {
-            "yes": "damages_calculation",
-            "no": "minor_breach_remedies"
-          },
-          "damages_calculation": {
-            "high": "strong_case",
-            "medium": "moderate_case",
-            "low": "weak_case"
-          }
-        }
-      },
-      "monetary_ranges": {
-        "damages": [10000, 500000],
-        "settlement": [5000, 250000]
-      },
-      "escalation_paths": ["negotiation", "mediation", "arbitration", "litigation"]
+    "monetary_ranges": {
+      "low": [10000, 50000],
+      "medium": [50000, 200000],
+      "high": [200000, 1000000]
     },
-    {
-      "id": "debt-claim-playbook",
-      "case_type": "Debt Claim",
-      "name": "Debt Collection Playbook",
-      "rules": [
-        {
-          "id": "debt-rule-001",
-          "condition": "debt_amount_verified",
-          "action": "confirm_outstanding_balance_accuracy",
-          "weight": 0.9,
-          "description": "Verify the accuracy of the claimed debt amount"
+    "escalation_paths": [
+      "Internal HR complaint",
+      "EEOC charge filing",
+      "State civil rights agency",
+      "Federal district court",
+      "Appellate court review"
+    ]
+  },
+  {
+    "id": "contract-breach",
+    "case_type": "Contract Breach",
+    "name": "Contract Breach Playbook",
+    "rules": [
+      {
+        "id": "rule-101",
+        "condition": "clear_contract_terms_violated",
+        "action": "assess_material_breach",
+        "weight": 0.9,
+        "description": "If contract terms are clear and violated, assess whether breach is material"
+      },
+      {
+        "id": "rule-102",
+        "condition": "ambiguous_contract_language",
+        "action": "apply_interpretation_rules",
+        "weight": 0.6,
+        "description": "If contract language is ambiguous, apply standard interpretation rules"
+      },
+      {
+        "id": "rule-103",
+        "condition": "non_compete_violation",
+        "action": "assess_enforceability",
+        "weight": 0.8,
+        "description": "If non-compete is violated, assess enforceability under state law"
+      },
+      {
+        "id": "rule-104",
+        "condition": "damages_easily_calculable",
+        "action": "pursue_monetary_damages",
+        "weight": 0.8,
+        "description": "If damages are easily calculable, pursue monetary relief"
+      },
+      {
+        "id": "rule-105",
+        "condition": "ongoing_harm_occurring",
+        "action": "seek_injunctive_relief",
+        "weight": 0.9,
+        "description": "If ongoing harm is occurring, seek immediate injunctive relief"
+      }
+    ],
+    "decision_tree": {
+      "root": "assess_contract_validity",
+      "nodes": {
+        "assess_contract_validity": {
+          "question": "Is there a valid, enforceable contract?",
+          "options": {
+            "yes": "identify_breach_type",
+            "no": "weak_case_assessment"
+          }
         },
-        {
-          "id": "debt-rule-002",
-          "condition": "payment_terms_clear",
-          "action": "review_payment_terms_and_deadlines",
-          "weight": 0.8,
-          "description": "Ensure payment terms were clearly communicated and agreed upon"
+        "identify_breach_type": {
+          "question": "What type of breach occurred?",
+          "options": {
+            "material_breach": "assess_damages",
+            "minor_breach": "evaluate_cure_period",
+            "anticipatory_breach": "assess_repudiation"
+          }
         },
-        {
-          "id": "debt-rule-003",
-          "condition": "debtor_ability_to_pay",
-          "action": "assess_debtor_financial_capacity",
-          "weight": 0.7,
-          "description": "Evaluate debtor's ability to pay the outstanding amount"
-        }
-      ],
-      "decision_tree": {
-        "root": "debt_validity",
-        "branches": {
-          "debt_validity": {
-            "valid": "collection_strategy",
-            "disputed": "dispute_resolution"
-          },
-          "collection_strategy": {
-            "payment_plan": "moderate_case",
-            "full_payment": "strong_case",
-            "unable_to_pay": "weak_case"
+        "assess_damages": {
+          "question": "Are damages easily quantifiable?",
+          "options": {
+            "yes": "strong_case_assessment",
+            "no": "evaluate_equitable_relief"
           }
         }
+      }
+    },
+    "monetary_ranges": {
+      "low": [5000, 25000],
+      "medium": [25000, 150000],
+      "high": [150000, 2000000]
+    },
+    "escalation_paths": [
+      "Demand letter",
+      "Mediation",
+      "Arbitration (if required)",
+      "State court litigation",
+      "Federal court (if diversity)"
+    ]
+  },
+  {
+    "id": "debt-claim",
+    "case_type": "Debt Claim",
+    "name": "Debt Collection Playbook",
+    "rules": [
+      {
+        "id": "rule-201",
+        "condition": "clear_debt_documentation",
+        "action": "proceed_with_collection",
+        "weight": 0.9,
+        "description": "If debt is clearly documented with invoices/contracts, proceed with collection"
       },
-      "monetary_ranges": {
-        "collection": [1000, 100000],
-        "settlement": [500, 75000]
+      {
+        "id": "rule-202",
+        "condition": "debtor_disputes_amount",
+        "action": "verify_calculation_accuracy",
+        "weight": 0.7,
+        "description": "If debtor disputes amount, verify calculation accuracy and supporting documentation"
       },
-      "escalation_paths": ["demand_letter", "payment_plan", "collection_agency", "litigation"]
-    }
-  ]
-}
+      {
+        "id": "rule-203",
+        "condition": "debtor_claims_defective_services",
+        "action": "assess_quality_defense",
+        "weight": 0.6,
+        "description": "If debtor claims defective services, assess validity of quality-based defense"
+      },
+      {
+        "id": "rule-204",
+        "condition": "debt_over_statute_limitations",
+        "action": "evaluate_tolling_factors",
+        "weight": 0.8,
+        "description": "If debt may be time-barred, evaluate factors that could toll statute of limitations"
+      },
+      {
+        "id": "rule-205",
+        "condition": "debtor_has_assets",
+        "action": "consider_asset_attachment",
+        "weight": 0.7,
+        "description": "If debtor has attachable assets, consider pre-judgment attachment"
+      }
+    ],
+    "decision_tree": {
+      "root": "verify_debt_validity",
+      "nodes": {
+        "verify_debt_validity": {
+          "question": "Is the debt valid and properly documented?",
+          "options": {
+            "yes": "assess_collection_prospects",
+            "no": "weak_case_assessment"
+          }
+        },
+        "assess_collection_prospects": {
+          "question": "Does debtor have ability to pay?",
+          "options": {
+            "yes": "evaluate_defenses",
+            "no": "consider_settlement"
+          }
+        },
+        "evaluate_defenses": {
+          "question": "Are there valid defenses to the debt?",
+          "options": {
+            "none": "strong_case_assessment",
+            "minor": "moderate_case_assessment",
+            "substantial": "weak_case_assessment"
+          }
+        }
+      }
+    },
+    "monetary_ranges": {
+      "low": [1000, 10000],
+      "medium": [10000, 75000],
+      "high": [75000, 500000]
+    },
+    "escalation_paths": [
+      "Demand letter",
+      "Payment plan negotiation",
+      "Small claims court",
+      "Superior court filing",
+      "Post-judgment collection"
+    ]
+  }
+]

@@ -1,40 +1,104 @@
-{
-  "cases": [
-    {
-      "id": "case-001",
-      "title": "Employment Discrimination Case - Johnson vs TechCorp",
-      "case_type": "Employment Dispute",
-      "client_name": "Sarah Johnson",
-      "status": "Active",
-      "created_date": "2024-01-15T09:00:00Z",
-      "summary": "Wrongful termination and discrimination claim based on gender and age",
-      "key_parties": ["Sarah Johnson", "TechCorp Inc.", "Manager John Smith"],
-      "documents": ["doc-001", "doc-002", "doc-003"],
-      "playbook_id": "employment-dispute-playbook"
-    },
-    {
-      "id": "case-002", 
-      "title": "Contract Breach - Software Development Agreement",
-      "case_type": "Contract Breach",
-      "client_name": "Digital Solutions LLC",
-      "status": "Under Review",
-      "created_date": "2024-02-03T14:30:00Z",
-      "summary": "Breach of software development contract due to missed deadlines and scope changes",
-      "key_parties": ["Digital Solutions LLC", "DevCorp Technologies", "Project Manager Mike Davis"],
-      "documents": ["doc-004", "doc-005", "doc-006"],
-      "playbook_id": "contract-breach-playbook"
-    },
-    {
-      "id": "case-003",
-      "title": "Debt Collection - Outstanding Invoice Payment",
-      "case_type": "Debt Claim",
-      "client_name": "ABC Manufacturing",
-      "status": "Active",
-      "created_date": "2024-01-28T11:15:00Z",
-      "summary": "Collection of $45,000 in unpaid invoices for manufacturing services",
-      "key_parties": ["ABC Manufacturing", "RetailCorp", "CFO Lisa Chen"],
-      "documents": ["doc-007", "doc-008"],
-      "playbook_id": "debt-claim-playbook"
-    }
-  ]
-}
+[
+  {
+    "id": "case-001",
+    "title": "Wrongful Termination - Sarah Chen vs TechCorp Solutions",
+    "case_type": "Employment Dispute",
+    "client_name": "Sarah Chen",
+    "status": "Active",
+    "created_date": "2024-01-15T09:00:00Z",
+    "summary": "Employee alleges wrongful termination after reporting safety violations. Claims retaliation and seeks reinstatement plus damages. Company claims termination was due to performance issues and budget cuts.",
+    "key_parties": [
+      "Sarah Chen (Plaintiff)",
+      "TechCorp Solutions Inc. (Defendant)",
+      "Marcus Rodriguez (HR Director)",
+      "Jennifer Walsh (Direct Supervisor)"
+    ],
+    "documents": ["doc-001", "doc-002", "doc-003"],
+    "playbook_id": "employment-dispute"
+  },
+  {
+    "id": "case-002",
+    "title": "Breach of Software License Agreement - DataFlow Inc vs CloudTech",
+    "case_type": "Contract Breach",
+    "client_name": "DataFlow Inc",
+    "status": "Under Review",
+    "created_date": "2024-02-03T14:30:00Z",
+    "summary": "Software vendor alleges client exceeded license terms by deploying software on unauthorized servers. Seeking damages of $250,000 and injunctive relief. Client claims license terms were ambiguous.",
+    "key_parties": [
+      "DataFlow Inc (Plaintiff)",
+      "CloudTech Systems (Defendant)",
+      "Robert Kim (CTO, CloudTech)",
+      "Lisa Martinez (Legal Counsel, DataFlow)"
+    ],
+    "documents": ["doc-004", "doc-005", "doc-006", "doc-007"],
+    "playbook_id": "contract-breach"
+  },
+  {
+    "id": "case-003",
+    "title": "Outstanding Invoice Collection - Premier Consulting vs StartupXYZ",
+    "case_type": "Debt Claim",
+    "client_name": "Premier Consulting LLC",
+    "status": "Active",
+    "created_date": "2024-01-28T11:15:00Z",
+    "summary": "Consulting firm seeks collection of $45,000 in unpaid invoices for strategic planning services. Client disputes quality of work and claims breach of service agreement.",
+    "key_parties": [
+      "Premier Consulting LLC (Plaintiff)",
+      "StartupXYZ Inc (Defendant)",
+      "Michael Thompson (CEO, StartupXYZ)",
+      "Amanda Foster (Principal Consultant, Premier)"
+    ],
+    "documents": ["doc-008", "doc-009", "doc-010"],
+    "playbook_id": "debt-claim"
+  },
+  {
+    "id": "case-004",
+    "title": "Discrimination and Hostile Work Environment - James Wilson vs MegaCorp",
+    "case_type": "Employment Dispute",
+    "client_name": "James Wilson",
+    "status": "Active",
+    "created_date": "2024-02-10T16:45:00Z",
+    "summary": "Employee claims age discrimination and hostile work environment after being passed over for promotion multiple times. Alleges younger, less qualified candidates were promoted instead.",
+    "key_parties": [
+      "James Wilson (Plaintiff)",
+      "MegaCorp Industries (Defendant)",
+      "Patricia Davis (Department Manager)",
+      "Thomas Lee (HR Representative)"
+    ],
+    "documents": ["doc-011", "doc-012", "doc-013", "doc-014"],
+    "playbook_id": "employment-dispute"
+  },
+  {
+    "id": "case-005",
+    "title": "Non-Compete Violation - InnovateTech vs Former Employee",
+    "case_type": "Contract Breach",
+    "client_name": "InnovateTech Solutions",
+    "status": "Under Review",
+    "created_date": "2024-02-20T10:20:00Z",
+    "summary": "Technology company seeks injunction against former senior developer who joined competitor within restricted period. Claims violation of non-compete agreement and theft of trade secrets.",
+    "key_parties": [
+      "InnovateTech Solutions (Plaintiff)",
+      "David Park (Defendant)",
+      "CompetitorCorp (Third Party)",
+      "Rachel Green (Legal Counsel, InnovateTech)"
+    ],
+    "documents": ["doc-015", "doc-016", "doc-017"],
+    "playbook_id": "contract-breach"
+  },
+  {
+    "id": "case-006",
+    "title": "Medical Services Payment Dispute - HealthFirst vs Insurance Co",
+    "case_type": "Debt Claim",
+    "client_name": "HealthFirst Medical Group",
+    "status": "Resolved",
+    "created_date": "2023-11-12T13:30:00Z",
+    "summary": "Medical practice seeks payment of $78,500 in denied insurance claims. Insurance company claims services were not medically necessary and outside policy coverage.",
+    "key_parties": [
+      "HealthFirst Medical Group (Plaintiff)",
+      "SecureHealth Insurance (Defendant)",
+      "Dr. Maria Gonzalez (Treating Physician)",
+      "Kevin Brown (Claims Adjuster)"
+    ],
+    "documents": ["doc-018", "doc-019", "doc-020", "doc-021"],
+    "playbook_id": "debt-claim"
+  }
+]
