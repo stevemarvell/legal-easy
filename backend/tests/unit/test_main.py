@@ -1,7 +1,7 @@
 import pytest
 from unittest.mock import patch
 from fastapi.testclient import TestClient
-from main import app, get_random, root
+from main import app, get_random, root, health_check
 
 class TestHealthEndpoint:
     """Test the health check endpoint."""
@@ -10,12 +10,35 @@ class TestHealthEndpoint:
         """Test that root endpoint returns expected message."""
         response = client.get("/")
         assert response.status_code == 200
-        assert response.json() == {"message": "Random Number API. Use /random"}
+        data = response.json()
+        assert data["message"] == "AI Legal Platform API"
+        assert data["version"] == "1.0.0"
+        assert "endpoints" in data
+        assert data["endpoints"]["cases"] == "/cases"
+        assert data["endpoints"]["documents"] == "/documents"
+        assert data["endpoints"]["health"] == "/health"
     
     def test_root_function_directly(self):
         """Test the root function directly."""
         result = root()
-        assert result == {"message": "Random Number API. Use /random"}
+        assert result["message"] == "AI Legal Platform API"
+        assert result["version"] == "1.0.0"
+        assert "endpoints" in result
+        assert result["endpoints"]["cases"] == "/cases"
+    
+    def test_health_check_endpoint(self, client):
+        """Test the health check endpoint."""
+        response = client.get("/health")
+        assert response.status_code == 200
+        data = response.json()
+        assert data["status"] == "healthy"
+        assert data["service"] == "AI Legal Platform API"
+    
+    def test_health_check_function_directly(self):
+        """Test the health check function directly."""
+        result = health_check()
+        assert result["status"] == "healthy"
+        assert result["service"] == "AI Legal Platform API"
 
 class TestRandomEndpoint:
     """Test the random number endpoint."""
