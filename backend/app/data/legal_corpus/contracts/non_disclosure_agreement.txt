@@ -1,0 +1,42 @@
+CONFIDENTIALITY AGREEMENT (UK)
+
+This Confidentiality Agreement is entered into between [DISCLOSING PARTY] ("Disclosing Party") and [RECEIVING PARTY] ("Receiving Party").
+
+1. DEFINITION OF CONFIDENTIAL INFORMATION
+"Confidential Information" means any and all non-public, confidential or proprietary information disclosed by the Disclosing Party, including but not limited to:
+- Technical data, trade secrets, know-how
+- Business plans, financial information
+- Customer lists, supplier information
+- Marketing strategies and plans
+- Software, algorithms, and source code
+- Personal data as defined by UK GDPR and Data Protection Act 2018
+
+2. OBLIGATIONS OF RECEIVING PARTY
+The Receiving Party agrees to:
+- Hold all Confidential Information in strict confidence
+- Not disclose Confidential Information to third parties without written consent
+- Use Confidential Information solely for the agreed evaluation purposes
+- Take reasonable security measures to protect confidentiality
+- Comply with UK GDPR and Data Protection Act 2018 regarding personal data
+
+3. EXCEPTIONS
+This Agreement does not apply to information that:
+- Is publicly available through no breach of this Agreement
+- Was lawfully known to the Receiving Party prior to disclosure
+- Is independently developed without use of Confidential Information
+- Is required to be disclosed by law, court order, or regulatory authority
+
+4. RETURN OF MATERIALS
+Upon written request, the Receiving Party shall promptly return or securely destroy all materials containing Confidential Information and provide written certification of such destruction.
+
+5. TERM
+This Agreement shall remain in effect for [TIME PERIOD] years from the date of execution, or indefinitely for trade secrets that qualify for protection under the Trade Secrets (Enforcement, etc.) Regulations 2018.
+
+6. REMEDIES
+The Receiving Party acknowledges that breach may cause irreparable harm for which damages would be an inadequate remedy, and the Disclosing Party shall be entitled to seek injunctive relief and other equitable remedies.
+
+7. DATA PROTECTION
+Both parties acknowledge their obligations under UK GDPR and the Data Protection Act 2018. Where personal data is disclosed, the parties shall enter into appropriate data processing agreements.
+
+8. GOVERNING LAW
+This Agreement shall be governed by English law and subject to the exclusive jurisdiction of the English courts.

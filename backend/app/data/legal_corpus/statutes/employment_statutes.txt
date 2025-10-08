@@ -1,0 +1,109 @@
+UK EMPLOYMENT LAW STATUTES AND REGULATIONS
+
+1. EMPLOYMENT RIGHTS ACT 1996
+Primary statute governing individual employment rights in the UK.
+
+Key Provisions:
+- Right not to be unfairly dismissed (2+ years' service required)
+- Minimum notice periods (1 week per year of service, max 12 weeks)
+- Right to written statement of employment particulars
+- Protection against detriment for asserting statutory rights
+- Redundancy payments for employees with 2+ years' service
+
+Qualifying Period: Most rights require continuous employment, varying from day one to 2 years.
+
+2. EQUALITY ACT 2010
+Consolidates and strengthens discrimination law across nine protected characteristics.
+
+Protected Characteristics:
+- Age, disability, gender reassignment, marriage/civil partnership
+- Pregnancy/maternity, race, religion/belief, sex, sexual orientation
+
+Key Provisions:
+- Prohibits direct and indirect discrimination, harassment, victimisation
+- Duty to make reasonable adjustments for disabled persons
+- Equal pay provisions for equal work, work rated as equivalent, work of equal value
+- Positive action provisions
+
+3. WORKING TIME REGULATIONS 1998
+Implements EU Working Time Directive, establishing limits on working hours.
+
+Key Provisions:
+- Maximum 48-hour working week (averaged over 17 weeks, opt-out available)
+- Minimum 5.6 weeks' paid annual leave (28 days for full-time workers)
+- Daily rest period of 11 consecutive hours
+- Weekly rest period of 24 hours
+- Rest breaks during working day
+
+Night Work: Maximum 8 hours in 24-hour period, health assessments required.
+
+4. NATIONAL MINIMUM WAGE ACT 1998
+Establishes minimum wage rates for different categories of workers.
+
+Current Rates (2023):
+- National Living Wage (23+): £10.42 per hour
+- 21-22 Rate: £10.18 per hour
+- 18-20 Rate: £7.49 per hour
+- Under 18 Rate: £5.28 per hour
+- Apprentice Rate: £5.28 per hour
+
+Enforcement: HMRC has powers to investigate and impose penalties.
+
+5. TRADE UNION AND LABOUR RELATIONS (CONSOLIDATION) ACT 1992
+Governs collective labour relations and trade union activities.
+
+Key Provisions:
+- Right to join or not join trade unions
+- Collective bargaining procedures
+- Industrial action balloting requirements
+- Collective redundancy consultation (20+ redundancies)
+- TUPE consultation requirements
+
+Strike Action: Must be preceded by properly conducted ballot with majority support.
+
+6. HEALTH AND SAFETY AT WORK ETC. ACT 1974
+Primary legislation for workplace health and safety.
+
+Key Provisions:
+- General duty on employers to ensure health, safety and welfare of employees
+- Duty to provide safe systems of work, equipment, and workplace
+- Employee duties to take reasonable care and cooperate with employer
+- Right to refuse dangerous work
+
+Enforcement: Health and Safety Executive (HSE) with powers of inspection and prosecution.
+
+7. DATA PROTECTION ACT 2018 & UK GDPR
+Governs processing of personal data in employment context.
+
+Key Provisions:
+- Lawful basis required for processing employee personal data
+- Enhanced rights for data subjects (access, rectification, erasure)
+- Data protection impact assessments for high-risk processing
+- Appointment of Data Protection Officers in certain cases
+- Significant penalties for non-compliance
+
+Employee Rights: Access to personal data, right to rectification, right to object to processing.
+
+8. TRANSFER OF UNDERTAKINGS (PROTECTION OF EMPLOYMENT) REGULATIONS 2006 (TUPE)
+Protects employees when businesses or services transfer.
+
+Key Provisions:
+- Automatic transfer of employment contracts and terms
+- Protection against dismissal for transfer-related reasons
+- Duty to inform and consult employee representatives
+- Liability for employee claims transfers to new employer
+
+Relevant Transfers: Business transfers and service provision changes.
+
+9. PUBLIC INTEREST DISCLOSURE ACT 1998 (WHISTLEBLOWING)
+Protects workers who make protected disclosures about wrongdoing.
+
+Protected Disclosures:
+- Criminal offences
+- Failure to comply with legal obligations
+- Miscarriages of justice
+- Health and safety dangers
+- Environmental damage
+- Deliberate concealment of any of the above
+
+Protection: Right not to suffer detriment or dismissal for making protected disclosure.

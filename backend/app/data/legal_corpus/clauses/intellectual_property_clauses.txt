@@ -1,0 +1,37 @@
+INTELLECTUAL PROPERTY CLAUSES LIBRARY
+
+1. WORK FOR HIRE - GENERAL
+"All work product, inventions, and intellectual property created by Contractor in connection with this Agreement shall be deemed work made for hire and shall be owned exclusively by Client."
+
+2. ASSIGNMENT OF INVENTIONS - EMPLOYEE
+"Employee hereby assigns to Company all right, title, and interest in any inventions, discoveries, or improvements made during employment that relate to Company's business or use Company resources."
+
+3. RETAINED RIGHTS
+"Each party retains all right, title, and interest in its pre-existing intellectual property. Nothing in this Agreement grants any license or ownership rights in such pre-existing IP."
+
+4. LICENSE GRANT - LIMITED
+"Provider grants Client a non-exclusive, non-transferable license to use the deliverables solely for Client's internal business purposes during the term of this Agreement."
+
+5. LICENSE GRANT - PERPETUAL
+"Upon full payment, Provider grants Client a perpetual, irrevocable, worldwide license to use, modify, and distribute the work product for any purpose."
+
+6. JOINT OWNERSHIP
+"Any intellectual property jointly developed by the parties shall be jointly owned, with each party having the right to use and license such IP without accounting to the other party."
+
+7. MORAL RIGHTS WAIVER
+"To the extent permitted by law, Creator waives all moral rights in the work product, including rights of attribution and integrity."
+
+8. PATENT WARRANTY
+"Provider warrants that the deliverables do not infringe any valid patent and shall defend Client against any patent infringement claims."
+
+9. COPYRIGHT NOTICE
+"All work product shall include the following copyright notice: '© [YEAR] [OWNER NAME]. All rights reserved.'"
+
+10. TRADE SECRET PROTECTION
+"The parties acknowledge that certain information may constitute trade secrets and agree to maintain such information in confidence and not use it except as authorized."
+
+11. TRADEMARK LICENSE
+"Client grants Provider a limited license to use Client's trademarks solely for the purpose of performing services under this Agreement."
+
+12. OPEN SOURCE COMPLIANCE
+"Provider warrants that no open source software is included in the deliverables without Client's prior written consent and compliance with applicable licenses."

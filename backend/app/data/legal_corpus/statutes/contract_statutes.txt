@@ -1,0 +1,117 @@
+UK CONTRACT LAW STATUTES AND REGULATIONS
+
+1. SALE OF GOODS ACT 1979
+Governs contracts for the sale of goods in the UK.
+
+Key Provisions:
+- Implied terms as to title, description, quality, and fitness for purpose
+- Satisfactory quality standard for goods sold in course of business
+- Buyer's remedies for breach (rejection, damages, specific performance)
+- Risk and property transfer rules
+- Seller's remedies (action for price, damages, lien, stoppage in transit)
+
+Consumer Rights: Enhanced protection under Consumer Rights Act 2015.
+
+2. SUPPLY OF GOODS AND SERVICES ACT 1982
+Governs contracts for services and supply of goods other than sale.
+
+Key Provisions:
+- Implied terms in contracts for services (reasonable care and skill, reasonable time, reasonable price)
+- Implied terms for goods supplied under contract for services
+- Similar quality and fitness provisions as Sale of Goods Act
+- Applies to hire, hire-purchase, and work and materials contracts
+
+3. CONSUMER RIGHTS ACT 2015
+Consolidates and modernises consumer protection law.
+
+Key Provisions:
+- Goods must be of satisfactory quality, fit for purpose, and as described
+- Services must be performed with reasonable care and skill
+- Digital content must be of satisfactory quality and fit for purpose
+- Consumer remedies: short-term right to reject, right to repair/replacement, price reduction
+
+Unfair Terms: Terms that cause significant imbalance in parties' rights are unfair and not binding.
+
+4. UNFAIR CONTRACT TERMS ACT 1977
+Regulates exclusion and limitation clauses in contracts.
+
+Key Provisions:
+- Cannot exclude liability for death or personal injury caused by negligence
+- Exclusion of liability for other negligence must satisfy reasonableness test
+- Exclusion clauses in standard form contracts subject to reasonableness test
+- Consumer contracts: exclusion of implied terms prohibited
+
+Reasonableness Test: Considers bargaining power, alternative sources, inducements to agree.
+
+5. CONTRACTS (RIGHTS OF THIRD PARTIES) ACT 1999
+Allows third parties to enforce contractual terms in certain circumstances.
+
+Key Provisions:
+- Third party can enforce term if contract expressly provides or term purports to confer benefit
+- Third party must be expressly identified by name, class, or description
+- Contracting parties can exclude third party rights
+- Third party has same remedies as if they were party to contract
+
+6. MISREPRESENTATION ACT 1967
+Provides remedies for misrepresentation inducing contract formation.
+
+Key Provisions:
+- Damages available for negligent misrepresentation
+- Court power to award damages in lieu of rescission
+- Restrictions on excluding liability for misrepresentation
+- Burden of proof on representor to show reasonable grounds for belief
+
+7. LAW OF PROPERTY (MISCELLANEOUS PROVISIONS) ACT 1989
+Requires certain contracts to be in writing (modern statute of frauds).
+
+Key Provisions:
+- Contracts for sale or disposition of land must be in writing
+- Must incorporate all terms agreed by parties
+- Must be signed by all parties
+- Electronic signatures may satisfy signing requirement
+
+8. ELECTRONIC COMMUNICATIONS ACT 2000
+Facilitates electronic commerce and digital signatures.
+
+Key Provisions:
+- Electronic signatures admissible in legal proceedings
+- Cryptographic support services regulation
+- Modification of statutory requirements for writing and signatures
+- Does not create presumption about authenticity or integrity
+
+9. CONSUMER CREDIT ACT 1974 (as amended)
+Regulates consumer credit and hire agreements.
+
+Key Provisions:
+- Licensing requirements for credit providers
+- Form and content requirements for credit agreements
+- Cooling-off periods for certain agreements
+- Early settlement rights and rebates
+- Unfair relationship provisions
+
+10. LATE PAYMENT OF COMMERCIAL DEBTS (INTEREST) ACT 1998
+Provides statutory right to interest on late payments in commercial contracts.
+
+Key Provisions:
+- Automatic right to interest at 8% above Bank of England base rate
+- Right to compensation for debt recovery costs
+- Cannot be excluded in contracts with small businesses
+- 30-day payment period unless otherwise agreed
+
+11. CONSUMER PROTECTION FROM UNFAIR TRADING REGULATIONS 2008
+Prohibits unfair commercial practices affecting consumers.
+
+Key Provisions:
+- Prohibition of misleading actions and omissions
+- Prohibition of aggressive commercial practices
+- List of practices that are always unfair
+- Criminal sanctions and civil remedies available
+
+12. PACKAGE TRAVEL AND LINKED TRAVEL ARRANGEMENTS REGULATIONS 2018
+Implements EU Package Travel Directive for consumer protection.
+
+Key Provisions:
+- Information requirements for package travel
+- Right of withdrawal and cancellation
+- Liability for proper performance of package
+- Insolvency protection for consumers

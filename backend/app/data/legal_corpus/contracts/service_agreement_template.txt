@@ -1,0 +1,42 @@
+SERVICE AGREEMENT TEMPLATE (UK)
+
+This Service Agreement is made between [CLIENT NAME] ("Client") and [SERVICE PROVIDER NAME] ("Provider").
+
+1. SERVICES
+The Provider agrees to provide the following services:
+- [SERVICE 1]
+- [SERVICE 2]
+- [SERVICE 3]
+
+2. PAYMENT TERMS
+The Client agrees to pay the Provider according to the following schedule:
+- Total contract value: £[AMOUNT] (inclusive/exclusive of VAT)
+- Payment schedule: [SCHEDULE]
+- Late payment interest: 8% per annum above Bank of England base rate (Late Payment of Commercial Debts (Interest) Act 1998)
+
+3. PERFORMANCE STANDARDS
+The Provider shall perform all services with reasonable care and skill in accordance with good industry practice and any applicable British Standards.
+
+4. INTELLECTUAL PROPERTY
+All intellectual property rights in work product created by the Provider shall vest in [CLIENT/PROVIDER] upon full payment, subject to the Copyright, Designs and Patents Act 1988.
+
+5. LIMITATION OF LIABILITY
+The Provider's total liability under this Agreement shall not exceed the total fees paid or payable hereunder. Nothing in this Agreement excludes liability for death or personal injury caused by negligence or fraudulent misrepresentation.
+
+6. INDEMNIFICATION
+Each party agrees to indemnify the other against claims arising from breach of this Agreement or negligent acts, subject to the provisions of the Unfair Contract Terms Act 1977.
+
+7. TERMINATION
+Either party may terminate this Agreement by giving [NOTICE PERIOD] written notice. The Client may terminate immediately for material breach that remains unremedied after 14 days' written notice.
+
+8. DISPUTE RESOLUTION
+Any disputes shall be resolved through mediation and, if unsuccessful, by the courts of England and Wales.
+
+9. FORCE MAJEURE
+Neither party shall be liable for delays caused by circumstances beyond their reasonable control, including acts of God, government action, or industrial disputes.
+
+10. ENTIRE AGREEMENT
+This Agreement constitutes the entire agreement between the parties and supersedes all prior negotiations, representations, and agreements.
+
+11. GOVERNING LAW
+This Agreement shall be governed by English law and subject to the exclusive jurisdiction of the English courts.

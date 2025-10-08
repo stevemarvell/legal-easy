@@ -1,0 +1,70 @@
+UK CONTRACT LAW PRECEDENTS AND PRINCIPLES
+
+1. FORMATION OF CONTRACTS
+Essential Elements:
+- Offer: Clear, definite proposal
+- Acceptance: Unqualified agreement to terms
+- Consideration: Exchange of value or promise
+- Intention to create legal relations
+- Certainty of terms
+
+Key Case: Carlill v. Carbolic Smoke Ball Co [1893] 1 QB 256 - Established principles of unilateral contracts and consideration.
+
+2. OFFER AND ACCEPTANCE
+Offer must be distinguished from invitation to treat. Acceptance must be communicated and match the terms of the offer.
+
+Key Cases:
+- Fisher v. Bell [1961] 1 QB 394 - Goods in shop window are invitation to treat, not offer
+- Entores Ltd v. Miles Far East Corporation [1955] 2 QB 327 - Postal rule does not apply to instantaneous communications
+
+3. CONSIDERATION
+"Consideration must be sufficient but need not be adequate." Past consideration is generally not valid consideration.
+
+Key Cases:
+- Chappell & Co Ltd v. Nestlé Co Ltd [1960] AC 87 - Chocolate bar wrappers constituted valid consideration
+- Williams v. Roffey Bros [1991] 1 QB 1 - Practical benefit can constitute consideration
+
+4. BREACH OF CONTRACT REMEDIES
+Expectation Damages: Put claimant in position they would have been in if contract performed
+Reliance Damages: Reimburse expenses incurred in reliance on contract
+Restitution: Prevent unjust enrichment
+
+Key Case: Hadley v. Baxendale (1854) 9 Exch 341 - Established remoteness test for consequential damages (still good law).
+
+5. FRUSTRATION OF CONTRACT
+Performance excused when supervening event makes performance impossible, illegal, or radically different.
+
+Key Cases:
+- Taylor v. Caldwell (1863) 3 B&S 826 - Contract frustrated when music hall burned down
+- Davis Contractors Ltd v. Fareham UDC [1956] AC 696 - Established modern frustration doctrine
+
+6. UNFAIR CONTRACT TERMS
+Unfair Contract Terms Act 1977 and Consumer Rights Act 2015 regulate exclusion clauses and unfair terms.
+
+Key Cases:
+- Photo Production Ltd v. Securicor Transport Ltd [1980] AC 827 - Fundamental breach doctrine rejected
+- Director General of Fair Trading v. First National Bank [2001] UKHL 52 - Test for unfair terms in consumer contracts
+
+7. THIRD-PARTY RIGHTS
+Contracts (Rights of Third Parties) Act 1999 allows third parties to enforce contracts in certain circumstances.
+
+Key Case: Beswick v. Beswick [1968] AC 58 - Established privity doctrine and its limitations (pre-1999 Act).
+
+8. MISREPRESENTATION
+False statements of fact that induce contract formation may give rise to remedies.
+
+Key Cases:
+- Hedley Byrne & Co Ltd v. Heller & Partners Ltd [1964] AC 465 - Established negligent misrepresentation
+- Royscot Trust Ltd v. Rogerson [1991] 2 QB 297 - Damages under s.2(1) Misrepresentation Act 1967
+
+9. DURESS AND UNDUE INFLUENCE
+Contracts may be voidable if entered into under duress or undue influence.
+
+Key Cases:
+- Universe Tankships Inc v. International Transport Workers Federation [1983] 1 AC 366 - Economic duress
+- Royal Bank of Scotland v. Etridge (No 2) [2001] UKHL 44 - Undue influence in surety cases
+
+10. PENALTY CLAUSES
+Contractual provisions for breach are unenforceable if they constitute penalties rather than genuine pre-estimates of loss.
+
+Key Case: Makdessi v. Cavendish Square Holdings [2015] UKSC 67 - Modern approach to penalty clauses, focusing on whether clause is extravagant or unconscionable.

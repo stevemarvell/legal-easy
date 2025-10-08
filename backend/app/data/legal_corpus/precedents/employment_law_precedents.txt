@@ -1,0 +1,68 @@
+UK EMPLOYMENT LAW PRECEDENTS AND PRINCIPLES
+
+1. UNFAIR DISMISSAL PROTECTION
+Under Employment Rights Act 1996, employees with 2+ years' service are protected from unfair dismissal. Dismissal must be for a fair reason and follow a fair procedure.
+
+Key Case: British Home Stores Ltd v. Burchell [1980] ICR 303 - Established the test for dismissal for misconduct: genuine belief based on reasonable investigation.
+
+2. CONSTRUCTIVE DISMISSAL
+"Constructive dismissal occurs when an employer's conduct makes continued employment impossible, entitling the employee to resign and claim unfair dismissal."
+
+Key Case: Western Excavating (ECC) Ltd v. Sharp [1978] ICR 221 - Established that employer must breach a fundamental term of the contract.
+
+3. DISCRIMINATION PROTECTIONS
+Equality Act 2010 protects against discrimination based on:
+- Age, disability, gender reassignment, marriage/civil partnership
+- Pregnancy/maternity, race, religion/belief, sex, sexual orientation
+
+Key Case: Shamoon v. Chief Constable of the Royal Ulster Constabulary [2003] UKHL 11 - Established comparative approach to direct discrimination.
+
+4. REASONABLE ADJUSTMENTS - DISABILITY
+Employers have a duty to make reasonable adjustments for disabled employees under Equality Act 2010.
+
+Examples of Reasonable Adjustments:
+- Flexible working arrangements
+- Accessible premises modifications
+- Providing assistive equipment
+- Reallocating duties
+
+Key Case: Archibald v. Fife Council [2004] UKHL 32 - Duty may require transferring disabled employee to higher grade position.
+
+5. WORKING TIME REGULATIONS
+Working Time Regulations 1998 implement EU Working Time Directive:
+- Maximum 48-hour working week (can opt out)
+- Minimum 20 days' paid annual leave plus bank holidays
+- Rest breaks and daily/weekly rest periods
+
+Key Case: Barber v. RJB Mining (UK) Ltd [1999] ICR 679 - Employees cannot be required to work more than 48 hours without opt-out.
+
+6. WHISTLEBLOWING PROTECTION
+Public Interest Disclosure Act 1998 protects workers who make protected disclosures about wrongdoing.
+
+Protected Disclosures:
+- Criminal offences
+- Health and safety dangers
+- Environmental damage
+- Miscarriages of justice
+
+Key Case: Chesterton Global Ltd v. Nurmohamed [2017] EWCA Civ 979 - Clarified "public interest" test for protected disclosures.
+
+7. RESTRICTIVE COVENANTS
+Post-employment restraints must protect legitimate business interests and be reasonable in scope and duration.
+
+Key Case: Faccenda Chicken Ltd v. Fowler [1987] Ch 117 - Established categories of confidential information and enforceability of restraints.
+
+8. TUPE TRANSFERS
+Transfer of Undertakings (Protection of Employment) Regulations 2006 protect employees when businesses transfer.
+
+Key Case: Spijkers v. Gebroeders Benedik Abattoir CV [1986] ECR 1119 - Established multi-factor test for identifying relevant transfers.
+
+9. COLLECTIVE REDUNDANCIES
+Trade Union and Labour Relations (Consolidation) Act 1992 requires consultation when making 20+ redundancies within 90 days.
+
+Key Case: UK Coal Mining Ltd v. NUM [2008] ICR 163 - Established that consultation must begin "in good time" before dismissals.
+
+10. EQUAL PAY
+Equality Act 2010 provides right to equal pay for equal work, work rated as equivalent, or work of equal value.
+
+Key Case: Hayward v. Cammell Laird Shipbuilders Ltd [1988] AC 894 - Established term-by-term comparison approach to equal pay claims.

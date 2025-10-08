@@ -1,0 +1,31 @@
+LIABILITY AND INDEMNIFICATION CLAUSES LIBRARY
+
+1. LIMITATION OF LIABILITY - GENERAL
+"IN NO EVENT SHALL EITHER PARTY BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO LOSS OF PROFITS, DATA, OR USE, REGARDLESS OF THE THEORY OF LIABILITY."
+
+2. LIMITATION OF LIABILITY - CAP
+"EACH PARTY'S TOTAL LIABILITY ARISING OUT OF OR RELATED TO THIS AGREEMENT SHALL NOT EXCEED THE TOTAL AMOUNT PAID OR PAYABLE UNDER THIS AGREEMENT IN THE TWELVE (12) MONTHS PRECEDING THE EVENT GIVING RISE TO LIABILITY."
+
+3. MUTUAL INDEMNIFICATION
+"Each party shall indemnify, defend, and hold harmless the other party from and against any claims, damages, losses, and expenses arising from: (a) breach of this Agreement; (b) negligent acts or omissions; or (c) violation of applicable laws."
+
+4. THIRD-PARTY INDEMNIFICATION
+"Provider shall indemnify and hold harmless Client from any third-party claims alleging that the services infringe any patent, copyright, or trademark, provided Client promptly notifies Provider of such claim."
+
+5. INTELLECTUAL PROPERTY INDEMNIFICATION
+"Provider warrants that the services do not infringe any third-party intellectual property rights and shall defend and indemnify Client against any such claims."
+
+6. DATA BREACH INDEMNIFICATION
+"Provider shall indemnify Client for any losses resulting from Provider's breach of data security obligations, including notification costs, credit monitoring, and regulatory fines."
+
+7. EMPLOYEE INDEMNIFICATION
+"Company shall indemnify Employee for actions taken in good faith within the scope of employment, except for willful misconduct or criminal acts."
+
+8. DIRECTOR AND OFFICER INDEMNIFICATION
+"Corporation shall indemnify directors and officers to the fullest extent permitted by law for actions taken in their official capacity."
+
+9. EXCLUSIONS FROM INDEMNIFICATION
+"Indemnification obligations shall not apply to claims arising from: (a) willful misconduct; (b) criminal acts; (c) breach of confidentiality; or (d) violation of law."
+
+10. INSURANCE REQUIREMENTS
+"Each party shall maintain comprehensive general liability insurance with minimum coverage of $[AMOUNT] and shall name the other party as an additional insured."

@@ -1,0 +1,31 @@
+TERMINATION CLAUSES LIBRARY
+
+1. TERMINATION FOR CONVENIENCE
+"Either party may terminate this Agreement at any time, with or without cause, by providing [30/60/90] days written notice to the other party."
+
+2. TERMINATION FOR CAUSE
+"Either party may terminate this Agreement immediately upon written notice if the other party: (a) materially breaches this Agreement and fails to cure such breach within [30] days after written notice; (b) becomes insolvent or files for bankruptcy; or (c) ceases to conduct business in the ordinary course."
+
+3. TERMINATION FOR NON-PAYMENT
+"Company may terminate this Agreement immediately if Client fails to make any payment when due and such failure continues for [15] days after written notice."
+
+4. TERMINATION OF EMPLOYMENT - AT WILL
+"Employment is at-will and may be terminated by either party at any time, with or without cause or notice, except as otherwise provided by law."
+
+5. TERMINATION OF EMPLOYMENT - FOR CAUSE
+"Company may terminate Employee's employment immediately for cause, including but not limited to: (a) willful misconduct; (b) breach of fiduciary duty; (c) conviction of a felony; (d) violation of company policies; or (e) failure to perform duties after written warning."
+
+6. TERMINATION - SURVIVAL OF PROVISIONS
+"The following provisions shall survive termination of this Agreement: confidentiality, intellectual property, limitation of liability, and dispute resolution."
+
+7. TERMINATION - EFFECT ON PAYMENT
+"Upon termination, all unpaid amounts shall become immediately due and payable, except for amounts disputed in good faith."
+
+8. TERMINATION - RETURN OF PROPERTY
+"Upon termination, each party shall promptly return all confidential information and property belonging to the other party."
+
+9. TERMINATION - NON-SOLICITATION SURVIVAL
+"The non-solicitation provisions contained herein shall survive termination for a period of [12/24] months."
+
+10. TERMINATION - WIND-DOWN PERIOD
+"Upon notice of termination, the parties shall cooperate in good faith to ensure an orderly wind-down of services over a period not to exceed [30] days."
