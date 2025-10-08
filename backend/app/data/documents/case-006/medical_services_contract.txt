@@ -1,13 +1,13 @@
 PROVIDER SERVICES AGREEMENT
 
-This Provider Services Agreement ("Agreement") is entered into on January 1, 2020, between HealthFirst Medical Group, a California professional corporation ("Provider"), and SecureHealth Insurance Company, a Delaware corporation ("Payor").
+This Provider Services Agreement ("Agreement") is entered into on 1 January 2020, between HealthFirst Medical Group Ltd., a company incorporated in England and Wales ("Provider"), and SecureHealth Insurance Ltd., a company incorporated in England and Wales ("Payor").
 
 1. COVERED SERVICES
 Provider agrees to provide the following medical services to Payor's covered members:
 
 1.1 Primary Care Services:
 - Routine physical examinations
-- Preventive care and screenings
+- Preventative care and screenings
 - Acute illness treatment
 - Chronic disease management
 
@@ -32,7 +32,7 @@ Provider agrees to provide the following medical services to Payor's covered mem
 2.1 All services must be medically necessary as determined by the treating physician in accordance with:
 - Generally accepted medical standards
 - Evidence-based clinical guidelines
-- Professional medical judgment
+- Professional medical judgement
 - Patient's individual medical condition
 
 2.2 "Medically necessary" means services that are:
@@ -42,15 +42,15 @@ Provider agrees to provide the following medical services to Payor's covered mem
 - The most appropriate level of care for the patient's condition
 
 3. PRIOR AUTHORIZATION
-3.1 The following services require prior authorization:
+3.1 The following services require prior authorisation:
 - Elective surgical procedures
 - Advanced imaging (CT, MRI, PET scans)
 - Specialist referrals outside network
 - Experimental or investigational treatments
 
-3.2 Emergency services do not require prior authorization.
+3.2 Emergency services do not require prior authorisation.
 
-3.3 Provider may proceed with treatment if authorization cannot be obtained within 24 hours for urgent conditions.
+3.3 Provider may proceed with treatment if authorisation cannot be obtained within 24 hours for urgent conditions.
 
 4. PAYMENT TERMS
 4.1 Payor agrees to pay Provider according to the fee schedule attached as Exhibit A.
@@ -78,21 +78,21 @@ Provider agrees to provide the following medical services to Payor's covered mem
 6.3 Payor may conduct quality reviews and audits with reasonable notice.
 
 7. TERM AND TERMINATION
-This Agreement shall commence on January 1, 2020, and continue for three (3) years, automatically renewing for successive one-year periods unless terminated.
+This Agreement shall commence on 1 January 2020, and continue for three (3) years, automatically renewing for successive one-year periods unless terminated.
 
 8. DISPUTE RESOLUTION
-Any disputes shall be resolved through binding arbitration in accordance with California law.
+Any disputes shall be resolved through binding arbitration in accordance with English law.
 
 IN WITNESS WHEREOF, the parties have executed this Agreement as of the date first written above.
 
-HEALTHFIRST MEDICAL GROUP
+HEALTHFIRST MEDICAL GROUP LTD.
 
 By: /s/ Dr. Maria Gonzalez
 Dr. Maria Gonzalez, Medical Director
-Date: January 1, 2020
+Date: 1 January 2020
 
-SECUREHEALTH INSURANCE COMPANY
+SECUREHEALTH INSURANCE LTD.
 
 By: /s/ Kevin Brown
 Kevin Brown, Provider Relations Director
-Date: January 1, 2020
+Date: 1 January 2020

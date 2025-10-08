@@ -1,6 +1,6 @@
 CONSULTING SERVICES AGREEMENT
 
-This Consulting Services Agreement ("Agreement") is entered into on August 1, 2023, between Premier Consulting LLC, a California limited liability company ("Consultant"), and StartupXYZ Inc., a Delaware corporation ("Client").
+This Consulting Services Agreement ("Agreement") is entered into on 1 August 2023, between Premier Consulting Ltd., a company incorporated in England and Wales ("Consultant"), and StartupXYZ Ltd., a company incorporated in England and Wales ("Client").
 
 1. SERVICES TO BE PROVIDED
 Consultant agrees to provide the following services ("Services"):
@@ -22,30 +22,30 @@ Consultant agrees to provide the following services ("Services"):
 2. DELIVERABLES
 Consultant shall provide the following deliverables:
 
-2.1 Phase 1 Deliverables (Due: September 15, 2023):
+2.1 Phase 1 Deliverables (Due: 15 September 2023):
 - Market Research Report (50+ pages)
 - Competitive Analysis Summary
 - Customer Persona Development
 - Initial Strategic Recommendations
 
-2.2 Phase 2 Deliverables (Due: October 15, 2023):
+2.2 Phase 2 Deliverables (Due: 15 October 2023):
 - Comprehensive Strategic Plan (75+ pages)
 - Financial Projections and Models
 - Implementation Roadmap
 - Risk Assessment and Mitigation Strategies
 
-2.3 Phase 3 Deliverables (Due: November 15, 2023):
+2.3 Phase 3 Deliverables (Due: 15 November 2023):
 - Go-to-Market Strategy
 - Marketing and Sales Plan
 - Operational Recommendations
 - Final Presentation to Board of Directors
 
 3. COMPENSATION
-3.1 Total Contract Value: Forty-Five Thousand Dollars ($45,000)
+3.1 Total Contract Value: Thirty-Five Thousand Pounds (£35,000)
 3.2 Payment Schedule:
-- Phase 1: $15,000 due upon completion of Phase 1 deliverables
-- Phase 2: $15,000 due upon completion of Phase 2 deliverables  
-- Phase 3: $15,000 due upon completion of Phase 3 deliverables
+- Phase 1: £11,667 due upon completion of Phase 1 deliverables
+- Phase 2: £11,667 due upon completion of Phase 2 deliverables  
+- Phase 3: £11,666 due upon completion of Phase 3 deliverables
 
 3.3 Payment Terms: Net 30 days from invoice date
 3.4 Late Payment: 1.5% monthly service charge on overdue amounts
@@ -71,24 +71,24 @@ All deliverables, reports, and work product created under this Agreement shall b
 Both parties agree to maintain confidentiality of all proprietary information shared during the engagement.
 
 8. TERM AND TERMINATION
-This Agreement shall commence on August 1, 2023, and continue until completion of all deliverables or earlier termination. Either party may terminate with 30 days written notice.
+This Agreement shall commence on 1 August 2023, and continue until completion of all deliverables or earlier termination. Either party may terminate with 30 days written notice.
 
 9. DISPUTE RESOLUTION
-Any disputes shall be resolved through binding arbitration in San Francisco, California.
+Any disputes shall be resolved through binding arbitration in London, England.
 
 10. GOVERNING LAW
-This Agreement shall be governed by the laws of the State of California.
+This Agreement shall be governed by the laws of England and Wales.
 
 IN WITNESS WHEREOF, the parties have executed this Agreement as of the date first written above.
 
-PREMIER CONSULTING LLC
+PREMIER CONSULTING LTD.
 
 By: /s/ Amanda Foster
 Amanda Foster, Principal Consultant
-Date: August 1, 2023
+Date: 1 August 2023
 
-STARTUPXYZ INC.
+STARTUPXYZ LTD.
 
 By: /s/ Michael Thompson
 Michael Thompson, Chief Executive Officer
-Date: August 1, 2023
+Date: 1 August 2023

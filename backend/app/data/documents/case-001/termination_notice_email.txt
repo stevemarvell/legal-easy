@@ -1,21 +1,21 @@
-From: hr@techcorp.com
-To: sarah.chen@techcorp.com
-CC: jennifer.walsh@techcorp.com, legal@techcorp.com
-Subject: Employment Termination - Effective January 12, 2024
-Date: January 12, 2024, 9:15 AM PST
+From: hr@techcorp.co.uk
+To: sarah.chen@techcorp.co.uk
+CC: jennifer.walsh@techcorp.co.uk, legal@techcorp.co.uk
+Subject: Employment Termination - Effective 12 January 2024
+Date: 12 January 2024, 9:15 AM GMT
 
 Dear Sarah,
 
-This email serves as formal notification that your employment with TechCorp Solutions Inc. is terminated effective immediately, January 12, 2024.
+This email serves as formal notification that your employment with TechCorp Solutions Ltd. is terminated effective immediately, 12 January 2024.
 
 REASON FOR TERMINATION:
-Due to ongoing budget constraints and organizational restructuring, we have made the difficult decision to eliminate several positions, including your role as Senior Safety Engineer. This decision is part of a broader cost-reduction initiative affecting multiple departments across the organization.
+Due to ongoing budget constraints and organisational restructuring, we have made the difficult decision to eliminate several positions, including your role as Senior Safety Engineer. This decision is part of a broader cost-reduction initiative affecting multiple departments across the organisation.
 
 FINAL PAY AND BENEFITS:
-- Your final paycheck, including accrued vacation time (80 hours), will be processed and available by January 19, 2024
-- Health insurance coverage will continue through January 31, 2024
-- COBRA continuation coverage information will be mailed to your home address within 14 days
-- Your 401(k) account will remain active; you will receive separate communication from our benefits administrator
+- Your final pay, including accrued holiday time (80 hours), will be processed and available by 19 January 2024
+- Private health insurance coverage will continue through 31 January 2024
+- Continuation coverage information will be posted to your home address within 14 days
+- Your pension account will remain active; you will receive separate communication from our benefits administrator
 
 COMPANY PROPERTY:
 Please return all company property by end of business today, including:
@@ -31,17 +31,17 @@ Your direct supervisor, Jennifer Walsh, will coordinate the transition of your o
 REFERENCES:
 TechCorp will provide employment verification and may provide references upon request, subject to company policy.
 
-We appreciate your contributions to TechCorp Solutions over the past 22 months and wish you success in your future endeavors.
+We appreciate your contributions to TechCorp Solutions over the past 22 months and wish you success in your future endeavours.
 
 If you have any questions regarding this termination or your final benefits, please contact me directly.
 
-Sincerely,
+Yours sincerely,
 
 Marcus Rodriguez
 HR Director
-TechCorp Solutions Inc.
-marcus.rodriguez@techcorp.com
-(555) 987-6543
+TechCorp Solutions Ltd.
+marcus.rodriguez@techcorp.co.uk
+020 7987 6543
 
 ---
 CONFIDENTIAL: This email contains confidential and proprietary information. If you are not the intended recipient, please delete this email and notify the sender immediately.

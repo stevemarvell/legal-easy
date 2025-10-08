@@ -1,13 +1,13 @@
 INTERNAL SAFETY REPORT
-TechCorp Solutions Inc.
+TechCorp Solutions Ltd.
 
-Report Date: December 10, 2023
+Report Date: 10 December 2023
 Reported By: Sarah Chen, Senior Safety Engineer
 Employee ID: TC-2022-0847
 Department: Environmental Health & Safety
 
 INCIDENT/HAZARD DESCRIPTION:
-During routine facility inspection on December 8, 2023, I identified critical safety violations in the chemical storage area (Building C, Room 105). The ventilation system is inadequate for the types and quantities of chemicals being stored, creating serious health risks for employees.
+During routine facility inspection on 8 December 2023, I identified critical safety violations in the chemical storage area (Building C, Room 105). The ventilation system is inadequate for the types and quantities of chemicals being stored, creating serious health risks for employees.
 
 SPECIFIC VIOLATIONS IDENTIFIED:
 1. Ventilation System Deficiency:
@@ -17,7 +17,7 @@ SPECIFIC VIOLATIONS IDENTIFIED:
 
 2. Chemical Storage Issues:
    - Incompatible chemicals stored in proximity (acids near bases)
-   - Several containers lack proper labeling
+   - Several containers lack proper labelling
    - Emergency eyewash station blocked by storage boxes
    - Spill containment materials insufficient for volume stored
 
@@ -28,9 +28,9 @@ SPECIFIC VIOLATIONS IDENTIFIED:
 
 REGULATORY COMPLIANCE CONCERNS:
 This situation violates:
-- OSHA 29 CFR 1910.106 (Flammable liquids)
-- OSHA 29 CFR 1910.1200 (Hazard Communication Standard)
-- California Code of Regulations Title 8, Section 5194
+- HSE COSHH Regulations 2002
+- HSE Workplace (Health, Safety and Welfare) Regulations 1992
+- HSE Management of Health and Safety at Work Regulations 1999
 
 IMMEDIATE ACTIONS REQUIRED:
 1. Repair/replace ventilation system within 30 days
@@ -43,17 +43,17 @@ IMMEDIATE ACTIONS REQUIRED:
 POTENTIAL CONSEQUENCES:
 Failure to address these issues could result in:
 - Employee illness or injury
-- OSHA citations and fines up to $145,027 per violation
+- HSE enforcement notices and fines up to £20,000 per violation
 - Workers' compensation claims
-- Potential criminal liability for willful violations
+- Potential criminal liability for wilful violations
 - Business interruption due to regulatory shutdown
 
 COST ESTIMATE:
-Estimated cost to remediate: $45,000 - $65,000
-- Ventilation system repair: $35,000 - $50,000
-- Chemical reorganization and storage: $5,000 - $8,000
-- PPE and safety equipment: $3,000 - $5,000
-- Air quality testing: $2,000 - $2,000
+Estimated cost to remediate: £35,000 - £50,000
+- Ventilation system repair: £27,000 - £38,000
+- Chemical reorganisation and storage: £4,000 - £6,000
+- PPE and safety equipment: £2,500 - £4,000
+- Air quality testing: £1,500 - £2,000
 
 RECOMMENDATION:
 I strongly recommend immediate action to address these violations. The risk to employee health and safety, combined with potential regulatory penalties, far outweighs the cost of remediation.
@@ -64,9 +64,9 @@ Respectfully submitted,
 
 Sarah Chen
 Senior Safety Engineer
-TechCorp Solutions Inc.
-sarah.chen@techcorp.com
-(555) 123-4567
+TechCorp Solutions Ltd.
+sarah.chen@techcorp.co.uk
+020 7123 4567
 
 Distribution:
 - Marcus Rodriguez, HR Director

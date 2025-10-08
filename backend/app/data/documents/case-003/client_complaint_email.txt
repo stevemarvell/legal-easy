@@ -1,12 +1,12 @@
-From: michael.thompson@startupxyz.com
-To: amanda.foster@premierconsulting.com
-CC: sarah.johnson@startupxyz.com, legal@startupxyz.com
+From: michael.thompson@startupxyz.co.uk
+To: amanda.foster@premierconsulting.co.uk
+CC: sarah.johnson@startupxyz.co.uk, legal@startupxyz.co.uk
 Subject: Concerns About Deliverable Quality and Payment Dispute
-Date: January 29, 2024, 2:45 PM PST
+Date: 29 January 2024, 2:45 PM GMT
 
 Amanda,
 
-I am writing to formally express our serious concerns about the quality of work delivered under our consulting agreement dated August 1, 2023. After thorough review by our team and external advisors, we have identified significant deficiencies that we believe constitute breach of contract.
+I am writing to formally express our serious concerns about the quality of work delivered under our consulting agreement dated 1 August 2023. After thorough review by our team and external advisors, we have identified significant deficiencies that we believe constitute breach of contract.
 
 SPECIFIC QUALITY CONCERNS:
 
@@ -32,7 +32,7 @@ IMPACT ON OUR BUSINESS:
 
 These deficiencies have caused significant problems:
 - Our board rejected the strategic plan and demanded revisions
-- We had to hire another consultant to redo the market analysis ($12,000 additional cost)
+- We had to hire another consultant to redo the market analysis (£9,200 additional cost)
 - Implementation delays have cost us potential partnerships and market opportunities
 - Investor presentations were poorly received due to weak market data
 
@@ -48,7 +48,7 @@ Given these material breaches, StartupXYZ requests:
 
 1. Full refund of all payments made (though none have been made yet, we dispute the amounts owed)
 2. Revision of all deliverables to meet contractual standards at no additional cost
-3. Compensation for additional costs incurred to remedy deficient work ($12,000)
+3. Compensation for additional costs incurred to remedy deficient work (£9,200)
 4. Extension of payment terms pending resolution of quality issues
 
 We are not refusing to pay for quality work, but we cannot in good conscience pay for deliverables that do not meet the contractual standards we agreed upon.
@@ -69,13 +69,13 @@ However, if Premier Consulting proceeds with collection efforts without addressi
 
 Please confirm your availability for a discussion this week.
 
-Regards,
+Kind regards,
 
 Michael Thompson
 Chief Executive Officer
-StartupXYZ Inc.
-michael.thompson@startupxyz.com
-(512) 555-0134
+StartupXYZ Ltd.
+michael.thompson@startupxyz.co.uk
+0161 555 0134
 
 cc: Sarah Johnson, CFO
     StartupXYZ Legal Department

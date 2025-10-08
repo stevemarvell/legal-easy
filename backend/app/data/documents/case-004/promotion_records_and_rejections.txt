@@ -1,4 +1,4 @@
-MEGACORP INDUSTRIES
+MEGACORP INDUSTRIES LTD.
 Human Resources Department
 Promotion Application Records - James Wilson
 
@@ -8,7 +8,7 @@ Current Position: Senior Marketing Manager
 Years of Service: 5.5 years (as of 2024)
 
 === PROMOTION APPLICATION #1 ===
-Application Date: March 15, 2021
+Application Date: 15 March 2021
 Position Applied For: Director of Marketing - Consumer Products
 Reporting Manager: Patricia Davis, Department Manager
 Application Status: REJECTED
@@ -18,7 +18,7 @@ Interview Panel:
 - Thomas Lee, HR Representative  
 - Robert Chen, VP of Marketing
 
-Interview Date: April 2, 2021
+Interview Date: 2 April 2021
 Interview Score: 82/100
 
 Feedback Summary:
@@ -28,12 +28,12 @@ Selected Candidate: Sarah Mitchell
 - Age: 34
 - Previous Experience: 8 years marketing experience
 - Background: Digital marketing specialist from tech startup
-- Start Date: May 1, 2021
+- Start Date: 1 May 2021
 
-Rejection Reason (Official): "While James is a valued team member, we selected a candidate with more specialized digital marketing experience."
+Rejection Reason (Official): "While James is a valued team member, we selected a candidate with more specialised digital marketing experience."
 
 === PROMOTION APPLICATION #2 ===
-Application Date: April 20, 2022
+Application Date: 20 April 2022
 Position Applied For: Director of Marketing - Consumer Products (Sarah Mitchell departed)
 Reporting Manager: Patricia Davis, Department Manager
 Application Status: REJECTED
@@ -44,7 +44,7 @@ Interview Panel:
 - Robert Chen, VP of Marketing
 - Jennifer Walsh, Senior Director
 
-Interview Date: May 10, 2022
+Interview Date: 10 May 2022
 Interview Score: 85/100
 
 Feedback Summary:
@@ -54,12 +54,12 @@ Selected Candidate: Marcus Rodriguez
 - Age: 29
 - Previous Experience: 6 years marketing experience
 - Background: Brand manager from consumer goods company
-- Start Date: June 15, 2022
+- Start Date: 15 June 2022
 
 Rejection Reason (Official): "We selected a candidate with more recent brand management experience in fast-moving consumer goods."
 
 === PROMOTION APPLICATION #3 ===
-Application Date: May 10, 2023
+Application Date: 10 May 2023
 Position Applied For: Director of Marketing - Consumer Products (Marcus Rodriguez promoted to VP)
 Reporting Manager: Patricia Davis, Department Manager
 Application Status: REJECTED
@@ -70,7 +70,7 @@ Interview Panel:
 - Marcus Rodriguez, VP of Marketing (formerly Director)
 - Lisa Chen, Senior Director
 
-Interview Date: June 1, 2023
+Interview Date: 1 June 2023
 Interview Score: 87/100
 
 Feedback Summary:
@@ -80,7 +80,7 @@ Selected Candidate: Ashley Park
 - Age: 31
 - Previous Experience: 7 years marketing experience
 - Background: Digital marketing director from e-commerce company
-- Start Date: July 1, 2023
+- Start Date: 1 July 2023
 
 Rejection Reason (Official): "We selected a candidate with more extensive e-commerce and digital transformation experience."
 
@@ -121,5 +121,5 @@ Multiple colleagues have reported hearing age-related comments during promotion 
 - "Our customers are getting younger, our leadership should too"
 
 This document prepared by: Thomas Lee, HR Representative
-Date: February 10, 2024
+Date: 10 February 2024
 Confidentiality: Internal HR Use Only

@@ -1,13 +1,13 @@
 EMPLOYMENT AGREEMENT
 
-This Employment Agreement ("Agreement") is entered into on June 1, 2018, between MegaCorp Industries, a New York corporation ("Company"), and James Wilson ("Employee").
+This Employment Agreement ("Agreement") is entered into on 1 June 2018, between MegaCorp Industries Ltd., a company incorporated in England and Wales ("Company"), and James Wilson ("Employee").
 
 PERSONAL INFORMATION
 Employee Name: James Wilson
-Date of Birth: March 15, 1966
+Date of Birth: 15 March 1966
 Age at Hiring: 52 years
-Social Security Number: XXX-XX-XXXX
-Address: 123 Oak Street, New York, NY 10001
+National Insurance Number: XXX XX XXXX
+Address: 123 Oak Street, London SW1A 1AA
 
 POSITION AND DUTIES
 Employee is hereby employed as Senior Marketing Manager in the Consumer Products Division. Employee shall perform such duties and responsibilities as are customarily associated with such position, including but not limited to:
@@ -22,13 +22,13 @@ TERM OF EMPLOYMENT
 This is an at-will employment relationship. Either party may terminate this employment at any time, with or without cause, and with or without notice.
 
 COMPENSATION
-Employee's initial annual salary shall be $85,000, payable in accordance with Company's standard payroll practices. Employee shall be eligible for annual performance reviews and salary adjustments at Company's discretion.
+Employee's initial annual salary shall be £65,000, payable in accordance with Company's standard payroll practices. Employee shall be eligible for annual performance reviews and salary adjustments at Company's discretion.
 
 BENEFITS
 Employee shall be entitled to participate in Company's standard benefits package, including:
-- Health, dental, and vision insurance
-- 401(k) retirement plan with company matching
-- Paid time off (20 days annually)
+- Private health, dental, and vision insurance
+- Pension scheme with company matching
+- Paid holiday (25 days annually)
 - Professional development opportunities
 - Life and disability insurance
 
@@ -55,18 +55,18 @@ CONFIDENTIALITY
 Employee acknowledges that during employment, Employee may have access to confidential and proprietary information. Employee agrees to maintain strict confidentiality of all such information during and after employment.
 
 GOVERNING LAW
-This Agreement shall be governed by the laws of the State of New York.
+This Agreement shall be governed by the laws of England and Wales.
 
 IN WITNESS WHEREOF, the parties have executed this Agreement as of the date first written above.
 
-MEGACORP INDUSTRIES
+MEGACORP INDUSTRIES LTD.
 
 By: /s/ Patricia Davis
 Patricia Davis, Department Manager
-Date: June 1, 2018
+Date: 1 June 2018
 
 EMPLOYEE:
 
 /s/ James Wilson
 James Wilson
-Date: June 1, 2018
+Date: 1 June 2018

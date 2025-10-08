@@ -1,12 +1,12 @@
-From: legal@cloudtech.com
-To: lisa.martinez@dataflow.com
-CC: robert.kim@cloudtech.com, licensing@dataflow.com
-Subject: RE: License Violation Notice - Request for Clarification
-Date: February 2, 2024, 10:30 AM CST
+From: legal@cloudtech.co.uk
+To: lisa.martinez@dataflow.co.uk
+CC: robert.kim@cloudtech.co.uk, licensing@dataflow.co.uk
+Subject: RE: Licence Violation Notice - Request for Clarification
+Date: 2 February 2024, 10:30 AM GMT
 
-Dear Ms. Martinez,
+Dear Ms Martinez,
 
-Thank you for your letter dated February 1, 2024, regarding alleged license violations. We have reviewed your concerns and respectfully disagree with your interpretation of the license agreement terms.
+Thank you for your letter dated 1 February 2024, regarding alleged licence violations. We have reviewed your concerns and respectfully disagree with your interpretation of the licence agreement terms.
 
 CLOUDTECH'S POSITION:
 
@@ -22,30 +22,30 @@ Our development and testing servers meet these criteria:
 2. CONCURRENT USER CALCULATION:
 Our production servers (SERVER-01 and SERVER-02) support a maximum of 50 concurrent users total, which complies with the license terms. The development and testing servers should not count toward this limit per Section 2.4.
 
-3. SINGLE DATA CENTER COMPLIANCE:
-All servers are located within CloudTech's single data center facility in Austin, Texas. This complies with the single data center restriction in Section 2.2.
+3. SINGLE DATA CENTRE COMPLIANCE:
+All servers are located within CloudTech's single data centre facility in Manchester. This complies with the single data centre restriction in Section 2.2.
 
 We request clarification on DataFlow's interpretation of Section 2.4 and are open to discussion to resolve any misunderstanding.
 
-Best regards,
+Kind regards,
 
 Jennifer Walsh
 General Counsel
-CloudTech Systems
-legal@cloudtech.com
-(512) 555-0198
+CloudTech Systems Ltd.
+legal@cloudtech.co.uk
+0161 555 0198
 
 ---
 
-From: lisa.martinez@dataflow.com
-To: legal@cloudtech.com
-CC: robert.kim@cloudtech.com, licensing@dataflow.com
-Subject: RE: License Violation Notice - DataFlow's Response
-Date: February 3, 2024, 2:15 PM PST
+From: lisa.martinez@dataflow.co.uk
+To: legal@cloudtech.co.uk
+CC: robert.kim@cloudtech.co.uk, licensing@dataflow.co.uk
+Subject: RE: Licence Violation Notice - DataFlow's Response
+Date: 3 February 2024, 2:15 PM GMT
 
-Dear Ms. Walsh,
+Dear Ms Walsh,
 
-Thank you for your response. We appreciate CloudTech's willingness to discuss this matter, however, we maintain our position regarding the license violations.
+Thank you for your response. We appreciate CloudTech's willingness to discuss this matter, however, we maintain our position regarding the licence violations.
 
 DATAFLOW'S CLARIFICATION:
 
@@ -58,7 +58,7 @@ Section 2.4 requires servers to be "completely isolated from production data" AN
 The phrase "by Licensee's internal IT staff" refers to WHO may use the servers, not WHAT they may be used for.
 
 2. USER LIMIT INTERPRETATION:
-The 18 users configured on development/testing servers represent licensed capacity that could be utilized, regardless of current usage patterns. License compliance is measured by configured capacity, not actual usage.
+The 18 users configured on development/testing servers represent licensed capacity that could be utilised, regardless of current usage patterns. Licence compliance is measured by configured capacity, not actual usage.
 
 3. BUSINESS USE DETERMINATION:
 Using production data for QA testing constitutes business operations, not software development. This usage pattern requires full licensing.
@@ -67,35 +67,35 @@ PROPOSED RESOLUTION:
 
 DataFlow offers the following resolution options:
 1. Reconfigure servers to true development-only use (no production data access)
-2. Purchase Development/Testing License Add-on: $25,000 annually
-3. Upgrade to Enterprise License with unlimited development environments: $200,000 annually
+2. Purchase Development/Testing Licence Add-on: £19,000 annually
+3. Upgrade to Enterprise Licence with unlimited development environments: £154,000 annually
 
 Please respond within 5 business days with your preferred resolution approach.
 
-Sincerely,
+Yours faithfully,
 
 Lisa Martinez
 Legal Counsel
-DataFlow Inc.
+DataFlow Ltd.
 
 ---
 
-From: legal@cloudtech.com
-To: lisa.martinez@dataflow.com
-CC: robert.kim@cloudtech.com, licensing@dataflow.com, ceo@cloudtech.com
-Subject: RE: License Violation Notice - Final Response
-Date: February 5, 2024, 4:45 PM CST
+From: legal@cloudtech.co.uk
+To: lisa.martinez@dataflow.co.uk
+CC: robert.kim@cloudtech.co.uk, licensing@dataflow.co.uk, ceo@cloudtech.co.uk
+Subject: RE: Licence Violation Notice - Final Response
+Date: 5 February 2024, 4:45 PM GMT
 
-Dear Ms. Martinez,
+Dear Ms Martinez,
 
-After extensive internal review and consultation with our technical team, we maintain that our current configuration complies with the license agreement as written.
+After extensive internal review and consultation with our technical team, we maintain that our current configuration complies with the licence agreement as written.
 
 CLOUDTECH'S FINAL POSITION:
 
-1. The license agreement language is ambiguous regarding development/testing server requirements
+1. The licence agreement language is ambiguous regarding development/testing server requirements
 2. Industry standard practice includes limited production data access for realistic testing
 3. Our primary production servers remain within the 50-user limit
-4. Good faith efforts have been made to comply with license terms
+4. Good faith efforts have been made to comply with licence terms
 
 NEXT STEPS:
 
@@ -108,10 +108,10 @@ If DataFlow prefers litigation over arbitration, CloudTech is prepared to defend
 
 We believe this dispute stems from ambiguous contract language rather than willful violation and hope for an amicable resolution.
 
-Respectfully,
+Yours faithfully,
 
 Jennifer Walsh
 General Counsel
-CloudTech Systems
+CloudTech Systems Ltd.
 
-cc: David Park, CEO, CloudTech Systems
+cc: David Park, CEO, CloudTech Systems Ltd.

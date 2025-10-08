@@ -1,34 +1,34 @@
-DATAFLOW INC.
+DATAFLOW LTD.
 Legal Department
-1234 Innovation Drive
-San Francisco, CA 94105
+1234 Innovation Way
+London EC2A 4DP
 
-February 1, 2024
+1 February 2024
 
-CloudTech Systems
+CloudTech Systems Ltd.
 Attention: Robert Kim, Chief Technology Officer
-5678 Technology Blvd
-Austin, TX 78701
+5678 Technology Park
+Manchester M1 4ET
 
-Re: NOTICE OF SOFTWARE LICENSE VIOLATION
-    DataFlow Analytics Suite v3.2 License Agreement dated June 1, 2023
+Re: NOTICE OF SOFTWARE LICENCE VIOLATION
+    DataFlow Analytics Suite v3.2 Licence Agreement dated 1 June 2023
 
-Dear Mr. Kim:
+Dear Mr Kim,
 
-This letter serves as formal notice that CloudTech Systems ("CloudTech") is in material breach of the Software License Agreement dated June 1, 2023 ("Agreement") for DataFlow Analytics Suite v3.2.
+This letter serves as formal notice that CloudTech Systems Ltd. ("CloudTech") is in material breach of the Software Licence Agreement dated 1 June 2023 ("Agreement") for DataFlow Analytics Suite v3.2.
 
 VIOLATION DETAILS:
 
-Our automated monitoring systems have detected the following license violations:
+Our automated monitoring systems have detected the following licence violations:
 
 1. CONCURRENT USER LIMIT EXCEEDED:
    - Licensed limit: 50 concurrent users
    - Detected usage: Up to 68 concurrent users
-   - Violation period: January 15, 2024 - present
+   - Violation period: 15 January 2024 - present
    - Overage: 18 users (36% over limit)
 
-2. UNAUTHORIZED DEPLOYMENT CONFIGURATION:
-   - Agreement permits single data center deployment
+2. UNAUTHORISED DEPLOYMENT CONFIGURATION:
+   - Agreement permits single data centre deployment
    - Detected: 4 server deployment with production data access
    - Servers identified:
      * prod-dataflow-01.cloudtech.local (35 users)
@@ -45,9 +45,9 @@ Our automated monitoring systems have detected the following license violations:
 FINANCIAL IMPACT:
 
 Based on the Agreement terms:
-- Overage fees: 18 users × $3,500 = $63,000 annually
-- Breach penalty: 3× applicable license fees = $189,000
-- Total potential damages: $252,000
+- Overage fees: 18 users × £2,700 = £48,600 annually
+- Breach penalty: 3× applicable licence fees = £145,800
+- Total potential damages: £194,400
 
 REQUIRED ACTIONS:
 
@@ -64,29 +64,29 @@ CloudTech must take the following actions within ten (10) days of this notice to
 CONSEQUENCES OF NON-COMPLIANCE:
 
 Failure to cure this breach within the specified timeframe will result in:
-- Immediate termination of the license agreement
-- Legal action to recover damages and attorney fees
-- Injunctive relief to prevent continued unauthorized use
+- Immediate termination of the licence agreement
+- Legal action to recover damages and solicitor fees
+- Injunctive relief to prevent continued unauthorised use
 - Potential criminal referral for software piracy
 
 RESOLUTION OPTIONS:
 
 DataFlow is willing to work with CloudTech to resolve this matter. Options include:
-1. Immediate compliance with existing license terms
-2. Purchase of additional user licenses to cover current usage
-3. Upgrade to enterprise license with multi-environment support
+1. Immediate compliance with existing licence terms
+2. Purchase of additional user licences to cover current usage
+3. Upgrade to enterprise licence with multi-environment support
 
-Please contact our licensing department at licensing@dataflow.com or (415) 555-0123 to discuss resolution options.
+Please contact our licensing department at licensing@dataflow.co.uk or 020 7555 0123 to discuss resolution options.
 
 We expect your immediate attention to this matter and look forward to your prompt response.
 
-Sincerely,
+Yours faithfully,
 
 Lisa Martinez
 Legal Counsel
-DataFlow Inc.
-lisa.martinez@dataflow.com
-(415) 555-0156
+DataFlow Ltd.
+lisa.martinez@dataflow.co.uk
+020 7555 0156
 
 cc: CloudTech Legal Department
     DataFlow Licensing Department

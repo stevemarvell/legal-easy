@@ -7,7 +7,7 @@
       "type": "Contract",
       "size": 245760,
       "upload_date": "2024-01-15T09:30:00Z",
-      "content_preview": "EMPLOYMENT AGREEMENT between TechCorp Solutions Inc. and Sarah Chen. Position: Senior Safety Engineer. Start Date: March 15, 2022. At-will employment with 30-day notice provision...",
+      "content_preview": "EMPLOYMENT AGREEMENT between TechCorp Solutions Ltd. and Sarah Chen. Position: Senior Safety Engineer. Start Date: 15 March 2022. At-will employment with 30-day notice provision...",
       "analysis_completed": true,
       "full_content_path": "backend/app/data/documents/case-001/employment_contract_sarah_chen.txt"
     },
@@ -18,7 +18,7 @@
       "type": "Evidence",
       "size": 89120,
       "upload_date": "2024-01-15T10:00:00Z",
-      "content_preview": "INTERNAL SAFETY REPORT - Date: December 10, 2023. Reported by: Sarah Chen. Issue: Inadequate ventilation system in chemical storage area poses health risks to employees...",
+      "content_preview": "INTERNAL SAFETY REPORT - Date: 10 December 2023. Reported by: Sarah Chen. Issue: Inadequate ventilation system in chemical storage area poses health risks to employees...",
       "analysis_completed": true,
       "full_content_path": "backend/app/data/documents/case-001/safety_violation_report.txt"
     },
@@ -29,18 +29,18 @@
       "type": "Email",
       "size": 12480,
       "upload_date": "2024-01-15T11:15:00Z",
-      "content_preview": "From: hr@techcorp.com To: sarah.chen@techcorp.com Subject: Employment Termination Effective January 12, 2024. Due to budget constraints and restructuring...",
+      "content_preview": "From: hr@techcorp.co.uk To: sarah.chen@techcorp.co.uk Subject: Employment Termination Effective 12 January 2024. Due to budget constraints and restructuring...",
       "analysis_completed": true,
       "full_content_path": "backend/app/data/documents/case-001/termination_notice_email.txt"
     },
     {
       "id": "doc-004",
       "case_id": "case-002",
-      "name": "Software License Agreement",
+      "name": "Software Licence Agreement",
       "type": "Contract",
       "size": 356480,
       "upload_date": "2024-02-03T15:00:00Z",
-      "content_preview": "SOFTWARE LICENSE AGREEMENT between DataFlow Inc. and CloudTech Systems. Licensed Software: DataFlow Analytics Suite v3.2. Maximum 50 concurrent users, single data center deployment...",
+      "content_preview": "SOFTWARE LICENCE AGREEMENT between DataFlow Ltd. and CloudTech Systems Ltd. Licensed Software: DataFlow Analytics Suite v3.2. Maximum 50 concurrent users, single data centre deployment...",
       "analysis_completed": true,
       "full_content_path": "backend/app/data/documents/case-002/software_license_agreement.txt"
     },
@@ -51,29 +51,29 @@
       "type": "Evidence",
       "size": 178240,
       "upload_date": "2024-02-04T09:15:00Z",
-      "content_preview": "DEPLOYMENT LOG - CloudTech Systems. Date: January 15, 2024. Software deployed on: Server-01 (Primary), Server-02 (Backup), Server-03 (Development), Server-04 (Testing)...",
+      "content_preview": "DEPLOYMENT LOG - CloudTech Systems Ltd. Date: 15 January 2024. Software deployed on: Server-01 (Primary), Server-02 (Backup), Server-03 (Development), Server-04 (Testing)...",
       "analysis_completed": true,
       "full_content_path": "backend/app/data/documents/case-002/server_deployment_logs.txt"
     },
     {
       "id": "doc-006",
       "case_id": "case-002",
-      "name": "License Violation Notice",
+      "name": "Licence Violation Notice",
       "type": "Legal Brief",
       "size": 45120,
       "upload_date": "2024-02-04T11:30:00Z",
-      "content_preview": "NOTICE OF LICENSE VIOLATION - DataFlow Inc. to CloudTech Systems. Unauthorized deployment detected on 4 servers exceeding 50-user license limit...",
+      "content_preview": "NOTICE OF LICENCE VIOLATION - DataFlow Ltd. to CloudTech Systems Ltd. Unauthorised deployment detected on 4 servers exceeding 50-user licence limit...",
       "analysis_completed": true,
       "full_content_path": "backend/app/data/documents/case-002/license_violation_notice.txt"
     },
     {
       "id": "doc-007",
       "case_id": "case-002",
-      "name": "Email Thread - License Clarification",
+      "name": "Email Thread - Licence Clarification",
       "type": "Email",
       "size": 23680,
       "upload_date": "2024-02-05T08:45:00Z",
-      "content_preview": "Email chain between legal teams discussing license interpretation and deployment scope. CloudTech claims development/testing servers should not count toward user limits...",
+      "content_preview": "Email chain between legal teams discussing licence interpretation and deployment scope. CloudTech claims development/testing servers should not count toward user limits...",
       "analysis_completed": true,
       "full_content_path": "backend/app/data/documents/case-002/email_thread_license_clarification.txt"
     },
@@ -84,7 +84,7 @@
       "type": "Contract",
       "size": 298760,
       "upload_date": "2024-01-28T12:00:00Z",
-      "content_preview": "CONSULTING SERVICES AGREEMENT between Premier Consulting LLC and StartupXYZ Inc. Services: Strategic planning and market analysis. Total contract value: $45,000. Payment terms: Net 30...",
+      "content_preview": "CONSULTING SERVICES AGREEMENT between Premier Consulting Ltd and StartupXYZ Ltd. Services: Strategic planning and market analysis. Total contract value: £35,000. Payment terms: Net 30...",
       "analysis_completed": true,
       "full_content_path": "backend/app/data/documents/case-003/consulting_services_agreement.txt"
     },
@@ -95,7 +95,7 @@
       "type": "Evidence",
       "size": 67890,
       "upload_date": "2024-01-28T12:30:00Z",
-      "content_preview": "INVOICE SUMMARY - Premier Consulting LLC. Invoice #2023-001: $15,000 (90 days overdue). Invoice #2023-002: $15,000 (60 days overdue). Invoice #2023-003: $15,000 (30 days overdue)...",
+      "content_preview": "INVOICE SUMMARY - Premier Consulting Ltd. Invoice #2023-001: £11,667 (90 days overdue). Invoice #2023-002: £11,667 (60 days overdue). Invoice #2023-003: £11,666 (30 days overdue)...",
       "analysis_completed": true,
       "full_content_path": "backend/app/data/documents/case-003/outstanding_invoices.txt"
     },
@@ -106,7 +106,7 @@
       "type": "Email",
       "size": 18920,
       "upload_date": "2024-01-29T09:15:00Z",
-      "content_preview": "From: michael.thompson@startupxyz.com Subject: Concerns about deliverable quality. The strategic plan provided lacks depth and market research appears outdated...",
+      "content_preview": "From: michael.thompson@startupxyz.co.uk Subject: Concerns about deliverable quality. The strategic plan provided lacks depth and market research appears outdated...",
       "analysis_completed": true,
       "full_content_path": "backend/app/data/documents/case-003/client_complaint_email.txt"
     },
@@ -117,7 +117,7 @@
       "type": "Contract",
       "size": 234560,
       "upload_date": "2024-02-10T17:00:00Z",
-      "content_preview": "EMPLOYMENT AGREEMENT between MegaCorp Industries and James Wilson. Position: Senior Marketing Manager. Start Date: June 1, 2018. Age: 52 at time of hiring...",
+      "content_preview": "EMPLOYMENT AGREEMENT between MegaCorp Industries Ltd and James Wilson. Position: Senior Marketing Manager. Start Date: 1 June 2018. Age: 52 at time of hiring...",
       "analysis_completed": true,
       "full_content_path": "backend/app/data/documents/case-004/employment_contract_james_wilson.txt"
     },

@@ -1,79 +1,79 @@
-PREMIER CONSULTING LLC
+PREMIER CONSULTING LTD.
 Invoice Summary and Collection Notice
 
-Client: StartupXYZ Inc.
+Client: StartupXYZ Ltd.
 Account Number: PC-2023-0847
-Date Prepared: January 28, 2024
+Date Prepared: 28 January 2024
 Prepared By: Amanda Foster, Principal Consultant
 
 === OUTSTANDING INVOICES SUMMARY ===
 
 INVOICE #2023-001
-Invoice Date: September 15, 2023
-Due Date: October 15, 2023
-Amount: $15,000.00
+Invoice Date: 15 September 2023
+Due Date: 15 October 2023
+Amount: £11,667.00
 Services: Phase 1 Deliverables - Market Research and Competitive Analysis
 Status: 90+ DAYS OVERDUE
-Late Fees Accrued: $675.00 (1.5% monthly × 4.5 months)
-Total Amount Due: $15,675.00
+Late Fees Accrued: £525.00 (1.5% monthly × 4.5 months)
+Total Amount Due: £12,192.00
 
 Deliverables Completed:
-✓ Market Research Report (52 pages) - Delivered September 15, 2023
-✓ Competitive Analysis Summary (18 pages) - Delivered September 15, 2023
-✓ Customer Persona Development (12 pages) - Delivered September 15, 2023
-✓ Initial Strategic Recommendations (8 pages) - Delivered September 15, 2023
+✓ Market Research Report (52 pages) - Delivered 15 September 2023
+✓ Competitive Analysis Summary (18 pages) - Delivered 15 September 2023
+✓ Customer Persona Development (12 pages) - Delivered 15 September 2023
+✓ Initial Strategic Recommendations (8 pages) - Delivered 15 September 2023
 
 INVOICE #2023-002
-Invoice Date: October 15, 2023
-Due Date: November 14, 2023
-Amount: $15,000.00
+Invoice Date: 15 October 2023
+Due Date: 14 November 2023
+Amount: £11,667.00
 Services: Phase 2 Deliverables - Strategic Plan and Financial Models
 Status: 60+ DAYS OVERDUE
-Late Fees Accrued: $450.00 (1.5% monthly × 3 months)
-Total Amount Due: $15,450.00
+Late Fees Accrued: £350.00 (1.5% monthly × 3 months)
+Total Amount Due: £12,017.00
 
 Deliverables Completed:
-✓ Comprehensive Strategic Plan (78 pages) - Delivered October 15, 2023
-✓ Financial Projections and Models (Excel workbook) - Delivered October 15, 2023
-✓ Implementation Roadmap (15 pages) - Delivered October 15, 2023
-✓ Risk Assessment and Mitigation Strategies (22 pages) - Delivered October 15, 2023
+✓ Comprehensive Strategic Plan (78 pages) - Delivered 15 October 2023
+✓ Financial Projections and Models (Excel workbook) - Delivered 15 October 2023
+✓ Implementation Roadmap (15 pages) - Delivered 15 October 2023
+✓ Risk Assessment and Mitigation Strategies (22 pages) - Delivered 15 October 2023
 
 INVOICE #2023-003
-Invoice Date: November 15, 2023
-Due Date: December 15, 2023
-Amount: $15,000.00
+Invoice Date: 15 November 2023
+Due Date: 15 December 2023
+Amount: £11,666.00
 Services: Phase 3 Deliverables - Go-to-Market Strategy and Final Presentation
 Status: 30+ DAYS OVERDUE
-Late Fees Accrued: $225.00 (1.5% monthly × 1.5 months)
-Total Amount Due: $15,225.00
+Late Fees Accrued: £175.00 (1.5% monthly × 1.5 months)
+Total Amount Due: £11,841.00
 
 Deliverables Completed:
-✓ Go-to-Market Strategy (35 pages) - Delivered November 15, 2023
-✓ Marketing and Sales Plan (28 pages) - Delivered November 15, 2023
-✓ Operational Recommendations (20 pages) - Delivered November 15, 2023
-✓ Final Board Presentation (45 slides) - Presented November 20, 2023
+✓ Go-to-Market Strategy (35 pages) - Delivered 15 November 2023
+✓ Marketing and Sales Plan (28 pages) - Delivered 15 November 2023
+✓ Operational Recommendations (20 pages) - Delivered 15 November 2023
+✓ Final Board Presentation (45 slides) - Presented 20 November 2023
 
 === TOTAL OUTSTANDING BALANCE ===
-Principal Amount: $45,000.00
-Late Fees: $1,350.00
-TOTAL DUE: $46,350.00
+Principal Amount: £35,000.00
+Late Fees: £1,050.00
+TOTAL DUE: £36,050.00
 
 === PAYMENT HISTORY ===
 No payments received to date.
 
 === COLLECTION EFFORTS ===
-- October 20, 2023: Email reminder sent
-- November 1, 2023: Phone call to Michael Thompson (no response)
-- November 20, 2023: Email follow-up after board presentation
-- December 1, 2023: Formal demand letter sent
-- December 20, 2023: Phone call to CFO (promised payment by year-end)
-- January 5, 2024: Email inquiry (no response)
-- January 15, 2024: Certified letter sent
-- January 25, 2024: Final demand before legal action
+- 20 October 2023: Email reminder sent
+- 1 November 2023: Phone call to Michael Thompson (no response)
+- 20 November 2023: Email follow-up after board presentation
+- 1 December 2023: Formal demand letter sent
+- 20 December 2023: Phone call to CFO (promised payment by year-end)
+- 5 January 2024: Email enquiry (no response)
+- 15 January 2024: Recorded delivery letter sent
+- 25 January 2024: Final demand before legal action
 
 === CLIENT COMMUNICATIONS ===
-Most recent communication from client was December 20, 2023, when CFO stated:
-"We're experiencing temporary cash flow issues due to delayed funding round. Payment will be made by December 31, 2023."
+Most recent communication from client was 20 December 2023, when CFO stated:
+"We're experiencing temporary cash flow issues due to delayed funding round. Payment will be made by 31 December 2023."
 
 No payment was received by the promised date.
 
@@ -94,6 +94,6 @@ This account is recommended for immediate legal collection proceedings.
 
 Amanda Foster
 Principal Consultant
-Premier Consulting LLC
-amanda.foster@premierconsulting.com
-(415) 555-0167
+Premier Consulting Ltd.
+amanda.foster@premierconsulting.co.uk
+020 7555 0167
