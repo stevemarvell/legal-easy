@@ -1,0 +1,222 @@
+{
+  "case_analysis_summaries": [
+    {
+      "case_id": "case-001",
+      "case_type": "Employment Dispute",
+      "analysis_date": "2024-01-15T12:00:00Z",
+      "documents_analyzed": ["doc-001", "doc-002", "doc-003"],
+      "overall_assessment": {
+        "case_strength": "Strong",
+        "primary_legal_theory": "Wrongful Termination - Retaliation for Protected Activity",
+        "likelihood_of_success": 0.78,
+        "estimated_damages": {
+          "min": 85000,
+          "max": 250000,
+          "basis": "Lost wages, reinstatement, punitive damages"
+        }
+      },
+      "key_findings": [
+        "Clear temporal connection between safety report (Dec 10) and termination (Jan 12)",
+        "Protected whistleblower activity under OSHA Section 11(c)",
+        "Violation of 30-day notice provision in employment contract",
+        "Serious safety violations documented with regulatory citations",
+        "Company had actual notice through formal report distribution"
+      ],
+      "legal_strengths": [
+        "Strong whistleblower protection under federal and state law",
+        "Detailed documentation of safety violations with regulatory citations",
+        "Clear timeline showing retaliation pattern (33 days)",
+        "Professional safety assessment with cost-benefit analysis",
+        "Contract violation (30-day notice not provided)"
+      ],
+      "potential_weaknesses": [
+        "At-will employment may complicate wrongful termination claim",
+        "Company may argue legitimate business reasons (budget cuts)",
+        "Need to prove causal connection between report and termination",
+        "Damages calculation may be disputed"
+      ],
+      "recommended_strategy": [
+        "Lead with OSHA whistleblower retaliation claim",
+        "Emphasize timing and causal connection",
+        "Highlight serious nature of safety violations",
+        "Seek reinstatement and back pay",
+        "Consider punitive damages for willful retaliation"
+      ],
+      "cross_document_insights": [
+        "Employment contract safety reporting clause strengthens whistleblower claim",
+        "Safety report professional quality undermines any 'bad faith' defense",
+        "Termination email timing and reasoning appear pretextual",
+        "Wide distribution of safety report creates company notice"
+      ]
+    },
+    {
+      "case_id": "case-002",
+      "case_type": "Contract Breach",
+      "analysis_date": "2024-02-05T15:30:00Z",
+      "documents_analyzed": ["doc-004", "doc-005", "doc-006", "doc-007"],
+      "overall_assessment": {
+        "case_strength": "Moderate",
+        "primary_legal_theory": "Software License Agreement Violation",
+        "likelihood_of_success": 0.65,
+        "estimated_damages": {
+          "min": 63000,
+          "max": 252000,
+          "basis": "Overage fees and breach penalties per contract terms"
+        }
+      },
+      "key_findings": [
+        "Clear evidence of user limit violations (68 vs 50 licensed users)",
+        "Ambiguous contract language regarding development/testing servers",
+        "Automatic monitoring provides strong evidence of violations",
+        "Good faith dispute over license interpretation",
+        "Both parties have reasonable interpretations of Section 2.4"
+      ],
+      "legal_strengths": [
+        "Objective monitoring data shows clear user limit violations",
+        "Contract includes specific penalty provisions",
+        "Material breach definition clearly met",
+        "Built-in compliance monitoring creates strong evidence"
+      ],
+      "potential_weaknesses": [
+        "Ambiguous contract language regarding development servers",
+        "Industry standard practices may support defendant's position",
+        "Good faith dispute may reduce damages",
+        "Defendant's interpretation has some textual support"
+      ],
+      "contract_interpretation_issues": [
+        "Section 2.4 'completely isolated' requirement unclear",
+        "'Solely for software development' language ambiguous",
+        "Production data access for testing may violate isolation",
+        "User limit calculation methodology disputed"
+      ],
+      "recommended_strategy": [
+        "Focus on clear user limit violations in production",
+        "Emphasize automatic monitoring evidence",
+        "Argue development servers with production data access violate isolation",
+        "Seek negotiated resolution given ambiguous language",
+        "Consider contract reformation if interpretation unclear"
+      ],
+      "cross_document_insights": [
+        "License agreement monitoring provisions create strong evidence",
+        "Deployment logs show clear violation of user limits",
+        "Email thread reveals good faith dispute over interpretation",
+        "Technical evidence supports both parties' positions partially"
+      ]
+    },
+    {
+      "case_id": "case-003",
+      "case_type": "Debt Claim",
+      "analysis_date": "2024-01-29T10:15:00Z",
+      "documents_analyzed": ["doc-008", "doc-009", "doc-010"],
+      "overall_assessment": {
+        "case_strength": "Moderate",
+        "primary_legal_theory": "Breach of Contract - Non-payment",
+        "likelihood_of_success": 0.72,
+        "estimated_damages": {
+          "min": 45000,
+          "max": 58000,
+          "basis": "Contract amount plus late fees and costs"
+        }
+      },
+      "key_findings": [
+        "Clear contract with specific deliverables and payment terms",
+        "All deliverables completed and delivered on time",
+        "No payments received despite 90+ day delinquency",
+        "Client quality complaints appear to be post-hoc justification",
+        "Strong documentation of work completion and client acceptance"
+      ],
+      "legal_strengths": [
+        "Clear written contract with specific terms",
+        "Complete performance of all contractual obligations",
+        "Detailed documentation of deliverables",
+        "Client participated in final presentation without objection",
+        "Late fees properly calculated per contract terms"
+      ],
+      "potential_weaknesses": [
+        "Client quality complaints may support counterclaim",
+        "Subjective nature of consulting work quality",
+        "Client may argue material breach of quality standards",
+        "Damages may be offset by client's claimed additional costs"
+      ],
+      "quality_dispute_analysis": [
+        "Client complaints appear reactive to collection efforts",
+        "No quality issues raised during performance period",
+        "Client attended final presentation without objections",
+        "Complaints lack specific factual support",
+        "Industry standard deliverables appear to have been met"
+      ],
+      "recommended_strategy": [
+        "Emphasize complete performance and timely delivery",
+        "Highlight client acceptance through participation in final presentation",
+        "Challenge timing and motivation of quality complaints",
+        "Seek summary judgment on clear contract breach",
+        "Consider settlement to avoid litigation costs"
+      ],
+      "cross_document_insights": [
+        "Contract terms clearly establish payment obligations",
+        "Invoice documentation shows systematic non-payment",
+        "Client complaint timing suggests pretextual nature",
+        "Professional deliverables contradict quality claims"
+      ]
+    },
+    {
+      "case_id": "case-004",
+      "case_type": "Employment Dispute",
+      "analysis_date": "2024-02-11T14:20:00Z",
+      "documents_analyzed": ["doc-011", "doc-012", "doc-013", "doc-014"],
+      "overall_assessment": {
+        "case_strength": "Strong",
+        "primary_legal_theory": "Age Discrimination in Employment",
+        "likelihood_of_success": 0.82,
+        "estimated_damages": {
+          "min": 125000,
+          "max": 400000,
+          "basis": "Lost wages, promotion differential, punitive damages"
+        }
+      },
+      "key_findings": [
+        "Clear pattern of age discrimination over multiple promotion cycles",
+        "Statistical evidence showing preference for significantly younger candidates",
+        "Age-coded language in rejection feedback",
+        "Improving performance contradicts stated rejection reasons",
+        "Witness testimony documenting discriminatory comments"
+      ],
+      "legal_strengths": [
+        "Strong statistical pattern of discrimination",
+        "ADEA protected class (age 40+) clearly established",
+        "Age-coded language in official feedback",
+        "Improving interview scores contradict rejection reasons",
+        "Multiple witnesses to discriminatory comments",
+        "Comparator evidence from other promoted employees"
+      ],
+      "statistical_evidence": [
+        "100% of successful candidates 20+ years younger",
+        "Average age differential of 24+ years",
+        "Consistent pattern across 3 promotion cycles",
+        "Improving performance metrics ignored",
+        "External hiring preference despite internal qualification"
+      ],
+      "discriminatory_language_analysis": [
+        "'Fresh perspective' - age-coded language",
+        "'New energy' - implies older workers lack energy",
+        "'Innovation' - suggests older workers are outdated",
+        "'Younger perspective' - direct age reference",
+        "'Fresh blood' - age-coded metaphor"
+      ],
+      "recommended_strategy": [
+        "Lead with statistical pattern evidence",
+        "Emphasize age-coded language in official feedback",
+        "Highlight improving performance contradicting rejections",
+        "Use witness testimony to establish discriminatory culture",
+        "Seek both compensatory and punitive damages",
+        "Consider class action if pattern affects other older employees"
+      ],
+      "cross_document_insights": [
+        "Employment contract establishes equal opportunity obligations",
+        "Promotion records show clear discriminatory pattern",
+        "Performance reviews contradict rejection reasons",
+        "Witness statements corroborate discriminatory culture"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+NON-COMPETE AND NON-DISCLOSURE AGREEMENT
+
+This Non-Compete and Non-Disclosure Agreement ("Agreement") is entered into on January 15, 2022, between InnovateTech Solutions, a California corporation ("Company"), and David Park ("Employee").
+
+EMPLOYEE INFORMATION
+Name: David Park
+Position: Senior Software Developer
+Employee ID: ITS-2022-0156
+Start Date: January 15, 2022
+
+1. NON-COMPETE RESTRICTIONS
+1.1 Restriction Period: Employee agrees that for a period of eighteen (18) months following termination of employment for any reason, Employee shall not:
+
+a) Directly or indirectly engage in, own, manage, operate, control, be employed by, participate in, or be connected with any business that competes with Company's business;
+
+b) Solicit, induce, or attempt to solicit or induce any employee of Company to terminate employment with Company;
+
+c) Solicit or attempt to solicit any customer or client of Company for competitive purposes.
+
+1.2 Geographic Scope: These restrictions apply within the State of California and any other state where Company conducts business.
+
+1.3 Competitive Business Definition: "Competitive business" means any business engaged in the development, marketing, or sale of machine learning software, data analytics platforms, or artificial intelligence solutions similar to those developed by Company.
+
+2. TRADE SECRETS AND CONFIDENTIAL INFORMATION
+2.1 Employee acknowledges access to Company's proprietary information including:
+- Machine learning algorithms and models
+- Customer databases and contact information
+- Pricing strategies and business plans
+- Software source code and technical specifications
+- Research and development projects
+
+2.2 Employee agrees to maintain strict confidentiality of all proprietary information during and after employment.
+
+3. CONSIDERATION
+In consideration for these restrictions, Company agrees to:
+- Pay Employee an annual salary of $135,000
+- Provide stock options vesting over 4 years
+- Offer comprehensive benefits package
+- Provide professional development opportunities
+
+4. ENFORCEMENT
+4.1 Employee acknowledges that violation of this Agreement would cause irreparable harm to Company.
+
+4.2 Company shall be entitled to injunctive relief and monetary damages for any breach.
+
+4.3 If any provision is deemed unenforceable, the remaining provisions shall remain in full force.
+
+5. SEVERANCE PROVISION
+If Employee's employment is terminated without cause, Company will pay 6 months of base salary in exchange for compliance with this Agreement.
+
+6. GOVERNING LAW
+This Agreement shall be governed by the laws of the State of California.
+
+IN WITNESS WHEREOF, the parties have executed this Agreement as of the date first written above.
+
+INNOVATETECH SOLUTIONS
+
+By: /s/ Rachel Green
+Rachel Green, Legal Counsel
+Date: January 15, 2022
+
+EMPLOYEE:
+
+/s/ David Park
+David Park
+Date: January 15, 2022

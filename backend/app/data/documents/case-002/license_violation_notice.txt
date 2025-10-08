@@ -1,0 +1,93 @@
+DATAFLOW INC.
+Legal Department
+1234 Innovation Drive
+San Francisco, CA 94105
+
+February 1, 2024
+
+CloudTech Systems
+Attention: Robert Kim, Chief Technology Officer
+5678 Technology Blvd
+Austin, TX 78701
+
+Re: NOTICE OF SOFTWARE LICENSE VIOLATION
+    DataFlow Analytics Suite v3.2 License Agreement dated June 1, 2023
+
+Dear Mr. Kim:
+
+This letter serves as formal notice that CloudTech Systems ("CloudTech") is in material breach of the Software License Agreement dated June 1, 2023 ("Agreement") for DataFlow Analytics Suite v3.2.
+
+VIOLATION DETAILS:
+
+Our automated monitoring systems have detected the following license violations:
+
+1. CONCURRENT USER LIMIT EXCEEDED:
+   - Licensed limit: 50 concurrent users
+   - Detected usage: Up to 68 concurrent users
+   - Violation period: January 15, 2024 - present
+   - Overage: 18 users (36% over limit)
+
+2. UNAUTHORIZED DEPLOYMENT CONFIGURATION:
+   - Agreement permits single data center deployment
+   - Detected: 4 server deployment with production data access
+   - Servers identified:
+     * prod-dataflow-01.cloudtech.local (35 users)
+     * prod-dataflow-02.cloudtech.local (15 users)
+     * dev-dataflow-01.cloudtech.local (10 users)
+     * test-dataflow-01.cloudtech.local (8 users)
+
+3. DEVELOPMENT/TESTING SERVER VIOLATIONS:
+   - Development and testing servers are accessing production data
+   - These servers are configured with user limits that count toward license total
+   - Combined development/testing capacity: 18 users
+   - This configuration violates Section 2.4 of the Agreement
+
+FINANCIAL IMPACT:
+
+Based on the Agreement terms:
+- Overage fees: 18 users × $3,500 = $63,000 annually
+- Breach penalty: 3× applicable license fees = $189,000
+- Total potential damages: $252,000
+
+REQUIRED ACTIONS:
+
+CloudTech must take the following actions within ten (10) days of this notice to cure the breach:
+
+1. Immediately reduce concurrent user capacity to 50 or below
+2. Reconfigure development/testing servers to comply with Section 2.4:
+   - Isolate from production data, OR
+   - Use only for internal IT staff development, OR
+   - Purchase additional licensing
+3. Provide written confirmation of compliance
+4. Pay applicable overage fees for the violation period
+
+CONSEQUENCES OF NON-COMPLIANCE:
+
+Failure to cure this breach within the specified timeframe will result in:
+- Immediate termination of the license agreement
+- Legal action to recover damages and attorney fees
+- Injunctive relief to prevent continued unauthorized use
+- Potential criminal referral for software piracy
+
+RESOLUTION OPTIONS:
+
+DataFlow is willing to work with CloudTech to resolve this matter. Options include:
+1. Immediate compliance with existing license terms
+2. Purchase of additional user licenses to cover current usage
+3. Upgrade to enterprise license with multi-environment support
+
+Please contact our licensing department at licensing@dataflow.com or (415) 555-0123 to discuss resolution options.
+
+We expect your immediate attention to this matter and look forward to your prompt response.
+
+Sincerely,
+
+Lisa Martinez
+Legal Counsel
+DataFlow Inc.
+lisa.martinez@dataflow.com
+(415) 555-0156
+
+cc: CloudTech Legal Department
+    DataFlow Licensing Department
+    File

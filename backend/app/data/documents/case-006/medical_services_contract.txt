@@ -1,0 +1,98 @@
+PROVIDER SERVICES AGREEMENT
+
+This Provider Services Agreement ("Agreement") is entered into on January 1, 2020, between HealthFirst Medical Group, a California professional corporation ("Provider"), and SecureHealth Insurance Company, a Delaware corporation ("Payor").
+
+1. COVERED SERVICES
+Provider agrees to provide the following medical services to Payor's covered members:
+
+1.1 Primary Care Services:
+- Routine physical examinations
+- Preventive care and screenings
+- Acute illness treatment
+- Chronic disease management
+
+1.2 Specialist Services:
+- Cardiology consultations and procedures
+- Endocrinology consultations
+- Gastroenterology procedures
+- Pulmonology consultations
+
+1.3 Diagnostic Services:
+- Laboratory testing
+- Imaging studies (X-ray, ultrasound, CT, MRI)
+- Cardiac stress testing
+- Pulmonary function testing
+
+1.4 Emergency Services:
+- Emergency department care
+- Urgent care services
+- After-hours consultations
+
+2. MEDICAL NECESSITY STANDARDS
+2.1 All services must be medically necessary as determined by the treating physician in accordance with:
+- Generally accepted medical standards
+- Evidence-based clinical guidelines
+- Professional medical judgment
+- Patient's individual medical condition
+
+2.2 "Medically necessary" means services that are:
+- Appropriate for the diagnosis and treatment of the patient's condition
+- Provided in accordance with generally accepted standards of medical practice
+- Not primarily for convenience of patient or provider
+- The most appropriate level of care for the patient's condition
+
+3. PRIOR AUTHORIZATION
+3.1 The following services require prior authorization:
+- Elective surgical procedures
+- Advanced imaging (CT, MRI, PET scans)
+- Specialist referrals outside network
+- Experimental or investigational treatments
+
+3.2 Emergency services do not require prior authorization.
+
+3.3 Provider may proceed with treatment if authorization cannot be obtained within 24 hours for urgent conditions.
+
+4. PAYMENT TERMS
+4.1 Payor agrees to pay Provider according to the fee schedule attached as Exhibit A.
+
+4.2 Payment shall be made within 30 days of receipt of clean claims.
+
+4.3 Disputed claims shall be resolved within 60 days of initial submission.
+
+5. CLAIMS REVIEW PROCESS
+5.1 Payor may review claims for:
+- Medical necessity
+- Appropriate level of care
+- Compliance with coverage policies
+- Fraud prevention
+
+5.2 Provider has the right to appeal denied claims within 180 days.
+
+5.3 Independent medical review available for disputed medical necessity determinations.
+
+6. QUALITY ASSURANCE
+6.1 Provider agrees to maintain appropriate quality assurance programs.
+
+6.2 Provider shall comply with all applicable accreditation standards.
+
+6.3 Payor may conduct quality reviews and audits with reasonable notice.
+
+7. TERM AND TERMINATION
+This Agreement shall commence on January 1, 2020, and continue for three (3) years, automatically renewing for successive one-year periods unless terminated.
+
+8. DISPUTE RESOLUTION
+Any disputes shall be resolved through binding arbitration in accordance with California law.
+
+IN WITNESS WHEREOF, the parties have executed this Agreement as of the date first written above.
+
+HEALTHFIRST MEDICAL GROUP
+
+By: /s/ Dr. Maria Gonzalez
+Dr. Maria Gonzalez, Medical Director
+Date: January 1, 2020
+
+SECUREHEALTH INSURANCE COMPANY
+
+By: /s/ Kevin Brown
+Kevin Brown, Provider Relations Director
+Date: January 1, 2020

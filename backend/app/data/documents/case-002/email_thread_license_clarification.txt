@@ -1,0 +1,117 @@
+From: legal@cloudtech.com
+To: lisa.martinez@dataflow.com
+CC: robert.kim@cloudtech.com, licensing@dataflow.com
+Subject: RE: License Violation Notice - Request for Clarification
+Date: February 2, 2024, 10:30 AM CST
+
+Dear Ms. Martinez,
+
+Thank you for your letter dated February 1, 2024, regarding alleged license violations. We have reviewed your concerns and respectfully disagree with your interpretation of the license agreement terms.
+
+CLOUDTECH'S POSITION:
+
+1. DEVELOPMENT/TESTING SERVER EXCLUSION:
+Section 2.4 of the Agreement states that development and testing servers "shall count toward the concurrent user limit unless such servers are completely isolated from production data and used solely for software development purposes by Licensee's internal IT staff."
+
+Our development and testing servers meet these criteria:
+- Used exclusively by internal IT staff (10 developers, 5 QA engineers)
+- Primary purpose is software development and testing
+- Production data access is read-only and limited to necessary testing scenarios
+- No external users or business operations utilize these servers
+
+2. CONCURRENT USER CALCULATION:
+Our production servers (SERVER-01 and SERVER-02) support a maximum of 50 concurrent users total, which complies with the license terms. The development and testing servers should not count toward this limit per Section 2.4.
+
+3. SINGLE DATA CENTER COMPLIANCE:
+All servers are located within CloudTech's single data center facility in Austin, Texas. This complies with the single data center restriction in Section 2.2.
+
+We request clarification on DataFlow's interpretation of Section 2.4 and are open to discussion to resolve any misunderstanding.
+
+Best regards,
+
+Jennifer Walsh
+General Counsel
+CloudTech Systems
+legal@cloudtech.com
+(512) 555-0198
+
+---
+
+From: lisa.martinez@dataflow.com
+To: legal@cloudtech.com
+CC: robert.kim@cloudtech.com, licensing@dataflow.com
+Subject: RE: License Violation Notice - DataFlow's Response
+Date: February 3, 2024, 2:15 PM PST
+
+Dear Ms. Walsh,
+
+Thank you for your response. We appreciate CloudTech's willingness to discuss this matter, however, we maintain our position regarding the license violations.
+
+DATAFLOW'S CLARIFICATION:
+
+1. DEVELOPMENT/TESTING SERVER REQUIREMENTS:
+Section 2.4 requires servers to be "completely isolated from production data" AND "used solely for software development purposes." Your servers fail both criteria:
+
+- NOT completely isolated: Your logs show production database connections
+- NOT solely for development: QA testing with production data subsets constitutes business use, not pure development
+
+The phrase "by Licensee's internal IT staff" refers to WHO may use the servers, not WHAT they may be used for.
+
+2. USER LIMIT INTERPRETATION:
+The 18 users configured on development/testing servers represent licensed capacity that could be utilized, regardless of current usage patterns. License compliance is measured by configured capacity, not actual usage.
+
+3. BUSINESS USE DETERMINATION:
+Using production data for QA testing constitutes business operations, not software development. This usage pattern requires full licensing.
+
+PROPOSED RESOLUTION:
+
+DataFlow offers the following resolution options:
+1. Reconfigure servers to true development-only use (no production data access)
+2. Purchase Development/Testing License Add-on: $25,000 annually
+3. Upgrade to Enterprise License with unlimited development environments: $200,000 annually
+
+Please respond within 5 business days with your preferred resolution approach.
+
+Sincerely,
+
+Lisa Martinez
+Legal Counsel
+DataFlow Inc.
+
+---
+
+From: legal@cloudtech.com
+To: lisa.martinez@dataflow.com
+CC: robert.kim@cloudtech.com, licensing@dataflow.com, ceo@cloudtech.com
+Subject: RE: License Violation Notice - Final Response
+Date: February 5, 2024, 4:45 PM CST
+
+Dear Ms. Martinez,
+
+After extensive internal review and consultation with our technical team, we maintain that our current configuration complies with the license agreement as written.
+
+CLOUDTECH'S FINAL POSITION:
+
+1. The license agreement language is ambiguous regarding development/testing server requirements
+2. Industry standard practice includes limited production data access for realistic testing
+3. Our primary production servers remain within the 50-user limit
+4. Good faith efforts have been made to comply with license terms
+
+NEXT STEPS:
+
+Given the disagreement on license interpretation, we propose:
+1. Engage a neutral third-party arbitrator to interpret the agreement terms
+2. Maintain current configuration pending arbitration decision
+3. Both parties agree to be bound by arbitrator's interpretation
+
+If DataFlow prefers litigation over arbitration, CloudTech is prepared to defend its position in court.
+
+We believe this dispute stems from ambiguous contract language rather than willful violation and hope for an amicable resolution.
+
+Respectfully,
+
+Jennifer Walsh
+General Counsel
+CloudTech Systems
+
+cc: David Park, CEO, CloudTech Systems

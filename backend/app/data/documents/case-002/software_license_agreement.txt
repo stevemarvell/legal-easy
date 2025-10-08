@@ -1,0 +1,64 @@
+SOFTWARE LICENSE AGREEMENT
+
+This Software License Agreement ("Agreement") is entered into on June 1, 2023, between DataFlow Inc., a California corporation ("Licensor"), and CloudTech Systems, a Delaware corporation ("Licensee").
+
+1. LICENSED SOFTWARE
+Licensor hereby grants Licensee a non-exclusive, non-transferable license to use DataFlow Analytics Suite version 3.2 ("Software") subject to the terms and conditions of this Agreement.
+
+2. SCOPE OF LICENSE
+2.1 User Limitations: The Software is licensed for use by a maximum of fifty (50) concurrent users. "Concurrent users" means the maximum number of individual users who may access the Software simultaneously at any given time.
+
+2.2 Deployment Restrictions: The Software may be deployed on servers located within a single data center facility. Multi-data center deployments require separate licensing agreements.
+
+2.3 Permitted Uses: Licensee may use the Software for internal business operations, data analysis, and reporting purposes only.
+
+2.4 Development and Testing: Any deployment of the Software on development, testing, or staging servers shall count toward the concurrent user limit unless such servers are completely isolated from production data and used solely for software development purposes by Licensee's internal IT staff.
+
+3. PROHIBITED USES
+Licensee shall not:
+- Exceed the fifty (50) concurrent user limit
+- Deploy the Software across multiple data centers without additional licensing
+- Use the Software for service bureau or time-sharing purposes
+- Reverse engineer, decompile, or disassemble the Software
+- Transfer, sublicense, or distribute the Software to third parties
+
+4. MONITORING AND COMPLIANCE
+4.1 Usage Monitoring: The Software includes built-in monitoring capabilities that track user connections and deployment locations. This data is automatically transmitted to Licensor for compliance verification.
+
+4.2 Audit Rights: Licensor reserves the right to audit Licensee's use of the Software upon thirty (30) days written notice, during normal business hours.
+
+5. LICENSE FEES
+5.1 Annual License Fee: $125,000 per year for up to 50 concurrent users
+5.2 Overage Fees: $3,500 per additional concurrent user per year
+5.3 Multi-Data Center Fee: $50,000 per additional data center per year
+
+6. TERM AND TERMINATION
+This Agreement shall commence on June 1, 2023, and continue for an initial term of three (3) years, automatically renewing for successive one-year periods unless terminated.
+
+7. BREACH AND REMEDIES
+7.1 Material Breach: Exceeding user limits or unauthorized deployment constitutes material breach.
+7.2 Cure Period: Licensee has ten (10) days to cure any breach after written notice.
+7.3 Damages: In addition to termination rights, Licensor may seek monetary damages equal to three times the applicable license fees for the period of non-compliance.
+
+8. INTELLECTUAL PROPERTY
+The Software and all related intellectual property rights remain the exclusive property of Licensor. This Agreement grants only the limited use rights expressly set forth herein.
+
+9. CONFIDENTIALITY
+Both parties acknowledge that they may have access to confidential information and agree to maintain such information in strict confidence.
+
+10. GOVERNING LAW
+This Agreement shall be governed by the laws of the State of California.
+
+IN WITNESS WHEREOF, the parties have executed this Agreement as of the date first written above.
+
+DATAFLOW INC.
+
+By: /s/ Lisa Martinez
+Lisa Martinez, Legal Counsel
+Date: June 1, 2023
+
+CLOUDTECH SYSTEMS
+
+By: /s/ Robert Kim
+Robert Kim, Chief Technology Officer
+Date: June 1, 2023
