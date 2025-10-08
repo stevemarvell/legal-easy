@@ -3,41 +3,72 @@
     "id": "employment-dispute",
     "case_type": "Employment Dispute",
     "name": "Employment Law Playbook",
+    "description": "Comprehensive playbook for employment-related legal disputes including wrongful termination, discrimination, harassment, and retaliation claims",
+    "version": "1.0",
+    "last_updated": "2024-01-15",
     "rules": [
       {
         "id": "rule-001",
         "condition": "termination_within_protected_period",
         "action": "investigate_retaliation_claim",
         "weight": 0.9,
-        "description": "If termination occurred within 90 days of protected activity, investigate potential retaliation"
+        "description": "If termination occurred within 90 days of protected activity, investigate potential retaliation",
+        "legal_basis": "Title VII, ADEA, ADA retaliation provisions",
+        "evidence_required": ["Timeline of protected activity", "Termination documentation", "Witness statements"]
       },
       {
         "id": "rule-002",
         "condition": "age_over_40_and_replaced_by_younger",
         "action": "assess_age_discrimination",
         "weight": 0.8,
-        "description": "If employee is over 40 and replaced by significantly younger person, assess age discrimination"
+        "description": "If employee is over 40 and replaced by significantly younger person, assess age discrimination",
+        "legal_basis": "Age Discrimination in Employment Act (ADEA)",
+        "evidence_required": ["Employee ages", "Replacement documentation", "Performance records"]
       },
       {
         "id": "rule-003",
         "condition": "documented_performance_issues",
         "action": "evaluate_pretextual_reasons",
         "weight": 0.7,
-        "description": "If performance issues are documented, evaluate whether they are pretextual"
+        "description": "If performance issues are documented, evaluate whether they are pretextual",
+        "legal_basis": "McDonnell Douglas burden-shifting framework",
+        "evidence_required": ["Performance reviews", "Disciplinary records", "Comparative treatment evidence"]
       },
       {
         "id": "rule-004",
         "condition": "hostile_work_environment_pattern",
         "action": "document_harassment_incidents",
         "weight": 0.8,
-        "description": "If pattern of hostile behavior exists, document all incidents and witnesses"
+        "description": "If pattern of hostile behavior exists, document all incidents and witnesses",
+        "legal_basis": "Title VII hostile work environment doctrine",
+        "evidence_required": ["Incident reports", "Witness testimony", "Email/text communications"]
       },
       {
         "id": "rule-005",
         "condition": "whistleblower_activity",
         "action": "assess_retaliation_protection",
         "weight": 0.9,
-        "description": "If employee engaged in whistleblowing, assess protection under relevant statutes"
+        "description": "If employee engaged in whistleblowing, assess protection under relevant statutes",
+        "legal_basis": "Sarbanes-Oxley, Dodd-Frank, state whistleblower laws",
+        "evidence_required": ["Protected disclosure documentation", "Adverse action timeline", "Causal connection evidence"]
+      },
+      {
+        "id": "rule-006",
+        "condition": "pregnancy_or_family_leave_involved",
+        "action": "assess_fmla_pregnancy_discrimination",
+        "weight": 0.85,
+        "description": "If pregnancy or family leave is involved, assess FMLA and pregnancy discrimination claims",
+        "legal_basis": "Family and Medical Leave Act, Pregnancy Discrimination Act",
+        "evidence_required": ["Medical documentation", "Leave requests", "Employer response records"]
+      },
+      {
+        "id": "rule-007",
+        "condition": "disability_accommodation_denied",
+        "action": "evaluate_ada_violation",
+        "weight": 0.8,
+        "description": "If reasonable accommodation was requested and denied, evaluate ADA violation",
+        "legal_basis": "Americans with Disabilities Act",
+        "evidence_required": ["Accommodation requests", "Medical documentation", "Interactive process records"]
       }
     ],
     "decision_tree": {
@@ -59,11 +90,27 @@
             "no": "evaluate_at_will_exceptions"
           }
         },
+        "evaluate_at_will_exceptions": {
+          "question": "Are there any exceptions to at-will employment?",
+          "options": {
+            "public_policy": "moderate_case_assessment",
+            "implied_contract": "moderate_case_assessment",
+            "none": "weak_case_assessment"
+          }
+        },
         "evaluate_discrimination": {
           "question": "Is the employee in a protected class?",
           "options": {
             "yes": "assess_discriminatory_treatment",
             "no": "weak_case_assessment"
+          }
+        },
+        "assess_discriminatory_treatment": {
+          "question": "Is there evidence of discriminatory treatment?",
+          "options": {
+            "direct_evidence": "strong_case_assessment",
+            "circumstantial_evidence": "moderate_case_assessment",
+            "insufficient_evidence": "weak_case_assessment"
           }
         },
         "evaluate_retaliation": {
@@ -72,61 +119,175 @@
             "yes": "assess_causal_connection",
             "no": "weak_case_assessment"
           }
+        },
+        "assess_causal_connection": {
+          "question": "Is there a causal connection between protected activity and adverse action?",
+          "options": {
+            "strong_temporal_proximity": "strong_case_assessment",
+            "some_evidence": "moderate_case_assessment",
+            "weak_connection": "weak_case_assessment"
+          }
+        },
+        "evaluate_harassment": {
+          "question": "Was the harassment severe or pervasive?",
+          "options": {
+            "severe_and_pervasive": "strong_case_assessment",
+            "moderate_pattern": "moderate_case_assessment",
+            "isolated_incidents": "weak_case_assessment"
+          }
+        },
+        "strong_case_assessment": {
+          "result": "Strong case with high likelihood of success",
+          "recommended_actions": ["File formal complaint", "Seek maximum damages", "Consider class action if applicable"],
+          "monetary_range": "high"
+        },
+        "moderate_case_assessment": {
+          "result": "Moderate case with reasonable prospects",
+          "recommended_actions": ["Negotiate settlement", "Gather additional evidence", "Consider mediation"],
+          "monetary_range": "medium"
+        },
+        "weak_case_assessment": {
+          "result": "Weak case with limited prospects",
+          "recommended_actions": ["Advise client of risks", "Consider alternative remedies", "Explore settlement options"],
+          "monetary_range": "low"
         }
       }
     },
     "monetary_ranges": {
-      "low": [10000, 50000],
-      "medium": [50000, 200000],
-      "high": [200000, 1000000]
+      "low": {
+        "range": [10000, 50000],
+        "description": "Limited damages for weak cases or minor violations",
+        "factors": ["Back pay only", "Limited emotional distress", "No punitive damages"]
+      },
+      "medium": {
+        "range": [50000, 200000],
+        "description": "Moderate damages for cases with reasonable prospects",
+        "factors": ["Back pay and front pay", "Emotional distress damages", "Some attorney fees"]
+      },
+      "high": {
+        "range": [200000, 1000000],
+        "description": "Substantial damages for strong cases with clear violations",
+        "factors": ["Full compensatory damages", "Punitive damages", "Attorney fees and costs", "Injunctive relief"]
+      }
     },
     "escalation_paths": [
-      "Internal HR complaint",
-      "EEOC charge filing",
-      "State civil rights agency",
-      "Federal district court",
-      "Appellate court review"
+      {
+        "step": 1,
+        "action": "Internal HR complaint",
+        "timeline": "30 days",
+        "description": "File complaint with employer's HR department"
+      },
+      {
+        "step": 2,
+        "action": "EEOC charge filing",
+        "timeline": "180-300 days from incident",
+        "description": "File charge with Equal Employment Opportunity Commission"
+      },
+      {
+        "step": 3,
+        "action": "State civil rights agency",
+        "timeline": "Concurrent with EEOC",
+        "description": "File with state fair employment agency if applicable"
+      },
+      {
+        "step": 4,
+        "action": "Federal district court",
+        "timeline": "90 days after EEOC right-to-sue",
+        "description": "File federal lawsuit after receiving right-to-sue letter"
+      },
+      {
+        "step": 5,
+        "action": "Appellate court review",
+        "timeline": "30 days after final judgment",
+        "description": "Appeal adverse decisions to circuit court"
+      }
+    ],
+    "key_statutes": [
+      "Title VII of the Civil Rights Act of 1964",
+      "Age Discrimination in Employment Act (ADEA)",
+      "Americans with Disabilities Act (ADA)",
+      "Family and Medical Leave Act (FMLA)",
+      "Pregnancy Discrimination Act",
+      "State fair employment laws"
+    ],
+    "success_factors": [
+      "Clear documentation of protected activity",
+      "Strong temporal proximity between activity and adverse action",
+      "Comparative evidence of disparate treatment",
+      "Credible witness testimony",
+      "Employer's failure to follow own policies"
     ]
   },
   {
     "id": "contract-breach",
     "case_type": "Contract Breach",
     "name": "Contract Breach Playbook",
+    "description": "Comprehensive playbook for contract breach disputes including material breach, non-compete violations, and damages assessment",
+    "version": "1.0",
+    "last_updated": "2024-01-15",
     "rules": [
       {
         "id": "rule-101",
         "condition": "clear_contract_terms_violated",
         "action": "assess_material_breach",
         "weight": 0.9,
-        "description": "If contract terms are clear and violated, assess whether breach is material"
+        "description": "If contract terms are clear and violated, assess whether breach is material",
+        "legal_basis": "Restatement of Contracts § 241",
+        "evidence_required": ["Original contract", "Performance records", "Breach documentation"]
       },
       {
         "id": "rule-102",
         "condition": "ambiguous_contract_language",
         "action": "apply_interpretation_rules",
         "weight": 0.6,
-        "description": "If contract language is ambiguous, apply standard interpretation rules"
+        "description": "If contract language is ambiguous, apply standard interpretation rules",
+        "legal_basis": "Parol evidence rule, contra proferentem doctrine",
+        "evidence_required": ["Contract drafts", "Negotiation history", "Course of dealing evidence"]
       },
       {
         "id": "rule-103",
         "condition": "non_compete_violation",
         "action": "assess_enforceability",
         "weight": 0.8,
-        "description": "If non-compete is violated, assess enforceability under state law"
+        "description": "If non-compete is violated, assess enforceability under state law",
+        "legal_basis": "State-specific non-compete statutes",
+        "evidence_required": ["Non-compete agreement", "Geographic scope analysis", "Competitive activity evidence"]
       },
       {
         "id": "rule-104",
         "condition": "damages_easily_calculable",
         "action": "pursue_monetary_damages",
         "weight": 0.8,
-        "description": "If damages are easily calculable, pursue monetary relief"
+        "description": "If damages are easily calculable, pursue monetary relief",
+        "legal_basis": "Expectation damages under UCC/common law",
+        "evidence_required": ["Financial records", "Lost profit calculations", "Market value assessments"]
       },
       {
         "id": "rule-105",
         "condition": "ongoing_harm_occurring",
         "action": "seek_injunctive_relief",
         "weight": 0.9,
-        "description": "If ongoing harm is occurring, seek immediate injunctive relief"
+        "description": "If ongoing harm is occurring, seek immediate injunctive relief",
+        "legal_basis": "Irreparable harm doctrine",
+        "evidence_required": ["Harm documentation", "Inadequacy of legal remedies", "Balance of hardships analysis"]
+      },
+      {
+        "id": "rule-106",
+        "condition": "force_majeure_claimed",
+        "action": "evaluate_impossibility_defense",
+        "weight": 0.7,
+        "description": "If force majeure is claimed, evaluate impossibility or frustration of purpose defense",
+        "legal_basis": "Impossibility and frustration doctrines",
+        "evidence_required": ["Force majeure clause", "Impossibility documentation", "Foreseeability analysis"]
+      },
+      {
+        "id": "rule-107",
+        "condition": "statute_of_frauds_issue",
+        "action": "assess_writing_requirement",
+        "weight": 0.8,
+        "description": "If contract falls under statute of frauds, assess writing requirement compliance",
+        "legal_basis": "State statute of frauds provisions",
+        "evidence_required": ["Written agreement", "Partial performance evidence", "Estoppel factors"]
       }
     ],
     "decision_tree": {
@@ -136,7 +297,15 @@
           "question": "Is there a valid, enforceable contract?",
           "options": {
             "yes": "identify_breach_type",
-            "no": "weak_case_assessment"
+            "no": "evaluate_formation_issues"
+          }
+        },
+        "evaluate_formation_issues": {
+          "question": "What formation issue exists?",
+          "options": {
+            "statute_of_frauds": "assess_writing_requirement",
+            "lack_of_consideration": "weak_case_assessment",
+            "capacity_issues": "evaluate_voidability"
           }
         },
         "identify_breach_type": {
@@ -150,64 +319,202 @@
         "assess_damages": {
           "question": "Are damages easily quantifiable?",
           "options": {
-            "yes": "strong_case_assessment",
+            "yes": "evaluate_mitigation",
             "no": "evaluate_equitable_relief"
           }
+        },
+        "evaluate_mitigation": {
+          "question": "Did non-breaching party mitigate damages?",
+          "options": {
+            "yes": "strong_case_assessment",
+            "no": "moderate_case_assessment",
+            "not_required": "strong_case_assessment"
+          }
+        },
+        "evaluate_cure_period": {
+          "question": "Was breaching party given opportunity to cure?",
+          "options": {
+            "yes_and_failed": "moderate_case_assessment",
+            "no_cure_given": "evaluate_notice_requirement",
+            "cured_successfully": "weak_case_assessment"
+          }
+        },
+        "assess_repudiation": {
+          "question": "Was repudiation clear and unequivocal?",
+          "options": {
+            "clear_repudiation": "strong_case_assessment",
+            "ambiguous": "moderate_case_assessment",
+            "no_repudiation": "weak_case_assessment"
+          }
+        },
+        "evaluate_equitable_relief": {
+          "question": "Is specific performance appropriate?",
+          "options": {
+            "unique_subject_matter": "strong_case_assessment",
+            "adequate_legal_remedy": "moderate_case_assessment",
+            "impractical": "weak_case_assessment"
+          }
+        },
+        "strong_case_assessment": {
+          "result": "Strong case with high likelihood of success",
+          "recommended_actions": ["Demand full performance", "Seek maximum damages", "Consider injunctive relief"],
+          "monetary_range": "high"
+        },
+        "moderate_case_assessment": {
+          "result": "Moderate case with reasonable prospects",
+          "recommended_actions": ["Negotiate settlement", "Assess cure possibilities", "Consider alternative dispute resolution"],
+          "monetary_range": "medium"
+        },
+        "weak_case_assessment": {
+          "result": "Weak case with limited prospects",
+          "recommended_actions": ["Advise client of risks", "Explore settlement", "Consider contract reformation"],
+          "monetary_range": "low"
         }
       }
     },
     "monetary_ranges": {
-      "low": [5000, 25000],
-      "medium": [25000, 150000],
-      "high": [150000, 2000000]
+      "low": {
+        "range": [5000, 25000],
+        "description": "Limited damages for minor breaches or weak cases",
+        "factors": ["Incidental damages only", "Partial performance received", "Mitigation failures"]
+      },
+      "medium": {
+        "range": [25000, 150000],
+        "description": "Moderate damages for material breaches with some complications",
+        "factors": ["Expectation damages", "Some consequential damages", "Attorney fees if provided"]
+      },
+      "high": {
+        "range": [150000, 2000000],
+        "description": "Substantial damages for clear material breaches",
+        "factors": ["Full expectation damages", "Consequential damages", "Lost profits", "Punitive damages if applicable"]
+      }
     },
     "escalation_paths": [
-      "Demand letter",
-      "Mediation",
-      "Arbitration (if required)",
-      "State court litigation",
-      "Federal court (if diversity)"
+      {
+        "step": 1,
+        "action": "Demand letter",
+        "timeline": "30 days",
+        "description": "Formal demand for performance or damages"
+      },
+      {
+        "step": 2,
+        "action": "Mediation",
+        "timeline": "60-90 days",
+        "description": "Attempt mediated resolution"
+      },
+      {
+        "step": 3,
+        "action": "Arbitration (if required)",
+        "timeline": "6-12 months",
+        "description": "Binding arbitration if contractually required"
+      },
+      {
+        "step": 4,
+        "action": "State court litigation",
+        "timeline": "12-24 months",
+        "description": "File lawsuit in appropriate state court"
+      },
+      {
+        "step": 5,
+        "action": "Federal court (if diversity)",
+        "timeline": "12-24 months",
+        "description": "Federal court if diversity jurisdiction exists"
+      }
+    ],
+    "key_statutes": [
+      "Uniform Commercial Code (UCC)",
+      "Restatement of Contracts",
+      "State-specific contract laws",
+      "Statute of Frauds",
+      "Non-compete statutes"
+    ],
+    "success_factors": [
+      "Clear, unambiguous contract terms",
+      "Well-documented breach",
+      "Quantifiable damages",
+      "Proper notice given",
+      "Mitigation efforts documented"
     ]
   },
   {
     "id": "debt-claim",
     "case_type": "Debt Claim",
     "name": "Debt Collection Playbook",
+    "description": "Comprehensive playbook for debt collection matters including commercial debt, consumer debt, and judgment enforcement",
+    "version": "1.0",
+    "last_updated": "2024-01-15",
     "rules": [
       {
         "id": "rule-201",
         "condition": "clear_debt_documentation",
         "action": "proceed_with_collection",
         "weight": 0.9,
-        "description": "If debt is clearly documented with invoices/contracts, proceed with collection"
+        "description": "If debt is clearly documented with invoices/contracts, proceed with collection",
+        "legal_basis": "Contract law, account stated doctrine",
+        "evidence_required": ["Original invoices", "Contracts", "Delivery receipts", "Payment history"]
       },
       {
         "id": "rule-202",
         "condition": "debtor_disputes_amount",
         "action": "verify_calculation_accuracy",
         "weight": 0.7,
-        "description": "If debtor disputes amount, verify calculation accuracy and supporting documentation"
+        "description": "If debtor disputes amount, verify calculation accuracy and supporting documentation",
+        "legal_basis": "Burden of proof requirements",
+        "evidence_required": ["Detailed accounting", "Interest calculations", "Fee documentation"]
       },
       {
         "id": "rule-203",
         "condition": "debtor_claims_defective_services",
         "action": "assess_quality_defense",
         "weight": 0.6,
-        "description": "If debtor claims defective services, assess validity of quality-based defense"
+        "description": "If debtor claims defective services, assess validity of quality-based defense",
+        "legal_basis": "Breach of warranty, failure of consideration",
+        "evidence_required": ["Service specifications", "Quality standards", "Performance documentation"]
       },
       {
         "id": "rule-204",
         "condition": "debt_over_statute_limitations",
         "action": "evaluate_tolling_factors",
         "weight": 0.8,
-        "description": "If debt may be time-barred, evaluate factors that could toll statute of limitations"
+        "description": "If debt may be time-barred, evaluate factors that could toll statute of limitations",
+        "legal_basis": "State statute of limitations laws",
+        "evidence_required": ["Last payment date", "Acknowledgment of debt", "Tolling events"]
       },
       {
         "id": "rule-205",
         "condition": "debtor_has_assets",
         "action": "consider_asset_attachment",
         "weight": 0.7,
-        "description": "If debtor has attachable assets, consider pre-judgment attachment"
+        "description": "If debtor has attachable assets, consider pre-judgment attachment",
+        "legal_basis": "Attachment and garnishment statutes",
+        "evidence_required": ["Asset investigation", "Bank accounts", "Real property records"]
+      },
+      {
+        "id": "rule-206",
+        "condition": "consumer_debt_fdcpa_applies",
+        "action": "ensure_fdcpa_compliance",
+        "weight": 0.9,
+        "description": "If consumer debt, ensure all collection activities comply with FDCPA",
+        "legal_basis": "Fair Debt Collection Practices Act",
+        "evidence_required": ["Consumer status verification", "FDCPA notices", "Communication records"]
+      },
+      {
+        "id": "rule-207",
+        "condition": "debtor_filed_bankruptcy",
+        "action": "assess_automatic_stay",
+        "weight": 1.0,
+        "description": "If debtor filed bankruptcy, immediately assess automatic stay implications",
+        "legal_basis": "11 U.S.C. § 362 (automatic stay)",
+        "evidence_required": ["Bankruptcy filing", "Stay relief motions", "Proof of claim"]
+      },
+      {
+        "id": "rule-208",
+        "condition": "personal_guarantee_exists",
+        "action": "evaluate_guarantor_liability",
+        "weight": 0.8,
+        "description": "If personal guarantee exists, evaluate guarantor liability and collection options",
+        "legal_basis": "Guaranty law, suretyship principles",
+        "evidence_required": ["Guarantee agreement", "Default notice", "Guarantor assets"]
       }
     ],
     "decision_tree": {
@@ -216,38 +523,345 @@
         "verify_debt_validity": {
           "question": "Is the debt valid and properly documented?",
           "options": {
-            "yes": "assess_collection_prospects",
+            "yes": "assess_statute_limitations",
+            "no": "evaluate_documentation_gaps"
+          }
+        },
+        "evaluate_documentation_gaps": {
+          "question": "Can documentation gaps be remedied?",
+          "options": {
+            "yes": "gather_additional_evidence",
             "no": "weak_case_assessment"
+          }
+        },
+        "assess_statute_limitations": {
+          "question": "Is the debt within the statute of limitations?",
+          "options": {
+            "yes": "assess_collection_prospects",
+            "no": "evaluate_tolling_factors",
+            "unclear": "investigate_timeline"
           }
         },
         "assess_collection_prospects": {
           "question": "Does debtor have ability to pay?",
           "options": {
             "yes": "evaluate_defenses",
-            "no": "consider_settlement"
+            "no": "consider_settlement",
+            "unknown": "conduct_asset_investigation"
           }
         },
         "evaluate_defenses": {
           "question": "Are there valid defenses to the debt?",
           "options": {
-            "none": "strong_case_assessment",
+            "none": "assess_collection_method",
             "minor": "moderate_case_assessment",
             "substantial": "weak_case_assessment"
           }
+        },
+        "assess_collection_method": {
+          "question": "What is the most effective collection method?",
+          "options": {
+            "direct_negotiation": "strong_case_assessment",
+            "litigation_required": "strong_case_assessment",
+            "asset_attachment": "strong_case_assessment"
+          }
+        },
+        "conduct_asset_investigation": {
+          "question": "Do assets justify collection costs?",
+          "options": {
+            "yes": "moderate_case_assessment",
+            "no": "weak_case_assessment"
+          }
+        },
+        "consider_settlement": {
+          "question": "Is partial payment better than no payment?",
+          "options": {
+            "yes": "moderate_case_assessment",
+            "no": "weak_case_assessment"
+          }
+        },
+        "strong_case_assessment": {
+          "result": "Strong case with high collection prospects",
+          "recommended_actions": ["Demand full payment", "Initiate litigation", "Consider asset attachment"],
+          "monetary_range": "high"
+        },
+        "moderate_case_assessment": {
+          "result": "Moderate case with reasonable collection prospects",
+          "recommended_actions": ["Negotiate payment plan", "Consider settlement", "Evaluate cost-benefit"],
+          "monetary_range": "medium"
+        },
+        "weak_case_assessment": {
+          "result": "Weak case with limited collection prospects",
+          "recommended_actions": ["Advise client of risks", "Consider write-off", "Explore alternative remedies"],
+          "monetary_range": "low"
         }
       }
     },
     "monetary_ranges": {
-      "low": [1000, 10000],
-      "medium": [10000, 75000],
-      "high": [75000, 500000]
+      "low": {
+        "range": [1000, 10000],
+        "description": "Limited recovery potential due to defenses or collection issues",
+        "factors": ["Partial payment only", "High collection costs", "Debtor insolvency"]
+      },
+      "medium": {
+        "range": [10000, 75000],
+        "description": "Moderate recovery potential with some complications",
+        "factors": ["Settlement likely", "Some collection costs", "Reasonable asset base"]
+      },
+      "high": {
+        "range": [75000, 500000],
+        "description": "Strong recovery potential for well-documented debts",
+        "factors": ["Full principal recovery", "Interest and fees", "Attorney costs", "Strong asset base"]
+      }
     },
     "escalation_paths": [
-      "Demand letter",
-      "Payment plan negotiation",
-      "Small claims court",
-      "Superior court filing",
-      "Post-judgment collection"
+      {
+        "step": 1,
+        "action": "Demand letter",
+        "timeline": "30 days",
+        "description": "Formal demand for payment with deadline"
+      },
+      {
+        "step": 2,
+        "action": "Payment plan negotiation",
+        "timeline": "60 days",
+        "description": "Negotiate structured payment arrangement"
+      },
+      {
+        "step": 3,
+        "action": "Small claims court",
+        "timeline": "90 days",
+        "description": "File in small claims court if amount qualifies"
+      },
+      {
+        "step": 4,
+        "action": "Superior court filing",
+        "timeline": "120 days",
+        "description": "File lawsuit in appropriate court"
+      },
+      {
+        "step": 5,
+        "action": "Post-judgment collection",
+        "timeline": "Ongoing",
+        "description": "Garnishment, levy, and other collection remedies"
+      }
+    ],
+    "key_statutes": [
+      "Fair Debt Collection Practices Act (FDCPA)",
+      "Fair Credit Reporting Act (FCRA)",
+      "State collection laws",
+      "Uniform Commercial Code",
+      "Bankruptcy Code (automatic stay)"
+    ],
+    "success_factors": [
+      "Clear documentation of debt",
+      "Timely collection efforts",
+      "Proper legal notices",
+      "Asset investigation",
+      "FDCPA compliance for consumer debts"
+    ]
+  },
+  {
+    "id": "personal-injury",
+    "case_type": "Personal Injury",
+    "name": "Personal Injury Playbook",
+    "description": "Comprehensive playbook for personal injury claims including motor vehicle accidents, slip and fall, and premises liability",
+    "version": "1.0",
+    "last_updated": "2024-01-15",
+    "rules": [
+      {
+        "id": "rule-301",
+        "condition": "clear_liability_established",
+        "action": "pursue_full_damages",
+        "weight": 0.9,
+        "description": "If liability is clearly established, pursue full compensatory damages",
+        "legal_basis": "Negligence law, strict liability",
+        "evidence_required": ["Accident reports", "Witness statements", "Expert testimony", "Physical evidence"]
+      },
+      {
+        "id": "rule-302",
+        "condition": "comparative_negligence_issue",
+        "action": "assess_fault_allocation",
+        "weight": 0.7,
+        "description": "If comparative negligence is an issue, assess fault allocation impact on damages",
+        "legal_basis": "Comparative negligence statutes",
+        "evidence_required": ["Accident reconstruction", "Traffic laws", "Witness testimony", "Video evidence"]
+      },
+      {
+        "id": "rule-303",
+        "condition": "serious_permanent_injury",
+        "action": "maximize_pain_suffering_damages",
+        "weight": 0.8,
+        "description": "If serious permanent injury exists, maximize pain and suffering damages",
+        "legal_basis": "Compensatory damages doctrine",
+        "evidence_required": ["Medical records", "Expert medical testimony", "Life care plans", "Vocational assessments"]
+      },
+      {
+        "id": "rule-304",
+        "condition": "insurance_coverage_adequate",
+        "action": "pursue_policy_limits",
+        "weight": 0.8,
+        "description": "If insurance coverage is adequate, pursue policy limits settlement",
+        "legal_basis": "Insurance contract law",
+        "evidence_required": ["Insurance policies", "Coverage declarations", "Demand packages"]
+      },
+      {
+        "id": "rule-305",
+        "condition": "statute_limitations_approaching",
+        "action": "file_lawsuit_immediately",
+        "weight": 1.0,
+        "description": "If statute of limitations is approaching, file lawsuit immediately",
+        "legal_basis": "State statute of limitations",
+        "evidence_required": ["Incident date", "Discovery date", "Tolling factors"]
+      },
+      {
+        "id": "rule-306",
+        "condition": "pre_existing_condition_present",
+        "action": "distinguish_aggravation_from_causation",
+        "weight": 0.6,
+        "description": "If pre-existing condition present, distinguish aggravation from new injury causation",
+        "legal_basis": "Eggshell skull doctrine, aggravation of pre-existing condition",
+        "evidence_required": ["Prior medical records", "Treating physician testimony", "Medical expert analysis"]
+      }
+    ],
+    "decision_tree": {
+      "root": "assess_liability",
+      "nodes": {
+        "assess_liability": {
+          "question": "Is liability clear against the defendant?",
+          "options": {
+            "clear_liability": "assess_damages",
+            "disputed_liability": "evaluate_fault_factors",
+            "no_liability": "weak_case_assessment"
+          }
+        },
+        "evaluate_fault_factors": {
+          "question": "What is the likely fault allocation?",
+          "options": {
+            "defendant_majority_fault": "assess_damages",
+            "shared_fault": "evaluate_comparative_negligence",
+            "plaintiff_majority_fault": "weak_case_assessment"
+          }
+        },
+        "evaluate_comparative_negligence": {
+          "question": "What is plaintiff's percentage of fault?",
+          "options": {
+            "less_than_25_percent": "moderate_case_assessment",
+            "25_to_50_percent": "evaluate_damages_vs_fault",
+            "over_50_percent": "weak_case_assessment"
+          }
+        },
+        "assess_damages": {
+          "question": "What is the extent of damages?",
+          "options": {
+            "catastrophic_injury": "assess_insurance_coverage",
+            "serious_injury": "evaluate_economic_losses",
+            "minor_injury": "moderate_case_assessment"
+          }
+        },
+        "assess_insurance_coverage": {
+          "question": "Is insurance coverage adequate for damages?",
+          "options": {
+            "adequate_coverage": "strong_case_assessment",
+            "insufficient_coverage": "evaluate_defendant_assets",
+            "no_coverage": "evaluate_defendant_assets"
+          }
+        },
+        "evaluate_economic_losses": {
+          "question": "Are economic losses substantial?",
+          "options": {
+            "high_economic_losses": "strong_case_assessment",
+            "moderate_losses": "moderate_case_assessment",
+            "minimal_losses": "evaluate_pain_suffering"
+          }
+        },
+        "evaluate_defendant_assets": {
+          "question": "Does defendant have sufficient assets?",
+          "options": {
+            "substantial_assets": "strong_case_assessment",
+            "limited_assets": "moderate_case_assessment",
+            "no_assets": "weak_case_assessment"
+          }
+        },
+        "strong_case_assessment": {
+          "result": "Strong case with high recovery potential",
+          "recommended_actions": ["Demand policy limits", "Prepare for trial", "Maximize damages presentation"],
+          "monetary_range": "high"
+        },
+        "moderate_case_assessment": {
+          "result": "Moderate case with reasonable settlement prospects",
+          "recommended_actions": ["Negotiate settlement", "Consider mediation", "Evaluate trial risks"],
+          "monetary_range": "medium"
+        },
+        "weak_case_assessment": {
+          "result": "Weak case with limited recovery prospects",
+          "recommended_actions": ["Advise client of risks", "Consider early settlement", "Evaluate case costs"],
+          "monetary_range": "low"
+        }
+      }
+    },
+    "monetary_ranges": {
+      "low": {
+        "range": [5000, 25000],
+        "description": "Limited damages for minor injuries or liability issues",
+        "factors": ["Minor soft tissue injuries", "Minimal medical treatment", "No lost wages", "Liability disputes"]
+      },
+      "medium": {
+        "range": [25000, 150000],
+        "description": "Moderate damages for significant injuries with some complications",
+        "factors": ["Moderate injuries", "Some permanent impairment", "Lost wages", "Shared fault"]
+      },
+      "high": {
+        "range": [150000, 5000000],
+        "description": "Substantial damages for serious injuries with clear liability",
+        "factors": ["Catastrophic injuries", "Permanent disability", "Future medical costs", "Lost earning capacity"]
+      }
+    },
+    "escalation_paths": [
+      {
+        "step": 1,
+        "action": "Insurance claim filing",
+        "timeline": "30 days",
+        "description": "File claim with defendant's insurance carrier"
+      },
+      {
+        "step": 2,
+        "action": "Demand package submission",
+        "timeline": "90-120 days",
+        "description": "Submit comprehensive demand package to insurance"
+      },
+      {
+        "step": 3,
+        "action": "Settlement negotiations",
+        "timeline": "120-180 days",
+        "description": "Engage in settlement negotiations"
+      },
+      {
+        "step": 4,
+        "action": "Lawsuit filing",
+        "timeline": "Before statute expires",
+        "description": "File lawsuit if settlement not reached"
+      },
+      {
+        "step": 5,
+        "action": "Trial preparation and trial",
+        "timeline": "12-24 months",
+        "description": "Discovery, depositions, and trial"
+      }
+    ],
+    "key_statutes": [
+      "State negligence laws",
+      "Comparative negligence statutes",
+      "Statute of limitations",
+      "Motor vehicle codes",
+      "Premises liability laws"
+    ],
+    "success_factors": [
+      "Clear liability evidence",
+      "Comprehensive medical documentation",
+      "Expert witness testimony",
+      "Adequate insurance coverage",
+      "Timely case development"
     ]
   }
 ]
