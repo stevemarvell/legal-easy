@@ -8,14 +8,13 @@ app = FastAPI(title="Random Number API")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:8080",  # Frontend dev server
+        "http://localhost:8080", 
         "http://127.0.0.1:8080",
         "https://frontend.railway.com:8888",
         "https://frontend-production-497b.up.railway.app:8888",
     ],
-    allow_origin_regex=r"^https?://(localhost|127\.0\.0\.1)(:\d{1,5})?$",
     allow_credentials=False,
-    allow_methods=["GET", "POST", "PUT", "DELETE"],
+    allow_methods=["GET"],
     allow_headers=["*"]
 )
 

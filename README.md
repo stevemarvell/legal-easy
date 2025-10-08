@@ -1,6 +1,6 @@
 # legal-easy
 
-Full-stack demo with FastAPI backend and TypeScript frontend.
+Full-stack demo with FastAPI backend and React TypeScript frontend built with Vite.
 
 ## Project Structure
 
@@ -10,11 +10,11 @@ legal-easy/
 │   ├── main.py       # FastAPI application
 │   ├── dev.py        # Development server script
 │   └── requirements.txt
-├── frontend/         # TypeScript frontend
-│   ├── src/          # TypeScript source files
-│   ├── public/       # Static files and build output
-│   ├── dev.js        # Development script
-│   └── build.js      # Build script
+├── frontend/         # React TypeScript frontend (Vite)
+│   ├── src/          # React components and TypeScript source
+│   ├── public/       # Static assets
+│   ├── vite.config.ts # Vite configuration
+│   └── package.json  # Node.js dependencies
 └── .github/workflows/ # CI/CD configuration
 ```
 
@@ -38,23 +38,12 @@ Backend URL: `http://localhost:8000`
 cd frontend
 npm install
 
-# Development (auto-rebuild on changes)
+# Development server with hot reload
 npm run dev
-# OR build once: npm run build
-# OR serve built files: npm run serve
+# OR build for production: npm run build
+# OR preview production build: npm run preview
 ```
-Frontend URL: `http://localhost:8080` (when using `npm run serve`)  
-Or open `frontend/public/index.html` directly in your browser.
-
-## GitHub Deploy
-
-1. Fork this repository
-2. Set repository secrets:
-   - `RAILWAY_TOKEN`
-   - `RAILWAY_BACKEND_SERVICE_ID`
-   - `RAILWAY_FRONTEND_SERVICE_ID`
-   - `RAILWAY_BACKEND_URL` (e.g., `https://your-backend-name.railway.app`)
-3. Push to main branch to trigger deployment
+Frontend URL: `http://localhost:8080` (Vite dev server with hot reload)
 
 ## Railway Deploy
 
@@ -63,19 +52,19 @@ Or open `frontend/public/index.html` directly in your browser.
 2. Connect your GitHub repository
 3. Set root directory to `backend`
 4. Railway will use `railway.json` configuration and `Procfile`
-5. Note your backend URL: `https://your-backend-name.railway.app`
+5. Note your backend URL: `https://backend.railway.app`
 
 **Frontend:**
 1. Create another Railway service
 2. Set root directory to `frontend`
 3. Set environment variables:
    - `BACKEND_URL` to your backend URL
-   - `RAILPACK_SPA_OUTPUT_DIR` to `public` (for static site deployment)
+   - `RAILPACK_SPA_OUTPUT_DIR` to `dist` (Vite build output directory)
 4. Frontend URL: `https://your-frontend-name.railway.app`
 
 **Configuration:**
 - Backend uses `Procfile` for deployment configuration
-- Frontend uses `package.json` start script for deployment
+- Frontend uses Vite build system with `package.json` start script for deployment
 - Backend URL is auto-detected locally, injected via environment variable on Railway
 
 ## API Endpoints
