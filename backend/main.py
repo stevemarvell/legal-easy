@@ -22,7 +22,6 @@ def get_random():
     """Return a random integer between 0 and 100 inclusive."""
     return {"value": random.randint(0, 100)}
 
-# Optional root route for quick check
 @app.get("/")
 def root():
     return {"message": "Random Number API. Use /random"}
