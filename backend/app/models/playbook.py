@@ -1,4 +1,4 @@
-from typing import List, Dict, Tuple, Optional
+from typing import List, Dict, Tuple, Optional, Any
 from pydantic import BaseModel
 
 
@@ -11,14 +11,21 @@ class PlaybookRule(BaseModel):
     description: str
 
 
+class MonetaryRange(BaseModel):
+    """Monetary assessment range with description and factors"""
+    range: List[int]
+    description: str
+    factors: List[str]
+
+
 class Playbook(BaseModel):
     """Case type-specific playbook"""
     id: str
     case_type: str
     name: str
     rules: List[PlaybookRule]
-    decision_tree: Dict
-    monetary_ranges: Dict[str, Tuple[int, int]]
+    decision_tree: Dict[str, Any]
+    monetary_ranges: Dict[str, MonetaryRange]
     escalation_paths: List[str]
 
 
