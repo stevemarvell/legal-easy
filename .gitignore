@@ -1,4 +1,5 @@
 # IDE and Editor files
+.kiro/
 .idea/
 .vscode/
 *.swp

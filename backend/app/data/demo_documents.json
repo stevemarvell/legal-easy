@@ -1,0 +1,84 @@
+{
+  "documents": [
+    {
+      "id": "doc-001",
+      "case_id": "case-001",
+      "name": "Employment Contract - Sarah Johnson",
+      "type": "Contract",
+      "size": 245760,
+      "upload_date": "2024-01-15T09:30:00Z",
+      "content_preview": "EMPLOYMENT AGREEMENT between TechCorp Inc. and Sarah Johnson...",
+      "analysis_completed": true
+    },
+    {
+      "id": "doc-002",
+      "case_id": "case-001", 
+      "name": "Termination Notice Email",
+      "type": "Email",
+      "size": 12480,
+      "upload_date": "2024-01-15T10:00:00Z",
+      "content_preview": "From: hr@techcorp.com To: sarah.johnson@techcorp.com Subject: Employment Termination...",
+      "analysis_completed": true
+    },
+    {
+      "id": "doc-003",
+      "case_id": "case-001",
+      "name": "Performance Review Records",
+      "type": "Evidence",
+      "size": 89120,
+      "upload_date": "2024-01-16T08:45:00Z",
+      "content_preview": "Performance Review - Sarah Johnson Q4 2023: Exceeds Expectations...",
+      "analysis_completed": true
+    },
+    {
+      "id": "doc-004",
+      "case_id": "case-002",
+      "name": "Software Development Agreement",
+      "type": "Contract",
+      "size": 356480,
+      "upload_date": "2024-02-03T15:00:00Z",
+      "content_preview": "SOFTWARE DEVELOPMENT AGREEMENT between Digital Solutions LLC and DevCorp Technologies...",
+      "analysis_completed": true
+    },
+    {
+      "id": "doc-005",
+      "case_id": "case-002",
+      "name": "Project Scope Change Requests",
+      "type": "Legal Brief",
+      "size": 178240,
+      "upload_date": "2024-02-04T09:15:00Z",
+      "content_preview": "Change Request #1: Additional API endpoints required for mobile integration...",
+      "analysis_completed": true
+    },
+    {
+      "id": "doc-006",
+      "case_id": "case-002",
+      "name": "Email Thread - Deadline Extensions",
+      "type": "Email",
+      "size": 45120,
+      "upload_date": "2024-02-04T11:30:00Z",
+      "content_preview": "Email chain regarding project timeline adjustments and delivery delays...",
+      "analysis_completed": false
+    },
+    {
+      "id": "doc-007",
+      "case_id": "case-003",
+      "name": "Outstanding Invoices Summary",
+      "type": "Evidence",
+      "size": 67890,
+      "upload_date": "2024-01-28T12:00:00Z",
+      "content_preview": "Invoice Summary: Total Outstanding Amount: $45,000 across 5 invoices...",
+      "analysis_completed": true
+    },
+    {
+      "id": "doc-008",
+      "case_id": "case-003",
+      "name": "Service Agreement - Manufacturing",
+      "type": "Contract",
+      "size": 298760,
+      "upload_date": "2024-01-28T12:30:00Z",
+      "content_preview": "MANUFACTURING SERVICES AGREEMENT between ABC Manufacturing and RetailCorp...",
+      "analysis_completed": true
+    }
+  ]
+}

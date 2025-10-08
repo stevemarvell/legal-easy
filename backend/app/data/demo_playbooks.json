@@ -1,0 +1,144 @@
+{
+  "playbooks": [
+    {
+      "id": "employment-dispute-playbook",
+      "case_type": "Employment Dispute",
+      "name": "Employment Dispute Resolution Playbook",
+      "rules": [
+        {
+          "id": "emp-rule-001",
+          "condition": "wrongful_termination_claim",
+          "action": "review_employment_contract_and_company_policies",
+          "weight": 0.8,
+          "description": "Analyze employment contract terms and company termination policies"
+        },
+        {
+          "id": "emp-rule-002", 
+          "condition": "discrimination_allegation",
+          "action": "gather_evidence_of_discriminatory_behavior",
+          "weight": 0.9,
+          "description": "Collect evidence of discriminatory actions or statements"
+        },
+        {
+          "id": "emp-rule-003",
+          "condition": "performance_issues_documented",
+          "action": "assess_legitimacy_of_performance_concerns",
+          "weight": 0.7,
+          "description": "Evaluate whether performance issues justify termination"
+        }
+      ],
+      "decision_tree": {
+        "root": "discrimination_present",
+        "branches": {
+          "discrimination_present": {
+            "yes": "strong_case",
+            "no": "performance_review"
+          },
+          "performance_review": {
+            "poor": "weak_case",
+            "good": "moderate_case"
+          }
+        }
+      },
+      "monetary_ranges": {
+        "settlement": [15000, 75000],
+        "damages": [25000, 150000]
+      },
+      "escalation_paths": ["mediation", "EEOC_filing", "litigation"]
+    },
+    {
+      "id": "contract-breach-playbook",
+      "case_type": "Contract Breach",
+      "name": "Contract Breach Analysis Playbook",
+      "rules": [
+        {
+          "id": "contract-rule-001",
+          "condition": "material_breach_identified",
+          "action": "calculate_damages_and_losses",
+          "weight": 0.9,
+          "description": "Assess the materiality of the breach and calculate financial impact"
+        },
+        {
+          "id": "contract-rule-002",
+          "condition": "force_majeure_claimed",
+          "action": "evaluate_force_majeure_validity",
+          "weight": 0.6,
+          "description": "Determine if force majeure clause applies to the breach"
+        },
+        {
+          "id": "contract-rule-003",
+          "condition": "cure_period_available",
+          "action": "assess_cure_attempts_and_timeline",
+          "weight": 0.5,
+          "description": "Review attempts to cure breach within specified timeframe"
+        }
+      ],
+      "decision_tree": {
+        "root": "material_breach",
+        "branches": {
+          "material_breach": {
+            "yes": "damages_calculation",
+            "no": "minor_breach_remedies"
+          },
+          "damages_calculation": {
+            "high": "strong_case",
+            "medium": "moderate_case",
+            "low": "weak_case"
+          }
+        }
+      },
+      "monetary_ranges": {
+        "damages": [10000, 500000],
+        "settlement": [5000, 250000]
+      },
+      "escalation_paths": ["negotiation", "mediation", "arbitration", "litigation"]
+    },
+    {
+      "id": "debt-claim-playbook",
+      "case_type": "Debt Claim",
+      "name": "Debt Collection Playbook",
+      "rules": [
+        {
+          "id": "debt-rule-001",
+          "condition": "debt_amount_verified",
+          "action": "confirm_outstanding_balance_accuracy",
+          "weight": 0.9,
+          "description": "Verify the accuracy of the claimed debt amount"
+        },
+        {
+          "id": "debt-rule-002",
+          "condition": "payment_terms_clear",
+          "action": "review_payment_terms_and_deadlines",
+          "weight": 0.8,
+          "description": "Ensure payment terms were clearly communicated and agreed upon"
+        },
+        {
+          "id": "debt-rule-003",
+          "condition": "debtor_ability_to_pay",
+          "action": "assess_debtor_financial_capacity",
+          "weight": 0.7,
+          "description": "Evaluate debtor's ability to pay the outstanding amount"
+        }
+      ],
+      "decision_tree": {
+        "root": "debt_validity",
+        "branches": {
+          "debt_validity": {
+            "valid": "collection_strategy",
+            "disputed": "dispute_resolution"
+          },
+          "collection_strategy": {
+            "payment_plan": "moderate_case",
+            "full_payment": "strong_case",
+            "unable_to_pay": "weak_case"
+          }
+        }
+      },
+      "monetary_ranges": {
+        "collection": [1000, 100000],
+        "settlement": [500, 75000]
+      },
+      "escalation_paths": ["demand_letter", "payment_plan", "collection_agency", "litigation"]
+    }
+  ]
+}

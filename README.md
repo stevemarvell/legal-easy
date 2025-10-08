@@ -52,15 +52,14 @@ Frontend URL: `http://localhost:8080` (Vite dev server with hot reload)
 2. Connect your GitHub repository
 3. Set root directory to `backend`
 4. Railway will use `railway.json` configuration and `Procfile`
-5. Note your backend URL: `https://backend.railway.app`
+5. Note your backend URL: `https://legal-easy-backend-production.up.railway.app/`
 
 **Frontend:**
 1. Create another Railway service
 2. Set root directory to `frontend`
 3. Set environment variables:
    - `BACKEND_URL` to your backend URL
-   - `RAILPACK_SPA_OUTPUT_DIR` to `dist` (Vite build output directory)
-4. Frontend URL: `https://your-frontend-name.railway.app`
+4. Frontend URL: `https://legal-easy-frontend-production.up.railway.app/`
 
 **Configuration:**
 - Backend uses `Procfile` for deployment configuration

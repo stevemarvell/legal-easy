@@ -1,0 +1,40 @@
+{
+  "cases": [
+    {
+      "id": "case-001",
+      "title": "Employment Discrimination Case - Johnson vs TechCorp",
+      "case_type": "Employment Dispute",
+      "client_name": "Sarah Johnson",
+      "status": "Active",
+      "created_date": "2024-01-15T09:00:00Z",
+      "summary": "Wrongful termination and discrimination claim based on gender and age",
+      "key_parties": ["Sarah Johnson", "TechCorp Inc.", "Manager John Smith"],
+      "documents": ["doc-001", "doc-002", "doc-003"],
+      "playbook_id": "employment-dispute-playbook"
+    },
+    {
+      "id": "case-002", 
+      "title": "Contract Breach - Software Development Agreement",
+      "case_type": "Contract Breach",
+      "client_name": "Digital Solutions LLC",
+      "status": "Under Review",
+      "created_date": "2024-02-03T14:30:00Z",
+      "summary": "Breach of software development contract due to missed deadlines and scope changes",
+      "key_parties": ["Digital Solutions LLC", "DevCorp Technologies", "Project Manager Mike Davis"],
+      "documents": ["doc-004", "doc-005", "doc-006"],
+      "playbook_id": "contract-breach-playbook"
+    },
+    {
+      "id": "case-003",
+      "title": "Debt Collection - Outstanding Invoice Payment",
+      "case_type": "Debt Claim",
+      "client_name": "ABC Manufacturing",
+      "status": "Active",
+      "created_date": "2024-01-28T11:15:00Z",
+      "summary": "Collection of $45,000 in unpaid invoices for manufacturing services",
+      "key_parties": ["ABC Manufacturing", "RetailCorp", "CFO Lisa Chen"],
+      "documents": ["doc-007", "doc-008"],
+      "playbook_id": "debt-claim-playbook"
+    }
+  ]
+}
