@@ -161,10 +161,6 @@ const Admin = () => {
         response = await apiClient.post('/api/admin/actions/initialize-corpus');
       } else if (action === 'test-rag-search') {
         response = await apiClient.post('/api/admin/actions/test-rag-search?query=employment contract');
-      } else if (action === 'analyze-documents') {
-        response = await apiClient.post('/api/admin/actions/analyze-documents');
-      } else if (action === 'run-document-analysis') {
-        response = await apiClient.post('/api/admin/actions/run-document-analysis');
       }
 
       if (response?.data.success) {
@@ -364,10 +360,17 @@ const Admin = () => {
               <Typography variant="h5" gutterBottom color="text.primary">
                 Demo Data Summary
               </Typography>
-              <Alert severity="info" sx={{ mb: 3 }}>
+              <Alert severity="success" sx={{ mb: 3 }}>
                 <Typography variant="body2">
-                  <strong>Note:</strong> All analysis results are pre-computed demo data, not live AI processing. 
-                  This demonstrates the platform's capabilities with realistic sample outputs.
+                  <strong>AI Analysis Now Available:</strong> Real-time document analysis is implemented! 
+                  Visit the <Button 
+                    variant="text" 
+                    size="small" 
+                    onClick={() => window.location.href = '/analysis'}
+                    sx={{ textTransform: 'none', p: 0, minWidth: 'auto' }}
+                  >
+                    Analysis Interface
+                  </Button> for interactive document processing with live AI insights.
                 </Typography>
               </Alert>
               
@@ -493,7 +496,7 @@ const Admin = () => {
         <Card>
           <CardContent>
             <Typography variant="h5" gutterBottom color="text.primary">
-              Administrative Actions
+              System Actions
             </Typography>
             
             <Grid container spacing={2}>
@@ -552,58 +555,25 @@ const Admin = () => {
               </Grid>
               
               <Grid item xs={12} md={6}>
-                <Paper variant="outlined" sx={{ p: 2, border: '1px solid #f44336' }}>
-                  <Typography variant="h6" gutterBottom color="#d32f2f">
-                    Analyze Documents
+                <Paper variant="outlined" sx={{ p: 2, border: '1px solid #2196f3' }}>
+                  <Typography variant="h6" gutterBottom color="primary">
+                    Document Analysis Management
                   </Typography>
                   <Typography variant="body2" color="text.secondary" paragraph>
-                    Run AI document analysis on all documents (not yet implemented).
+                    Access the full document analysis interface with real-time progress and detailed results.
                   </Typography>
                   <Button
                     variant="contained"
                     startIcon={<PlayIcon />}
-                    onClick={() => handleAction('analyze-documents')}
-                    disabled={actionLoading === 'analyze-documents'}
-                    sx={{ backgroundColor: '#f44336', '&:hover': { backgroundColor: '#d32f2f' } }}
+                    onClick={() => window.location.href = '/analysis'}
+                    sx={{ backgroundColor: '#2196f3', '&:hover': { backgroundColor: '#1976d2' } }}
                   >
-                    {actionLoading === 'analyze-documents' ? (
-                      <>
-                        <CircularProgress size={16} sx={{ mr: 1, color: 'white' }} />
-                        Analyzing...
-                      </>
-                    ) : (
-                      'Analyze Documents'
-                    )}
+                    Open Analysis Interface
                   </Button>
                 </Paper>
               </Grid>
               
-              <Grid item xs={12} md={6}>
-                <Paper variant="outlined" sx={{ p: 2, border: '1px solid #ddd' }}>
-                  <Typography variant="h6" gutterBottom color="text.primary">
-                    Run Document Analysis
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary" paragraph>
-                    Run AI analysis on all documents to generate real insights.
-                  </Typography>
-                  <Button
-                    variant="contained"
-                    startIcon={<PlayIcon />}
-                    onClick={() => handleAction('run-document-analysis')}
-                    disabled={actionLoading === 'run-document-analysis'}
-                    sx={{ backgroundColor: '#f44336', '&:hover': { backgroundColor: '#d32f2f' } }}
-                  >
-                    {actionLoading === 'run-document-analysis' ? (
-                      <>
-                        <CircularProgress size={16} sx={{ mr: 1, color: 'white' }} />
-                        Analyzing...
-                      </>
-                    ) : (
-                      'Run Analysis'
-                    )}
-                  </Button>
-                </Paper>
-              </Grid>
+
             </Grid>
           </CardContent>
         </Card>

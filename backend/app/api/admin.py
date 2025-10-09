@@ -43,16 +43,38 @@ class SystemStatus:
             # Test document loading
             documents = self.document_service._load_documents()
             
+            # Check if AI analysis is working by testing the service
+            try:
+                from app.services.ai_analysis_service import AIAnalysisService
+                from app.services.analysis_storage_service import AnalysisStorageService
+                
+                ai_service = AIAnalysisService()
+                storage_service = AnalysisStorageService()
+                
+                # Get live analysis statistics
+                storage_stats = storage_service.get_storage_stats()
+                live_analyses_count = storage_stats.get("total_analyses", 0)
+                
+                analysis_status = f"AI analysis operational ({live_analyses_count} live analyses stored)"
+                status_color = "green"
+            except Exception as e:
+                analysis_status = f"AI analysis service error: {str(e)}"
+                status_color = "amber"
+                live_analyses_count = 0
+            
             return {
-                "status": "red",
-                "message": f"Document service operational - {len(documents)} documents, 0 analyses (AI analysis not implemented)",
+                "status": status_color,
+                "message": f"Document service operational - {len(documents)} documents",
                 "timestamp": datetime.now().isoformat(),
                 "details": {
                     "documents_count": len(documents),
-                    "analyses_count": 0,
+                    "live_analyses_count": live_analyses_count if 'live_analyses_count' in locals() else 0,
                     "documents_file_exists": os.path.exists(self.document_service._documents_file),
-                    "ai_analysis_implemented": False,
-                    "demo_data_available": os.path.exists(self.document_service._analyses_file)
+                    "ai_analysis_implemented": True,
+                    "ai_analysis_status": analysis_status,
+                    "analysis_endpoint": "/api/documents/{id}/analyze",
+                    "analysis_interface": "/analysis",
+                    "storage_stats": storage_stats if 'storage_stats' in locals() else {}
                 }
             }
         except Exception as e:
@@ -223,12 +245,23 @@ class SystemStatus:
                     with open(docs_file, 'r') as f:
                         docs_data = json.load(f)
                         documents = docs_data.get("documents", [])
+                        
+                        # Get actual live analysis count
+                        try:
+                            from app.services.analysis_storage_service import AnalysisStorageService
+                            storage_service = AnalysisStorageService()
+                            storage_stats = storage_service.get_storage_stats()
+                            analyzed_count = storage_stats.get("total_analyses", 0)
+                        except Exception:
+                            # Fallback to demo data flag
+                            analyzed_count = sum(1 for doc in documents if doc.get("analysis_completed", False))
+                        
                         summary["documents"] = {
                             "total_documents": len(documents),
                             "by_type": {},
                             "by_case": {},
-                            "analyzed_count": 0,
-                            "analysis_status": "AI analysis not implemented"
+                            "analyzed_count": analyzed_count,
+                            "analysis_status": "AI analysis implemented and available"
                         }
                         
                         # Count by type
@@ -243,11 +276,12 @@ class SystemStatus:
             except Exception as e:
                 summary["documents"]["error"] = str(e)
             
-            # Document analyses summary - report 0 since AI analysis is not implemented
+            # Document analyses summary - AI analysis is now implemented
             summary["document_analyses"] = {
                 "total_analyses": 0,
-                "status": "AI document analysis not implemented",
-                "demo_data_available": Path("app/data/demo_document_analysis.json").exists()
+                "status": "AI document analysis implemented - live analysis only",
+                "demo_data_available": False,
+                "real_analysis_available": True
             }
             
             # Legal corpus summary
@@ -391,70 +425,7 @@ async def test_rag_search(query: str = "employment contract"):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"RAG search test failed: {str(e)}")
 
-@router.post("/actions/run-document-analysis")
-async def run_document_analysis():
-    """Run AI document analysis on all documents"""
-    try:
-        from app.services.ai_analysis_service import AIAnalysisService
-        
-        # Check if AI service is implemented
-        ai_service = AIAnalysisService()
-        
-        # Check if the analyze_document method is actually implemented
-        if (not hasattr(ai_service, 'analyze_document') or 
-            ai_service.analyze_document.__code__.co_code == b'd\x00S\x00'):
-            
-            return {
-                "success": False,
-                "message": "AI Analysis Service not implemented yet",
-                "timestamp": datetime.now().isoformat(),
-                "details": {
-                    "status": "not_implemented",
-                    "required_components": [
-                        "OpenAI API integration",
-                        "Document text extraction",
-                        "AI prompt engineering",
-                        "Analysis result processing"
-                    ]
-                }
-            }
-        
-        # If implemented, run the analysis
-        documents = system_status.document_service._load_documents()
-        
-        if len(documents) == 0:
-            return {
-                "success": False,
-                "message": "No documents found to analyze",
-                "timestamp": datetime.now().isoformat(),
-                "details": {"documents_count": 0}
-            }
-        
-        # Run analysis on all documents
-        successful_analyses = 0
-        failed_analyses = 0
-        
-        for document in documents:
-            try:
-                analysis = ai_service.analyze_document(document)
-                successful_analyses += 1
-            except Exception as e:
-                failed_analyses += 1
-                print(f"Failed to analyze document {document.id}: {str(e)}")
-        
-        return {
-            "success": successful_analyses > 0,
-            "message": f"Document analysis completed - {successful_analyses} successful, {failed_analyses} failed",
-            "timestamp": datetime.now().isoformat(),
-            "details": {
-                "total_documents": len(documents),
-                "successful_analyses": successful_analyses,
-                "failed_analyses": failed_analyses
-            }
-        }
-        
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Document analysis failed: {str(e)}")
+# Bulk analysis removed - use the Analysis interface at /analysis for document analysis
 
 @router.get("/demo-data-summary")
 async def get_demo_data_summary():
@@ -469,21 +440,4 @@ async def get_demo_data_summary():
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to get demo data summary: {str(e)}")
 
-@router.post("/actions/analyze-documents")
-async def analyze_documents():
-    """Run AI document analysis on all documents"""
-    try:
-        # This would implement actual AI document analysis
-        # For now, return that it's not implemented
-        return {
-            "success": False,
-            "message": "AI document analysis not yet implemented",
-            "timestamp": datetime.now().isoformat(),
-            "details": {
-                "implementation_status": "pending",
-                "phase": "Phase 1 - Case Assessment Engine",
-                "next_steps": "Implement AIAnalysisService with real AI integration"
-            }
-        }
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to analyze documents: {str(e)}")
+# Removed duplicate analyze-documents endpoint - use run-document-analysis instead

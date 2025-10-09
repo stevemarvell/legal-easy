@@ -34,7 +34,8 @@ class DocumentService:
                     data = json.load(f)
                     self._analyses_cache = [DocumentAnalysis(**analysis_data) for analysis_data in data["document_analyses"]]
             except FileNotFoundError:
-                raise FileNotFoundError(f"Demo document analyses file not found: {self._analyses_file}")
+                # Demo analysis file deleted - return empty list
+                self._analyses_cache = []
             except json.JSONDecodeError as e:
                 raise ValueError(f"Invalid JSON in demo document analyses file: {e}")
         return self._analyses_cache

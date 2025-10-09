@@ -3,6 +3,7 @@ import Layout from './pages/Layout';
 import Dashboard from './pages/Dashboard';
 import Cases from './pages/Cases';
 import Documents from './pages/Documents';
+import DocumentAnalysisManagement from './pages/DocumentAnalysisManagement';
 import Playbooks from './pages/Playbooks';
 import Documentation from './pages/Documentation';
 import Research from './pages/Research';
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
       {
         path: 'cases/:caseId/documents',
         element: <Documents />, // Dedicated Documents page
+      },
+      {
+        path: 'analysis',
+        element: <DocumentAnalysisManagement />, // Document Analysis Management page
       },
       {
         path: 'playbooks',

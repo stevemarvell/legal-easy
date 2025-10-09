@@ -15,9 +15,7 @@ export const theme = createTheme({
       default: '#0D0E14',
       paper: '#161821',
     },
-    surface: {
-      main: '#1B1D29',
-    },
+
     text: {
       primary: '#ffffff',
       secondary: '#b8c5d6',
@@ -143,20 +141,60 @@ export const theme = createTheme({
     MuiChip: {
       styleOverrides: {
         root: {
+          '&.MuiChip-filled': {
+            backgroundColor: '#424242',
+            color: '#ffffff',
+            '& .MuiChip-icon': {
+              color: '#ffffff',
+            },
+            '& .MuiChip-deleteIcon': {
+              color: '#ffffff',
+            },
+          },
           '&.MuiChip-colorSuccess': {
             backgroundColor: '#1B5E20',
-            color: '#4CAF50',
+            color: '#ffffff',
             border: '1px solid #4CAF50',
+            '&.MuiChip-filled': {
+              backgroundColor: '#424242',
+              color: '#ffffff',
+            },
           },
           '&.MuiChip-colorWarning': {
             backgroundColor: '#E65100',
-            color: '#FF9800',
+            color: '#ffffff',
             border: '1px solid #FF9800',
+            '&.MuiChip-filled': {
+              backgroundColor: '#424242',
+              color: '#ffffff',
+            },
           },
           '&.MuiChip-colorError': {
             backgroundColor: '#B71C1C',
-            color: '#F44336',
+            color: '#ffffff',
             border: '1px solid #F44336',
+            '&.MuiChip-filled': {
+              backgroundColor: '#424242',
+              color: '#ffffff',
+            },
+          },
+          '&.MuiChip-colorInfo': {
+            '&.MuiChip-filled': {
+              backgroundColor: '#424242',
+              color: '#ffffff',
+            },
+          },
+          '&.MuiChip-colorPrimary': {
+            '&.MuiChip-filled': {
+              backgroundColor: '#424242',
+              color: '#ffffff',
+            },
+          },
+          '&.MuiChip-colorDefault': {
+            '&.MuiChip-filled': {
+              backgroundColor: '#424242',
+              color: '#ffffff',
+            },
           },
         },
       },
