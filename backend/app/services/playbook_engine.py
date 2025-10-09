@@ -194,7 +194,7 @@ class PlaybookEngine:
                 return False  # Assume demo cases are recent
             if "debtor_has_assets" in condition_lower:
                 return True  # Assume debtors have some assets for demo
-            if "consumer_debt_fdcpa_applies" in condition_lower:
+            if "consumer_debt_uk_applies" in condition_lower:
                 return "consumer" in summary_lower
             if "debtor_filed_bankruptcy" in condition_lower:
                 return "bankruptcy" in summary_lower

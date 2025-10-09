@@ -46,6 +46,9 @@ const Playbooks: React.FC = () => {
       } else {
         setError(`No playbook found for case type: ${decodeURIComponent(caseType)}`);
       }
+    } else if (!caseType) {
+      // Clear selected playbook when no caseType in URL
+      setSelectedPlaybook(null);
     }
   }, [caseType, playbooks]);
 
@@ -64,13 +67,17 @@ const Playbooks: React.FC = () => {
   };
 
   const handlePlaybookSelect = (playbook: Playbook) => {
-    setSelectedPlaybook(playbook);
     navigate(`/playbooks/${encodeURIComponent(playbook.case_type)}`);
   };
 
   const handleBackToList = () => {
-    setSelectedPlaybook(null);
-    navigate('/playbooks');
+    if (caseType) {
+      // If viewing a specific playbook, go back to playbooks list
+      navigate('/playbooks');
+    } else {
+      // If on main playbooks page, go back to previous page in history
+      navigate(-1);
+    }
   };
 
   const handleBreadcrumbNavigation = (path: string) => {
@@ -145,8 +152,29 @@ const Playbooks: React.FC = () => {
             </Breadcrumbs>
           </Box>
 
+          {/* Playbook Title */}
+          <Typography variant="h3" component="h1" color="primary" gutterBottom>
+            {selectedPlaybook.name}
+          </Typography>
+          <Typography variant="body1" color="text.secondary" paragraph>
+            {selectedPlaybook.description}
+          </Typography>
+          <Box display="flex" gap={1} mb={3}>
+            <Chip
+              label={selectedPlaybook.case_type}
+              color="primary"
+              variant="outlined"
+              sx={{ color: 'white' }}
+            />
+            <Chip
+              label={`${selectedPlaybook.rules?.length || 0} Rules`}
+              variant="outlined"
+              sx={{ color: 'white' }}
+            />
+          </Box>
+
           {/* PlaybookViewer Component */}
-          <PlaybookViewer caseType={selectedPlaybook.case_type} />
+          <PlaybookViewer caseType={selectedPlaybook.case_type} showHeader={false} />
         </Box>
       </Container>
     );
@@ -158,6 +186,15 @@ const Playbooks: React.FC = () => {
       <Box>
         {/* Header */}
         <Box mb={4}>
+          <Button
+            variant="outlined"
+            startIcon={<ArrowBackIcon />}
+            onClick={() => navigate(-1)}
+            sx={{ mb: 2 }}
+          >
+            Back
+          </Button>
+
           {/* Breadcrumbs */}
           <Breadcrumbs aria-label="breadcrumb" sx={{ mb: 2 }}>
             <Link
@@ -272,7 +309,7 @@ const Playbooks: React.FC = () => {
                         <Divider sx={{ mb: 2, borderColor: 'rgba(255, 255, 255, 0.3)' }} />
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
                           <Typography variant="body2" sx={{ color: 'white' }}>
-                            • Automated rule application
+                            • {playbook.rules?.length || 0} decision rules
                           </Typography>
                           <Typography variant="body2" sx={{ color: 'white' }}>
                             • Case strength assessment
@@ -280,12 +317,14 @@ const Playbooks: React.FC = () => {
                           <Typography variant="body2" sx={{ color: 'white' }}>
                             • Strategic recommendations
                           </Typography>
-                          <Typography variant="body2" sx={{ color: 'white' }}>
-                            • Monetary range guidance
-                          </Typography>
+                          {playbook.monetary_ranges && Object.keys(playbook.monetary_ranges).length > 0 && (
+                            <Typography variant="body2" sx={{ color: 'white' }}>
+                              • Monetary range guidance
+                            </Typography>
+                          )}
                           {playbook.escalation_paths && playbook.escalation_paths.length > 0 && (
                             <Typography variant="body2" sx={{ color: 'white' }}>
-                              • Escalation procedures
+                              • {playbook.escalation_paths.length} escalation steps
                             </Typography>
                           )}
                         </Box>
@@ -298,20 +337,7 @@ const Playbooks: React.FC = () => {
           </Box>
         )}
 
-        {/* Help Section */}
-        <Card sx={{ mt: 4, backgroundColor: 'grey.50' }}>
-          <CardContent>
-            <Typography variant="h6" gutterBottom>
-              About Legal Playbooks
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Legal playbooks are AI-powered frameworks that provide structured approaches to different types of legal cases.
-              Each playbook contains decision rules, assessment criteria, monetary ranges, and strategic recommendations
-              tailored to specific case types. They help ensure consistent, thorough case evaluation and provide
-              evidence-based guidance for legal strategy.
-            </Typography>
-          </CardContent>
-        </Card>
+
       </Box>
     </Container>
   );

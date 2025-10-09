@@ -232,7 +232,7 @@
         "action": "assess_material_breach",
         "weight": 0.9,
         "description": "If contract terms are clear and violated, assess whether breach is material",
-        "legal_basis": "Restatement of Contracts § 241",
+        "legal_basis": "Sale of Goods Act 1979, Contract law principles",
         "evidence_required": ["Original contract", "Performance records", "Breach documentation"]
       },
       {
@@ -249,8 +249,8 @@
         "condition": "non_compete_violation",
         "action": "assess_enforceability",
         "weight": 0.8,
-        "description": "If non-compete is violated, assess enforceability under state law",
-        "legal_basis": "State-specific non-compete statutes",
+        "description": "If non-compete is violated, assess enforceability under UK employment law",
+        "legal_basis": "Employment Rights Act 1996, Restraint of trade doctrine",
         "evidence_required": ["Non-compete agreement", "Geographic scope analysis", "Competitive activity evidence"]
       },
       {
@@ -285,8 +285,8 @@
         "condition": "statute_of_frauds_issue",
         "action": "assess_writing_requirement",
         "weight": 0.8,
-        "description": "If contract falls under statute of frauds, assess writing requirement compliance",
-        "legal_basis": "State statute of frauds provisions",
+        "description": "If contract requires written form, assess compliance with UK writing requirements",
+        "legal_basis": "Law of Property (Miscellaneous Provisions) Act 1989, Statute of Frauds 1677",
         "evidence_required": ["Written agreement", "Partial performance evidence", "Estoppel factors"]
       }
     ],
@@ -476,8 +476,8 @@
         "condition": "debt_over_statute_limitations",
         "action": "evaluate_tolling_factors",
         "weight": 0.8,
-        "description": "If debt may be time-barred, evaluate factors that could toll statute of limitations",
-        "legal_basis": "State statute of limitations laws",
+        "description": "If debt may be time-barred, evaluate factors under UK limitation periods",
+        "legal_basis": "Limitation Act 1980, Contract limitation periods",
         "evidence_required": ["Last payment date", "Acknowledgment of debt", "Tolling events"]
       },
       {
@@ -491,12 +491,12 @@
       },
       {
         "id": "rule-206",
-        "condition": "consumer_debt_fdcpa_applies",
-        "action": "ensure_fdcpa_compliance",
+        "condition": "consumer_debt_uk_applies",
+        "action": "ensure_uk_debt_compliance",
         "weight": 0.9,
-        "description": "If consumer debt, ensure all collection activities comply with FDCPA",
-        "legal_basis": "Fair Debt Collection Practices Act",
-        "evidence_required": ["Consumer status verification", "FDCPA notices", "Communication records"]
+        "description": "If consumer debt, ensure all collection activities comply with UK consumer credit regulations",
+        "legal_basis": "Consumer Credit Act 1974, FCA Consumer Credit Rules",
+        "evidence_required": ["Consumer status verification", "FCA compliance notices", "Communication records"]
       },
       {
         "id": "rule-207",
@@ -710,8 +710,8 @@
         "condition": "statute_limitations_approaching",
         "action": "file_lawsuit_immediately",
         "weight": 1.0,
-        "description": "If statute of limitations is approaching, file lawsuit immediately",
-        "legal_basis": "State statute of limitations",
+        "description": "If limitation period is approaching, commence proceedings immediately",
+        "legal_basis": "Limitation Act 1980, Civil Procedure Rules",
         "evidence_required": ["Incident date", "Discovery date", "Tolling factors"]
       },
       {
@@ -850,11 +850,11 @@
       }
     ],
     "key_statutes": [
-      "State negligence laws",
-      "Comparative negligence statutes",
-      "Statute of limitations",
-      "Motor vehicle codes",
-      "Premises liability laws"
+      "Occupiers' Liability Act 1957",
+      "Road Traffic Act 1988",
+      "Limitation Act 1980",
+      "Consumer Protection Act 1987",
+      "Health and Safety at Work Act 1974"
     ],
     "success_factors": [
       "Clear liability evidence",

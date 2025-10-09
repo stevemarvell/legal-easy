@@ -106,173 +106,61 @@ const Documentation: React.FC = () => {
           content: `
 # Legal Platform Demo
 
-This is a demonstration of a legal case management platform with basic functionality.
+## What Works
+- Legal playbooks with rule engine
+- Case management (demo data only)
+- Document viewer (demo data only)  
+- Basic search (demo data only)
 
-## What Actually Works
+## What Doesn't Work
+- Document upload
+- Real AI analysis
+- User authentication
+- External integrations
 
-### 📚 Legal Playbooks ✅
-- View predefined legal decision frameworks
-- Apply rules to cases and get recommendations  
-- Case strength assessment (Strong/Moderate/Weak)
-- Automated rule application with reasoning
-
-### 📋 Case Management (Demo Data Only)
-- View 6 sample cases from JSON files
-- Display case details and status
-- Basic case statistics dashboard
-- Document associations (display only)
-
-### 📄 Document Viewer (Demo Data Only)
-- View sample documents and mock analysis
-- Display extracted information (dates, parties, clauses)
-- Show confidence scores (all fake)
-- Document type classification
-
-### 🔍 Legal Research (Demo Data Only)
-- Search through sample legal content
-- Filter by legal area and document type
-- Basic text matching (not semantic search)
-- Display search results with relevance scores
-
-## What's NOT Implemented
-
-❌ Document upload
-❌ Real AI analysis  
-❌ User authentication
-❌ Case creation/editing
-❌ External legal database integration
-❌ Actual semantic search
-❌ Claude AI integration
-❌ Vector databases
-❌ Real performance metrics
-
-## Demo Purpose
-
-This demo shows the UI/UX design and basic functionality of a legal platform concept. All data is static and no real AI processing occurs.
+This is a UI demo with static JSON data.
           `
         };
       case 'technical':
         return {
-          title: 'Technical Implementation',
+          title: 'Technical Details',
           content: `
-# Technical Details
+# Tech Stack
 
-## Architecture
+- Frontend: React + TypeScript + Material-UI
+- Backend: FastAPI + Python  
+- Data: Static JSON files (no database)
 
-### Frontend ✅
-- **React 18** + TypeScript + Material-UI
-- Case management interface
-- Document viewer components
-- Legal research interface
-- Playbook viewer
-
-### Backend ✅
-- **FastAPI** + Python
-- REST API endpoints
-- JSON file data loading
-- Basic search functionality
-
-### Data Storage
-- **Static JSON files** (no database)
-- Demo cases, documents, analysis
-- Legal playbooks with rules
-- Sample legal corpus
-
-## API Endpoints
-
-\`\`\`
-GET /api/cases                    - List demo cases
-GET /api/cases/{id}               - Get case details
-GET /api/cases/{id}/assessment    - Get playbook assessment
-GET /api/documents/{id}           - Get document details
-GET /api/documents/{id}/analysis  - Get mock analysis
-POST /api/legal-research/search   - Search demo corpus
-GET /api/playbooks/{case_type}    - Get playbook rules
-\`\`\`
-
-## How Playbooks Work
-
-1. Load rules from \`demo_playbooks.json\`
-2. Apply rules to cases based on keyword matching
-3. Calculate case strength from rule weights
-4. Generate recommendations and reasoning
-
-## Demo Data Files
-
-- \`demo_cases.json\` - 6 sample legal cases
-- \`demo_documents.json\` - Sample documents
-- \`demo_document_analysis.json\` - Mock analysis results
-- \`demo_playbooks.json\` - Legal decision rules
-- \`demo_legal_corpus.json\` - Sample legal content
-
-## Running the Demo
+# Running
 
 \`\`\`bash
 # Frontend
-cd frontend
-npm install
-npm run dev
+cd frontend && npm install && npm run dev
 
-# Backend  
-cd backend
-pip install -r requirements.txt
-uvicorn main:app --reload
+# Backend
+cd backend && pip install -r requirements.txt && uvicorn main:app --reload
 \`\`\`
           `
         };
       case 'data':
         return {
-          title: 'Demo Data Structure',
+          title: 'Demo Data',
           content: `
 # Demo Data
 
-## Sample Cases (6 total)
+## Cases
+6 sample cases: Employment disputes, contract breaches, debt claims
 
-1. **Employment Dispute** - Wrongful dismissal case
-2. **Contract Breach** - Software license violation  
-3. **Debt Claim** - Unpaid consulting fees
-4. **Employment Dispute** - Age discrimination
-5. **Contract Breach** - Service agreement dispute
-6. **Debt Claim** - Outstanding invoice
+## Documents  
+Mock analysis with fake extracted dates, parties, clauses
 
-## Mock Document Analysis
+## Playbooks
+3 rule sets: Employment, Contract, Debt
 
-Each document has fake analysis including:
-- Extracted dates and parties
-- Key clauses identification
-- Confidence scores (all fabricated)
-- Document type classification
+## Search Corpus
+Sample UK legal content for search demo
 
-## Legal Playbooks
-
-### Employment Dispute Rules
-- Termination within protected period
-- Age discrimination indicators
-- Performance documentation
-- Hostile work environment
-
-### Contract Breach Rules  
-- Clear contract terms violated
-- Ambiguous language issues
-- Non-compete violations
-- Damages calculability
-
-### Debt Claim Rules
-- Clear debt documentation
-- Debtor disputes and defenses
-- Asset availability
-- Statute of limitations
-
-## Legal Research Corpus
-
-Sample content includes:
-- Employment contract templates
-- Termination clauses
-- UK case law summaries
-- Legal precedents
-- Contract law principles
-
-All content is simplified demo data, not real legal documents.
+All data is fake for demonstration purposes.
           `
         };
       default:
