@@ -11,6 +11,14 @@ export interface Case {
   documents?: Document[];
 }
 
+export interface CaseStatistics {
+  total_cases: number;
+  active_cases: number;
+  resolved_cases: number;
+  under_review_cases: number;
+  recent_activity_count: number;
+}
+
 export interface CaseAnalysis {
   case_id: string;
   summary: string;

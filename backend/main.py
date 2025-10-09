@@ -4,11 +4,11 @@ from app.api import cases, documents, playbooks, legal_research
 import random
 
 app = FastAPI(
-    title="AI Legal Platform API",
+    title="Shift Legal AI API",
     description="""
-    ## AI-Powered Legal Case Management and Document Analysis API
+    ## Shift Legal AI - Legal Case Management and Research API
 
-    This API provides comprehensive legal case management capabilities with AI-powered document analysis.
+    This API provides legal case management capabilities with AI-powered document analysis and research.
     
     ### Key Features:
     - **Case Management**: Create, retrieve, and manage legal cases
@@ -17,19 +17,16 @@ app = FastAPI(
     - **Legal Research**: AI-assisted legal research capabilities
     - **Playbook Engine**: Automated legal workflow management
 
-    ### Authentication:
-    Currently, this API does not require authentication for demo purposes.
-    
-    ### Rate Limiting:
-    No rate limiting is currently implemented.
+    ### Demo Environment:
+    This is a demonstration API with sample legal case data.
     
     ### Support:
     For API support, please contact the development team.
     """,
     version="1.0.0",
     contact={
-        "name": "AI Legal Platform Team",
-        "email": "support@ailegalplatform.com",
+        "name": "Shift Legal AI Team",
+        "email": "support@shiftlegalai.com",
     },
     license_info={
         "name": "MIT License",
@@ -39,10 +36,6 @@ app = FastAPI(
         {
             "url": "http://localhost:8000",
             "description": "Development server"
-        },
-        {
-            "url": "https://api.ailegalplatform.com",
-            "description": "Production server"
         }
     ]
 )
@@ -61,11 +54,11 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
-# Include API routers
-app.include_router(cases.router)
-app.include_router(documents.router)
-app.include_router(playbooks.router)
-app.include_router(legal_research.router)
+# Include API routers with /api prefix
+app.include_router(cases.router, prefix="/api")
+app.include_router(documents.router, prefix="/api")
+app.include_router(playbooks.router, prefix="/api")
+app.include_router(legal_research.router, prefix="/api")
 
 # Legacy endpoint for backward compatibility
 @app.get("/random")
@@ -76,18 +69,18 @@ def get_random():
 @app.get("/health")
 def health_check():
     """Health check endpoint for monitoring and deployment."""
-    return {"status": "healthy", "service": "AI Legal Platform API"}
+    return {"status": "healthy", "service": "Shift Legal AI API"}
 
 @app.get("/")
 def root():
     return {
-        "message": "AI Legal Platform API",
+        "message": "Shift Legal AI Platform API",
         "version": "1.0.0",
         "endpoints": {
-            "cases": "/cases",
-            "documents": "/documents", 
-            "playbooks": "/playbooks",
-            "legal_research": "/legal-research",
+            "cases": "/api/cases",
+            "documents": "/api/documents", 
+            "playbooks": "/api/playbooks",
+            "legal_research": "/api/legal-research",
             "health": "/health"
         }
     }

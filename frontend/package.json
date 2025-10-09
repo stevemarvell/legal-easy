@@ -1,5 +1,5 @@
 {
-  "name": "legal-easy-frontend",
+  "name": "shift-legal-ai-frontend",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "vitest",
+    "test": "vitest run",
     "test:unit": "vitest run src/__tests__/unit",
     "test:integration": "vitest run src/__tests__/integration",
     "test:contract": "vitest run src/__tests__/contract",
