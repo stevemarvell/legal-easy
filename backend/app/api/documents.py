@@ -305,6 +305,88 @@ async def delete_document_analysis(
 
 
 @router.get(
+    "/{document_id}/content",
+    summary="Get full document content",
+    description="""
+    Retrieve the complete text content of a specific document.
+    
+    This endpoint returns the full document text content for viewing purposes.
+    Useful for:
+    - Document review and reading
+    - Content verification
+    - Manual analysis
+    """,
+    responses={
+        200: {
+            "description": "Document content retrieved successfully",
+            "content": {
+                "application/json": {
+                    "example": {
+                        "document_id": "doc-001",
+                        "content": "EMPLOYMENT AGREEMENT\n\nThis Employment Agreement (\"Agreement\") is entered into on 15 March 2022...",
+                        "content_length": 2456
+                    }
+                }
+            }
+        },
+        404: {
+            "description": "Document not found",
+            "content": {
+                "application/json": {
+                    "example": {"detail": "Document with ID doc-999 not found"}
+                }
+            }
+        },
+        500: {
+            "description": "Failed to retrieve content",
+            "content": {
+                "application/json": {
+                    "example": {"detail": "Failed to read document content: File not accessible"}
+                }
+            }
+        }
+    }
+)
+async def get_document_content(
+    document_id: str = Path(..., description="Unique identifier of the document", example="doc-001")
+):
+    """Get the full text content of a specific document"""
+    try:
+        # Get the document
+        document = document_service.get_document_by_id(document_id)
+        if document is None:
+            raise HTTPException(status_code=404, detail=f"Document with ID {document_id} not found")
+        
+        # Load the full content
+        content = ""
+        if document.full_content_path:
+            try:
+                import os
+                if os.path.exists(document.full_content_path):
+                    with open(document.full_content_path, 'r', encoding='utf-8') as f:
+                        content = f.read()
+                else:
+                    # Fallback to content preview if file not found
+                    content = document.content_preview
+            except Exception as e:
+                # Fallback to content preview if file reading fails
+                content = document.content_preview
+        else:
+            # Use content preview if no file path
+            content = document.content_preview
+        
+        return {
+            "document_id": document_id,
+            "content": content,
+            "content_length": len(content)
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to retrieve document content: {str(e)}")
+
+
+@router.get(
     "/analysis/stats",
     summary="Get analysis storage statistics",
     description="Get statistics about stored analysis results",

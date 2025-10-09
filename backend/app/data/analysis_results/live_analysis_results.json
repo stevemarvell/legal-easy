@@ -1,0 +1,770 @@
+{
+  "metadata": {
+    "created": "2025-10-09T21:35:13.127887",
+    "last_updated": "2025-10-09T21:35:47.114404",
+    "total_analyses": 21
+  },
+  "analyses": {
+    "doc-001": {
+      "document_id": "doc-001",
+      "key_dates": [
+        "2022-03-15"
+      ],
+      "parties_involved": [
+        "TechCorp Solutions Ltd",
+        "Solutions Ltd",
+        "Sarah Chen",
+        "Marcus Rodriguez"
+      ],
+      "document_type": "Employment Contract",
+      "summary": "Employment agreement between TechCorp Solutions Ltd and Solutions Ltd effective from 2022-03-15 with compensation of \u00a375,000,. EMPLOYMENT AGREEMENT\n\nThis Employment Agreement (\"Agreement\") is entered into on 15 March 2022, betw... Key concern: Employment termination terms may be restrictive...",
+      "key_clauses": [
+        "Notice period requirements for termination",
+        "Compensation and benefits provisions",
+        "Confidentiality and non-disclosure obligations",
+        "Contract termination provisions",
+        "Intellectual property rights and ownership",
+        "Governing law and jurisdiction clauses",
+        "Obligation: perform such duties and responsibilities as are customarily associated with such...",
+        "Obligation: employment relationship...",
+        "Obligation: be provided, except in cases of termination for cause, which may be immediate...",
+        "Right: participate in Company's standard benefits package, including private health ins..."
+      ],
+      "confidence_scores": {
+        "parties": 0.98,
+        "dates": 0.98,
+        "contract_terms": 0.96,
+        "key_clauses": 0.94,
+        "legal_analysis": 0.95
+      },
+      "analyzed_at": "2025-10-09T21:35:43.653294",
+      "analysis_source": "live_ai_analysis"
+    },
+    "doc-002": {
+      "document_id": "doc-002",
+      "key_dates": [
+        "2023-12-08",
+        "2023-12-10"
+      ],
+      "parties_involved": [
+        "INTERNAL SAFETY REPORT\nTechCorp",
+        "Solutions Ltd",
+        "Senior Safety Engineer\nTechCorp",
+        "SAFETY REPORT\nTechCorp Solutions",
+        "Safety Engineer\nTechCorp Solutions",
+        "Sarah Chen",
+        "Engineer\nEmployee",
+        "Environmental Health"
+      ],
+      "document_type": "Legal Notice",
+      "summary": "Legal notice regarding violations or breaches involving INTERNAL SAFETY REPORT\nTechCorp, Solutions Ltd. INTERNAL SAFETY REPORT\nTechCorp Solutions Ltd",
+      "key_clauses": [
+        "Violation or breach allegations"
+      ],
+      "confidence_scores": {
+        "parties": 0.98,
+        "dates": 0.7999999999999999,
+        "contract_terms": 0.45,
+        "key_clauses": 0.6500000000000001,
+        "legal_analysis": 0.6
+      },
+      "analyzed_at": "2025-10-09T21:35:43.855993",
+      "analysis_source": "live_ai_analysis"
+    },
+    "doc-003": {
+      "document_id": "doc-003",
+      "key_dates": [
+        "2024-01-12",
+        "2024-01-19",
+        "2024-01-31"
+      ],
+      "parties_involved": [
+        "TechCorp Solutions Ltd",
+        "TechCorp",
+        "Rodriguez\nHR Director\nTechCorp",
+        "Solutions Ltd",
+        "Employment Termination",
+        "Dear Sarah",
+        "Jennifer Walsh",
+        "Marcus Rodriguez"
+      ],
+      "document_type": "Termination Notice",
+      "summary": "Termination Notice involving TechCorp Solutions Ltd, TechCorp. From: hr@techcorp",
+      "key_clauses": [
+        "Obligation: be processed and available by 19 January 2024\n- Private health insurance coverag...",
+        "Obligation: be posted to your home address within 14 days\n- Your pension account will remain...",
+        "Obligation: coordinate the transition of your ongoing projects and responsibilities..."
+      ],
+      "confidence_scores": {
+        "parties": 0.98,
+        "dates": 0.98,
+        "contract_terms": 0.8000000000000002,
+        "key_clauses": 0.94,
+        "legal_analysis": 0.7999999999999999
+      },
+      "analyzed_at": "2025-10-09T21:35:44.004315",
+      "analysis_source": "live_ai_analysis"
+    },
+    "doc-004": {
+      "document_id": "doc-004",
+      "key_dates": [
+        "2023-06-01"
+      ],
+      "parties_involved": [
+        "DataFlow Ltd",
+        "CloudTech Systems Ltd",
+        "Lisa Martinez",
+        "Licence Agreement",
+        "Systems Ltd",
+        "Analytics Suite",
+        "User Limitations",
+        "The Software"
+      ],
+      "document_type": "Service Agreement",
+      "summary": "Service Agreement between DataFlow Ltd and CloudTech Systems Ltd for services valued at \u00a395,000. SOFTWARE LICENCE AGREEMENT\n\nThis Software Licence Agreement (\"Agreement\") is entered into on 1 June ...",
+      "key_clauses": [
+        "Contract termination provisions",
+        "Intellectual property rights and ownership",
+        "Governing law and jurisdiction clauses",
+        "Obligation: count toward the concurrent user limit unless such servers are completely isolat...",
+        "Obligation: not:\n- Exceed the fifty (50) concurrent user limit\n- Deploy the Software across ...",
+        "Obligation: commence on 1 June 2023, and continue for an initial term of three (3) years, au...",
+        "Right: audit Licensee's use of the Software upon thirty (30) days written notice, durin..."
+      ],
+      "confidence_scores": {
+        "parties": 0.98,
+        "dates": 0.98,
+        "contract_terms": 0.96,
+        "key_clauses": 0.94,
+        "legal_analysis": 0.95
+      },
+      "analyzed_at": "2025-10-09T21:35:44.176863",
+      "analysis_source": "live_ai_analysis"
+    },
+    "doc-005": {
+      "document_id": "doc-005",
+      "key_dates": [
+        "2024-01-15",
+        "2025-06-01"
+      ],
+      "parties_involved": [
+        "CTO\nCloudTech Systems Ltd",
+        "Analytics Suite",
+        "Robert Kim",
+        "Michael Chang",
+        "Licence Key",
+        "Deployment Method",
+        "Automated Docker",
+        "Container Deployment"
+      ],
+      "document_type": "Evidence Document",
+      "summary": "Evidence Document involving CTO\nCloudTech Systems Ltd, Analytics Suite. CLOUDTECH SYSTEMS LTD",
+      "key_clauses": [
+        "Performance metrics and evaluations"
+      ],
+      "confidence_scores": {
+        "parties": 0.98,
+        "dates": 0.7999999999999999,
+        "contract_terms": 0.4,
+        "key_clauses": 0.6500000000000001,
+        "legal_analysis": 0.4
+      },
+      "analyzed_at": "2025-10-09T21:35:44.344733",
+      "analysis_source": "live_ai_analysis"
+    },
+    "doc-006": {
+      "document_id": "doc-006",
+      "key_dates": [
+        "2023-06-01",
+        "2024-01-15",
+        "2024-02-01"
+      ],
+      "parties_involved": [
+        "CloudTech Systems Ltd",
+        "DataFlow Ltd",
+        "Lisa Martinez",
+        "Legal Department",
+        "Innovation Way",
+        "Systems Ltd",
+        "Robert Kim",
+        "Chief Technology"
+      ],
+      "document_type": "License Agreement",
+      "summary": "License Agreement involving CloudTech Systems Ltd, DataFlow Ltd. DATAFLOW LTD Key concern: Medium-risk clause detected: \\bpenalty\\b...",
+      "key_clauses": [
+        "Contract termination provisions",
+        "Obligation: take the following actions within ten (10) days of this notice to cure the breac...",
+        "Obligation: result in:\n- Immediate termination of the licence agreement\n- Legal action to re..."
+      ],
+      "confidence_scores": {
+        "parties": 0.98,
+        "dates": 0.98,
+        "contract_terms": 0.95,
+        "key_clauses": 0.94,
+        "legal_analysis": 0.8500000000000001
+      },
+      "analyzed_at": "2025-10-09T21:35:44.508481",
+      "analysis_source": "live_ai_analysis"
+    },
+    "doc-007": {
+      "document_id": "doc-007",
+      "key_dates": [
+        "2024-02-01",
+        "2024-02-02",
+        "2024-02-03",
+        "2024-02-05"
+      ],
+      "parties_involved": [
+        "CloudTech Systems Ltd",
+        "DataFlow Ltd",
+        "General Counsel\nCloudTech Systems",
+        "David Park",
+        "Jennifer Walsh",
+        "Lisa Martinez",
+        "Systems Ltd",
+        "Purchase Development"
+      ],
+      "document_type": "Employment Contract",
+      "summary": "Employment agreement between CloudTech Systems Ltd and DataFlow Ltd effective from 2024-02-01 with compensation of \u00a319,000. From: legal@cloudtech Key concern: Employment termination terms may be restrictive...",
+      "key_clauses": [
+        "Notice period requirements for termination",
+        "Contract termination provisions",
+        "Dispute resolution mechanisms",
+        "Obligation: count toward the concurrent user limit unless such servers are completely isolat...",
+        "Obligation: be bound by arbitrator's interpretation\n\nIf DataFlow prefers litigation over arb..."
+      ],
+      "confidence_scores": {
+        "parties": 0.98,
+        "dates": 0.98,
+        "contract_terms": 0.96,
+        "key_clauses": 0.94,
+        "legal_analysis": 0.95
+      },
+      "analyzed_at": "2025-10-09T21:35:44.684704",
+      "analysis_source": "live_ai_analysis"
+    },
+    "doc-008": {
+      "document_id": "doc-008",
+      "key_dates": [
+        "2023-08-01",
+        "2023-09-15",
+        "2023-10-15",
+        "2023-11-15"
+      ],
+      "parties_involved": [
+        "Premier Consulting Ltd",
+        "StartupXYZ Ltd",
+        "Strategic Planning Services",
+        "Market Analysis Services",
+        "Consultant warrants that all Services",
+        "Services Agreement",
+        "Strategic Planning",
+        "Market Analysis"
+      ],
+      "document_type": "Employment Contract",
+      "summary": "Employment agreement between Premier Consulting Ltd and StartupXYZ Ltd effective from 2023-08-01 with compensation of \u00a335,000. CONSULTING SERVICES AGREEMENT\n\nThis Consulting Services Agreement (\"Agreement\") is entered into on 1... Key concern: Employment termination terms may be restrictive...",
+      "key_clauses": [
+        "Notice period requirements for termination",
+        "Compensation and benefits provisions",
+        "Confidentiality and non-disclosure obligations",
+        "Payment terms and conditions",
+        "Contract termination provisions",
+        "Intellectual property rights and ownership",
+        "Dispute resolution mechanisms",
+        "Governing law and jurisdiction clauses",
+        "Obligation: provide the following deliverables:\n\n2...",
+        "Obligation: be performed:\n- In a professional and workmanlike manner\n- In accordance with in..."
+      ],
+      "confidence_scores": {
+        "parties": 0.98,
+        "dates": 0.98,
+        "contract_terms": 0.96,
+        "key_clauses": 0.94,
+        "legal_analysis": 0.95
+      },
+      "analyzed_at": "2025-10-09T21:35:44.859391",
+      "analysis_source": "live_ai_analysis"
+    },
+    "doc-009": {
+      "document_id": "doc-009",
+      "key_dates": [
+        "2023-09-15",
+        "2023-10-15",
+        "2023-10-20",
+        "2023-11-01",
+        "2023-11-14",
+        "2023-11-15",
+        "2023-11-20",
+        "2023-12-01",
+        "2023-12-15",
+        "2023-12-20",
+        "2023-12-31",
+        "2024-01-05",
+        "2024-01-15",
+        "2024-01-25",
+        "2024-01-28"
+      ],
+      "parties_involved": [
+        "StartupXYZ Ltd",
+        "Consultant\nPremier Consulting Ltd",
+        "Invoice Summary",
+        "Account Number",
+        "Date Prepared",
+        "Amanda Foster",
+        "Principal Consultant",
+        "Market Research"
+      ],
+      "document_type": "Service Agreement",
+      "summary": "Service Agreement between StartupXYZ Ltd and Consultant\nPremier Consulting Ltd for services valued at \u00a311,667.00. PREMIER CONSULTING LTD",
+      "key_clauses": [
+        "Payment terms and conditions",
+        "Intellectual property rights and ownership",
+        "Obligation: be made by 31 December 2023..."
+      ],
+      "confidence_scores": {
+        "parties": 0.98,
+        "dates": 0.98,
+        "contract_terms": 0.45,
+        "key_clauses": 0.94,
+        "legal_analysis": 0.6
+      },
+      "analyzed_at": "2025-10-09T21:35:45.030748",
+      "analysis_source": "live_ai_analysis"
+    },
+    "doc-010": {
+      "document_id": "doc-010",
+      "key_dates": [
+        "2023-08-01",
+        "2024-01-29"
+      ],
+      "parties_involved": [
+        "Executive Officer\nStartupXYZ Ltd",
+        "Concerns About",
+        "Deliverable Quality",
+        "Payment Dispute",
+        "Premier Consulting",
+        "Michael Thompson",
+        "Chief Executive",
+        "Sarah Johnson"
+      ],
+      "document_type": "Service Agreement",
+      "summary": "Service Agreement between Executive Officer\nStartupXYZ Ltd and Concerns About for services valued at \u00a39,200. From: michael",
+      "key_clauses": [
+        "Payment terms and conditions",
+        "Intellectual property rights and ownership",
+        "Dispute resolution mechanisms",
+        "Obligation: meet \"industry standards...",
+        "Obligation: be forced to pursue our legal remedies, including counterclaims for breach of co..."
+      ],
+      "confidence_scores": {
+        "parties": 0.98,
+        "dates": 0.98,
+        "contract_terms": 0.95,
+        "key_clauses": 0.94,
+        "legal_analysis": 0.95
+      },
+      "analyzed_at": "2025-10-09T21:35:45.195127",
+      "analysis_source": "live_ai_analysis"
+    },
+    "doc-011": {
+      "document_id": "doc-011",
+      "key_dates": [
+        "1966-03-15",
+        "2018-06-01"
+      ],
+      "parties_involved": [
+        "MegaCorp Industries Ltd",
+        "PROMOTION OPPORTUNITIES\nCompany",
+        "EQUAL EMPLOYMENT OPPORTUNITY\nCompany",
+        "Industries Ltd",
+        "James Wilson",
+        "Employee Name",
+        "National Insurance",
+        "Oak Street"
+      ],
+      "document_type": "Employment Contract",
+      "summary": "Employment agreement between MegaCorp Industries Ltd and PROMOTION OPPORTUNITIES\nCompany effective from 1966-03-15 with compensation of \u00a365,000,. EMPLOYMENT AGREEMENT\n\nThis Employment Agreement (\"Agreement\") is entered into on 1 June 2018, betwee...",
+      "key_clauses": [
+        "Notice period requirements for termination",
+        "Compensation and benefits provisions",
+        "Confidentiality and non-disclosure obligations",
+        "Intellectual property rights and ownership",
+        "Governing law and jurisdiction clauses",
+        "Obligation: perform such duties and responsibilities as are customarily associated with such...",
+        "Obligation: employment relationship...",
+        "Obligation: be \u00a365,000, payable in accordance with Company's standard payroll practices...",
+        "Right: participate in Company's standard benefits package, including:\n- Private health,..."
+      ],
+      "confidence_scores": {
+        "parties": 0.98,
+        "dates": 0.98,
+        "contract_terms": 0.96,
+        "key_clauses": 0.94,
+        "legal_analysis": 0.95
+      },
+      "analyzed_at": "2025-10-09T21:35:45.358169",
+      "analysis_source": "live_ai_analysis"
+    },
+    "doc-012": {
+      "document_id": "doc-012",
+      "key_dates": [
+        "2021-03-15",
+        "2021-04-02",
+        "2021-05-01",
+        "2022-04-20",
+        "2022-05-10",
+        "2022-06-15",
+        "2023-05-10",
+        "2023-06-01",
+        "2023-07-01",
+        "2024-02-10"
+      ],
+      "parties_involved": [
+        "Department\nPromotion",
+        "Application Records",
+        "James Wilson",
+        "Consumer Products",
+        "Marketing\nCurrent",
+        "Senior Marketing",
+        "Manager\nYears",
+        "Position Applied"
+      ],
+      "document_type": "Performance Review",
+      "summary": "Performance Review involving Department\nPromotion, Application Records. MEGACORP INDUSTRIES LTD",
+      "key_clauses": [],
+      "confidence_scores": {
+        "parties": 0.98,
+        "dates": 0.98,
+        "contract_terms": 0.6000000000000001,
+        "key_clauses": 0.4,
+        "legal_analysis": 0.55
+      },
+      "analyzed_at": "2025-10-09T21:35:45.536519",
+      "analysis_source": "live_ai_analysis"
+    },
+    "doc-013": {
+      "document_id": "doc-013",
+      "key_dates": [
+        "2023-12-15"
+      ],
+      "parties_involved": [
+        "Completed AWS Solutions",
+        "James Wilson",
+        "Senior Software",
+        "Developer\nDepartment",
+        "Engineering\nReview",
+        "Performance Review",
+        "Overall Score",
+        "Manager Comments"
+      ],
+      "document_type": "Performance Review",
+      "summary": "Performance Review involving Completed AWS Solutions, James Wilson. PERFORMANCE EVALUATIONS - James Wilson\n\nEmployee: James Wilson\nPosition: Senior Software Developer\nD...",
+      "key_clauses": [],
+      "confidence_scores": {
+        "parties": 0.98,
+        "dates": 0.95,
+        "contract_terms": 0.55,
+        "key_clauses": 0.4,
+        "legal_analysis": 0.5
+      },
+      "analyzed_at": "2025-10-09T21:35:45.698840",
+      "analysis_source": "live_ai_analysis"
+    },
+    "doc-014": {
+      "document_id": "doc-014",
+      "key_dates": [
+        "2024-03-10",
+        "2024-03-12",
+        "2024-03-14",
+        "2024-03-16",
+        "2024-03-18",
+        "2024-03-20"
+      ],
+      "parties_involved": [
+        "James Wilson vs TechCorp",
+        "Solutions Ltd",
+        "I joined TechCorp",
+        "Thompson & Associates Legal Services",
+        "Employment Dispute",
+        "Case\n\nCase",
+        "James Wilson",
+        "Legal Department"
+      ],
+      "document_type": "Termination Notice",
+      "summary": "Termination Notice involving James Wilson vs TechCorp, Solutions Ltd. WITNESS STATEMENTS - Employment Dispute Case\n\nCase: James Wilson vs TechCorp Solutions Ltd\nDate: Mar...",
+      "key_clauses": [
+        "Dispute resolution mechanisms",
+        "Obligation: state that this does not align with my observations..."
+      ],
+      "confidence_scores": {
+        "parties": 0.98,
+        "dates": 0.98,
+        "contract_terms": 0.8,
+        "key_clauses": 0.9,
+        "legal_analysis": 0.8999999999999999
+      },
+      "analyzed_at": "2025-10-09T21:35:45.872041",
+      "analysis_source": "live_ai_analysis"
+    },
+    "doc-015": {
+      "document_id": "doc-015",
+      "key_dates": [
+        "2022-01-15"
+      ],
+      "parties_involved": [
+        "InnovateTech Solutions Ltd",
+        "Rachel Green",
+        "Disclosure Agreement",
+        "Solutions Ltd",
+        "David Park",
+        "Senior Software",
+        "Developer\nEmployee",
+        "Geographic Scope"
+      ],
+      "document_type": "Employment Contract",
+      "summary": "Employment agreement between InnovateTech Solutions Ltd and Rachel Green effective from 2022-01-15 with compensation of \u00a3105,000. NON-COMPETE AND NON-DISCLOSURE AGREEMENT\n\nThis Non-Compete and Non-Disclosure Agreement (\"Agreement\"... \u26a1 MEDIUM RISK: Consider legal review of identified areas. Key concern: Employment termination terms may be restrictive...",
+      "key_clauses": [
+        "Compensation and benefits provisions",
+        "Confidentiality and non-disclosure obligations",
+        "Non-compete and restraint of trade clauses",
+        "Contract termination provisions",
+        "Intellectual property rights and ownership",
+        "Governing law and jurisdiction clauses",
+        "Obligation: not:\n\na) Directly or indirectly engage in, own, manage, operate, control, be emp...",
+        "Obligation: be entitled to injunctive relief and monetary damages for any breach...",
+        "Obligation: remain in full force...",
+        "Right: injunctive relief and monetary damages for any breach..."
+      ],
+      "confidence_scores": {
+        "parties": 0.98,
+        "dates": 0.98,
+        "contract_terms": 0.96,
+        "key_clauses": 0.94,
+        "legal_analysis": 0.95
+      },
+      "analyzed_at": "2025-10-09T21:35:46.032174",
+      "analysis_source": "live_ai_analysis"
+    },
+    "doc-016": {
+      "document_id": "doc-016",
+      "key_dates": [
+        "2024-02-25",
+        "2024-03-01",
+        "2024-03-08",
+        "2024-03-18"
+      ],
+      "parties_involved": [
+        "OFFER LETTER\n\nCompetitorCorp",
+        "Technologies Ltd",
+        "Architect with CompetitorCorp",
+        "CompetitorCorp",
+        "Talent Acquisition\nCompetitorCorp",
+        "CompetitorCorp Technologies Ltd",
+        "OFFER LETTER\n\nCompetitorCorp Technologies",
+        "Architect with CompetitorCorp Technologies"
+      ],
+      "document_type": "Employment Contract",
+      "summary": "Employment agreement between OFFER LETTER\n\nCompetitorCorp and Technologies Ltd effective from 2024-02-25 with compensation of \u00a395,000. EMPLOYMENT OFFER LETTER\n\nCompetitorCorp Technologies Ltd Key concern: Non-compete clause requires jurisdictional review...",
+      "key_clauses": [
+        "Notice period requirements for termination",
+        "Compensation and benefits provisions",
+        "Confidentiality and non-disclosure obligations",
+        "Non-compete and restraint of trade clauses",
+        "Intellectual property rights and ownership",
+        "Obligation: be subject to a 6-month probationary period during which either party may termin...",
+        "Obligation: be required from either party...",
+        "Obligation: be valuable additions to our technical leadership team...",
+        "Right: work in the UK\n3..."
+      ],
+      "confidence_scores": {
+        "parties": 0.98,
+        "dates": 0.98,
+        "contract_terms": 0.96,
+        "key_clauses": 0.94,
+        "legal_analysis": 0.95
+      },
+      "analyzed_at": "2025-10-09T21:35:46.196387",
+      "analysis_source": "live_ai_analysis"
+    },
+    "doc-017": {
+      "document_id": "doc-017",
+      "key_dates": [],
+      "parties_involved": [
+        "InnovateTech Solutions Ltd",
+        "IMPLEMENTATIONS\n\nClientCorp",
+        "DOCUMENTATION\n\nInnovateTech Solutions",
+        "Sarah Williams",
+        "Solutions Ltd",
+        "Confidential Information",
+        "Document Control",
+        "David Park"
+      ],
+      "document_type": "Employment Contract",
+      "summary": "Employment agreement between InnovateTech Solutions Ltd and IMPLEMENTATIONS\n\nClientCorp. CONFIDENTIAL - TRADE SECRETS DOCUMENTATION\n\nInnovateTech Solutions Ltd",
+      "key_clauses": [
+        "Confidentiality and non-disclosure obligations",
+        "Intellectual property rights and ownership"
+      ],
+      "confidence_scores": {
+        "parties": 0.98,
+        "dates": 0.7,
+        "contract_terms": 0.6000000000000001,
+        "key_clauses": 0.9,
+        "legal_analysis": 0.7000000000000001
+      },
+      "analyzed_at": "2025-10-09T21:35:46.368923",
+      "analysis_source": "live_ai_analysis"
+    },
+    "doc-018": {
+      "document_id": "doc-018",
+      "key_dates": [
+        "2020-01-01"
+      ],
+      "parties_involved": [
+        "HealthFirst Medical Group Ltd",
+        "SecureHealth Insurance Ltd",
+        "Primary Care Services",
+        "Specialist Services",
+        "Diagnostic Services",
+        "Emergency Services",
+        "Maria Gonzalez",
+        "Services Agreement"
+      ],
+      "document_type": "Service Agreement",
+      "summary": "Service Agreement between HealthFirst Medical Group Ltd and SecureHealth Insurance Ltd. PROVIDER SERVICES AGREEMENT\n\nThis Provider Services Agreement (\"Agreement\") is entered into on 1 Jan...",
+      "key_clauses": [
+        "Payment terms and conditions",
+        "Contract termination provisions",
+        "Intellectual property rights and ownership",
+        "Dispute resolution mechanisms",
+        "Obligation: be medically necessary as determined by the treating physician in accordance wit...",
+        "Obligation: be made within 30 days of receipt of clean claims...",
+        "Obligation: be resolved within 60 days of initial submission...",
+        "Right: appeal denied claims within 180 days..."
+      ],
+      "confidence_scores": {
+        "parties": 0.98,
+        "dates": 0.98,
+        "contract_terms": 0.96,
+        "key_clauses": 0.94,
+        "legal_analysis": 0.95
+      },
+      "analyzed_at": "2025-10-09T21:35:46.537283",
+      "analysis_source": "live_ai_analysis"
+    },
+    "doc-019": {
+      "document_id": "doc-019",
+      "key_dates": [
+        "2023-01-01",
+        "2023-01-15",
+        "2023-02-22",
+        "2023-03-10",
+        "2023-04-05",
+        "2023-05-18",
+        "2023-06-30",
+        "2023-07-12",
+        "2023-08-25",
+        "2023-09-08",
+        "2023-10-20",
+        "2023-10-31",
+        "2023-11-15",
+        "2023-11-16",
+        "2023-11-20"
+      ],
+      "parties_involved": [
+        "SecureHealth Insurance Ltd",
+        "HealthFirst Medical Group Ltd",
+        "Excluded Services",
+        "Excluded Wellness Services",
+        "Thompson & Associates",
+        "Maria Gonzalez",
+        "Insurance Ltd",
+        "Claims Review"
+      ],
+      "document_type": "Legal Notice",
+      "summary": "Legal notice involving SecureHealth Insurance Ltd, HealthFirst Medical Group Ltd. COMPREHENSIVE CLAIMS DENIAL ANALYSIS\n\nSecureHealth Insurance Ltd",
+      "key_clauses": [
+        "Required remedial actions"
+      ],
+      "confidence_scores": {
+        "parties": 0.98,
+        "dates": 0.98,
+        "contract_terms": 0.7000000000000001,
+        "key_clauses": 0.8500000000000001,
+        "legal_analysis": 0.65
+      },
+      "analyzed_at": "2025-10-09T21:35:46.769332",
+      "analysis_source": "live_ai_analysis"
+    },
+    "doc-020": {
+      "document_id": "doc-020",
+      "key_dates": [
+        "2023-11-25",
+        "2023-11-28"
+      ],
+      "parties_involved": [
+        "HealthFirst Medical Group Ltd",
+        "Officer\nHealthFirst Medical Group",
+        "Maria Gonzalez",
+        "James Mitchell",
+        "Medical Group",
+        "Patient Care",
+        "Documentation\nPrepared",
+        "Chief Complaint"
+      ],
+      "document_type": "Service Agreement",
+      "summary": "Service Agreement between HealthFirst Medical Group Ltd and Officer\nHealthFirst Medical Group. MEDICAL RECORDS AND TREATMENT JUSTIFICATION\n\nHealthFirst Medical Group Ltd",
+      "key_clauses": [
+        "Contract termination provisions",
+        "Intellectual property rights and ownership"
+      ],
+      "confidence_scores": {
+        "parties": 0.98,
+        "dates": 0.98,
+        "contract_terms": 0.8,
+        "key_clauses": 0.9,
+        "legal_analysis": 0.7999999999999999
+      },
+      "analyzed_at": "2025-10-09T21:35:46.936367",
+      "analysis_source": "live_ai_analysis"
+    },
+    "doc-021": {
+      "document_id": "doc-021",
+      "key_dates": [
+        "2022-12-15",
+        "2023-01-01",
+        "2023-12-31"
+      ],
+      "parties_involved": [
+        "SecureHealth Insurance Ltd",
+        "HealthFirst Medical Group Ltd",
+        "Insurance Ltd",
+        "Policy Number",
+        "Policy Holder",
+        "Medical Group",
+        "Ltd\nPolicy",
+        "Medically Necessary"
+      ],
+      "document_type": "Service Agreement",
+      "summary": "Service Agreement between SecureHealth Insurance Ltd and HealthFirst Medical Group Ltd for services valued at \u00a324,000. INSURANCE POLICY TERMS AND CONDITIONS\n\nSecureHealth Insurance Ltd",
+      "key_clauses": [
+        "Payment terms and conditions",
+        "Intellectual property rights and ownership",
+        "Dispute resolution mechanisms",
+        "Obligation: be appropriate for the condition\n4...",
+        "Obligation: be considered\n4...",
+        "Obligation: follow established medical guidelines\n4...",
+        "Right: legal action\n\nSECTION 9: PROVIDER NETWORK\n\n9..."
+      ],
+      "confidence_scores": {
+        "parties": 0.98,
+        "dates": 0.98,
+        "contract_terms": 0.96,
+        "key_clauses": 0.94,
+        "legal_analysis": 0.95
+      },
+      "analyzed_at": "2025-10-09T21:35:47.114404",
+      "analysis_source": "live_ai_analysis"
+    }
+  }
+}

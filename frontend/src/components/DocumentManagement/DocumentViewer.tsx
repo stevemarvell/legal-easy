@@ -18,7 +18,10 @@ import {
   AccordionSummary,
   AccordionDetails,
   Tabs,
-  Tab
+  Tab,
+  IconButton,
+  Tooltip,
+  Button
 } from '@mui/material';
 import {
   Description as DocumentIcon,
@@ -30,7 +33,9 @@ import {
   Schedule as PendingIcon,
   ExpandMore as ExpandMoreIcon,
   Visibility as PreviewIcon,
-  Psychology as AnalysisIcon
+  Psychology as AnalysisIcon,
+  Refresh as RefreshIcon,
+  Fullscreen as FullscreenIcon
 } from '@mui/icons-material';
 import { documentService } from '../../services/documentService';
 import { Document } from '../../types/document';
@@ -46,6 +51,8 @@ const DocumentViewer: React.FC<DocumentViewerProps> = ({ documentId, document: p
   const [loading, setLoading] = useState(!preloadedDocument);
   const [error, setError] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState(0);
+  const [fullContent, setFullContent] = useState<string>('');
+  const [contentLoading, setContentLoading] = useState(false);
 
   useEffect(() => {
     const fetchDocument = async () => {
@@ -72,6 +79,27 @@ const DocumentViewer: React.FC<DocumentViewerProps> = ({ documentId, document: p
       fetchDocument();
     }
   }, [documentId, preloadedDocument]);
+
+  // Fetch full document content when document is loaded
+  useEffect(() => {
+    const fetchContent = async () => {
+      if (!document) return;
+
+      try {
+        setContentLoading(true);
+        const contentData = await documentService.getDocumentContent(document.id);
+        setFullContent(contentData.content);
+      } catch (err) {
+        console.error('Failed to fetch document content:', err);
+        // Fallback to content preview if full content fails
+        setFullContent(document.content_preview || 'Content not available');
+      } finally {
+        setContentLoading(false);
+      }
+    };
+
+    fetchContent();
+  }, [document]);
 
   const formatFileSize = (bytes: number): string => {
     if (bytes === 0) return '0 Bytes';
@@ -105,6 +133,21 @@ const DocumentViewer: React.FC<DocumentViewerProps> = ({ documentId, document: p
 
   const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
     setActiveTab(newValue);
+  };
+
+  const handleRefreshContent = async () => {
+    if (!document) return;
+
+    try {
+      setContentLoading(true);
+      const contentData = await documentService.getDocumentContent(document.id);
+      setFullContent(contentData.content);
+    } catch (err) {
+      console.error('Failed to refresh document content:', err);
+      setError('Failed to refresh document content');
+    } finally {
+      setContentLoading(false);
+    }
   };
 
   if (loading) {
@@ -256,40 +299,75 @@ const DocumentViewer: React.FC<DocumentViewerProps> = ({ documentId, document: p
           <Box sx={{ flex: 1 }}>
             <Card>
               <CardContent>
-                <Box display="flex" alignItems="center" mb={2}>
-                  <PreviewIcon color="primary" sx={{ mr: 1 }} />
-                  <Typography variant="h6">
-                    Document Preview
-                  </Typography>
+                <Box display="flex" alignItems="center" justifyContent="space-between" mb={2}>
+                  <Box display="flex" alignItems="center">
+                    <PreviewIcon color="primary" sx={{ mr: 1 }} />
+                    <Typography variant="h6">
+                      Document Content
+                    </Typography>
+                    {contentLoading && (
+                      <CircularProgress size={20} sx={{ ml: 2 }} />
+                    )}
+                  </Box>
+                  <Box>
+                    <Tooltip title="Refresh content">
+                      <IconButton 
+                        onClick={handleRefreshContent}
+                        disabled={contentLoading}
+                        size="small"
+                      >
+                        <RefreshIcon />
+                      </IconButton>
+                    </Tooltip>
+                  </Box>
                 </Box>
                 <Divider sx={{ mb: 2 }} />
                 
-                {document.content_preview ? (
-                  <Paper 
-                    variant="outlined" 
-                    sx={{ 
-                      p: 2, 
-                      backgroundColor: 'grey.50',
-                      maxHeight: '500px',
-                      overflow: 'auto'
-                    }}
-                  >
-                    <Typography 
-                      variant="body2" 
-                      component="pre"
+                {contentLoading ? (
+                  <Box display="flex" justifyContent="center" alignItems="center" minHeight="200px">
+                    <CircularProgress />
+                  </Box>
+                ) : fullContent ? (
+                  <>
+                    <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
+                      <Typography variant="body2" color="text.secondary">
+                        {fullContent.length.toLocaleString()} characters
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        {fullContent.split('\n').length} lines
+                      </Typography>
+                    </Box>
+                    <Paper 
+                      variant="outlined" 
                       sx={{ 
-                        whiteSpace: 'pre-wrap',
-                        fontFamily: 'monospace',
-                        fontSize: '0.875rem',
-                        lineHeight: 1.6
+                        p: 3, 
+                        backgroundColor: 'grey.50',
+                        maxHeight: '600px',
+                        overflow: 'auto',
+                        border: '1px solid',
+                        borderColor: 'grey.300',
+                        borderRadius: 2
                       }}
                     >
-                      {document.content_preview}
-                    </Typography>
-                  </Paper>
+                      <Typography 
+                        variant="body2" 
+                        component="pre"
+                        sx={{ 
+                          whiteSpace: 'pre-wrap',
+                          fontFamily: 'monospace',
+                          fontSize: '0.875rem',
+                          lineHeight: 1.6,
+                          color: 'text.primary',
+                          margin: 0
+                        }}
+                      >
+                        {fullContent}
+                      </Typography>
+                    </Paper>
+                  </>
                 ) : (
                   <Alert severity="info">
-                    No preview available for this document
+                    Document content not available
                   </Alert>
                 )}
               </CardContent>

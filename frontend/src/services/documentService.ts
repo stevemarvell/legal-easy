@@ -43,4 +43,9 @@ export const documentService = {
     const response = await apiClient.delete('/api/documents/analysis/all');
     return response.data;
   },
+
+  async getDocumentContent(documentId: string): Promise<{ document_id: string; content: string; content_length: number }> {
+    const response = await apiClient.get<{ document_id: string; content: string; content_length: number }>(`/api/documents/${documentId}/content`);
+    return response.data;
+  },
 };
