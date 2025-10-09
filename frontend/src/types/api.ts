@@ -35,6 +35,17 @@ export interface CaseAnalysis {
   timeline?: TimelineEvent[];
 }
 
+export interface CaseAssessment {
+  case_id: string;
+  playbook_used: string;
+  case_strength: 'Strong' | 'Moderate' | 'Weak';
+  key_issues: string[];
+  recommended_actions: string[];
+  monetary_assessment?: [number, number];
+  applied_rules: string[];
+  reasoning: string;
+}
+
 export interface TimelineEvent {
   date: string;
   event: string;

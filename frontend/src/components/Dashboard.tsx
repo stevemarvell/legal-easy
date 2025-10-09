@@ -33,7 +33,7 @@ const Dashboard = () => {
         // Fetch recent cases (all cases for now, we'll show the most recent ones)
         const casesResponse = await apiClient.get<Case[]>('/api/cases');
         const sortedCases = casesResponse.data
-          .sort((a, b) => new Date(b.updated_at || b.created_at).getTime() - new Date(a.updated_at || a.created_at).getTime())
+          .sort((a, b) => new Date(b.updated_at || b.created_at || b.created_date).getTime() - new Date(a.updated_at || a.created_at || a.created_date).getTime())
           .slice(0, 5); // Show 5 most recent cases
         setRecentCases(sortedCases);
       } catch (err) {
@@ -272,7 +272,7 @@ const Dashboard = () => {
                   <div className="case-date">
                     <span className="meta-label">Updated:</span>
                     <span className="meta-value">
-                      {new Date(case_.updated_at || case_.created_at).toLocaleDateString()}
+                      {new Date(case_.updated_at || case_.created_at || case_.created_date).toLocaleDateString()}
                     </span>
                   </div>
                 </div>

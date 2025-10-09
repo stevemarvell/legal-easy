@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { CaseAnalysis } from '../types/api';
+import { CaseAssessment as CaseAssessmentType } from '../types/api';
 import './CaseAssessment.css';
 
 interface CaseAssessmentProps {
@@ -8,7 +8,7 @@ interface CaseAssessmentProps {
 }
 
 const CaseAssessment = ({ caseId, onRefresh }: CaseAssessmentProps) => {
-  const [assessment, setAssessment] = useState<CaseAnalysis | null>(null);
+  const [assessment, setAssessment] = useState<CaseAssessmentType | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [generating, setGenerating] = useState(false);
@@ -56,20 +56,20 @@ const CaseAssessment = ({ caseId, onRefresh }: CaseAssessmentProps) => {
     }
   };
 
-  const getRiskColor = (risk: string) => {
-    switch (risk.toLowerCase()) {
-      case 'high': return 'risk-high';
-      case 'medium': return 'risk-medium';
-      case 'low': return 'risk-low';
-      default: return 'risk-default';
+  const getCaseStrengthColor = (strength: string) => {
+    switch (strength.toLowerCase()) {
+      case 'strong': return 'strength-strong';
+      case 'moderate': return 'strength-moderate';
+      case 'weak': return 'strength-weak';
+      default: return 'strength-default';
     }
   };
 
-  const getRiskIcon = (risk: string) => {
-    switch (risk.toLowerCase()) {
-      case 'high': return '⚠️';
-      case 'medium': return '⚡';
-      case 'low': return '✅';
+  const getCaseStrengthIcon = (strength: string) => {
+    switch (strength.toLowerCase()) {
+      case 'strong': return '💪';
+      case 'moderate': return '⚖️';
+      case 'weak': return '⚠️';
       default: return '❓';
     }
   };
@@ -136,49 +136,49 @@ const CaseAssessment = ({ caseId, onRefresh }: CaseAssessmentProps) => {
             {generating ? '⟳' : '↻'}
           </button>
         </div>
-        {assessment.risk_assessment && (
-          <div className="risk-indicator">
-            <span className={`risk-badge ${getRiskColor(assessment.risk_assessment)}`}>
-              <span className="risk-icon">{getRiskIcon(assessment.risk_assessment)}</span>
-              <span className="risk-text">{assessment.risk_assessment} Risk</span>
+        {assessment.case_strength && (
+          <div className="strength-indicator">
+            <span className={`strength-badge ${getCaseStrengthColor(assessment.case_strength)}`}>
+              <span className="strength-icon">{getCaseStrengthIcon(assessment.case_strength)}</span>
+              <span className="strength-text">{assessment.case_strength} Case</span>
             </span>
           </div>
         )}
       </div>
 
       <div className="assessment-content">
-        {assessment.summary && (
+        {assessment.reasoning && (
           <div className="assessment-section summary-section">
-            <h4>Executive Summary</h4>
+            <h4>Assessment Summary</h4>
             <div className="summary-content">
-              <p>{assessment.summary}</p>
+              <p>{assessment.reasoning}</p>
             </div>
           </div>
         )}
 
-        {assessment.key_findings && assessment.key_findings.length > 0 && (
-          <div className="assessment-section findings-section">
-            <h4>Key Findings</h4>
-            <div className="findings-list">
-              {assessment.key_findings.map((finding, index) => (
-                <div key={index} className="finding-item">
-                  <div className="finding-icon">🔍</div>
-                  <div className="finding-text">{finding}</div>
+        {assessment.key_issues && assessment.key_issues.length > 0 && (
+          <div className="assessment-section issues-section">
+            <h4>Key Issues Identified</h4>
+            <div className="issues-list">
+              {assessment.key_issues.map((issue, index) => (
+                <div key={index} className="issue-item">
+                  <div className="issue-icon">⚖️</div>
+                  <div className="issue-text">{issue}</div>
                 </div>
               ))}
             </div>
           </div>
         )}
 
-        {assessment.recommendations && assessment.recommendations.length > 0 && (
+        {assessment.recommended_actions && assessment.recommended_actions.length > 0 && (
           <div className="assessment-section recommendations-section">
             <h4>Recommended Actions</h4>
             <div className="recommendations-list">
-              {assessment.recommendations.map((recommendation, index) => (
+              {assessment.recommended_actions.map((action, index) => (
                 <div key={index} className="recommendation-item">
                   <div className="recommendation-number">{index + 1}</div>
                   <div className="recommendation-content">
-                    <div className="recommendation-text">{recommendation}</div>
+                    <div className="recommendation-text">{action}</div>
                   </div>
                 </div>
               ))}
@@ -187,74 +187,60 @@ const CaseAssessment = ({ caseId, onRefresh }: CaseAssessmentProps) => {
         )}
 
         <div className="assessment-metrics">
-          {assessment.estimated_value && (
+          {assessment.monetary_assessment && (
             <div className="metric-card value-metric">
               <div className="metric-header">
-                <h5>Estimated Case Value</h5>
+                <h5>Monetary Assessment Range</h5>
                 <div className="metric-icon">💰</div>
               </div>
               <div className="metric-value">
-                <span className="value-amount">
-                  {formatCurrency(assessment.estimated_value)}
+                <span className="value-range">
+                  {formatCurrency(assessment.monetary_assessment[0])} - {formatCurrency(assessment.monetary_assessment[1])}
                 </span>
               </div>
               <div className="metric-description">
-                Based on case strength and comparable outcomes
+                Estimated range based on case strength and comparable outcomes
               </div>
             </div>
           )}
 
-          {assessment.risk_assessment && (
-            <div className="metric-card risk-metric">
+          {assessment.case_strength && (
+            <div className="metric-card strength-metric">
               <div className="metric-header">
-                <h5>Risk Assessment</h5>
-                <div className="metric-icon">{getRiskIcon(assessment.risk_assessment)}</div>
+                <h5>Case Strength</h5>
+                <div className="metric-icon">{getCaseStrengthIcon(assessment.case_strength)}</div>
               </div>
               <div className="metric-value">
-                <span className={`risk-level ${getRiskColor(assessment.risk_assessment)}`}>
-                  {assessment.risk_assessment}
+                <span className={`strength-level ${getCaseStrengthColor(assessment.case_strength)}`}>
+                  {assessment.case_strength}
                 </span>
               </div>
               <div className="metric-description">
-                Overall risk level for this case
+                Overall assessment based on {assessment.playbook_used}
               </div>
             </div>
           )}
         </div>
 
-        {assessment.timeline && assessment.timeline.length > 0 && (
-          <div className="assessment-section timeline-section">
-            <h4>Case Timeline</h4>
-            <div className="timeline-container">
-              {assessment.timeline.map((event, index) => (
-                <div key={index} className="timeline-event">
-                  <div className="timeline-marker">
-                    <div className="timeline-dot"></div>
-                    {index < assessment.timeline!.length - 1 && (
-                      <div className="timeline-line"></div>
-                    )}
-                  </div>
-                  <div className="timeline-content">
-                    <div className="timeline-date">
-                      {new Date(event.date).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'short',
-                        day: 'numeric'
-                      })}
-                    </div>
-                    <div className="timeline-event-title">{event.event}</div>
-                    <div className="timeline-description">{event.description}</div>
-                    {event.document_reference && (
-                      <div className="timeline-reference">
-                        📄 Reference: {event.document_reference}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              ))}
+        {assessment.applied_rules && assessment.applied_rules.length > 0 && (
+          <div className="assessment-section rules-section">
+            <h4>Applied Playbook Rules</h4>
+            <div className="rules-info">
+              <p className="playbook-name">
+                <strong>Playbook Used:</strong> {assessment.playbook_used}
+              </p>
+              <div className="applied-rules-list">
+                {assessment.applied_rules.map((ruleId, index) => (
+                  <span key={index} className="rule-tag">
+                    {ruleId}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         )}
+
+
       </div>
 
       <div className="assessment-footer">

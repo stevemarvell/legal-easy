@@ -142,12 +142,12 @@
   cursor: not-allowed;
 }
 
-.risk-indicator {
+.strength-indicator {
   display: flex;
   align-items: center;
 }
 
-.risk-badge {
+.strength-badge {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -157,31 +157,31 @@
   font-size: 0.875rem;
 }
 
-.risk-high { 
-  background: #fed7d7; 
-  color: #742a2a; 
-  border: 1px solid #feb2b2;
-}
-
-.risk-medium { 
-  background: #feebc8; 
-  color: #7b341e; 
-  border: 1px solid #fbd38d;
-}
-
-.risk-low { 
+.strength-strong { 
   background: #c6f6d5; 
   color: #22543d; 
   border: 1px solid #9ae6b4;
 }
 
-.risk-default { 
+.strength-moderate { 
+  background: #feebc8; 
+  color: #7b341e; 
+  border: 1px solid #fbd38d;
+}
+
+.strength-weak { 
+  background: #fed7d7; 
+  color: #742a2a; 
+  border: 1px solid #feb2b2;
+}
+
+.strength-default { 
   background: #f7fafc; 
   color: #718096; 
   border: 1px solid #e2e8f0;
 }
 
-.risk-icon {
+.strength-icon {
   font-size: 1rem;
 }
 
@@ -219,36 +219,37 @@
   margin: 0;
 }
 
-.findings-section {
-  border-left: 4px solid #3182ce;
+.issues-section {
+  border-left: 4px solid #e53e3e;
 }
 
-.findings-list {
+.issues-list {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.finding-item {
+.issue-item {
   display: flex;
   align-items: flex-start;
   gap: 1rem;
   padding: 1rem;
-  background: #f7fafc;
+  background: #fffaf0;
   border-radius: 0.375rem;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #feebc8;
 }
 
-.finding-icon {
+.issue-icon {
   font-size: 1.25rem;
   flex-shrink: 0;
   margin-top: 0.125rem;
 }
 
-.finding-text {
-  color: #4a5568;
+.issue-text {
+  color: #7b341e;
   line-height: 1.6;
   flex: 1;
+  font-weight: 500;
 }
 
 .recommendations-section {
@@ -321,9 +322,9 @@
   border-color: #38a169;
 }
 
-.risk-metric {
-  background: linear-gradient(135deg, #fffaf0 0%, #feebc8 100%);
-  border-color: #ed8936;
+.strength-metric {
+  background: linear-gradient(135deg, #ebf8ff 0%, #bee3f8 100%);
+  border-color: #3182ce;
 }
 
 .metric-header {
@@ -348,24 +349,25 @@
   margin-bottom: 0.5rem;
 }
 
-.value-amount {
-  font-size: 2.5rem;
+.value-range {
+  font-size: 1.75rem;
   font-weight: bold;
   color: #38a169;
   display: block;
+  line-height: 1.2;
 }
 
-.risk-level {
+.strength-level {
   font-size: 1.5rem;
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
-.risk-level.risk-high { color: #e53e3e; }
-.risk-level.risk-medium { color: #ed8936; }
-.risk-level.risk-low { color: #38a169; }
-.risk-level.risk-default { color: #718096; }
+.strength-level.strength-strong { color: #38a169; }
+.strength-level.strength-moderate { color: #ed8936; }
+.strength-level.strength-weak { color: #e53e3e; }
+.strength-level.strength-default { color: #718096; }
 
 .metric-description {
   color: #718096;
@@ -443,6 +445,38 @@
   color: #718096;
   font-size: 0.875rem;
   font-style: italic;
+}
+
+.rules-section {
+  border-left: 4px solid #805ad5;
+}
+
+.rules-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.playbook-name {
+  color: #2d3748;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.applied-rules-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.rule-tag {
+  background: #e6fffa;
+  color: #234e52;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid #81e6d9;
 }
 
 .assessment-footer {

@@ -64,7 +64,7 @@ class TestCasesAPI:
         """Test successful retrieval of case statistics"""
         mock_get_stats.return_value = mock_case_statistics
         
-        response = client.get("/cases/statistics")
+        response = client.get("/api/cases/statistics")
         
         assert response.status_code == 200
         data = response.json()
@@ -80,7 +80,7 @@ class TestCasesAPI:
         """Test error handling in case statistics endpoint"""
         mock_get_stats.side_effect = Exception("Database error")
         
-        response = client.get("/cases/statistics")
+        response = client.get("/api/cases/statistics")
         
         assert response.status_code == 500
         data = response.json()
@@ -92,7 +92,7 @@ class TestCasesAPI:
         """Test successful retrieval of all cases"""
         mock_get_all.return_value = mock_cases
         
-        response = client.get("/cases/")
+        response = client.get("/api/cases/")
         
         assert response.status_code == 200
         data = response.json()
@@ -109,7 +109,7 @@ class TestCasesAPI:
         """Test retrieval when no cases exist"""
         mock_get_all.return_value = []
         
-        response = client.get("/cases/")
+        response = client.get("/api/cases/")
         
         assert response.status_code == 200
         data = response.json()
@@ -121,7 +121,7 @@ class TestCasesAPI:
         """Test error handling in get all cases endpoint"""
         mock_get_all.side_effect = Exception("Service error")
         
-        response = client.get("/cases/")
+        response = client.get("/api/cases/")
         
         assert response.status_code == 500
         data = response.json()
@@ -133,7 +133,7 @@ class TestCasesAPI:
         """Test successful retrieval of a specific case"""
         mock_get_by_id.return_value = mock_cases[0]
         
-        response = client.get("/cases/case-001")
+        response = client.get("/api/cases/case-001")
         
         assert response.status_code == 200
         data = response.json()
@@ -151,7 +151,7 @@ class TestCasesAPI:
         """Test retrieval of non-existent case"""
         mock_get_by_id.return_value = None
         
-        response = client.get("/cases/case-999")
+        response = client.get("/api/cases/case-999")
         
         assert response.status_code == 404
         data = response.json()
@@ -163,7 +163,7 @@ class TestCasesAPI:
         """Test error handling in get case by ID endpoint"""
         mock_get_by_id.side_effect = Exception("Service error")
         
-        response = client.get("/cases/case-001")
+        response = client.get("/api/cases/case-001")
         
         assert response.status_code == 500
         data = response.json()
@@ -175,7 +175,7 @@ class TestCasesAPI:
         """Test that HTTPExceptions are passed through correctly"""
         mock_get_by_id.side_effect = HTTPException(status_code=404, detail="Custom not found")
         
-        response = client.get("/cases/case-001")
+        response = client.get("/api/cases/case-001")
         
         assert response.status_code == 404
         data = response.json()
@@ -184,11 +184,11 @@ class TestCasesAPI:
     def test_get_case_invalid_path_parameter(self, client):
         """Test endpoint with various path parameters"""
         # Test with empty case ID (should still work as it's a valid string)
-        response = client.get("/cases/")
+        response = client.get("/api/cases/")
         assert response.status_code == 200  # This hits the get_cases endpoint
         
         # Test with special characters in case ID
-        response = client.get("/cases/case-with-special-chars-123")
+        response = client.get("/api/cases/case-with-special-chars-123")
         # This should work but likely return 404 or 500 depending on service behavior
         assert response.status_code in [404, 500]
     
@@ -201,21 +201,21 @@ class TestCasesAPI:
         paths = openapi_spec["paths"]
         
         # Check that our endpoints are documented
-        assert "/cases/" in paths
-        assert "/cases/{case_id}" in paths
-        assert "/cases/statistics" in paths
+        assert "/api/cases/" in paths
+        assert "/api/cases/{case_id}" in paths
+        assert "/api/cases/statistics" in paths
         
         # Check that endpoints have proper HTTP methods
-        assert "get" in paths["/cases/"]
-        assert "get" in paths["/cases/{case_id}"]
-        assert "get" in paths["/cases/statistics"]
+        assert "get" in paths["/api/cases/"]
+        assert "get" in paths["/api/cases/{case_id}"]
+        assert "get" in paths["/api/cases/statistics"]
     
     @patch.object(CaseService, 'get_all_cases')
     def test_response_content_type(self, mock_get_all, client, mock_cases):
         """Test that responses have correct content type"""
         mock_get_all.return_value = mock_cases
         
-        response = client.get("/cases/")
+        response = client.get("/api/cases/")
         
         assert response.status_code == 200
         assert response.headers["content-type"] == "application/json"
@@ -225,7 +225,7 @@ class TestCasesAPI:
         """Test that statistics response matches expected schema"""
         mock_get_stats.return_value = mock_case_statistics
         
-        response = client.get("/cases/statistics")
+        response = client.get("/api/cases/statistics")
         
         assert response.status_code == 200
         data = response.json()
@@ -258,7 +258,7 @@ class TestCasesAPI:
         mock_get_case.return_value = mock_cases[0]
         mock_generate_assessment.return_value = mock_case_assessment
         
-        response = client.get("/cases/case-001/assessment")
+        response = client.get("/api/cases/case-001/assessment")
         
         assert response.status_code == 200
         data = response.json()
@@ -279,7 +279,7 @@ class TestCasesAPI:
         """Test case assessment when case doesn't exist"""
         mock_get_case.return_value = None
         
-        response = client.get("/cases/case-999/assessment")
+        response = client.get("/api/cases/case-999/assessment")
         
         assert response.status_code == 404
         data = response.json()
@@ -293,7 +293,7 @@ class TestCasesAPI:
         mock_get_case.return_value = mock_cases[0]
         mock_generate_assessment.return_value = None
         
-        response = client.get("/cases/case-001/assessment")
+        response = client.get("/api/cases/case-001/assessment")
         
         assert response.status_code == 404
         data = response.json()
@@ -308,7 +308,7 @@ class TestCasesAPI:
         mock_get_case.return_value = mock_cases[0]
         mock_generate_assessment.side_effect = Exception("Playbook engine error")
         
-        response = client.get("/cases/case-001/assessment")
+        response = client.get("/api/cases/case-001/assessment")
         
         assert response.status_code == 500
         data = response.json()
@@ -320,7 +320,7 @@ class TestCasesAPI:
         """Test error handling when case service fails"""
         mock_get_case.side_effect = Exception("Case service error")
         
-        response = client.get("/cases/case-001/assessment")
+        response = client.get("/api/cases/case-001/assessment")
         
         assert response.status_code == 500
         data = response.json()
@@ -334,7 +334,7 @@ class TestCasesAPI:
         mock_get_case.return_value = mock_cases[0]
         mock_generate_assessment.return_value = mock_case_assessment
         
-        response = client.get("/cases/case-001/assessment")
+        response = client.get("/api/cases/case-001/assessment")
         
         assert response.status_code == 200
         data = response.json()
