@@ -2,13 +2,19 @@
 export interface Case {
   id: string;
   title: string;
-  description: string;
-  status: 'active' | 'pending' | 'resolved' | 'closed';
-  priority: 'low' | 'medium' | 'high' | 'critical';
   case_type: string;
-  created_at: string;
-  updated_at: string;
-  documents?: Document[];
+  client_name: string;
+  status: 'Active' | 'Under Review' | 'Resolved';
+  created_date: string;
+  summary: string;
+  key_parties: string[];
+  documents: string[];
+  playbook_id: string;
+  // Optional fields for frontend compatibility
+  description?: string;
+  priority?: 'low' | 'medium' | 'high' | 'critical';
+  created_at?: string;
+  updated_at?: string;
 }
 
 export interface CaseStatistics {
@@ -98,19 +104,38 @@ export interface LegalSearchResponse {
 // Playbook types
 export interface Playbook {
   id: string;
+  case_type: string;
   name: string;
-  description: string;
+  description?: string;
   rules: PlaybookRule[];
-  created_at: string;
-  updated_at: string;
+  decision_tree: Record<string, any>;
+  monetary_ranges: Record<string, MonetaryRange>;
+  escalation_paths: string[];
 }
 
 export interface PlaybookRule {
   id: string;
   condition: string;
   action: string;
-  priority: number;
-  enabled: boolean;
+  weight: number;
+  description: string;
+  enabled?: boolean;
+  priority?: number;
+}
+
+export interface MonetaryRange {
+  range: [number, number];
+  description: string;
+  factors: string[];
+}
+
+export interface PlaybookResult {
+  case_id: string;
+  playbook_id: string;
+  applied_rules: string[];
+  recommendations: string[];
+  case_strength: string;
+  reasoning: string;
 }
 
 export interface PlaybookExecution {
@@ -119,14 +144,6 @@ export interface PlaybookExecution {
   results: PlaybookResult[];
   execution_time: string;
   status: 'success' | 'partial' | 'failed';
-}
-
-export interface PlaybookResult {
-  rule_id: string;
-  matched: boolean;
-  action_taken?: string;
-  confidence: number;
-  details?: any;
 }
 
 // API Response wrappers
