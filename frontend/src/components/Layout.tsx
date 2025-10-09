@@ -60,11 +60,11 @@ const Layout = () => {
             </Button>
             <Button
               component={Link}
-              to="/legal-research"
-              color={isActive('/legal-research') ? 'secondary' : 'inherit'}
-              sx={{ color: isActive('/legal-research') ? '#9844DA' : 'white' }}
+              to="/research"
+              color={isActive('/research') ? 'secondary' : 'inherit'}
+              sx={{ color: isActive('/research') ? '#9844DA' : 'white' }}
             >
-              Legal Research
+              Research
             </Button>
           </Box>
         </Toolbar>

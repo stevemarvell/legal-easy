@@ -34,6 +34,26 @@ export const theme = createTheme({
           height: '42px',
           fontFamily: '"TT Firs Neue", sans-serif',
         },
+        contained: {
+          backgroundColor: '#161821',
+          color: '#ffffff',
+          border: '1px solid #744EFD',
+          '&:hover': {
+            backgroundColor: '#744EFD',
+            borderColor: '#744EFD',
+            color: '#ffffff',
+          },
+        },
+        outlined: {
+          backgroundColor: 'transparent',
+          color: '#ffffff',
+          border: '1px solid #744EFD',
+          '&:hover': {
+            backgroundColor: '#744EFD',
+            borderColor: '#744EFD',
+            color: '#ffffff',
+          },
+        },
       },
     },
     MuiCard: {

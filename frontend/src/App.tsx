@@ -1,12 +1,13 @@
-import React from 'react';
+// This App.tsx is not used in the current setup
+// The app uses React Router with RouterProvider in main.tsx
+// Routing is handled by router.tsx and Layout.tsx
 
-// This App.tsx is now just a placeholder since we're using React Router
-// The actual routing is handled in router.tsx and Layout.tsx
+// This file exists only for compatibility but is not rendered
 function App() {
   return (
-    <div className="app">
-      <h1>Shift AI Legal Platform</h1>
-      <p>This should not be visible - routing should be handled by React Router</p>
+    <div>
+      <h1>This App.tsx is not being used</h1>
+      <p>The app uses React Router - see main.tsx and router.tsx</p>
     </div>
   );
 }

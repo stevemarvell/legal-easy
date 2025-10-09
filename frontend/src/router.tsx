@@ -1,8 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Layout from './components/Layout';
-import Dashboard from './components/Dashboard/Dashboard';
-import Cases from './components/Cases';
-import LegalResearch from './components/LegalResearch';
+import Dashboard from './pages/Dashboard';
+import Cases from './pages/Cases';
+import Research from './pages/Research';
 import ErrorBoundary from './components/ErrorBoundary';
 
 export const router = createBrowserRouter([
@@ -28,8 +28,8 @@ export const router = createBrowserRouter([
         element: <Cases />, // Cases component should handle documents view
       },
       {
-        path: 'legal-research',
-        element: <LegalResearch />,
+        path: 'research',
+        element: <Research />,
       },
     ],
   },
