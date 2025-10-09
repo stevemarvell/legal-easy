@@ -1,8 +1,15 @@
 // Export all shared components
-export { default as Layout } from './Layout';
-export { default as Dashboard } from './Dashboard';
-export { default as Cases } from './Cases';
-export { default as LegalResearch } from './LegalResearch';
 export { default as LoadingSpinner } from './LoadingSpinner';
 export { default as ErrorBoundary } from './ErrorBoundary';
-export { default as Button } from './Button';
+
+// Case Management Components
+export { default as CaseList } from './CaseManagement/CaseList';
+export { default as CaseDetail } from './CaseManagement/CaseDetail';
+
+// Document Management Components
+export { default as DocumentList } from './DocumentManagement/DocumentList';
+export { default as DocumentViewer } from './DocumentManagement/DocumentViewer';
+export { default as DocumentAnalysis } from './DocumentManagement/DocumentAnalysis';
+
+// Playbook Components
+export { default as PlaybookViewer } from './Playbook/PlaybookViewer';

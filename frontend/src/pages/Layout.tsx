@@ -60,6 +60,14 @@ const Layout = () => {
             </Button>
             <Button
               component={Link}
+              to="/playbooks"
+              color={isActive('/playbooks') ? 'secondary' : 'inherit'}
+              sx={{ color: isActive('/playbooks') ? '#9844DA' : 'white' }}
+            >
+              Playbooks
+            </Button>
+            <Button
+              component={Link}
               to="/research"
               color={isActive('/research') ? 'secondary' : 'inherit'}
               sx={{ color: isActive('/research') ? '#9844DA' : 'white' }}

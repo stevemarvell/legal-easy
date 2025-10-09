@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
-import PlaybookViewer from '../PlaybookViewer';
+import PlaybookViewer from '../Playbook/PlaybookViewer';
 import { it } from 'node:test';
 import { it } from 'node:test';
 import { it } from 'node:test';

@@ -265,6 +265,31 @@ const Dashboard = () => {
                 </CardContent>
             </Card>
 
+            {/* Legal Playbooks */}
+            <Card sx={{ mb: 4 }}>
+                <CardContent>
+                    <Typography variant="h5" component="h2" gutterBottom>
+                        Legal Playbooks
+                    </Typography>
+                    <Typography variant="body1" color="text.secondary" paragraph>
+                        AI-powered legal decision frameworks and rule sets for different case types
+                    </Typography>
+                    <Box display="flex" justifyContent="space-between" alignItems="center">
+                        <Typography variant="body2" color="text.secondary">
+                            Access comprehensive playbooks that guide case assessment, provide decision frameworks, 
+                            and offer strategic recommendations for various legal matters.
+                        </Typography>
+                        <Button
+                            variant="contained"
+                            onClick={() => navigate('/playbooks')}
+                            sx={{ ml: 2, minWidth: 'fit-content' }}
+                        >
+                            View Playbooks
+                        </Button>
+                    </Box>
+                </CardContent>
+            </Card>
+
             {/* Recent Cases */}
             <Box>
                 <Box display="flex" justifyContent="space-between" alignItems="center" mb={3}>
