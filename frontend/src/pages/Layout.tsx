@@ -1,9 +1,9 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { 
-  AppBar, 
-  Toolbar, 
-  Typography, 
-  Box, 
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Box,
   Container,
   Chip,
   Button
@@ -28,15 +28,15 @@ const Layout = () => {
                 <Typography variant="h5" component="h1" sx={{ color: '#744EFD', fontWeight: 700 }}>
                   Shift AI Legal
                 </Typography>
-                <Chip 
-                  label="DEMO" 
-                  size="small" 
-                  sx={{ 
-                    backgroundColor: '#744EFD', 
+                <Chip
+                  label="DEMO"
+                  size="small"
+                  sx={{
+                    backgroundColor: '#744EFD',
                     color: 'white',
                     fontSize: '0.75rem',
                     fontWeight: 600
-                  }} 
+                  }}
                 />
               </Box>
             </Link>
@@ -73,6 +73,14 @@ const Layout = () => {
               sx={{ color: isActive('/research') ? '#9844DA' : 'white' }}
             >
               Research
+            </Button>
+            <Button
+              component={Link}
+              to="/docs"
+              color={isActive('/docs') ? 'secondary' : 'inherit'}
+              sx={{ color: isActive('/docs') ? '#9844DA' : 'white' }}
+            >
+              Docs
             </Button>
           </Box>
         </Toolbar>

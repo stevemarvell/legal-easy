@@ -105,13 +105,6 @@ const CaseList: React.FC = () => {
                 Manage and track all legal cases
               </Typography>
             </Box>
-            <Button
-              variant="contained"
-              startIcon={<AddIcon />}
-              onClick={() => {/* TODO: Implement add case */}}
-            >
-              New Case
-            </Button>
           </Box>
 
           {/* Search */}
@@ -154,8 +147,8 @@ const CaseList: React.FC = () => {
                       <Typography variant="h6" component="h3" gutterBottom>
                         {case_.title}
                       </Typography>
-                      <Chip 
-                        label={case_.status} 
+                      <Chip
+                        label={case_.status}
                         color={getStatusColor(case_.status) as any}
                         size="small"
                       />
@@ -176,8 +169,8 @@ const CaseList: React.FC = () => {
                     </Box>
 
                     <Typography variant="body2" color="text.secondary" paragraph>
-                      {case_.summary.length > 150 
-                        ? `${case_.summary.substring(0, 150)}...` 
+                      {case_.summary.length > 150
+                        ? `${case_.summary.substring(0, 150)}...`
                         : case_.summary
                       }
                     </Typography>

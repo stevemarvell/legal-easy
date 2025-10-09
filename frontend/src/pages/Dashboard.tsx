@@ -290,6 +290,30 @@ const Dashboard = () => {
                 </CardContent>
             </Card>
 
+            {/* Documentation */}
+            <Card sx={{ mb: 4 }}>
+                <CardContent>
+                    <Typography variant="h5" component="h2" gutterBottom>
+                        Documentation
+                    </Typography>
+                    <Typography variant="body1" color="text.secondary" paragraph>
+                        Comprehensive guides for different audiences - from executive overviews to technical implementation
+                    </Typography>
+                    <Box display="flex" justifyContent="space-between" alignItems="center">
+                        <Typography variant="body2" color="text.secondary">
+                            Access platform documentation, AI technology guides, demo data explanations, and technical references.
+                        </Typography>
+                        <Button
+                            variant="contained"
+                            onClick={() => navigate('/docs')}
+                            sx={{ ml: 2, minWidth: 'fit-content' }}
+                        >
+                            View Documentation
+                        </Button>
+                    </Box>
+                </CardContent>
+            </Card>
+
             {/* Recent Cases */}
             <Box>
                 <Box display="flex" justifyContent="space-between" alignItems="center" mb={3}>
