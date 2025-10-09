@@ -21,7 +21,7 @@ const mockPlaybook = {
     {
       id: 'rule-001',
       condition: 'termination_within_protected_period',
-      action: 'investigate_retaliation_claim',
+      action: 'investigate_victimisation_claim',
       weight: 0.9,
       description: 'Test rule description',
       enabled: true,
@@ -43,7 +43,7 @@ const mockAppliedRules = {
   case_id: 'case-001',
   playbook_id: 'employment-dispute',
   applied_rules: ['rule-001'],
-  recommendations: ['investigate_retaliation_claim'],
+  recommendations: ['investigate_victimisation_claim'],
   case_strength: 'Strong',
   reasoning: 'Test reasoning'
 };

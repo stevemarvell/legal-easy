@@ -1,0 +1,32 @@
+{
+  "id": "debt-claim",
+  "case_type": "Debt Claim",
+  "name": "Debt Collection Playbook",
+  "description": "Comprehensive playbook for debt collection matters under UK law",
+  "rules": [
+    {
+      "id": "rule-201",
+      "condition": "clear_debt_documentation",
+      "action": "proceed_with_collection",
+      "weight": 0.9,
+      "description": "If debt is clearly documented with invoices/contracts, proceed with collection under Consumer Credit Act 1974",
+      "enabled": true,
+      "priority": 0.9
+    }
+  ],
+  "decision_tree": {},
+  "monetary_ranges": {
+    "high": {
+      "range": [75000, 500000],
+      "description": "Strong recovery potential for well-documented debts",
+      "factors": ["Full principal recovery", "Interest and fees", "Legal costs"]
+    }
+  },
+  "escalation_paths": [
+    "Demand letter",
+    "Payment plan negotiation",
+    "County Court Money Claims",
+    "High Court proceedings",
+    "Enforcement proceedings"
+  ]
+}

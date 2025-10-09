@@ -1,0 +1,11 @@
+{
+  "case_id": "case-001",
+  "playbook_id": "employment-dispute",
+  "applied_rules": ["rule-001", "rule-002"],
+  "recommendations": [
+    "investigate_victimisation_claim",
+    "assess_age_discrimination"
+  ],
+  "case_strength": "Strong",
+  "reasoning": "Case shows strong prospects based on 2 applicable rules under UK employment law. Key factors support the client's position in this employment dispute matter, particularly regarding potential victimisation following protected disclosure."
+}

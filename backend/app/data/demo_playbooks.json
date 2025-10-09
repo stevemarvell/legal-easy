@@ -3,18 +3,18 @@
     "id": "employment-dispute",
     "case_type": "Employment Dispute",
     "name": "Employment Law Playbook",
-    "description": "Comprehensive playbook for employment-related legal disputes including wrongful termination, discrimination, harassment, and retaliation claims",
+    "description": "Comprehensive playbook for employment-related legal disputes including unfair dismissal, discrimination, harassment, and victimisation claims under UK employment law",
     "version": "1.0",
     "last_updated": "2024-01-15",
     "rules": [
       {
         "id": "rule-001",
         "condition": "termination_within_protected_period",
-        "action": "investigate_retaliation_claim",
+        "action": "investigate_victimisation_claim",
         "weight": 0.9,
-        "description": "If termination occurred within 90 days of protected activity, investigate potential retaliation",
-        "legal_basis": "Title VII, ADEA, ADA retaliation provisions",
-        "evidence_required": ["Timeline of protected activity", "Termination documentation", "Witness statements"]
+        "description": "If dismissal occurred within 90 days of protected activity, investigate potential victimisation",
+        "legal_basis": "Employment Rights Act 1996, Equality Act 2010 victimisation provisions",
+        "evidence_required": ["Timeline of protected activity", "Dismissal documentation", "Witness statements"]
       },
       {
         "id": "rule-002",
@@ -22,7 +22,7 @@
         "action": "assess_age_discrimination",
         "weight": 0.8,
         "description": "If employee is over 40 and replaced by significantly younger person, assess age discrimination",
-        "legal_basis": "Age Discrimination in Employment Act (ADEA)",
+        "legal_basis": "Equality Act 2010 - Age discrimination provisions",
         "evidence_required": ["Employee ages", "Replacement documentation", "Performance records"]
       },
       {
@@ -31,7 +31,7 @@
         "action": "evaluate_pretextual_reasons",
         "weight": 0.7,
         "description": "If performance issues are documented, evaluate whether they are pretextual",
-        "legal_basis": "McDonnell Douglas burden-shifting framework",
+        "legal_basis": "Employment Rights Act 1996 - Unfair dismissal provisions",
         "evidence_required": ["Performance reviews", "Disciplinary records", "Comparative treatment evidence"]
       },
       {
@@ -40,34 +40,34 @@
         "action": "document_harassment_incidents",
         "weight": 0.8,
         "description": "If pattern of hostile behavior exists, document all incidents and witnesses",
-        "legal_basis": "Title VII hostile work environment doctrine",
+        "legal_basis": "Equality Act 2010 - Harassment provisions",
         "evidence_required": ["Incident reports", "Witness testimony", "Email/text communications"]
       },
       {
         "id": "rule-005",
         "condition": "whistleblower_activity",
-        "action": "assess_retaliation_protection",
+        "action": "assess_victimisation_protection",
         "weight": 0.9,
         "description": "If employee engaged in whistleblowing, assess protection under relevant statutes",
-        "legal_basis": "Sarbanes-Oxley, Dodd-Frank, state whistleblower laws",
+        "legal_basis": "Public Interest Disclosure Act 1998, Employment Rights Act 1996",
         "evidence_required": ["Protected disclosure documentation", "Adverse action timeline", "Causal connection evidence"]
       },
       {
         "id": "rule-006",
         "condition": "pregnancy_or_family_leave_involved",
-        "action": "assess_fmla_pregnancy_discrimination",
+        "action": "assess_pregnancy_maternity_discrimination",
         "weight": 0.85,
-        "description": "If pregnancy or family leave is involved, assess FMLA and pregnancy discrimination claims",
-        "legal_basis": "Family and Medical Leave Act, Pregnancy Discrimination Act",
+        "description": "If pregnancy or maternity leave is involved, assess pregnancy and maternity discrimination claims",
+        "legal_basis": "Equality Act 2010 - Pregnancy and maternity discrimination, Maternity and Parental Leave Regulations",
         "evidence_required": ["Medical documentation", "Leave requests", "Employer response records"]
       },
       {
         "id": "rule-007",
         "condition": "disability_accommodation_denied",
-        "action": "evaluate_ada_violation",
+        "action": "evaluate_disability_discrimination",
         "weight": 0.8,
-        "description": "If reasonable accommodation was requested and denied, evaluate ADA violation",
-        "legal_basis": "Americans with Disabilities Act",
+        "description": "If reasonable adjustments were requested and denied, evaluate disability discrimination",
+        "legal_basis": "Equality Act 2010 - Disability discrimination and reasonable adjustments",
         "evidence_required": ["Accommodation requests", "Medical documentation", "Interactive process records"]
       }
     ],
@@ -79,7 +79,7 @@
           "options": {
             "wrongful_termination": "evaluate_wrongful_termination",
             "discrimination": "evaluate_discrimination",
-            "retaliation": "evaluate_retaliation",
+            "victimisation": "evaluate_victimisation",
             "harassment": "evaluate_harassment"
           }
         },
@@ -91,7 +91,7 @@
           }
         },
         "evaluate_at_will_exceptions": {
-          "question": "Are there any exceptions to at-will employment?",
+          "question": "Are there any statutory protections against unfair dismissal?",
           "options": {
             "public_policy": "moderate_case_assessment",
             "implied_contract": "moderate_case_assessment",
@@ -113,7 +113,7 @@
             "insufficient_evidence": "weak_case_assessment"
           }
         },
-        "evaluate_retaliation": {
+        "evaluate_victimisation": {
           "question": "Did employee engage in protected activity?",
           "options": {
             "yes": "assess_causal_connection",
@@ -179,36 +179,36 @@
       },
       {
         "step": 2,
-        "action": "EEOC charge filing",
-        "timeline": "180-300 days from incident",
-        "description": "File charge with Equal Employment Opportunity Commission"
+        "action": "ACAS early conciliation",
+        "timeline": "Within 3 months of incident",
+        "description": "Mandatory early conciliation with Advisory, Conciliation and Arbitration Service"
       },
       {
         "step": 3,
-        "action": "State civil rights agency",
-        "timeline": "Concurrent with EEOC",
-        "description": "File with state fair employment agency if applicable"
+        "action": "Employment Tribunal claim",
+        "timeline": "Within 3 months of incident (extended if ACAS involved)",
+        "description": "File claim with Employment Tribunal after ACAS process"
       },
       {
         "step": 4,
-        "action": "Federal district court",
-        "timeline": "90 days after EEOC right-to-sue",
-        "description": "File federal lawsuit after receiving right-to-sue letter"
+        "action": "Employment Appeal Tribunal",
+        "timeline": "42 days after Employment Tribunal decision",
+        "description": "Appeal on points of law to Employment Appeal Tribunal"
       },
       {
         "step": 5,
-        "action": "Appellate court review",
-        "timeline": "30 days after final judgment",
-        "description": "Appeal adverse decisions to circuit court"
+        "action": "Court of Appeal",
+        "timeline": "21 days after EAT decision",
+        "description": "Further appeal to Court of Appeal (with permission)"
       }
     ],
     "key_statutes": [
-      "Title VII of the Civil Rights Act of 1964",
-      "Age Discrimination in Employment Act (ADEA)",
-      "Americans with Disabilities Act (ADA)",
-      "Family and Medical Leave Act (FMLA)",
-      "Pregnancy Discrimination Act",
-      "State fair employment laws"
+      "Employment Rights Act 1996",
+      "Equality Act 2010",
+      "Public Interest Disclosure Act 1998",
+      "Maternity and Parental Leave Regulations 1999",
+      "Working Time Regulations 1998",
+      "Trade Union and Labour Relations (Consolidation) Act 1992"
     ],
     "success_factors": [
       "Clear documentation of protected activity",
@@ -410,23 +410,23 @@
       },
       {
         "step": 4,
-        "action": "State court litigation",
-        "timeline": "12-24 months",
-        "description": "File lawsuit in appropriate state court"
+        "action": "County Court proceedings",
+        "timeline": "12-18 months",
+        "description": "Issue proceedings in County Court or High Court"
       },
       {
         "step": 5,
-        "action": "Federal court (if diversity)",
-        "timeline": "12-24 months",
-        "description": "Federal court if diversity jurisdiction exists"
+        "action": "Court of Appeal",
+        "timeline": "Additional 12-18 months",
+        "description": "Appeal to Court of Appeal if permission granted"
       }
     ],
     "key_statutes": [
-      "Uniform Commercial Code (UCC)",
-      "Restatement of Contracts",
-      "State-specific contract laws",
-      "Statute of Frauds",
-      "Non-compete statutes"
+      "Sale of Goods Act 1979",
+      "Supply of Goods and Services Act 1982",
+      "Unfair Contract Terms Act 1977",
+      "Consumer Rights Act 2015",
+      "Law of Property (Miscellaneous Provisions) Act 1989"
     ],
     "success_factors": [
       "Clear, unambiguous contract terms",
@@ -629,36 +629,36 @@
       },
       {
         "step": 3,
-        "action": "Small claims court",
+        "action": "County Court Money Claims",
         "timeline": "90 days",
-        "description": "File in small claims court if amount qualifies"
+        "description": "File claim online via Money Claims service for debts up to £100,000"
       },
       {
         "step": 4,
-        "action": "Superior court filing",
+        "action": "High Court proceedings",
         "timeline": "120 days",
-        "description": "File lawsuit in appropriate court"
+        "description": "Issue proceedings in High Court for larger claims"
       },
       {
         "step": 5,
-        "action": "Post-judgment collection",
+        "action": "Enforcement proceedings",
         "timeline": "Ongoing",
-        "description": "Garnishment, levy, and other collection remedies"
+        "description": "Warrant of control, attachment of earnings, charging orders"
       }
     ],
     "key_statutes": [
-      "Fair Debt Collection Practices Act (FDCPA)",
-      "Fair Credit Reporting Act (FCRA)",
-      "State collection laws",
-      "Uniform Commercial Code",
-      "Bankruptcy Code (automatic stay)"
+      "Consumer Credit Act 1974",
+      "Late Payment of Commercial Debts (Interest) Act 1998",
+      "Insolvency Act 1986",
+      "Civil Procedure Rules",
+      "Limitation Act 1980"
     ],
     "success_factors": [
       "Clear documentation of debt",
       "Timely collection efforts",
       "Proper legal notices",
       "Asset investigation",
-      "FDCPA compliance for consumer debts"
+      "Consumer Credit Act compliance for regulated agreements"
     ]
   },
   {
@@ -820,33 +820,33 @@
     "escalation_paths": [
       {
         "step": 1,
-        "action": "Insurance claim filing",
+        "action": "Letter of claim",
         "timeline": "30 days",
-        "description": "File claim with defendant's insurance carrier"
+        "description": "Send letter of claim following Pre-Action Protocol"
       },
       {
         "step": 2,
-        "action": "Demand package submission",
-        "timeline": "90-120 days",
-        "description": "Submit comprehensive demand package to insurance"
+        "action": "Pre-action negotiations",
+        "timeline": "3-4 months",
+        "description": "Exchange of information and settlement negotiations"
       },
       {
         "step": 3,
-        "action": "Settlement negotiations",
-        "timeline": "120-180 days",
-        "description": "Engage in settlement negotiations"
+        "action": "County Court proceedings",
+        "timeline": "Within 3 years of incident",
+        "description": "Issue proceedings in County Court"
       },
       {
         "step": 4,
-        "action": "Lawsuit filing",
-        "timeline": "Before statute expires",
-        "description": "File lawsuit if settlement not reached"
+        "action": "Case management",
+        "timeline": "6-12 months",
+        "description": "Directions, disclosure, and expert evidence"
       },
       {
         "step": 5,
-        "action": "Trial preparation and trial",
-        "timeline": "12-24 months",
-        "description": "Discovery, depositions, and trial"
+        "action": "Trial or settlement",
+        "timeline": "12-18 months",
+        "description": "Final hearing or negotiated settlement"
       }
     ],
     "key_statutes": [

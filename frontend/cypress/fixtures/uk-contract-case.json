@@ -1,0 +1,15 @@
+{
+  "id": "case-002",
+  "title": "Breach of Software Licence Agreement - DataFlow Ltd vs CloudTech",
+  "case_type": "Contract Breach",
+  "client_name": "DataFlow Ltd",
+  "status": "Under Review",
+  "created_date": "2024-02-03T14:30:00Z",
+  "summary": "Software vendor alleges client exceeded licence terms by deploying software on unauthorised servers under UK contract law.",
+  "key_parties": [
+    "DataFlow Ltd (Claimant)",
+    "CloudTech Solutions (Respondent)"
+  ],
+  "documents": ["doc-004", "doc-005"],
+  "playbook_id": "contract-breach"
+}

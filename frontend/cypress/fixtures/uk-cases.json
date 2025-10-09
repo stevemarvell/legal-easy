@@ -1,0 +1,26 @@
+[
+  {
+    "id": "case-001",
+    "title": "Wrongful Dismissal - Sarah Chen vs TechCorp Solutions",
+    "case_type": "Employment Dispute",
+    "client_name": "Sarah Chen",
+    "status": "Active",
+    "created_date": "2024-01-15T09:00:00Z",
+    "summary": "Employee alleges unfair dismissal after reporting safety violations.",
+    "key_parties": ["Sarah Chen (Claimant)", "TechCorp Solutions Ltd. (Respondent)"],
+    "documents": ["doc-001", "doc-002", "doc-003"],
+    "playbook_id": "employment-dispute"
+  },
+  {
+    "id": "case-002",
+    "title": "Breach of Software Licence Agreement - DataFlow Ltd vs CloudTech",
+    "case_type": "Contract Breach",
+    "client_name": "DataFlow Ltd",
+    "status": "Under Review",
+    "created_date": "2024-02-03T14:30:00Z",
+    "summary": "Software vendor alleges client exceeded licence terms.",
+    "key_parties": ["DataFlow Ltd (Claimant)", "CloudTech Solutions (Respondent)"],
+    "documents": ["doc-004", "doc-005"],
+    "playbook_id": "contract-breach"
+  }
+]

@@ -1,0 +1,8 @@
+{
+  "case_id": "case-003",
+  "playbook_id": "debt-claim",
+  "applied_rules": ["rule-201"],
+  "recommendations": ["proceed_with_collection"],
+  "case_strength": "Strong",
+  "reasoning": "Well-documented debt with strong collection prospects under UK debt recovery procedures."
+}

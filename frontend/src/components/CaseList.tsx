@@ -37,7 +37,7 @@ const CaseList = ({ onCaseSelect }: CaseListProps) => {
   const filteredCases = cases.filter(case_ => {
     const matchesType = filterType === 'all' || case_.case_type === filterType;
     const matchesSearch = case_.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         case_.description.toLowerCase().includes(searchTerm.toLowerCase());
+                         (case_.summary || case_.description || '').toLowerCase().includes(searchTerm.toLowerCase());
     return matchesType && matchesSearch;
   });
 
@@ -53,7 +53,8 @@ const CaseList = ({ onCaseSelect }: CaseListProps) => {
     }
   };
 
-  const getPriorityColor = (priority: string) => {
+  const getPriorityColor = (priority?: string) => {
+    if (!priority) return 'priority-default';
     switch (priority.toLowerCase()) {
       case 'critical': return 'priority-critical';
       case 'high': return 'priority-high';
@@ -119,15 +120,15 @@ const CaseList = ({ onCaseSelect }: CaseListProps) => {
           <span className="stat-label">Total Cases</span>
         </div>
         <div className="stat-item">
-          <span className="stat-number">{cases.filter(c => c.status === 'active').length}</span>
+          <span className="stat-number">{cases.filter(c => c.status === 'Active').length}</span>
           <span className="stat-label">Active</span>
         </div>
         <div className="stat-item">
-          <span className="stat-number">{cases.filter(c => c.status === 'pending').length}</span>
-          <span className="stat-label">Pending</span>
+          <span className="stat-number">{cases.filter(c => c.status === 'Under Review').length}</span>
+          <span className="stat-label">Under Review</span>
         </div>
         <div className="stat-item">
-          <span className="stat-number">{cases.filter(c => c.status === 'resolved').length}</span>
+          <span className="stat-number">{cases.filter(c => c.status === 'Resolved').length}</span>
           <span className="stat-label">Resolved</span>
         </div>
       </div>
@@ -148,7 +149,7 @@ const CaseList = ({ onCaseSelect }: CaseListProps) => {
             </div>
 
             <div className="case-card-body">
-              <p className="case-description">{case_.description}</p>
+              <p className="case-description">{case_.summary || case_.description || 'No description available'}</p>
               
               <div className="case-meta">
                 <div className="meta-item">
@@ -162,7 +163,7 @@ const CaseList = ({ onCaseSelect }: CaseListProps) => {
                 <div className="meta-item">
                   <span className="meta-label">Created:</span>
                   <span className="meta-value">
-                    {new Date(case_.created_at).toLocaleDateString()}
+                    {new Date(case_.created_date || case_.created_at || '').toLocaleDateString()}
                   </span>
                 </div>
                 <div className="meta-item">

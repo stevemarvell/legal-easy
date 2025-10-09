@@ -1,0 +1,8 @@
+{
+  "case_id": "case-002",
+  "playbook_id": "contract-breach",
+  "applied_rules": ["rule-101"],
+  "recommendations": ["assess_material_breach"],
+  "case_strength": "Strong",
+  "reasoning": "Clear breach of contract terms under UK contract law with strong prospects for recovery."
+}

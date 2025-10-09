@@ -97,16 +97,16 @@ async def get_all_playbooks():
                             {
                                 "id": "rule-001",
                                 "condition": "termination_within_protected_period",
-                                "action": "investigate_retaliation_claim",
+                                "action": "investigate_victimisation_claim",
                                 "weight": 0.9,
-                                "description": "If termination occurred within 90 days of protected activity, investigate potential retaliation"
+                                "description": "If dismissal occurred within 90 days of protected activity, investigate potential victimisation"
                             }
                         ],
                         "decision_tree": {},
                         "monetary_ranges": {
                             "high": {"range": [200000, 1000000]}
                         },
-                        "escalation_paths": ["Internal HR complaint", "EEOC charge filing"]
+                        "escalation_paths": ["Internal HR complaint", "ACAS early conciliation"]
                     }
                 }
             }
@@ -168,7 +168,7 @@ async def get_playbook(
                         "playbook_id": "employment-dispute",
                         "applied_rules": ["rule-001", "rule-004"],
                         "recommendations": [
-                            "investigate_retaliation_claim",
+                            "investigate_victimisation_claim",
                             "document_harassment_incidents"
                         ],
                         "case_strength": "Strong",

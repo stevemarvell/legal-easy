@@ -7,7 +7,7 @@
       "documents_analyzed": ["doc-001", "doc-002", "doc-003"],
       "overall_assessment": {
         "case_strength": "Strong",
-        "primary_legal_theory": "Wrongful Termination - Retaliation for Protected Activity",
+        "primary_legal_theory": "Unfair Dismissal - Victimisation for Protected Disclosure",
         "likelihood_of_success": 0.78,
         "estimated_damages": {
           "min": 85000,
@@ -17,30 +17,30 @@
       },
       "key_findings": [
         "Clear temporal connection between safety report (Dec 10) and termination (Jan 12)",
-        "Protected whistleblower activity under OSHA Section 11(c)",
+        "Protected disclosure under Public Interest Disclosure Act 1998",
         "Violation of 30-day notice provision in employment contract",
         "Serious safety violations documented with regulatory citations",
         "Company had actual notice through formal report distribution"
       ],
       "legal_strengths": [
-        "Strong whistleblower protection under federal and state law",
+        "Strong whistleblower protection under UK employment law",
         "Detailed documentation of safety violations with regulatory citations",
-        "Clear timeline showing retaliation pattern (33 days)",
+        "Clear timeline showing victimisation pattern (33 days)",
         "Professional safety assessment with cost-benefit analysis",
         "Contract violation (30-day notice not provided)"
       ],
       "potential_weaknesses": [
-        "At-will employment may complicate wrongful termination claim",
+        "Need to establish qualifying period for unfair dismissal protection",
         "Company may argue legitimate business reasons (budget cuts)",
         "Need to prove causal connection between report and termination",
         "Damages calculation may be disputed"
       ],
       "recommended_strategy": [
-        "Lead with OSHA whistleblower retaliation claim",
+        "Lead with protected disclosure victimisation claim",
         "Emphasize timing and causal connection",
         "Highlight serious nature of safety violations",
         "Seek reinstatement and back pay",
-        "Consider punitive damages for willful retaliation"
+        "Consider aggravated damages for willful victimisation"
       ],
       "cross_document_insights": [
         "Employment contract safety reporting clause strengthens whistleblower claim",
@@ -183,7 +183,7 @@
       ],
       "legal_strengths": [
         "Strong statistical pattern of discrimination",
-        "ADEA protected class (age 40+) clearly established",
+        "Equality Act 2010 protected characteristic (age) clearly established",
         "Age-coded language in official feedback",
         "Improving interview scores contradict rejection reasons",
         "Multiple witnesses to discriminatory comments",

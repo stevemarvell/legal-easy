@@ -1,0 +1,64 @@
+{
+  "id": "employment-dispute",
+  "case_type": "Employment Dispute",
+  "name": "Employment Law Playbook",
+  "description": "Comprehensive playbook for employment-related legal disputes including unfair dismissal, discrimination, harassment, and victimisation claims under UK employment law",
+  "rules": [
+    {
+      "id": "rule-001",
+      "condition": "termination_within_protected_period",
+      "action": "investigate_victimisation_claim",
+      "weight": 0.9,
+      "description": "If dismissal occurred within 90 days of protected activity, investigate potential victimisation under Employment Rights Act 1996 and Equality Act 2010",
+      "enabled": true,
+      "priority": 0.9
+    },
+    {
+      "id": "rule-002",
+      "condition": "age_over_40_and_replaced_by_younger",
+      "action": "assess_age_discrimination",
+      "weight": 0.8,
+      "description": "If employee is over 40 and replaced by significantly younger person, assess age discrimination",
+      "enabled": true,
+      "priority": 0.8
+    }
+  ],
+  "decision_tree": {
+    "root": "assess_dismissal_type",
+    "nodes": {
+      "assess_dismissal_type": {
+        "question": "What type of employment issue occurred?",
+        "options": {
+          "unfair_dismissal": "evaluate_unfair_dismissal",
+          "discrimination": "evaluate_discrimination",
+          "victimisation": "evaluate_victimisation",
+          "harassment": "evaluate_harassment"
+        }
+      }
+    }
+  },
+  "monetary_ranges": {
+    "low": {
+      "range": [5000, 25000],
+      "description": "Limited damages for weak cases or minor violations",
+      "factors": ["Basic award only", "Limited compensatory award", "No uplift"]
+    },
+    "medium": {
+      "range": [25000, 100000],
+      "description": "Moderate damages for cases with reasonable prospects",
+      "factors": ["Basic and compensatory awards", "Some injury to feelings", "Possible ACAS uplift"]
+    },
+    "high": {
+      "range": [100000, 500000],
+      "description": "Substantial damages for strong cases with clear violations",
+      "factors": ["Maximum compensatory award", "High injury to feelings", "ACAS uplift", "Aggravated damages"]
+    }
+  },
+  "escalation_paths": [
+    "Internal grievance procedure",
+    "ACAS early conciliation",
+    "Employment Tribunal claim",
+    "Employment Appeal Tribunal",
+    "Court of Appeal"
+  ]
+}

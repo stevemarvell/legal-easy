@@ -1,0 +1,15 @@
+{
+  "id": "case-003",
+  "title": "Outstanding Professional Services Fees - Legal Solutions vs TechStart",
+  "case_type": "Debt Claim",
+  "client_name": "Legal Solutions",
+  "status": "Active",
+  "created_date": "2024-01-20T10:00:00Z",
+  "summary": "Professional services firm seeking recovery of outstanding fees under UK debt collection procedures.",
+  "key_parties": [
+    "Legal Solutions (Claimant)",
+    "TechStart Ltd (Respondent)"
+  ],
+  "documents": ["doc-006", "doc-007"],
+  "playbook_id": "debt-claim"
+}

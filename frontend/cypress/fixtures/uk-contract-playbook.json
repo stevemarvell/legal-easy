@@ -1,0 +1,32 @@
+{
+  "id": "contract-breach",
+  "case_type": "Contract Breach",
+  "name": "Contract Breach Playbook",
+  "description": "Comprehensive playbook for contract breach disputes under UK law",
+  "rules": [
+    {
+      "id": "rule-101",
+      "condition": "clear_contract_terms_violated",
+      "action": "assess_material_breach",
+      "weight": 0.9,
+      "description": "If contract terms are clear and violated, assess whether breach is material under Sale of Goods Act 1979",
+      "enabled": true,
+      "priority": 0.9
+    }
+  ],
+  "decision_tree": {},
+  "monetary_ranges": {
+    "high": {
+      "range": [150000, 2000000],
+      "description": "Substantial damages for clear material breaches",
+      "factors": ["Full expectation damages", "Consequential damages", "Lost profits"]
+    }
+  },
+  "escalation_paths": [
+    "Demand letter",
+    "Mediation",
+    "Arbitration (if required)",
+    "County Court proceedings",
+    "Court of Appeal"
+  ]
+}

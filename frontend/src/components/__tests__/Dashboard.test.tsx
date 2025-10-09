@@ -33,7 +33,7 @@ describe('Dashboard Component', () => {
     {
       id: 'case-001',
       title: 'Employment Dispute - Sarah Chen',
-      description: 'Wrongful termination case involving safety violations',
+      description: 'Unfair dismissal case involving safety violations',
       status: 'active',
       priority: 'high',
       case_type: 'Employment Law',

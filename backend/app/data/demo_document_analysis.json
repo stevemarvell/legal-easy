@@ -5,9 +5,9 @@
       "key_dates": ["2022-03-15", "2024-01-12"],
       "parties_involved": ["Sarah Chen", "TechCorp Solutions Inc.", "Marcus Rodriguez", "Jennifer Walsh"],
       "document_type": "Employment Contract",
-      "summary": "At-will employment agreement for Senior Safety Engineer position with 30-day notice provision and standard benefits package. Contract includes specific safety reporting obligations and anti-retaliation protections.",
+      "summary": "Employment contract for Senior Safety Engineer position with 30-day notice provision and standard benefits package. Contract includes specific safety reporting obligations and anti-victimisation protections.",
       "key_clauses": [
-        "At-will employment clause with 30-day notice requirement",
+        "Employment contract with 30-day notice requirement",
         "Safety reporting obligations and whistleblower protections",
         "Confidentiality agreement with proprietary information restrictions",
         "Annual salary of $95,000 with performance review eligibility",
@@ -16,13 +16,13 @@
       ],
       "legal_significance": [
         "Safety reporting clause provides strong whistleblower protection",
-        "30-day notice requirement may limit at-will termination rights",
-        "Anti-retaliation language supports wrongful termination claims",
+        "30-day notice requirement provides contractual protection",
+        "Anti-victimisation language supports unfair dismissal claims",
         "Specific mention of regulatory compliance duties"
       ],
       "potential_issues": [
         "Timing of termination relative to safety report filing",
-        "Possible retaliation for protected whistleblower activity",
+        "Possible victimisation for protected disclosure activity",
         "Violation of 30-day notice provision in termination"
       ],
       "confidence_scores": {
@@ -38,17 +38,17 @@
       "key_dates": ["2023-12-10", "2023-12-08"],
       "parties_involved": ["Sarah Chen", "Marcus Rodriguez", "Jennifer Walsh", "David Kim"],
       "document_type": "Safety Report",
-      "summary": "Comprehensive internal safety violation report documenting critical OSHA violations in chemical storage area, filed 33 days before termination. Report identifies serious health risks and potential regulatory penalties up to $145,027.",
+      "summary": "Comprehensive internal safety violation report documenting critical HSE violations in chemical storage area, filed 33 days before dismissal. Report identifies serious health risks and potential regulatory penalties up to £145,027.",
       "key_clauses": [
         "Critical ventilation system deficiency (2 vs required 6 air changes/hour)",
-        "Multiple OSHA regulation violations (29 CFR 1910.106, 1910.1200)",
+        "Multiple HSE regulation violations (COSHH, DSEAR)",
         "Employee health risks and respiratory complaints documented",
         "Estimated remediation cost $45,000-$65,000",
         "Potential criminal liability for willful violations noted",
         "Wide distribution to management and legal department"
       ],
       "legal_significance": [
-        "Protected whistleblower activity under OSHA Section 11(c)",
+        "Protected disclosure under Public Interest Disclosure Act 1998",
         "Detailed documentation of serious safety violations",
         "Clear regulatory compliance concerns with specific citations",
         "Professional assessment with cost-benefit analysis",
@@ -56,14 +56,14 @@
       ],
       "potential_issues": [
         "Strong evidence of protected activity preceding termination",
-        "Timing suggests possible retaliation (33 days before firing)",
+        "Timing suggests possible victimisation (33 days before dismissal)",
         "Company had actual notice of serious safety violations",
         "Failure to address could indicate willful disregard"
       ],
       "regulatory_violations": [
-        "OSHA 29 CFR 1910.106 (Flammable liquids storage)",
-        "OSHA 29 CFR 1910.1200 (Hazard Communication Standard)",
-        "California Code of Regulations Title 8, Section 5194"
+        "DSEAR 2002 (Dangerous Substances and Explosive Atmospheres Regulations)",
+        "COSHH 2002 (Control of Substances Hazardous to Health)",
+        "Health and Safety at Work etc. Act 1974"
       ],
       "confidence_scores": {
         "parties": 0.97,
@@ -286,7 +286,7 @@
         "Age-coded language in rejection feedback",
         "Improving performance contradicts stated rejection reasons",
         "Consistent preference for external younger candidates",
-        "ADEA protected class discrimination (age 40+)"
+        "Equality Act 2010 protected characteristic discrimination (age 40+)"
       ],
       "discriminatory_patterns": [
         "100% of successful candidates significantly younger than James",

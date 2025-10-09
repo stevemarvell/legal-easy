@@ -1,0 +1,11 @@
+{
+  "case_id": "case-001",
+  "playbook_id": "employment-dispute",
+  "applied_rules": ["rule-001", "rule-003"],
+  "recommendations": [
+    "investigate_victimisation_claim",
+    "evaluate_pretextual_reasons"
+  ],
+  "case_strength": "Strong",
+  "reasoning": "Case shows strong prospects based on 2 applicable rules. Key factors support the client's position in this employment dispute matter. The temporal proximity between protected activity and dismissal, combined with documented performance issues that appear pretextual, creates a compelling victimisation claim."
+}

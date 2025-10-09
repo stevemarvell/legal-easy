@@ -130,18 +130,21 @@ const CaseDetail = () => {
         <button
           className={`tab-button ${activeTab === 'info' ? 'active' : ''}`}
           onClick={() => setActiveTab('info')}
+          data-testid="info-tab"
         >
           Case Information
         </button>
         <button
           className={`tab-button ${activeTab === 'playbook' ? 'active' : ''}`}
           onClick={() => setActiveTab('playbook')}
+          data-testid="playbook-tab"
         >
           Playbook
         </button>
         <button
           className={`tab-button ${activeTab === 'assessment' ? 'active' : ''}`}
           onClick={() => setActiveTab('assessment')}
+          data-testid="assessment-tab"
         >
           AI Assessment
         </button>

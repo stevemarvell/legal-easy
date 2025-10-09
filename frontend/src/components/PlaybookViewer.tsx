@@ -178,6 +178,10 @@ const PlaybookViewer = ({ caseType, caseId, showAppliedRules = false }: Playbook
 
                   {expandedRules.has(rule.id) && (
                     <div className="rule-details">
+                      <div className="rule-description">
+                        <h5>Description</h5>
+                        <p>{rule.description}</p>
+                      </div>
                       <div className="rule-condition">
                         <h5>Condition</h5>
                         <p>{rule.condition}</p>

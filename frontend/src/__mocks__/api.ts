@@ -5,7 +5,7 @@ export const mockCases: Case[] = [
   {
     id: 'case-001',
     title: 'Employment Dispute - Sarah Chen',
-    description: 'Wrongful termination case involving safety violations',
+    description: 'Unfair dismissal case involving safety violations',
     status: 'active',
     priority: 'high',
     case_type: 'Employment Law',
@@ -70,7 +70,7 @@ export const mockSearchResults: LegalSearchResult[] = [
   {
     id: 'result-001',
     title: 'Employment Termination Precedent',
-    content: 'Key precedent case regarding wrongful termination in safety-related incidents...',
+    content: 'Key precedent case regarding unfair dismissal in safety-related incidents...',
     source: 'Federal Court Database',
     relevance_score: 0.95,
     document_type: 'case_law',
@@ -100,7 +100,7 @@ export const mockCaseAnalysis: CaseAnalysis = {
     'Company failed to follow proper termination procedures',
   ],
   recommendations: [
-    'Pursue wrongful termination claim',
+    'Pursue unfair dismissal claim',
     'Seek reinstatement and back pay',
     'Consider whistleblower protection claims',
   ],
@@ -123,9 +123,9 @@ export const mockCaseAnalysis: CaseAnalysis = {
 // Mock Document Analysis
 export const mockDocumentAnalysis: DocumentAnalysis = {
   document_id: 'doc-001',
-  summary: 'Standard employment contract with at-will employment clause',
+  summary: 'Standard employment contract with notice period clause',
   key_points: [
-    'At-will employment relationship established',
+    'Employment relationship with notice period established',
     'Confidentiality agreement included',
     'Non-compete clause for 6 months post-employment',
   ],

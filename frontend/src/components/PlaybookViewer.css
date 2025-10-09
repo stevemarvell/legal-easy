@@ -305,16 +305,19 @@
   }
 }
 
+.rule-description,
 .rule-condition,
 .rule-action {
   margin-bottom: 1rem;
 }
 
+.rule-description:last-child,
 .rule-condition:last-child,
 .rule-action:last-child {
   margin-bottom: 0;
 }
 
+.rule-description h5,
 .rule-condition h5,
 .rule-action h5 {
   color: #2d3748;
@@ -325,6 +328,7 @@
   letter-spacing: 0.05em;
 }
 
+.rule-description p,
 .rule-condition p,
 .rule-action p {
   color: #4a5568;

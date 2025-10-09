@@ -1,0 +1,17 @@
+{
+  "id": "case-001",
+  "title": "Wrongful Dismissal - Sarah Chen vs TechCorp Solutions",
+  "case_type": "Employment Dispute",
+  "client_name": "Sarah Chen",
+  "status": "Active",
+  "created_date": "2024-01-15T09:00:00Z",
+  "summary": "Employee alleges unfair dismissal after reporting safety violations. Claims victimisation and seeks reinstatement plus compensation under Employment Rights Act 1996.",
+  "key_parties": [
+    "Sarah Chen (Claimant)",
+    "TechCorp Solutions Ltd. (Respondent)",
+    "Marcus Rodriguez (HR Director)",
+    "Jennifer Walsh (Direct Supervisor)"
+  ],
+  "documents": ["doc-001", "doc-002", "doc-003"],
+  "playbook_id": "employment-dispute"
+}
