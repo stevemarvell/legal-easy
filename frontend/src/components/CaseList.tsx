@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Case } from '../types/api';
-import './CaseList.css';
+
 
 interface CaseListProps {
   onCaseSelect?: (caseId: string) => void;

@@ -1,8 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {
+  Box,
+  Card,
+  CardContent,
+  Typography,
+  Grid,
+  TextField,
+  Chip,
+  CircularProgress,
+  Alert,
+  Container,
+  Paper,
+  IconButton,
+  CardActions
+} from '@mui/material';
+import {
+  Search as SearchIcon,
+  TrendingUp as TrendingUpIcon,
+  Gavel as GavelIcon,
+  Assignment as AssignmentIcon,
+  CheckCircle as CheckCircleIcon,
+  Visibility as VisibilityIcon
+} from '@mui/icons-material';
 import { apiClient } from '../services/api';
 import { Case } from '../types/api';
-import './Dashboard.css';
+import Button from './Button';
+
 
 interface CaseStatistics {
   total_cases: number;
@@ -89,226 +113,306 @@ const Dashboard = () => {
 
   if (loading) {
     return (
-      <div className="dashboard">
-        <div className="dashboard-loading">
-          <div className="loading-spinner" data-testid="loading-spinner"></div>
-          <p>Loading dashboard...</p>
-        </div>
-      </div>
+      <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" minHeight="400px">
+        <CircularProgress data-testid="loading-spinner" />
+        <Typography variant="body1" sx={{ mt: 2 }}>Loading dashboard...</Typography>
+      </Box>
     );
   }
 
   if (error) {
     return (
-      <div className="dashboard">
-        <div className="dashboard-error">
-          <p>{error}</p>
-          <button onClick={() => window.location.reload()}>Retry</button>
-        </div>
-      </div>
+      <Container>
+        <Alert
+          severity="error"
+          action={
+            <Button onClick={() => window.location.reload()}>
+              Retry
+            </Button>
+          }
+        >
+          {error}
+        </Alert>
+      </Container>
     );
   }
 
   return (
-    <div className="dashboard">
+    <Box>
       {/* Demo Environment Banner */}
-      <div className="demo-banner">
-        <div className="demo-content">
-          <span className="demo-badge">DEMO</span>
-          <p>Shift AI Legal Demo - Explore implemented features with sample legal case data</p>
-        </div>
-      </div>
+      <Paper sx={{ mb: 3, p: 2, backgroundColor: '#161821' }}>
+        <Box display="flex" alignItems="center" gap={2}>
+          <Chip label="DEMO" color="primary" size="small" />
+          <Typography variant="body2" color="text.secondary">
+            Shift AI Legal Demo - Explore implemented features with sample legal case data
+          </Typography>
+        </Box>
+      </Paper>
 
       {/* Header Section */}
-      <div className="dashboard-header">
-        <div className="container">
-          <h1 className="dashboard-title">Shift AI Legal Dashboard</h1>
-          <p className="dashboard-subtitle">
-            Intelligent case management and legal research platform
-          </p>
-        </div>
-      </div>
+      <Box mb={4}>
+        <Typography variant="h3" component="h1" color="primary" gutterBottom>
+          Shift AI Legal Dashboard
+        </Typography>
+        <Typography variant="h6" color="text.secondary">
+          Intelligent case management and legal research platform
+        </Typography>
+      </Box>
 
       {/* Statistics Cards */}
-      <div className="statistics-section">
-        <div className="container">
-          <div className="statistics-grid">
-            <div className="stat-card">
-              <div className="stat-icon">📊</div>
-              <div className="stat-content">
-                <h3 className="stat-number">{statistics?.total_cases || 0}</h3>
-                <p className="stat-label">Total Cases</p>
-              </div>
-            </div>
-            <div className="stat-card">
-              <div className="stat-icon">⚡</div>
-              <div className="stat-content">
-                <h3 className="stat-number">{statistics?.active_cases || 0}</h3>
-                <p className="stat-label">Active Cases</p>
-              </div>
-            </div>
-            <div className="stat-card">
-              <div className="stat-icon">👁️</div>
-              <div className="stat-content">
-                <h3 className="stat-number">{statistics?.under_review_cases || 0}</h3>
-                <p className="stat-label">Under Review</p>
-              </div>
-            </div>
-            <div className="stat-card">
-              <div className="stat-icon">✅</div>
-              <div className="stat-content">
-                <h3 className="stat-number">{statistics?.resolved_cases || 0}</h3>
-                <p className="stat-label">Resolved</p>
-              </div>
-            </div>
-            <div className="stat-card">
-              <div className="stat-icon">📈</div>
-              <div className="stat-content">
-                <h3 className="stat-number">{statistics?.recent_activity_count || 0}</h3>
-                <p className="stat-label">Recent Activity</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Grid container spacing={3} mb={4}>
+        <Grid item xs={12} sm={6} md={2.4}>
+          <Card>
+            <CardContent>
+              <Box display="flex" alignItems="center" gap={2}>
+                <AssignmentIcon color="primary" />
+                <Box>
+                  <Typography variant="h4" component="h3">
+                    {statistics?.total_cases || 0}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    Total Cases
+                  </Typography>
+                </Box>
+              </Box>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={12} sm={6} md={2.4}>
+          <Card>
+            <CardContent>
+              <Box display="flex" alignItems="center" gap={2}>
+                <TrendingUpIcon color="primary" />
+                <Box>
+                  <Typography variant="h4" component="h3">
+                    {statistics?.active_cases || 0}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    Active Cases
+                  </Typography>
+                </Box>
+              </Box>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={12} sm={6} md={2.4}>
+          <Card>
+            <CardContent>
+              <Box display="flex" alignItems="center" gap={2}>
+                <VisibilityIcon color="primary" />
+                <Box>
+                  <Typography variant="h4" component="h3">
+                    {statistics?.under_review_cases || 0}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    Under Review
+                  </Typography>
+                </Box>
+              </Box>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={12} sm={6} md={2.4}>
+          <Card>
+            <CardContent>
+              <Box display="flex" alignItems="center" gap={2}>
+                <CheckCircleIcon color="primary" />
+                <Box>
+                  <Typography variant="h4" component="h3">
+                    {statistics?.resolved_cases || 0}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    Resolved
+                  </Typography>
+                </Box>
+              </Box>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={12} sm={6} md={2.4}>
+          <Card>
+            <CardContent>
+              <Box display="flex" alignItems="center" gap={2}>
+                <GavelIcon color="primary" />
+                <Box>
+                  <Typography variant="h4" component="h3">
+                    {statistics?.recent_activity_count || 0}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    Recent Activity
+                  </Typography>
+                </Box>
+              </Box>
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
 
       {/* Legal Research Search */}
-      <div className="search-section">
-        <div className="container">
-          <div className="search-card">
-            <h2 className="search-title">Legal Research</h2>
-            <p className="search-subtitle">
-              Search through legal precedents, statutes, and case law with semantic search
-            </p>
-            <form onSubmit={handleSearchSubmit} className="search-form">
-              <div className="search-input-group">
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search legal documents, precedents, statutes..."
-                  className="search-input"
-                />
-                <button type="submit" className="search-button" disabled={!searchQuery.trim()}>
-                  <span className="search-icon">🔍</span>
-                  Search
-                </button>
-              </div>
-            </form>
-            <div className="search-suggestions">
-              <p>Try searching for:</p>
-              <div className="suggestion-tags">
-                <button 
-                  className="suggestion-tag"
-                  onClick={() => setSearchQuery('employment termination')}
-                >
-                  employment termination
-                </button>
-                <button 
-                  className="suggestion-tag"
-                  onClick={() => setSearchQuery('contract breach')}
-                >
-                  contract breach
-                </button>
-                <button 
-                  className="suggestion-tag"
-                  onClick={() => setSearchQuery('intellectual property')}
-                >
-                  intellectual property
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Card sx={{ mb: 4 }}>
+        <CardContent>
+          <Typography variant="h5" component="h2" gutterBottom>
+            Legal Research
+          </Typography>
+          <Typography variant="body1" color="text.secondary" paragraph>
+            Search through legal precedents, statutes, and case law with semantic search
+          </Typography>
+          <Box component="form" onSubmit={handleSearchSubmit} sx={{ mb: 2 }}>
+            <Box display="flex" gap={2}>
+              <TextField
+                fullWidth
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search legal documents, precedents, statutes..."
+                variant="outlined"
+              />
+              <Button
+                type="submit"
+                variant="primary"
+                disabled={!searchQuery.trim()}
+                startIcon={<SearchIcon />}
+              >
+                Search
+              </Button>
+            </Box>
+          </Box>
+          <Box>
+            <Typography variant="body2" color="text.secondary" gutterBottom>
+              Try searching for:
+            </Typography>
+            <Box display="flex" gap={1} flexWrap="wrap">
+              <Chip
+                label="employment termination"
+                onClick={() => setSearchQuery('employment termination')}
+                clickable
+                variant="outlined"
+              />
+              <Chip
+                label="contract breach"
+                onClick={() => setSearchQuery('contract breach')}
+                clickable
+                variant="outlined"
+              />
+              <Chip
+                label="intellectual property"
+                onClick={() => setSearchQuery('intellectual property')}
+                clickable
+                variant="outlined"
+              />
+            </Box>
+          </Box>
+        </CardContent>
+      </Card>
 
       {/* Recent Cases */}
-      <div className="recent-cases-section">
-        <div className="container">
-          <div className="section-header">
-            <h2 className="section-title">Recent Cases</h2>
-            <button 
-              className="view-all-button"
-              onClick={() => navigate('/cases')}
-            >
-              View All Cases
-            </button>
-          </div>
-          
-          <div className="cases-grid">
-            {recentCases.map((case_) => (
-              <div 
-                key={case_.id} 
-                className="case-card"
+      <Box>
+        <Box display="flex" justifyContent="space-between" alignItems="center" mb={3}>
+          <Typography variant="h5" component="h2">
+            Recent Cases
+          </Typography>
+          <Button
+            variant="outline"
+            onClick={() => navigate('/cases')}
+          >
+            View All Cases
+          </Button>
+        </Box>
+
+        <Grid container spacing={3}>
+          {recentCases.map((case_) => (
+            <Grid item xs={12} md={6} lg={4} key={case_.id}>
+              <Card
+                sx={{
+                  cursor: 'pointer',
+                  '&:hover': {
+                    boxShadow: 3
+                  }
+                }}
                 onClick={() => handleCaseClick(case_.id)}
               >
-                <div className="case-header">
-                  <h3 className="case-title">{case_.title}</h3>
-                  <div className="case-badges">
-                    <span 
-                      className="status-badge"
-                      style={{ backgroundColor: getStatusColor(case_.status) }}
-                    >
-                      {case_.status}
-                    </span>
-                    {case_.priority && (
-                      <span 
-                        className="priority-badge"
-                        style={{ backgroundColor: getPriorityColor(case_.priority) }}
-                      >
-                        {case_.priority}
-                      </span>
-                    )}
-                  </div>
-                </div>
-                
-                <p className="case-description">{case_.description}</p>
-                
-                <div className="case-meta">
-                  <div className="case-type">
-                    <span className="meta-label">Type:</span>
-                    <span className="meta-value">{case_.case_type}</span>
-                  </div>
-                  <div className="case-date">
-                    <span className="meta-label">Updated:</span>
-                    <span className="meta-value">
-                      {new Date(case_.updated_at || case_.created_at || case_.created_date).toLocaleDateString()}
-                    </span>
-                  </div>
-                </div>
-                
-                <div className="case-actions">
-                  <button 
-                    className="action-button primary"
+                <CardContent>
+                  <Box display="flex" justifyContent="space-between" alignItems="flex-start" mb={2}>
+                    <Typography variant="h6" component="h3" sx={{ flexGrow: 1, mr: 1 }}>
+                      {case_.title}
+                    </Typography>
+                    <Box display="flex" flexDirection="column" gap={0.5}>
+                      <Chip
+                        label={case_.status}
+                        size="small"
+                        color={case_.status.toLowerCase() === 'active' ? 'success' : 'default'}
+                      />
+                      {case_.priority && (
+                        <Chip
+                          label={case_.priority}
+                          size="small"
+                          color={case_.priority.toLowerCase() === 'high' ? 'primary' : 'default'}
+                        />
+                      )}
+                    </Box>
+                  </Box>
+
+                  <Typography variant="body2" color="text.secondary" paragraph>
+                    {case_.description}
+                  </Typography>
+
+                  <Box display="flex" justifyContent="space-between" mb={2}>
+                    <Box>
+                      <Typography variant="caption" color="text.secondary">
+                        Type:
+                      </Typography>
+                      <Typography variant="body2">
+                        {case_.case_type}
+                      </Typography>
+                    </Box>
+                    <Box>
+                      <Typography variant="caption" color="text.secondary">
+                        Updated:
+                      </Typography>
+                      <Typography variant="body2">
+                        {new Date(case_.updated_at || case_.created_at || case_.created_date).toLocaleDateString()}
+                      </Typography>
+                    </Box>
+                  </Box>
+                </CardContent>
+
+                <CardActions>
+                  <Button
+                    variant="primary"
+                    size="small"
                     onClick={(e) => {
                       e.stopPropagation();
                       handleCaseClick(case_.id);
                     }}
                   >
                     View Details
-                  </button>
-                  <button 
-                    className="action-button secondary"
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    size="small"
                     onClick={(e) => {
                       e.stopPropagation();
                       navigate(`/cases/${case_.id}/documents`);
                     }}
                   >
                     Documents
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-          
-          {recentCases.length === 0 && (
-            <div className="empty-state">
-              <p>No recent cases found.</p>
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+
+        {recentCases.length === 0 && (
+          <Card>
+            <CardContent>
+              <Typography variant="body1" color="text.secondary" textAlign="center">
+                No recent cases found.
+              </Typography>
+            </CardContent>
+          </Card>
+        )}
+      </Box>
+    </Box>
   );
 };
 

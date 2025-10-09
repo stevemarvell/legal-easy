@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { apiClient } from '../services/api';
 import { LegalSearchResult } from '../types/api';
-import './LegalResearch.css';
+
 
 const LegalResearch = () => {
   const [searchParams, setSearchParams] = useSearchParams();

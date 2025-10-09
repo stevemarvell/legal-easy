@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { CaseAssessment as CaseAssessmentType } from '../types/api';
-import './CaseAssessment.css';
+
 
 interface CaseAssessmentProps {
   caseId: string;

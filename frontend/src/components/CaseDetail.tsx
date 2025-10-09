@@ -4,7 +4,7 @@ import { Case } from '../types/api';
 import PlaybookViewer from './PlaybookViewer';
 import CaseAssessment from './CaseAssessment';
 import Button from './Button';
-import './CaseDetail.css';
+
 
 const CaseDetail = () => {
   const { caseId } = useParams<{ caseId: string }>();

@@ -1,5 +1,13 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import './Layout.css';
+import { 
+  AppBar, 
+  Toolbar, 
+  Typography, 
+  Box, 
+  Container,
+  Chip,
+  Button
+} from '@mui/material';
 
 const Layout = () => {
   const location = useLocation();
@@ -11,47 +19,60 @@ const Layout = () => {
   };
 
   return (
-    <div className="layout">
-      <nav className="navigation">
-        <div className="nav-container">
-          <div className="nav-brand">
-            <Link to="/" className="brand-link">
-              <h1>Shift AI Legal</h1>
-              <span className="demo-badge">DEMO</span>
+    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+      <AppBar position="sticky" sx={{ backgroundColor: '#161821' }}>
+        <Toolbar>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, flexGrow: 1 }}>
+            <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <Typography variant="h5" component="h1" sx={{ color: '#744EFD', fontWeight: 700 }}>
+                  Shift AI Legal
+                </Typography>
+                <Chip 
+                  label="DEMO" 
+                  size="small" 
+                  sx={{ 
+                    backgroundColor: '#744EFD', 
+                    color: 'white',
+                    fontSize: '0.75rem',
+                    fontWeight: 600
+                  }} 
+                />
+              </Box>
             </Link>
-          </div>
-          <ul className="nav-links">
-            <li>
-              <Link 
-                to="/" 
-                className={`nav-link ${isActive('/') ? 'active' : ''}`}
-              >
-                Dashboard
-              </Link>
-            </li>
-            <li>
-              <Link 
-                to="/cases" 
-                className={`nav-link ${isActive('/cases') ? 'active' : ''}`}
-              >
-                Cases
-              </Link>
-            </li>
-            <li>
-              <Link 
-                to="/legal-research" 
-                className={`nav-link ${isActive('/legal-research') ? 'active' : ''}`}
-              >
-                Legal Research
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </nav>
-      <main className="main-content">
+          </Box>
+          <Box sx={{ display: 'flex', gap: 1 }}>
+            <Button
+              component={Link}
+              to="/"
+              color={isActive('/') ? 'secondary' : 'inherit'}
+              sx={{ color: isActive('/') ? '#9844DA' : 'white' }}
+            >
+              Dashboard
+            </Button>
+            <Button
+              component={Link}
+              to="/cases"
+              color={isActive('/cases') ? 'secondary' : 'inherit'}
+              sx={{ color: isActive('/cases') ? '#9844DA' : 'white' }}
+            >
+              Cases
+            </Button>
+            <Button
+              component={Link}
+              to="/legal-research"
+              color={isActive('/legal-research') ? 'secondary' : 'inherit'}
+              sx={{ color: isActive('/legal-research') ? '#9844DA' : 'white' }}
+            >
+              Legal Research
+            </Button>
+          </Box>
+        </Toolbar>
+      </AppBar>
+      <Container component="main" maxWidth="xl" sx={{ flex: 1, py: 3 }}>
         <Outlet />
-      </main>
-    </div>
+      </Container>
+    </Box>
   );
 };
 

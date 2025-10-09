@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Playbook, PlaybookResult } from '../types/api';
-import './PlaybookViewer.css';
+
 
 interface PlaybookViewerProps {
   caseType: string;

@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import CaseList from './CaseList';
 import CaseDetail from './CaseDetail';
-import './Cases.css';
+
 
 const Cases = () => {
   const { caseId } = useParams<{ caseId: string }>();

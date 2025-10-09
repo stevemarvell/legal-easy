@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Layout from './components/Layout';
-import Dashboard from './components/Dashboard';
+import Dashboard from './components/Dashboard/Dashboard';
 import Cases from './components/Cases';
 import LegalResearch from './components/LegalResearch';
 import ErrorBoundary from './components/ErrorBoundary';
