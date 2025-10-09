@@ -1,79 +1,82 @@
+/* Button Component - Uses theme variables only */
+
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
+  gap: var(--spacing-sm);
+  border: 1px solid var(--brand-purple);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-button);
+  font-weight: var(--btn-font-weight);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all var(--transition-normal);
   text-decoration: none;
-  font-family: inherit;
+  box-sizing: border-box;
+  text-align: center;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  box-shadow: none;
+}
+
+.btn:hover:not(:disabled) {
+  background: var(--brand-purple);
+  color: var(--text-primary);
 }
 
 .btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
-  transform: none !important;
 }
 
 /* Sizes */
 .btn-small {
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
+  padding: 8px 16px;
+  font-size: 14px;
+  height: 36px;
 }
 
 .btn-medium {
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
+  padding: var(--btn-padding-y) var(--btn-padding-x);
+  font-size: var(--btn-font-size);
+  height: var(--btn-height);
 }
 
 .btn-large {
-  padding: 1rem 2rem;
-  font-size: 1.125rem;
+  padding: 16px 32px;
+  font-size: 18px;
+  height: 52px;
 }
 
-/* Variants */
+/* Variants - all use theme colors */
 .btn-primary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-}
-
-.btn-primary:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  /* Uses default btn styles */
 }
 
 .btn-secondary {
-  background: #e2e8f0;
-  color: #2d3748;
-}
-
-.btn-secondary:hover:not(:disabled) {
-  background: #cbd5e0;
-  transform: translateY(-1px);
+  /* Uses default btn styles */
 }
 
 .btn-outline {
   background: transparent;
-  color: #667eea;
-  border: 2px solid #667eea;
+  color: var(--brand-purple);
+  border: 1px solid var(--brand-purple);
 }
 
 .btn-outline:hover:not(:disabled) {
-  background: #667eea;
-  color: white;
-  transform: translateY(-1px);
+  background: var(--brand-purple);
+  color: var(--text-primary);
 }
 
 .btn-ghost {
   background: transparent;
-  color: #667eea;
+  color: var(--brand-purple);
+  border: 1px solid transparent;
 }
 
 .btn-ghost:hover:not(:disabled) {
-  background: rgba(102, 126, 234, 0.1);
+  background: var(--hover-overlay);
+  border-color: var(--brand-purple);
 }
 
 /* Loading state */
@@ -87,6 +90,10 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

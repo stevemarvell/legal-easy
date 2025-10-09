@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { Case } from '../types/api';
 import PlaybookViewer from './PlaybookViewer';
 import CaseAssessment from './CaseAssessment';
+import Button from './Button';
 import './CaseDetail.css';
 
 const CaseDetail = () => {

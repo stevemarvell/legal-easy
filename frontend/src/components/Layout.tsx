@@ -16,7 +16,7 @@ const Layout = () => {
         <div className="nav-container">
           <div className="nav-brand">
             <Link to="/" className="brand-link">
-              <h1>Shift Legal AI</h1>
+              <h1>Shift AI Legal</h1>
               <span className="demo-badge">DEMO</span>
             </Link>
           </div>

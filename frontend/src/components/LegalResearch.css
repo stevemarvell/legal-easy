@@ -1,26 +1,25 @@
 .legal-research {
   min-height: calc(100vh - 70px);
-  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  background: var(--bg-general);
 }
 
 .page-header {
-  background: rgba(30, 41, 59, 0.8);
-  backdrop-filter: blur(10px);
+  background: var(--bg-header);
   padding: 3rem 0;
   text-align: center;
+  border-bottom: none;
 }
 
 .page-header h1 {
   font-size: 2.5rem;
   font-weight: 700;
-  color: white;
+  color: var(--brand-purple);
   margin-bottom: 0.5rem;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .page-header p {
   font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text-secondary);
 }
 
 .research-content {
@@ -47,40 +46,25 @@
 .search-input {
   flex: 1;
   padding: 1rem 1.5rem;
-  border: 2px solid rgba(59, 130, 246, 0.2);
-  border-radius: 12px;
+  border: 1px solid var(--border-primary);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border-radius: var(--radius-lg);
   font-size: 1rem;
-  background: white;
-  transition: all 0.3s ease;
+  transition: all var(--transition-fast);
 }
 
 .search-input:focus {
   outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px var(--focus-ring);
 }
 
-.search-button {
-  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-  color: white;
-  border: none;
-  padding: 1rem 2rem;
-  border-radius: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  white-space: nowrap;
+.search-input::placeholder {
+  color: var(--text-muted);
 }
 
-.search-button:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
-}
-
-.search-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
+/* Search button styles are now in theme.css */
 
 /* Search Results */
 .search-results {
@@ -90,7 +74,7 @@
 .search-results h2 {
   font-size: 1.75rem;
   font-weight: 600;
-  color: #2d3748;
+  color: var(--text-primary);
   margin-bottom: 2rem;
 }
 
@@ -101,16 +85,17 @@
 }
 
 .result-card {
-  background: white;
-  border-radius: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-lg);
   padding: 2rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: var(--shadow-lg);
+  transition: all var(--transition-normal);
 }
 
+/* Remove hover effects as requested */
 .result-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  /* No hover effects */
 }
 
 .result-header {
@@ -124,7 +109,7 @@
 .result-title {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #2d3748;
+  color: var(--text-primary);
   margin: 0;
   flex: 1;
 }
@@ -138,10 +123,10 @@
 }
 
 .result-type {
-  background: #3b82f6;
-  color: white;
+  background: var(--info);
+  color: var(--text-on-card);
   padding: 0.25rem 0.75rem;
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -149,16 +134,16 @@
 }
 
 .result-score {
-  background: #10b981;
-  color: white;
+  background: var(--success);
+  color: var(--text-on-card);
   padding: 0.25rem 0.75rem;
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   font-size: 0.75rem;
   font-weight: 600;
 }
 
 .result-content {
-  color: #4a5568;
+  color: var(--text-secondary);
   line-height: 1.6;
   margin-bottom: 1rem;
   font-size: 0.95rem;
@@ -170,7 +155,7 @@
   gap: 1rem;
   margin-bottom: 1rem;
   font-size: 0.85rem;
-  color: #718096;
+  color: var(--text-tertiary);
 }
 
 .result-source,
@@ -183,15 +168,15 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  color: #3b82f6;
+  color: var(--brand-purple);
   text-decoration: none;
   font-weight: 600;
   font-size: 0.9rem;
-  transition: color 0.3s ease;
+  transition: color var(--transition-fast);
 }
 
 .result-link:hover {
-  color: #1d4ed8;
+  color: var(--brand-purple-light);
   text-decoration: underline;
 }
 
@@ -201,9 +186,10 @@
 .search-empty {
   text-align: center;
   padding: 3rem;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
 }
 
 .search-loading {
@@ -216,8 +202,8 @@
 .loading-spinner {
   width: 40px;
   height: 40px;
-  border: 4px solid #f3f4f6;
-  border-top: 4px solid #3b82f6;
+  border: 3px solid var(--border-primary);
+  border-top: 3px solid var(--brand-purple);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -228,32 +214,32 @@
 }
 
 .search-loading p {
-  color: #4a5568;
+  color: var(--text-secondary);
   font-weight: 500;
 }
 
 .search-error {
-  color: #ef4444;
+  color: var(--error);
 }
 
 .search-error button {
   margin-top: 1rem;
-  background: #ef4444;
-  color: white;
+  background: var(--error);
+  color: var(--text-on-card);
   border: none;
   padding: 0.5rem 1rem;
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   cursor: pointer;
   font-weight: 600;
-  transition: background 0.3s ease;
+  transition: background var(--transition-fast);
 }
 
 .search-error button:hover {
-  background: #dc2626;
+  background: var(--error-light);
 }
 
 .search-empty {
-  color: #4a5568;
+  color: var(--text-secondary);
 }
 
 .research-tools {
@@ -264,17 +250,18 @@
 }
 
 .tool-card {
-  background: white;
-  border-radius: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-xl);
   padding: 2rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-lg);
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all var(--transition-normal);
 }
 
 .tool-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  background: var(--bg-surface);
+  border-color: var(--brand-purple);
 }
 
 .tool-icon {
@@ -285,45 +272,31 @@
 .tool-card h3 {
   font-size: 1.5rem;
   font-weight: 600;
-  color: #2d3748;
+  color: var(--text-primary);
   margin-bottom: 1rem;
 }
 
 .tool-card p {
-  color: #4a5568;
+  color: var(--text-secondary);
   line-height: 1.6;
   margin-bottom: 2rem;
 }
 
-.tool-button {
-  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 0.9rem;
-}
-
-.tool-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
-}
+/* Tool button styles are now in theme.css */
 
 .intelligence-workflow {
-  background: white;
-  border-radius: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-xl);
   padding: 3rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-lg);
   margin-bottom: 3rem;
 }
 
 .intelligence-workflow h2 {
   font-size: 2rem;
   font-weight: 700;
-  color: #2d3748;
+  color: var(--text-primary);
   text-align: center;
   margin-bottom: 3rem;
 }
@@ -337,13 +310,15 @@
 .workflow-item {
   text-align: center;
   padding: 1.5rem;
-  border-radius: 12px;
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(29, 78, 216, 0.1) 100%);
-  transition: transform 0.3s ease;
+  border-radius: var(--radius-lg);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-primary);
+  transition: all var(--transition-normal);
 }
 
 .workflow-item:hover {
-  transform: translateY(-3px);
+  background: var(--bg-card);
+  border-color: var(--brand-purple);
 }
 
 .workflow-icon {
@@ -354,27 +329,28 @@
 .workflow-item h4 {
   font-size: 1.1rem;
   font-weight: 600;
-  color: #2d3748;
+  color: var(--text-primary);
   margin-bottom: 0.5rem;
 }
 
 .workflow-item p {
-  color: #4a5568;
+  color: var(--text-secondary);
   font-size: 0.9rem;
   line-height: 1.5;
 }
 
 .recent-research {
-  background: white;
-  border-radius: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-xl);
   padding: 2.5rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-lg);
 }
 
 .recent-research h3 {
   font-size: 1.5rem;
   font-weight: 600;
-  color: #2d3748;
+  color: var(--text-primary);
   margin-bottom: 2rem;
 }
 
@@ -386,32 +362,34 @@
 
 .research-item {
   padding: 1.5rem;
-  border-radius: 12px;
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(29, 78, 216, 0.05) 100%);
-  border-left: 4px solid #3b82f6;
-  transition: transform 0.3s ease;
+  border-radius: var(--radius-lg);
+  background: var(--bg-surface);
+  border-left: 4px solid var(--brand-purple);
+  border: 1px solid var(--border-primary);
+  transition: all var(--transition-normal);
 }
 
 .research-item:hover {
-  transform: translateX(5px);
+  background: var(--bg-card);
+  border-color: var(--brand-purple);
 }
 
 .research-item h4 {
   font-size: 1.1rem;
   font-weight: 600;
-  color: #2d3748;
+  color: var(--text-primary);
   margin-bottom: 0.5rem;
 }
 
 .research-item p {
-  color: #4a5568;
+  color: var(--text-secondary);
   font-size: 0.9rem;
   line-height: 1.5;
   margin-bottom: 0.5rem;
 }
 
 .research-date {
-  color: #3b82f6;
+  color: var(--brand-purple);
   font-size: 0.8rem;
   font-weight: 500;
 }

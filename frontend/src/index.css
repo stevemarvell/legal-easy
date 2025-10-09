@@ -1,51 +1,13 @@
-:root {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  
-  color-scheme: dark;
-  color: #ffffff;
-  background-color: #1a1a1a;
+/* Import Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
+/* Import Theme and Organized Styles */
+@import './theme.css';
 
-* {
-  box-sizing: border-box;
-}
-
+/* Additional global overrides if needed */
 body {
-  margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: #1a1a1a;
-  color: #ffffff;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  margin: 0;
-  font-weight: 600;
-  line-height: 1.2;
-  color: #ffffff;
-}
-
-p {
-  margin: 0;
-  color: #cccccc;
-}
-
-a {
-  color: #646cff;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #535bf2;
 }
 
 button {
@@ -59,22 +21,4 @@ button {
 ul {
   margin: 0;
   padding: 0;
-}
-
-/* Scrollbar Styling */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #2d2d2d;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #646cff;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #535bf2;
 }

@@ -77,7 +77,7 @@ const Dashboard = () => {
     switch (priority.toLowerCase()) {
       case 'high':
       case 'critical':
-        return '#ef4444'; // red
+        return '#744EFD'; // primary purple
       case 'medium':
         return '#f59e0b'; // amber
       case 'low':
@@ -115,14 +115,14 @@ const Dashboard = () => {
       <div className="demo-banner">
         <div className="demo-content">
           <span className="demo-badge">DEMO</span>
-          <p>Shift Legal AI Demo - Explore implemented features with sample legal case data</p>
+          <p>Shift AI Legal Demo - Explore implemented features with sample legal case data</p>
         </div>
       </div>
 
       {/* Header Section */}
       <div className="dashboard-header">
         <div className="container">
-          <h1 className="dashboard-title">Shift Legal AI Dashboard</h1>
+          <h1 className="dashboard-title">Shift AI Legal Dashboard</h1>
           <p className="dashboard-subtitle">
             Intelligent case management and legal research platform
           </p>

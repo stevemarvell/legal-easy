@@ -1,26 +1,25 @@
 .cases {
   min-height: calc(100vh - 70px);
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--bg-general);
 }
 
 .page-header {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  background: var(--bg-header);
   padding: 3rem 0;
   text-align: center;
+  border-bottom: none;
 }
 
 .page-header h1 {
   font-size: 2.5rem;
   font-weight: 700;
-  color: white;
+  color: var(--brand-purple);
   margin-bottom: 0.5rem;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .page-header p {
   font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text-secondary);
 }
 
 .cases-content {
@@ -41,16 +40,31 @@
 }
 
 .case-card {
-  background: white;
-  border-radius: 16px;
-  padding: 2rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-lg);
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
 }
 
+.case-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--brand-purple);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+/* Remove hover effects as requested */
 .case-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  /* No hover effects */
 }
 
 .case-header {
@@ -63,7 +77,7 @@
 .case-header h3 {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #2d3748;
+  color: var(--text-primary);
   margin: 0;
   flex: 1;
 }
@@ -78,18 +92,21 @@
 }
 
 .case-status.active {
-  background: #e6fffa;
-  color: #00a693;
+  background: rgba(16, 185, 129, 0.2);
+  color: var(--success-light);
+  border: 1px solid var(--success);
 }
 
 .case-status.pending {
-  background: #fef5e7;
-  color: #d69e2e;
+  background: rgba(245, 158, 11, 0.2);
+  color: var(--warning-light);
+  border: 1px solid var(--warning);
 }
 
 .case-status.resolved {
-  background: #f0fff4;
-  color: #38a169;
+  background: rgba(59, 130, 246, 0.2);
+  color: var(--info-light);
+  border: 1px solid var(--info);
 }
 
 .case-details {
@@ -98,12 +115,12 @@
 
 .case-details p {
   margin: 0.5rem 0;
-  color: #4a5568;
+  color: var(--text-secondary);
   font-size: 0.9rem;
 }
 
 .case-details strong {
-  color: #2d3748;
+  color: var(--text-primary);
 }
 
 .case-actions {
@@ -111,52 +128,20 @@
   gap: 1rem;
 }
 
-.btn-primary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 0.9rem;
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-}
-
-.btn-secondary {
-  background: transparent;
-  color: #667eea;
-  border: 2px solid #667eea;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 0.9rem;
-}
-
-.btn-secondary:hover {
-  background: #667eea;
-  color: white;
-  transform: translateY(-2px);
-}
+/* Button styles are now in theme.css */
 
 .workflow-section {
-  background: white;
-  border-radius: 16px;
+  background: var(--bg-card);
+  border-radius: var(--radius-xl);
   padding: 3rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-primary);
 }
 
 .workflow-section h2 {
   font-size: 2rem;
   font-weight: 700;
-  color: #2d3748;
+  color: var(--text-primary);
   text-align: center;
   margin-bottom: 3rem;
 }
@@ -170,21 +155,23 @@
 .workflow-step {
   text-align: center;
   padding: 1.5rem;
-  border-radius: 12px;
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-  transition: transform 0.3s ease;
+  border-radius: var(--radius-lg);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-primary);
+  transition: all var(--transition-normal);
 }
 
 .workflow-step:hover {
-  transform: translateY(-3px);
+  background: var(--bg-card);
+  border-color: var(--brand-purple);
 }
 
 .step-number {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: var(--brand-purple);
+  color: var(--text-on-card);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -196,12 +183,12 @@
 .workflow-step h4 {
   font-size: 1.1rem;
   font-weight: 600;
-  color: #2d3748;
+  color: var(--text-primary);
   margin-bottom: 0.5rem;
 }
 
 .workflow-step p {
-  color: #4a5568;
+  color: var(--text-secondary);
   font-size: 0.9rem;
   line-height: 1.5;
 }

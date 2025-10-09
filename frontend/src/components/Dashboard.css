@@ -1,12 +1,13 @@
 .dashboard {
   min-height: calc(100vh - 70px);
-  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  background: var(--bg-primary);
 }
 
 /* Demo Banner */
 .demo-banner {
-  background: rgba(255, 255, 255, 0.95);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(26, 31, 46, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: none;
   padding: 0.75rem 0;
 }
 
@@ -20,10 +21,10 @@
 }
 
 .demo-badge {
-  background: #3b82f6;
+  background: var(--primary-purple);
   color: white;
   padding: 0.25rem 0.75rem;
-  border-radius: 4px;
+  border-radius: var(--radius-full);
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -32,7 +33,7 @@
 
 .demo-content p {
   margin: 0;
-  color: #4a5568;
+  color: var(--text-secondary);
   font-size: 0.9rem;
 }
 
@@ -51,14 +52,13 @@
 .dashboard-title {
   font-size: 2.5rem;
   font-weight: 700;
-  color: white;
+  color: var(--primary-purple);
   margin-bottom: 0.5rem;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .dashboard-subtitle {
   font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text-secondary);
   margin-bottom: 0;
 }
 
@@ -112,19 +112,14 @@
 }
 
 .stat-card {
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
   padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
   display: flex;
   align-items: center;
   gap: 1rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.stat-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
 }
 
 .stat-icon {
@@ -139,13 +134,13 @@
 .stat-number {
   font-size: 2rem;
   font-weight: 700;
-  color: #2d3748;
+  color: var(--primary-purple);
   margin: 0 0 0.25rem 0;
 }
 
 .stat-label {
   font-size: 0.9rem;
-  color: #4a5568;
+  color: var(--text-secondary);
   margin: 0;
   font-weight: 500;
 }
@@ -156,22 +151,23 @@
 }
 
 .search-card {
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--bg-secondary);
   padding: 2rem;
   border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-lg);
   text-align: center;
+  border: 1px solid var(--border-primary);
 }
 
 .search-title {
   font-size: 1.75rem;
   font-weight: 600;
-  color: #2d3748;
+  color: var(--text-primary);
   margin-bottom: 0.5rem;
 }
 
 .search-subtitle {
-  color: #4a5568;
+  color: var(--text-secondary);
   margin-bottom: 1.5rem;
   line-height: 1.6;
 }
@@ -190,34 +186,46 @@
 .search-input {
   flex: 1;
   padding: 0.75rem 1rem;
-  border: 2px solid #e2e8f0;
+  border: 2px solid var(--border-primary);
   border-radius: 8px;
   font-size: 1rem;
   transition: border-color 0.3s ease;
+  background: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 .search-input:focus {
   outline: none;
-  border-color: #3b82f6;
+  border-color: var(--primary-purple);
+}
+
+.search-input::placeholder {
+  color: var(--text-muted);
 }
 
 .search-button {
-  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  background: var(--primary-purple);
   color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  font-weight: 600;
+  border: 1px solid var(--primary-purple);
+  padding: 12px 24px;
+  border-radius: 35px;
+  font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  font-family: "TT Firs Neue", sans-serif;
+  font-size: 15.95px;
+  height: 42px;
+  line-height: 15.95px;
+  box-sizing: border-box;
 }
 
 .search-button:hover:not(:disabled) {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+  background: var(--primary-purple-dark);
+  color: white;
+  transform: none;
 }
 
 .search-button:disabled {
@@ -306,17 +314,12 @@
 }
 
 .case-card {
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--bg-secondary);
   padding: 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-lg);
   cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.case-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--border-primary);
 }
 
 .case-header {
@@ -394,35 +397,24 @@
 
 .action-button {
   flex: 1;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 35px;
+  font-size: 15.95px;
+  font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
-  border: none;
+  border: 1px solid var(--primary-purple);
+  font-family: "TT Firs Neue", sans-serif;
+  height: 42px;
+  line-height: 15.95px;
+  box-sizing: border-box;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.action-button.primary {
-  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-  color: white;
-}
-
-.action-button.primary:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.4);
-}
-
-.action-button.secondary {
-  background: #f7fafc;
-  color: #4a5568;
-  border: 1px solid #e2e8f0;
-}
-
-.action-button.secondary:hover {
-  background: #edf2f7;
-  border-color: #cbd5e0;
-}
+/* Action button styles are now in theme.css */
 
 .empty-state {
   text-align: center;
