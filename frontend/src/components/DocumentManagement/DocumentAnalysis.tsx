@@ -8,7 +8,6 @@ import {
   Alert,
   CircularProgress,
   Divider,
-  Grid,
   List,
   ListItem,
   ListItemIcon,
@@ -148,8 +147,24 @@ const DocumentAnalysis: React.FC<DocumentAnalysisProps> = ({
               </Typography>
             </Box>
             <Divider sx={{ mb: 2 }} />
-            <Paper variant="outlined" sx={{ p: 2, backgroundColor: 'grey.50' }}>
-              <Typography variant="body1">
+            <Paper 
+              variant="outlined" 
+              sx={{ 
+                p: 3, 
+                backgroundColor: 'primary.light',
+                borderColor: 'primary.main',
+                borderWidth: 2,
+                borderRadius: 2
+              }}
+            >
+              <Typography 
+                variant="body1" 
+                sx={{ 
+                  color: 'primary.contrastText',
+                  lineHeight: 1.6,
+                  fontWeight: 'medium'
+                }}
+              >
                 {analysis.summary}
               </Typography>
             </Paper>
@@ -179,16 +194,21 @@ const DocumentAnalysis: React.FC<DocumentAnalysisProps> = ({
                   </AccordionSummary>
                   <AccordionDetails>
                     {analysis.key_dates.length > 0 ? (
-                      <List dense>
+                      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
                         {analysis.key_dates.map((date, index) => (
-                          <ListItem key={index}>
-                            <ListItemIcon>
-                              <DateIcon fontSize="small" />
-                            </ListItemIcon>
-                            <ListItemText primary={formatDate(date)} />
-                          </ListItem>
+                          <Chip
+                            key={index}
+                            icon={<DateIcon />}
+                            label={formatDate(date)}
+                            color="info"
+                            variant="outlined"
+                            sx={{ 
+                              fontWeight: 'medium',
+                              '& .MuiChip-icon': { color: 'info.main' }
+                            }}
+                          />
                         ))}
-                      </List>
+                      </Box>
                     ) : (
                       <Typography variant="body2" color="text.secondary">
                         No key dates identified
@@ -209,16 +229,21 @@ const DocumentAnalysis: React.FC<DocumentAnalysisProps> = ({
                   </AccordionSummary>
                   <AccordionDetails>
                     {analysis.parties_involved.length > 0 ? (
-                      <List dense>
+                      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
                         {analysis.parties_involved.map((party, index) => (
-                          <ListItem key={index}>
-                            <ListItemIcon>
-                              <PersonIcon fontSize="small" />
-                            </ListItemIcon>
-                            <ListItemText primary={party} />
-                          </ListItem>
+                          <Chip
+                            key={index}
+                            icon={<PersonIcon />}
+                            label={party}
+                            color="success"
+                            variant="outlined"
+                            sx={{ 
+                              fontWeight: 'medium',
+                              '& .MuiChip-icon': { color: 'success.main' }
+                            }}
+                          />
                         ))}
-                      </List>
+                      </Box>
                     ) : (
                       <Typography variant="body2" color="text.secondary">
                         No parties identified
@@ -268,11 +293,28 @@ const DocumentAnalysis: React.FC<DocumentAnalysisProps> = ({
                         {analysis.key_clauses.map((clause, index) => (
                           <ListItem key={index}>
                             <ListItemIcon>
-                              <LegalIcon fontSize="small" />
+                              <LegalIcon fontSize="small" color="warning" />
                             </ListItemIcon>
                             <ListItemText 
-                              primary={clause}
-                              primaryTypographyProps={{ variant: 'body2' }}
+                              primary={
+                                <Paper 
+                                  variant="outlined" 
+                                  sx={{ 
+                                    p: 1.5, 
+                                    backgroundColor: 'warning.light',
+                                    borderColor: 'warning.main',
+                                    borderWidth: 1,
+                                    '&:hover': {
+                                      backgroundColor: 'warning.main',
+                                      color: 'warning.contrastText'
+                                    }
+                                  }}
+                                >
+                                  <Typography variant="body2" fontWeight="medium">
+                                    {clause}
+                                  </Typography>
+                                </Paper>
+                              }
                             />
                           </ListItem>
                         ))}
@@ -288,6 +330,100 @@ const DocumentAnalysis: React.FC<DocumentAnalysisProps> = ({
             </Card>
           </Box>
         </Box>
+
+        {/* Legal Significance and Issues */}
+        {(analysis.legal_significance && analysis.legal_significance.length > 0) || 
+         (analysis.potential_issues && analysis.potential_issues.length > 0) ? (
+          <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 3 }}>
+            {/* Legal Significance */}
+            {analysis.legal_significance && analysis.legal_significance.length > 0 && (
+              <Box sx={{ flex: 1 }}>
+                <Card>
+                  <CardContent>
+                    <Box display="flex" alignItems="center" mb={2}>
+                      <CheckIcon color="success" sx={{ mr: 1 }} />
+                      <Typography variant="h6">
+                        Legal Significance
+                      </Typography>
+                    </Box>
+                    <Divider sx={{ mb: 2 }} />
+                    
+                    <List dense>
+                      {analysis.legal_significance.map((significance, index) => (
+                        <ListItem key={index}>
+                          <ListItemIcon>
+                            <CheckIcon fontSize="small" color="success" />
+                          </ListItemIcon>
+                          <ListItemText 
+                            primary={
+                              <Paper 
+                                variant="outlined" 
+                                sx={{ 
+                                  p: 1.5, 
+                                  backgroundColor: 'success.light',
+                                  borderColor: 'success.main',
+                                  borderWidth: 1
+                                }}
+                              >
+                                <Typography variant="body2" fontWeight="medium">
+                                  {significance}
+                                </Typography>
+                              </Paper>
+                            }
+                          />
+                        </ListItem>
+                      ))}
+                    </List>
+                  </CardContent>
+                </Card>
+              </Box>
+            )}
+
+            {/* Potential Issues */}
+            {analysis.potential_issues && analysis.potential_issues.length > 0 && (
+              <Box sx={{ flex: 1 }}>
+                <Card>
+                  <CardContent>
+                    <Box display="flex" alignItems="center" mb={2}>
+                      <WarningIcon color="error" sx={{ mr: 1 }} />
+                      <Typography variant="h6">
+                        Potential Issues
+                      </Typography>
+                    </Box>
+                    <Divider sx={{ mb: 2 }} />
+                    
+                    <List dense>
+                      {analysis.potential_issues.map((issue, index) => (
+                        <ListItem key={index}>
+                          <ListItemIcon>
+                            <WarningIcon fontSize="small" color="error" />
+                          </ListItemIcon>
+                          <ListItemText 
+                            primary={
+                              <Paper 
+                                variant="outlined" 
+                                sx={{ 
+                                  p: 1.5, 
+                                  backgroundColor: 'error.light',
+                                  borderColor: 'error.main',
+                                  borderWidth: 1
+                                }}
+                              >
+                                <Typography variant="body2" fontWeight="medium">
+                                  {issue}
+                                </Typography>
+                              </Paper>
+                            }
+                          />
+                        </ListItem>
+                      ))}
+                    </List>
+                  </CardContent>
+                </Card>
+              </Box>
+            )}
+          </Box>
+        ) : null}
 
         {/* Confidence Scores */}
         <Card>

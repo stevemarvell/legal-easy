@@ -6,6 +6,7 @@ import Documents from './pages/Documents';
 import Playbooks from './pages/Playbooks';
 import Documentation from './pages/Documentation';
 import Research from './pages/Research';
+import Admin from './pages/Admin';
 import ErrorBoundary from './components/ErrorBoundary';
 
 export const router = createBrowserRouter([
@@ -49,6 +50,10 @@ export const router = createBrowserRouter([
       {
         path: 'research',
         element: <Research />,
+      },
+      {
+        path: 'admin',
+        element: <Admin />,
       },
     ],
   },

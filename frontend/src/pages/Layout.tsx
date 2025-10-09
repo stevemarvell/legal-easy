@@ -19,8 +19,8 @@ const Layout = () => {
   };
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-      <AppBar position="sticky" sx={{ backgroundColor: '#161821' }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', backgroundColor: '#0D0E14' }}>
+      <AppBar position="sticky" sx={{ backgroundColor: '#0D0E14', borderBottom: '1px solid #2A2D3A' }}>
         <Toolbar>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, flexGrow: 1 }}>
             <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
@@ -82,10 +82,18 @@ const Layout = () => {
             >
               Docs
             </Button>
+            <Button
+              component={Link}
+              to="/admin"
+              color={isActive('/admin') ? 'secondary' : 'inherit'}
+              sx={{ color: isActive('/admin') ? '#9844DA' : 'white' }}
+            >
+              Admin
+            </Button>
           </Box>
         </Toolbar>
       </AppBar>
-      <Container component="main" maxWidth="xl" sx={{ flex: 1, py: 3 }}>
+      <Container component="main" maxWidth="xl" sx={{ flex: 1, py: 3, backgroundColor: '#0D0E14' }}>
         <Outlet />
       </Container>
     </Box>

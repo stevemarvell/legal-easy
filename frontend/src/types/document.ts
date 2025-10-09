@@ -16,6 +16,8 @@ export interface DocumentAnalysis {
   document_type: string;
   summary: string;
   key_clauses: string[];
+  legal_significance?: string[];
+  potential_issues?: string[];
   confidence_scores: Record<string, number>;
 }
 
