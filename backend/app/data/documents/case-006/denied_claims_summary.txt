@@ -1,0 +1,176 @@
+COMPREHENSIVE CLAIMS DENIAL ANALYSIS
+
+SecureHealth Insurance Ltd.
+Claims Review Department
+Analysis Period: January 1, 2023 - October 31, 2023
+Report Generated: November 15, 2023
+
+EXECUTIVE SUMMARY
+
+Provider: HealthFirst Medical Group Ltd
+Policy Number: SH-CORP-2023-4567
+Total Claims Submitted: 127 claims
+Total Claims Denied: 89 claims
+Denial Rate: 70.1%
+Total Denied Amount: £78,500
+Average Denial Amount: £881.46
+
+CLAIMS DENIAL BREAKDOWN BY CATEGORY:
+
+CLAIM #SH-2023-001
+Patient: Anonymous Patient A
+Service Date: January 15, 2023
+Provider: Dr. Maria Gonzalez
+Procedure: Advanced MRI with Contrast
+Billed Amount: £2,850
+Denial Reason: Not medically necessary - standard MRI would have been sufficient
+Policy Section: 4.2.1 - Medical Necessity Requirements
+Status: DENIED
+
+CLAIM #SH-2023-007
+Patient: Anonymous Patient B
+Service Date: February 22, 2023
+Provider: Dr. Maria Gonzalez
+Procedure: Specialized Blood Panel (Comprehensive)
+Billed Amount: £1,200
+Denial Reason: Experimental/investigational - not covered under standard policy
+Policy Section: 3.1.4 - Excluded Services
+Status: DENIED
+
+CLAIM #SH-2023-015
+Patient: Anonymous Patient C
+Service Date: March 10, 2023
+Provider: HealthFirst Medical Group
+Procedure: Extended Physical Therapy (20 sessions)
+Billed Amount: £3,400
+Denial Reason: Exceeds policy limits - maximum 12 sessions per year
+Policy Section: 5.3.2 - Therapy Limitations
+Status: PARTIALLY DENIED (8 sessions approved)
+
+CLAIM #SH-2023-023
+Patient: Anonymous Patient D
+Service Date: April 5, 2023
+Provider: Dr. Maria Gonzalez
+Procedure: Cardiac Stress Test (Advanced)
+Billed Amount: £1,800
+Denial Reason: Duplicate service - similar test performed within 6 months
+Policy Section: 4.1.3 - Duplicate Service Prevention
+Status: DENIED
+
+CLAIM #SH-2023-031
+Patient: Anonymous Patient E
+Service Date: May 18, 2023
+Provider: HealthFirst Medical Group
+Procedure: Nutritional Counseling (Extended Program)
+Billed Amount: £2,200
+Denial Reason: Not covered benefit - wellness services excluded
+Policy Section: 2.4.1 - Excluded Wellness Services
+Status: DENIED
+
+CLAIM #SH-2023-045
+Patient: Anonymous Patient F
+Service Date: June 30, 2023
+Provider: Dr. Maria Gonzalez
+Procedure: Specialized Allergy Testing Panel
+Billed Amount: £1,650
+Denial Reason: Prior authorization required - not obtained
+Policy Section: 6.1.1 - Prior Authorization Requirements
+Status: DENIED
+
+CLAIM #SH-2023-052
+Patient: Anonymous Patient G
+Service Date: July 12, 2023
+Provider: HealthFirst Medical Group
+Procedure: Advanced Diagnostic Imaging Suite
+Billed Amount: £4,200
+Denial Reason: Not medically necessary - less expensive alternative available
+Policy Section: 4.2.2 - Cost-Effective Treatment Requirements
+Status: DENIED
+
+CLAIM #SH-2023-067
+Patient: Anonymous Patient H
+Service Date: August 25, 2023
+Provider: Dr. Maria Gonzalez
+Procedure: Extended Consultation and Assessment
+Billed Amount: £950
+Denial Reason: Exceeds reasonable and customary charges for area
+Policy Section: 7.2.1 - Reasonable and Customary Limits
+Status: PARTIALLY DENIED (£650 approved)
+
+CLAIM #SH-2023-078
+Patient: Anonymous Patient I
+Service Date: September 8, 2023
+Provider: HealthFirst Medical Group
+Procedure: Preventive Health Screening (Comprehensive)
+Billed Amount: £1,800
+Denial Reason: Annual limit exceeded - one comprehensive screening per year
+Policy Section: 8.1.2 - Preventive Care Limitations
+Status: DENIED
+
+CLAIM #SH-2023-089
+Patient: Anonymous Patient J
+Service Date: October 20, 2023
+Provider: Dr. Maria Gonzalez
+Procedure: Specialized Treatment Protocol
+Billed Amount: £5,500
+Denial Reason: Experimental treatment - not FDA approved
+Policy Section: 3.1.5 - Experimental Treatment Exclusion
+Status: DENIED
+
+DENIAL ANALYSIS:
+
+Primary Denial Reasons:
+1. Medical Necessity (35% of denials) - £15,400
+2. Policy Exclusions (25% of denials) - £9,850
+3. Prior Authorization Issues (15% of denials) - £6,200
+4. Benefit Limitations (15% of denials) - £5,950
+5. Cost Containment (10% of denials) - £4,100
+
+Provider Pattern Analysis:
+- HealthFirst Medical Group shows higher than average denial rate
+- Dr. Maria Gonzalez has 40% higher denial rate than peer physicians
+- Frequent billing for advanced/specialized procedures
+- Limited use of prior authorization process
+- Pattern of billing for maximum allowable services
+
+RECOMMENDATIONS:
+
+For Provider:
+1. Implement prior authorization protocols
+2. Review medical necessity documentation
+3. Consider cost-effective treatment alternatives
+4. Improve billing accuracy and coding
+5. Establish better communication with insurance reviewers
+
+For Claims Department:
+1. Provide additional education to provider
+2. Consider provider audit for billing practices
+3. Review policy language for clarity
+4. Monitor future claims for improvement
+5. Consider provider network status review
+
+APPEALS STATUS:
+- 3 claims currently under appeal
+- 2 appeals denied upon review
+- 1 appeal partially approved
+- 4 claims not appealed (time limit expired)
+
+FINANCIAL IMPACT:
+Total Billed: £78,500
+Total Denied: £65,200
+Total Paid: £13,300
+Denial Rate: 83%
+Provider Average Denial Rate: 15%
+
+PREPARED BY:
+Kevin Brown, Senior Claims Adjuster
+SecureHealth Insurance Ltd.
+Date: November 15, 2023
+
+REVIEWED BY:
+Patricia Wilson, Claims Manager
+Date: November 16, 2023
+
+LEGAL REVIEW:
+Thompson & Associates
+Date: November 20, 2023
