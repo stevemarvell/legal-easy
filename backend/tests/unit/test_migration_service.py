@@ -43,9 +43,9 @@ class TestMigrationService:
         (data_root / "embeddings").mkdir(parents=True)
         
         # Create sample files
-        case_data = {"case-001": {"name": "Test Case", "documents": ["doc1.pdf"]}}
+        cases_index = {"case-001": {"name": "Test Case", "documents": ["doc1.pdf"]}}
         with open(data_root / "case_documents" / "case_documents_index.json", 'w') as f:
-            json.dump(case_data, f)
+            json.dump(cases_index, f)
         
         ai_analysis = {"doc1": {"analysis": "AI analysis", "confidence": 0.9}}
         with open(data_root / "ai" / "case_documents" / "case_documents_analysis.json", 'w') as f:

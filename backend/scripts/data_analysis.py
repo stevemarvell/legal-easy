@@ -95,7 +95,7 @@ class DataStructureAnalyzer:
         path_lower = path.lower()
         
         if "case_documents" in path_lower:
-            return "case_data"
+            return "cases_index"
         elif path_lower in ["ai", "al"] or path_lower.startswith("ai/") or path_lower.startswith("al/"):
             return "analysis_data"
         elif "legal_corpus" in path_lower:
@@ -332,7 +332,7 @@ class DataStructureAnalyzer:
         
         # Check for inconsistent naming
         case_dirs = [d for d, info in self.analysis_results["directory_structure"].items() 
-                    if info["category"] == "case_data" and d.startswith("case_documents/case-")]
+                    if info["category"] == "cases_index" and d.startswith("case_documents/case-")]
         if case_dirs:
             recommendations.append("Rename 'case_documents' to 'cases' for consistency")
     

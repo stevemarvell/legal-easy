@@ -18,7 +18,7 @@ class CaseService:
             try:
                 with open(self._data_file, 'r', encoding='utf-8') as f:
                     cases_data = json.load(f)
-                    self._cases_cache = [Case(**case_data) for case_data in cases_data]
+                    self._cases_cache = [Case(**cases_index) for cases_index in cases_data]
             except FileNotFoundError:
                 raise FileNotFoundError(f"Cases file not found: {self._data_file}")
             except json.JSONDecodeError as e:

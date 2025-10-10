@@ -94,7 +94,7 @@ class TestCaseService:
     @patch.object(CaseService, '_load_cases')
     def test_get_all_cases(self, mock_load_cases, case_service, mock_cases_data):
         """Test getting all cases"""
-        mock_cases = [Case(**case_data) for case_data in mock_cases_data]
+        mock_cases = [Case(**cases_index) for cases_index in mock_cases_data]
         mock_load_cases.return_value = mock_cases
         
         result = case_service.get_all_cases()
@@ -106,7 +106,7 @@ class TestCaseService:
     @patch.object(CaseService, '_load_cases')
     def test_get_case_by_id_found(self, mock_load_cases, case_service, mock_cases_data):
         """Test getting a case by ID when it exists"""
-        mock_cases = [Case(**case_data) for case_data in mock_cases_data]
+        mock_cases = [Case(**cases_index) for cases_index in mock_cases_data]
         mock_load_cases.return_value = mock_cases
         
         result = case_service.get_case_by_id("case-002")
@@ -119,7 +119,7 @@ class TestCaseService:
     @patch.object(CaseService, '_load_cases')
     def test_get_case_by_id_not_found(self, mock_load_cases, case_service, mock_cases_data):
         """Test getting a case by ID when it doesn't exist"""
-        mock_cases = [Case(**case_data) for case_data in mock_cases_data]
+        mock_cases = [Case(**cases_index) for cases_index in mock_cases_data]
         mock_load_cases.return_value = mock_cases
         
         result = case_service.get_case_by_id("case-999")
@@ -129,7 +129,7 @@ class TestCaseService:
     @patch.object(CaseService, '_load_cases')
     def test_get_cases_by_type(self, mock_load_cases, case_service, mock_cases_data):
         """Test filtering cases by type"""
-        mock_cases = [Case(**case_data) for case_data in mock_cases_data]
+        mock_cases = [Case(**cases_index) for cases_index in mock_cases_data]
         mock_load_cases.return_value = mock_cases
         
         result = case_service.get_cases_by_type("Employment Dispute")
@@ -142,7 +142,7 @@ class TestCaseService:
     @patch.object(CaseService, '_load_cases')
     def test_get_cases_by_type_no_matches(self, mock_load_cases, case_service, mock_cases_data):
         """Test filtering cases by type with no matches"""
-        mock_cases = [Case(**case_data) for case_data in mock_cases_data]
+        mock_cases = [Case(**cases_index) for cases_index in mock_cases_data]
         mock_load_cases.return_value = mock_cases
         
         result = case_service.get_cases_by_type("Nonexistent Type")
@@ -153,7 +153,7 @@ class TestCaseService:
     @patch.object(CaseService, '_load_cases')
     def test_get_case_statistics(self, mock_load_cases, case_service, mock_cases_data):
         """Test getting case statistics"""
-        mock_cases = [Case(**case_data) for case_data in mock_cases_data]
+        mock_cases = [Case(**cases_index) for cases_index in mock_cases_data]
         mock_load_cases.return_value = mock_cases
         
         result = case_service.get_case_statistics()
@@ -202,7 +202,7 @@ class TestCaseService:
             }
         ]
         
-        mock_cases = [Case(**case_data) for case_data in mock_cases_data]
+        mock_cases = [Case(**cases_index) for cases_index in mock_cases_data]
         mock_load_cases.return_value = mock_cases
         
         result = case_service.get_case_statistics()
@@ -213,7 +213,7 @@ class TestCaseService:
     @patch.object(CaseService, '_load_cases')
     def test_caching_behavior(self, mock_load_cases, case_service, mock_cases_data):
         """Test that cases are cached after first load"""
-        mock_cases = [Case(**case_data) for case_data in mock_cases_data]
+        mock_cases = [Case(**cases_index) for cases_index in mock_cases_data]
         mock_load_cases.return_value = mock_cases
         
         # First call should load cases

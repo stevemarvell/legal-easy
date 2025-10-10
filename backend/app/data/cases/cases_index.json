@@ -1,214 +1,131 @@
-{
-  "case_documents": [
-    {
-      "id": "doc-001",
-      "case_id": "case-001",
-      "name": "Employment Contract - Sarah Chen",
-      "type": "Contract",
-      "size": 245760,
-      "upload_date": "2024-01-15T09:30:00Z",
-      "content_preview": "EMPLOYMENT AGREEMENT  This Employment Agreement (\"Agreement\") is entered into on 15 March 2022, between TechCorp Solutions Ltd., a company incorporate...",
-      "full_content_path": "app/data/case_documents/case-001/doc-001_employment_contract_sarah_chen.txt"
-    },
-    {
-      "id": "doc-002",
-      "case_id": "case-001",
-      "name": "Safety Violation Report",
-      "type": "Evidence",
-      "size": 89120,
-      "upload_date": "2024-01-15T10:00:00Z",
-      "content_preview": "INTERNAL SAFETY REPORT TechCorp Solutions Ltd.  Report Date: 10 December 2023 Reported By: Sarah Chen, Senior Safety Engineer Employee ID: TC-2022-084...",
-      "full_content_path": "app/data/case_documents/case-001/doc-002_safety_violation_report.txt"
-    },
-    {
-      "id": "doc-003",
-      "case_id": "case-001",
-      "name": "Termination Notice Email",
-      "type": "Email",
-      "size": 12480,
-      "upload_date": "2024-01-15T11:15:00Z",
-      "content_preview": "From: hr@techcorp.co.uk To: sarah.chen@techcorp.co.uk CC: jennifer.walsh@techcorp.co.uk, legal@techcorp.co.uk Subject: Employment Termination - Effect...",
-      "full_content_path": "app/data/case_documents/case-001/doc-003_termination_notice_email.txt"
-    },
-    {
-      "id": "doc-004",
-      "case_id": "case-002",
-      "name": "Software Licence Agreement",
-      "type": "Contract",
-      "size": 356480,
-      "upload_date": "2024-02-03T15:00:00Z",
-      "content_preview": "SOFTWARE LICENCE AGREEMENT  This Software Licence Agreement (\"Agreement\") is entered into on 1 June 2023, between DataFlow Ltd., a company incorporate...",
-      "full_content_path": "app/data/case_documents/case-002/doc-004_software_license_agreement.txt"
-    },
-    {
-      "id": "doc-005",
-      "case_id": "case-002",
-      "name": "Server Deployment Logs",
-      "type": "Evidence",
-      "size": 178240,
-      "upload_date": "2024-02-04T09:15:00Z",
-      "content_preview": "CLOUDTECH SYSTEMS LTD. - SERVER DEPLOYMENT LOG DataFlow Analytics Suite v3.2  Deployment Date: 15 January 2024 Deployed By: Robert Kim, CTO Deployment...",
-      "full_content_path": "app/data/case_documents/case-002/doc-005_server_deployment_logs.txt"
-    },
-    {
-      "id": "doc-006",
-      "case_id": "case-002",
-      "name": "Licence Violation Notice",
-      "type": "Legal Brief",
-      "size": 45120,
-      "upload_date": "2024-02-04T11:30:00Z",
-      "content_preview": "DATAFLOW LTD. Legal Department 1234 Innovation Way London EC2A 4DP  1 February 2024  CloudTech Systems Ltd. Attention: Robert Kim, Chief Technology Of...",
-      "full_content_path": "app/data/case_documents/case-002/doc-006_license_violation_notice.txt"
-    },
-    {
-      "id": "doc-007",
-      "case_id": "case-002",
-      "name": "Email Thread - Licence Clarification",
-      "type": "Email",
-      "size": 23680,
-      "upload_date": "2024-02-05T08:45:00Z",
-      "content_preview": "From: legal@cloudtech.co.uk To: lisa.martinez@dataflow.co.uk CC: robert.kim@cloudtech.co.uk, licensing@dataflow.co.uk Subject: RE: Licence Violation N...",
-      "full_content_path": "app/data/case_documents/case-002/doc-007_email_thread_license_clarification.txt"
-    },
-    {
-      "id": "doc-008",
-      "case_id": "case-003",
-      "name": "Consulting Services Agreement",
-      "type": "Contract",
-      "size": 298760,
-      "upload_date": "2024-01-28T12:00:00Z",
-      "content_preview": "CONSULTING SERVICES AGREEMENT  This Consulting Services Agreement (\"Agreement\") is entered into on 1 August 2023, between Premier Consulting Ltd., a c...",
-      "full_content_path": "app/data/case_documents/case-003/doc-008_consulting_services_agreement.txt"
-    },
-    {
-      "id": "doc-009",
-      "case_id": "case-003",
-      "name": "Outstanding Invoices",
-      "type": "Evidence",
-      "size": 67890,
-      "upload_date": "2024-01-28T12:30:00Z",
-      "content_preview": "PREMIER CONSULTING LTD. Invoice Summary and Collection Notice  Client: StartupXYZ Ltd. Account Number: PC-2023-0847 Date Prepared: 28 January 2024 Pre...",
-      "full_content_path": "app/data/case_documents/case-003/doc-009_outstanding_invoices.txt"
-    },
-    {
-      "id": "doc-010",
-      "case_id": "case-003",
-      "name": "Client Complaint Email",
-      "type": "Email",
-      "size": 18920,
-      "upload_date": "2024-01-29T09:15:00Z",
-      "content_preview": "From: michael.thompson@startupxyz.co.uk To: amanda.foster@premierconsulting.co.uk CC: sarah.johnson@startupxyz.co.uk, legal@startupxyz.co.uk Subject: ...",
-      "full_content_path": "app/data/case_documents/case-003/doc-010_client_complaint_email.txt"
-    },
-    {
-      "id": "doc-011",
-      "case_id": "case-004",
-      "name": "Employment Contract - James Wilson",
-      "type": "Contract",
-      "size": 234560,
-      "upload_date": "2024-02-10T17:00:00Z",
-      "content_preview": "EMPLOYMENT AGREEMENT  This Employment Agreement (\"Agreement\") is entered into on 1 June 2018, between MegaCorp Industries Ltd., a company incorporated...",
-      "full_content_path": "app/data/case_documents/case-004/doc-011_employment_contract_james_wilson.txt"
-    },
-    {
-      "id": "doc-012",
-      "case_id": "case-004",
-      "name": "Promotion Records and Rejections",
-      "type": "Evidence",
-      "size": 145680,
-      "upload_date": "2024-02-10T17:30:00Z",
-      "content_preview": "MEGACORP INDUSTRIES LTD. Human Resources Department Promotion Application Records - James Wilson  Employee ID: MC-2018-0542 Department: Consumer Produ...",
-      "full_content_path": "app/data/case_documents/case-004/doc-012_promotion_records_and_rejections.txt"
-    },
-    {
-      "id": "doc-013",
-      "case_id": "case-004",
-      "name": "Performance Reviews",
-      "type": "Evidence",
-      "size": 98760,
-      "upload_date": "2024-02-11T08:00:00Z",
-      "content_preview": "PERFORMANCE EVALUATIONS - James Wilson  Employee: James Wilson Position: Senior Software Developer Department: Engineering Review Period: 2021-2023  A...",
-      "full_content_path": "app/data/case_documents/case-004/doc-013_performance_reviews.txt"
-    },
-    {
-      "id": "doc-014",
-      "case_id": "case-004",
-      "name": "Witness Statements",
-      "type": "Evidence",
-      "size": 76540,
-      "upload_date": "2024-02-11T10:15:00Z",
-      "content_preview": "WITNESS STATEMENTS - Employment Dispute Case  Case: James Wilson vs TechCorp Solutions Ltd Date: March 2024 Collected by: Legal Department  WITNESS ST...",
-      "full_content_path": "app/data/case_documents/case-004/doc-014_witness_statements.txt"
-    },
-    {
-      "id": "doc-015",
-      "case_id": "case-005",
-      "name": "Non-Compete Agreement",
-      "type": "Contract",
-      "size": 187650,
-      "upload_date": "2024-02-20T10:45:00Z",
-      "content_preview": "NON-COMPETE AND NON-DISCLOSURE AGREEMENT  This Non-Compete and Non-Disclosure Agreement (\"Agreement\") is entered into on 15 January 2022, between Inno...",
-      "full_content_path": "app/data/case_documents/case-005/doc-015_non_compete_agreement.txt"
-    },
-    {
-      "id": "doc-016",
-      "case_id": "case-005",
-      "name": "New Employment Offer Letter",
-      "type": "Evidence",
-      "size": 45320,
-      "upload_date": "2024-02-20T11:00:00Z",
-      "content_preview": "EMPLOYMENT OFFER LETTER  CompetitorCorp Technologies Ltd. Innovation House, Tech Park Manchester, M1 4BT United Kingdom  Date: February 25, 2024  Mr. ...",
-      "full_content_path": "app/data/case_documents/case-005/doc-016_new_employment_offer_letter.txt"
-    },
-    {
-      "id": "doc-017",
-      "case_id": "case-005",
-      "name": "Trade Secrets Documentation",
-      "type": "Evidence",
-      "size": 234890,
-      "upload_date": "2024-02-21T09:30:00Z",
-      "content_preview": "CONFIDENTIAL - TRADE SECRETS DOCUMENTATION  InnovateTech Solutions Ltd. Proprietary and Confidential Information Classification: HIGHLY CONFIDENTIAL -...",
-      "full_content_path": "app/data/case_documents/case-005/doc-017_trade_secrets_documentation.txt"
-    },
-    {
-      "id": "doc-018",
-      "case_id": "case-006",
-      "name": "Medical Services Contract",
-      "type": "Contract",
-      "size": 312450,
-      "upload_date": "2023-11-12T14:00:00Z",
-      "content_preview": "PROVIDER SERVICES AGREEMENT  This Provider Services Agreement (\"Agreement\") is entered into on 1 January 2020, between HealthFirst Medical Group Ltd.,...",
-      "full_content_path": "app/data/case_documents/case-006/doc-018_medical_services_contract.txt"
-    },
-    {
-      "id": "doc-019",
-      "case_id": "case-006",
-      "name": "Denied Claims Summary",
-      "type": "Evidence",
-      "size": 156780,
-      "upload_date": "2023-11-12T14:30:00Z",
-      "content_preview": "COMPREHENSIVE CLAIMS DENIAL ANALYSIS  SecureHealth Insurance Ltd. Claims Review Department Analysis Period: January 1, 2023 - October 31, 2023 Report ...",
-      "full_content_path": "app/data/case_documents/case-006/doc-019_denied_claims_summary.txt"
-    },
-    {
-      "id": "doc-020",
-      "case_id": "case-006",
-      "name": "Medical Records and Justification",
-      "type": "Evidence",
-      "size": 445670,
-      "upload_date": "2023-11-13T09:00:00Z",
-      "content_preview": "MEDICAL RECORDS AND TREATMENT JUSTIFICATION  HealthFirst Medical Group Ltd. Patient Care Documentation Prepared by: Dr. Maria Gonzalez, MD Date: Novem...",
-      "full_content_path": "app/data/case_documents/case-006/doc-020_medical_records_and_justification.txt"
-    },
-    {
-      "id": "doc-021",
-      "case_id": "case-006",
-      "name": "Insurance Policy Terms",
-      "type": "Contract",
-      "size": 567890,
-      "upload_date": "2023-11-13T11:15:00Z",
-      "content_preview": "INSURANCE POLICY TERMS AND CONDITIONS  SecureHealth Insurance Ltd. Policy Number: SH-CORP-2023-4567 Policy Holder: HealthFirst Medical Group Ltd Polic...",
-      "full_content_path": "app/data/case_documents/case-006/doc-021_insurance_policy_terms.txt"
-    }
-  ]
-}
+[
+  {
+    "id": "case-001",
+    "title": "Wrongful Dismissal - Sarah Chen vs TechCorp Solutions",
+    "case_type": "Employment Dispute",
+    "client_name": "Sarah Chen",
+    "status": "Active",
+    "created_date": "2024-01-15T09:00:00Z",
+    "summary": "Employee alleges unfair dismissal after reporting safety violations. Claims victimisation and seeks reinstatement plus compensation. Company claims dismissal was due to performance issues and budget cuts.",
+    "key_parties": [
+      "Sarah Chen (Claimant)",
+      "TechCorp Solutions Ltd. (Respondent)",
+      "Marcus Rodriguez (HR Director)",
+      "Jennifer Walsh (Direct Supervisor)"
+    ],
+    "documents": [
+      "doc-001",
+      "doc-002",
+      "doc-003"
+    ],
+    "playbook_id": "employment-dispute"
+  },
+  {
+    "id": "case-002",
+    "title": "Breach of Software Licence Agreement - DataFlow Ltd vs CloudTech",
+    "case_type": "Contract Breach",
+    "client_name": "DataFlow Ltd",
+    "status": "Under Review",
+    "created_date": "2024-02-03T14:30:00Z",
+    "summary": "Software vendor alleges client exceeded licence terms by deploying software on unauthorised servers. Seeking damages of £194,400 and injunctive relief. Client claims licence terms were ambiguous.",
+    "key_parties": [
+      "DataFlow Ltd. (Claimant)",
+      "CloudTech Systems Ltd. (Respondent)",
+      "Lisa Martinez (Legal Counsel)",
+      "Robert Kim (CTO)"
+    ],
+    "documents": [
+      "doc-004",
+      "doc-005",
+      "doc-006",
+      "doc-007"
+    ],
+    "playbook_id": "contract-breach"
+  },
+  {
+    "id": "case-003",
+    "title": "Unpaid Consulting Fees - Premier Consulting vs StartupXYZ",
+    "case_type": "Contract Breach",
+    "client_name": "Premier Consulting Ltd",
+    "status": "Active",
+    "created_date": "2024-01-28T11:00:00Z",
+    "summary": "Consulting firm seeks payment for completed strategic planning services. Client disputes quality of deliverables and refuses payment. Total amount in dispute: £35,000.",
+    "key_parties": [
+      "Premier Consulting Ltd. (Claimant)",
+      "StartupXYZ Ltd. (Respondent)",
+      "Amanda Foster (Principal Consultant)",
+      "Michael Thompson (CEO)"
+    ],
+    "documents": [
+      "doc-008",
+      "doc-009",
+      "doc-010"
+    ],
+    "playbook_id": "contract-breach"
+  },
+  {
+    "id": "case-004",
+    "title": "Age Discrimination Claim - James Wilson vs MegaCorp",
+    "case_type": "Employment Dispute",
+    "client_name": "James Wilson",
+    "status": "Under Review",
+    "created_date": "2024-03-20T16:45:00Z",
+    "summary": "Senior employee alleges age discrimination after being repeatedly passed over for promotion. Claims younger, less qualified candidates were promoted instead. Seeking compensation and policy changes.",
+    "key_parties": [
+      "James Wilson (Claimant)",
+      "MegaCorp Industries Ltd. (Respondent)",
+      "HR Department",
+      "Various Witnesses"
+    ],
+    "documents": [
+      "doc-011",
+      "doc-012",
+      "doc-013",
+      "doc-014"
+    ],
+    "playbook_id": "employment-dispute"
+  },
+  {
+    "id": "case-005",
+    "title": "Trade Secrets Violation - InnovateTech vs Former Employee",
+    "case_type": "Intellectual Property",
+    "client_name": "InnovateTech Solutions Ltd",
+    "status": "Active",
+    "created_date": "2024-03-18T13:20:00Z",
+    "summary": "Technology company alleges former employee violated non-compete agreement and disclosed trade secrets to competitor. Seeking injunctive relief and damages.",
+    "key_parties": [
+      "InnovateTech Solutions Ltd. (Claimant)",
+      "Rachel Green (Respondent)",
+      "CompetitorCorp Technologies Ltd. (Third Party)",
+      "David Park (Legal Counsel)"
+    ],
+    "documents": [
+      "doc-015",
+      "doc-016",
+      "doc-017"
+    ],
+    "playbook_id": "intellectual-property"
+  },
+  {
+    "id": "case-006",
+    "title": "Insurance Coverage Dispute - HealthFirst vs SecureHealth",
+    "case_type": "Contract Breach",
+    "client_name": "HealthFirst Medical Group Ltd",
+    "status": "Under Review",
+    "created_date": "2023-11-20T10:30:00Z",
+    "summary": "Medical provider disputes insurance company's denial of claims. Alleges bad faith denial and seeks coverage for legitimate medical services. Total disputed amount: £180,000.",
+    "key_parties": [
+      "HealthFirst Medical Group Ltd. (Claimant)",
+      "SecureHealth Insurance Ltd. (Respondent)",
+      "Maria Gonzalez (Medical Director)",
+      "Claims Review Department"
+    ],
+    "documents": [
+      "doc-018",
+      "doc-019",
+      "doc-020",
+      "doc-021"
+    ],
+    "playbook_id": "contract-breach"
+  }
+]

@@ -232,7 +232,7 @@ else:
 import httpx
 import asyncio
 
-async def get_case_data():
+async def get_cases_index():
     async with httpx.AsyncClient() as client:
         # Get cases
         cases_response = await client.get("http://localhost:8000/cases")
@@ -245,7 +245,7 @@ async def get_case_data():
         return cases, stats
 
 # Run async function
-cases, stats = asyncio.run(get_case_data())
+cases, stats = asyncio.run(get_cases_index())
 ```
 
 ## Error Handling Examples
