@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.api import cases, documents, playbooks, legal_research, admin
+from app.api import cases, documents, playbooks
 import random
 
 app = FastAPI(
@@ -14,7 +14,6 @@ app = FastAPI(
     - **Case Management**: Create, retrieve, and manage legal cases
     - **Document Analysis**: AI-powered analysis of legal documents
     - **Statistics & Analytics**: Dashboard statistics and case insights
-    - **Legal Research**: AI-assisted legal research capabilities
     - **Playbook Engine**: Automated legal workflow management
 
     ### Demo Environment:
@@ -54,12 +53,10 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
-# Include API routers with /api prefix
+# Include API routers with /api prefix (excluding legal_research for now)
 app.include_router(cases.router, prefix="/api")
 app.include_router(documents.router, prefix="/api")
 app.include_router(playbooks.router, prefix="/api")
-app.include_router(legal_research.router, prefix="/api")
-app.include_router(admin.router, prefix="/api")
 
 # Legacy endpoint for backward compatibility
 @app.get("/random")
@@ -81,8 +78,6 @@ def root():
             "cases": "/api/cases",
             "documents": "/api/documents", 
             "playbooks": "/api/playbooks",
-            "legal_research": "/api/legal-research",
-            "admin": "/api/admin",
             "health": "/health"
         }
     }

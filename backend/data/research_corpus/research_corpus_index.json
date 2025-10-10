@@ -1,0 +1,175 @@
+{
+  "corpus_metadata": {
+    "version": "1.0",
+    "created_date": "2024-01-01",
+    "total_documents": 10,
+    "research_jurisdiction": "United Kingdom",
+    "embedding_model": "all-MiniLM-L6-v2"
+  },
+  "documents": {
+    "rc-001": {
+      "id": "rc-001",
+      "name": "Employment Contract Template",
+      "filename": "rc-001_employment_template.txt",
+      "category": "contracts",
+      "document_type": "Contract Template",
+      "research_areas": [
+        "Employment Law"
+      ],
+      "description": "Standard UK employment contract template with key clauses"
+    },
+    "rc-002": {
+      "id": "rc-002",
+      "name": "Service Agreement Template",
+      "filename": "rc-002_service_agreement_template.txt",
+      "category": "contracts",
+      "document_type": "Contract Template",
+      "research_areas": [
+        "Commercial Law",
+        "Contract Law"
+      ],
+      "description": "Professional services agreement template for UK businesses"
+    },
+    "rc-003": {
+      "id": "rc-003",
+      "name": "Non-Disclosure Agreement",
+      "filename": "rc-003_non_disclosure_agreement.txt",
+      "category": "contracts",
+      "document_type": "Contract Template",
+      "research_areas": [
+        "Intellectual Property",
+        "Data Protection"
+      ],
+      "description": "UK confidentiality agreement template"
+    },
+    "rc-004": {
+      "id": "rc-004",
+      "name": "Termination Clauses",
+      "filename": "rc-004_termination_clauses.txt",
+      "category": "clauses",
+      "document_type": "Research Clause",
+      "research_areas": [
+        "Employment Law",
+        "Contract Law"
+      ],
+      "description": "Various termination clause templates and examples"
+    },
+    "rc-005": {
+      "id": "rc-005",
+      "name": "Liability Clauses",
+      "filename": "rc-005_liability_clauses.txt",
+      "category": "clauses",
+      "document_type": "Research Clause",
+      "research_areas": [
+        "Liability and Risk",
+        "Commercial Law"
+      ],
+      "description": "Liability limitation and indemnification clauses"
+    },
+    "rc-006": {
+      "id": "rc-006",
+      "name": "Intellectual Property Clauses",
+      "filename": "rc-006_intellectual_property_clauses.txt",
+      "category": "clauses",
+      "document_type": "Research Clause",
+      "research_areas": [
+        "Intellectual Property"
+      ],
+      "description": "IP ownership and licensing clauses"
+    },
+    "rc-007": {
+      "id": "rc-007",
+      "name": "Employment Law Precedents",
+      "filename": "rc-007_employment_law_precedents.txt",
+      "category": "precedents",
+      "document_type": "Case Law",
+      "research_areas": [
+        "Employment Law"
+      ],
+      "description": "Major UK employment law cases and principles"
+    },
+    "rc-008": {
+      "id": "rc-008",
+      "name": "Contract Law Precedents",
+      "filename": "rc-008_contract_law_precedents.txt",
+      "category": "precedents",
+      "document_type": "Case Law",
+      "research_areas": [
+        "Contract Law"
+      ],
+      "description": "Fundamental UK contract law precedents"
+    },
+    "rc-009": {
+      "id": "rc-009",
+      "name": "Employment Statutes",
+      "filename": "rc-009_employment_statutes.txt",
+      "category": "statutes",
+      "document_type": "Statute/Regulation",
+      "research_areas": [
+        "Employment Law"
+      ],
+      "description": "Major UK employment law statutes and regulations"
+    },
+    "rc-010": {
+      "id": "rc-010",
+      "name": "Contract Statutes",
+      "filename": "rc-010_contract_statutes.txt",
+      "category": "statutes",
+      "document_type": "Statute/Regulation",
+      "research_areas": [
+        "Contract Law"
+      ],
+      "description": "UK contract and consumer protection law"
+    }
+  },
+  "categories": {
+    "contracts": {
+      "name": "Contract Templates",
+      "description": "Standard UK contract templates",
+      "document_ids": [
+        "rc-001",
+        "rc-002",
+        "rc-003"
+      ]
+    },
+    "clauses": {
+      "name": "Research Clauses",
+      "description": "Library of standard research clauses",
+      "document_ids": [
+        "rc-004",
+        "rc-005",
+        "rc-006"
+      ]
+    },
+    "precedents": {
+      "name": "Case Law and Precedents",
+      "description": "Key UK research precedents and principles",
+      "document_ids": [
+        "rc-007",
+        "rc-008"
+      ]
+    },
+    "statutes": {
+      "name": "Statutes and Regulations",
+      "description": "UK legislation and regulations",
+      "document_ids": [
+        "rc-009",
+        "rc-010"
+      ]
+    }
+  },
+  "research_areas": [
+    "Employment Law",
+    "Contract Law",
+    "Intellectual Property",
+    "Data Protection",
+    "Commercial Law",
+    "Liability and Risk"
+  ],
+  "document_types": [
+    "Contract Template",
+    "Research Clause",
+    "Case Law",
+    "Statute/Regulation"
+  ]
+}

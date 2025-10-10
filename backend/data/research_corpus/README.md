@@ -1,6 +1,6 @@
-# UK Legal Document Corpus
+# UK Research Document Corpus
 
-This directory contains a comprehensive collection of UK legal documents, clauses, precedents, and statutes for use in the RAG (Retrieval-Augmented Generation) system.
+This directory contains a comprehensive collection of UK research documents, clauses, precedents, and statutes for use in the RAG (Retrieval-Augmented Generation) system.
 
 ## Structure
 
@@ -11,13 +11,13 @@ Template contracts commonly used in UK legal practice:
 - **non_disclosure_agreement.txt** - UK confidentiality agreement template
 
 ### 📋 Clauses (`/clauses/`)
-Library of standard legal clauses organized by type:
+Library of standard research clauses organized by type:
 - **termination_clauses.txt** - Various termination clause templates
 - **liability_clauses.txt** - Liability limitation and indemnification clauses
 - **intellectual_property_clauses.txt** - IP ownership and licensing clauses
 
 ### ⚖️ Precedents (`/precedents/`)
-Key case law and legal principles:
+Key case law and research principles:
 - **employment_law_precedents.txt** - Major UK employment law cases and principles
 - **contract_law_precedents.txt** - Fundamental UK contract law precedents
 
@@ -26,7 +26,7 @@ Key UK legislation and regulations:
 - **employment_statutes.txt** - Major UK employment law statutes
 - **contract_statutes.txt** - UK contract and consumer protection law
 
-## Legal Areas Covered
+## Research Areas Covered
 
 - **Employment Law**: Contracts, dismissal, discrimination, working time
 - **Contract Law**: Formation, breach, remedies, consumer protection
@@ -36,26 +36,30 @@ Key UK legislation and regulations:
 
 ## Usage
 
-The corpus is automatically processed by the `LegalCorpusService` to:
+The corpus is automatically processed by the `ResearchCorpusService` to:
 1. Extract and chunk document content
 2. Generate semantic embeddings using sentence transformers
 3. Enable semantic search for legal research queries
-4. Provide relevant clause suggestions
+4. Provide relevant research clause suggestions
 
 ## Initialization
 
 To initialize the corpus and generate embeddings:
 
-```bash
-cd backend
-python scripts/initialize_legal_corpus.py
+```python
+from app.services.ai_service import AIService
+
+ai_service = AIService()
+ai_service.initialize_research_corpus(corpus_path)
 ```
 
 To test the RAG functionality:
 
-```bash
-cd backend
-python scripts/test_legal_corpus.py
+```python
+from app.services.ai_service import AIService
+
+ai_service = AIService()
+result = ai_service.test_research_corpus()
 ```
 
 ## Technical Details
