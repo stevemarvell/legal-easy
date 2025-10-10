@@ -28,7 +28,7 @@ class TestAnalyzeEndpoint:
             upload_date=datetime(2024, 1, 15, 9, 30, 0),
             content_preview="EMPLOYMENT AGREEMENT between TechCorp Solutions Ltd. and Sarah Chen...",
             analysis_completed=True,
-            full_content_path="backend/app/data/documents/case-001/employment_contract_sarah_chen.txt"
+            full_content_path="backend/app/data/case_documents/case-001/doc-001_employment_contract_sarah_chen.txt"
         )
     
     @pytest.fixture

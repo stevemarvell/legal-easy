@@ -32,12 +32,14 @@ interface DocumentListProps {
   caseId: string;
   onDocumentSelect?: (document: Document) => void;
   selectedDocumentId?: string;
+  refreshTrigger?: number; // Add refresh trigger
 }
 
 const DocumentList: React.FC<DocumentListProps> = ({ 
   caseId, 
   onDocumentSelect,
-  selectedDocumentId 
+  selectedDocumentId,
+  refreshTrigger
 }) => {
   const [documents, setDocuments] = useState<Document[]>([]);
   const [loading, setLoading] = useState(true);
@@ -61,7 +63,7 @@ const DocumentList: React.FC<DocumentListProps> = ({
     if (caseId) {
       fetchDocuments();
     }
-  }, [caseId]);
+  }, [caseId, refreshTrigger]);
 
   const getDocumentIcon = (type: string) => {
     switch (type.toLowerCase()) {
@@ -125,102 +127,84 @@ const DocumentList: React.FC<DocumentListProps> = ({
   }
 
   return (
-    <Card>
-      <CardContent>
-        <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
-          <Typography variant="h6">
-            Documents ({documents.length})
-          </Typography>
-          <Box display="flex" gap={1}>
-            <Chip
-              size="small"
-              icon={<AnalyzedIcon />}
-              label={`${documents.filter(doc => doc.analysis_completed).length} Analyzed`}
-              color="success"
-              variant="outlined"
-            />
-            <Chip
-              size="small"
-              icon={<PendingIcon />}
-              label={`${documents.filter(doc => !doc.analysis_completed).length} Pending`}
-              color="warning"
-              variant="outlined"
-            />
-          </Box>
+    <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+      {/* Header */}
+      <Box mb={2}>
+        <Typography variant="subtitle1" gutterBottom>
+          {documents.length} Documents
+        </Typography>
+        <Box display="flex" gap={1}>
+          <Chip
+            size="small"
+            icon={<AnalyzedIcon />}
+            label={documents.filter(doc => doc.analysis_completed).length}
+            color="success"
+            variant="outlined"
+          />
+          <Chip
+            size="small"
+            icon={<PendingIcon />}
+            label={documents.filter(doc => !doc.analysis_completed).length}
+            color="warning"
+            variant="outlined"
+          />
         </Box>
-        
-        <Divider sx={{ mb: 2 }} />
-        
+      </Box>
+      
+      {/* Document List */}
+      <Box sx={{ flex: 1, overflow: 'auto' }}>
         <List disablePadding>
-          {documents.map((document, index) => (
+          {documents.map((document) => (
             <React.Fragment key={document.id}>
-              <ListItem
-                disablePadding
-                secondaryAction={
-                  <Box display="flex" alignItems="center" gap={1}>
-                    {document.analysis_completed ? (
-                      <Tooltip title="AI Analysis Complete">
-                        <AnalyzedIcon color="success" fontSize="small" />
-                      </Tooltip>
-                    ) : (
-                      <Tooltip title="Analysis Pending">
-                        <PendingIcon color="warning" fontSize="small" />
-                      </Tooltip>
-                    )}
-                    {onDocumentSelect && (
-                      <Tooltip title="View Document">
-                        <IconButton
-                          size="small"
-                          onClick={() => onDocumentSelect(document)}
-                        >
-                          <ViewIcon />
-                        </IconButton>
-                      </Tooltip>
-                    )}
-                  </Box>
-                }
-              >
+              <ListItem disablePadding>
                 <ListItemButton
                   selected={selectedDocumentId === document.id}
                   onClick={() => onDocumentSelect?.(document)}
-                  sx={{ pr: 8 }}
+                  sx={{ 
+                    borderRadius: 1,
+                    mb: 0.5,
+                    '&.Mui-selected': {
+                      bgcolor: 'primary.50',
+                      '&:hover': {
+                        bgcolor: 'primary.100',
+                      }
+                    }
+                  }}
                 >
-                  <ListItemIcon>
+                  <ListItemIcon sx={{ minWidth: 36 }}>
                     {getDocumentIcon(document.type)}
                   </ListItemIcon>
                   <ListItemText
-                    primary={document.name}
+                    primary={
+                      <Typography variant="body2" fontWeight="medium" noWrap>
+                        {document.name}
+                      </Typography>
+                    }
                     secondary={
-                      <Box component="span">
-                        <Typography variant="caption" display="block">
-                          {document.type} • {formatFileSize(document.size)} • {formatDate(document.upload_date)}
+                      <Box>
+                        <Typography variant="caption" color="text.secondary" display="block">
+                          {document.type}
                         </Typography>
-                        {document.content_preview && (
-                          <Typography 
-                            variant="caption" 
-                            color="text.secondary"
-                            sx={{ 
-                              display: '-webkit-box',
-                              WebkitLineClamp: 2,
-                              WebkitBoxOrient: 'vertical',
-                              overflow: 'hidden',
-                              mt: 0.5
-                            }}
-                          >
-                            {document.content_preview}
+                        <Box display="flex" alignItems="center" gap={0.5} mt={0.5}>
+                          {document.analysis_completed ? (
+                            <AnalyzedIcon color="success" sx={{ fontSize: 12 }} />
+                          ) : (
+                            <PendingIcon color="warning" sx={{ fontSize: 12 }} />
+                          )}
+                          <Typography variant="caption" color="text.secondary">
+                            {formatFileSize(document.size)}
                           </Typography>
-                        )}
+                        </Box>
                       </Box>
                     }
                   />
                 </ListItemButton>
               </ListItem>
-              {index < documents.length - 1 && <Divider />}
             </React.Fragment>
           ))}
         </List>
-      </CardContent>
-    </Card>
+      </Box>
+    </Box>
   );
 };
 

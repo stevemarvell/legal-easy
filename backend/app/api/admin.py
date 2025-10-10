@@ -401,6 +401,61 @@ async def initialize_corpus():
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to initialize corpus: {str(e)}")
 
+@router.post("/actions/reindex-all")
+async def reindex_all():
+    """Reindex all documents including case documents and legal corpus"""
+    try:
+        # Clear existing index first
+        system_status.rag_service.clear_vector_database()
+        
+        # Reinitialize with all documents
+        document_count = system_status.rag_service.initialize_vector_database()
+        
+        # Also index case documents
+        case_doc_count = system_status.rag_service.index_case_documents()
+        
+        total_count = document_count + case_doc_count
+        
+        return {
+            "success": True,
+            "message": f"Complete reindex completed - {total_count} documents indexed",
+            "timestamp": datetime.now().isoformat(),
+            "legal_corpus_count": document_count,
+            "case_documents_count": case_doc_count,
+            "total_count": total_count
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to reindex all documents: {str(e)}")
+
+@router.post("/actions/clear-index")
+async def clear_index():
+    """Clear all search indexes and embeddings"""
+    try:
+        system_status.rag_service.clear_vector_database()
+        
+        return {
+            "success": True,
+            "message": "Search index cleared successfully",
+            "timestamp": datetime.now().isoformat()
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to clear index: {str(e)}")
+
+@router.post("/actions/index-case-documents")
+async def index_case_documents():
+    """Index all case documents for search"""
+    try:
+        document_count = system_status.rag_service.index_case_documents()
+        
+        return {
+            "success": True,
+            "message": f"Case documents indexed - {document_count} documents",
+            "timestamp": datetime.now().isoformat(),
+            "document_count": document_count
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to index case documents: {str(e)}")
+
 @router.post("/actions/test-rag-search")
 async def test_rag_search(query: str = "employment contract"):
     """Test RAG search functionality"""

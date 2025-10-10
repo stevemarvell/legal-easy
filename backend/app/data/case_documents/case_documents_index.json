@@ -1,5 +1,5 @@
 {
-  "documents": [
+  "case_documents": [
     {
       "id": "doc-001",
       "case_id": "case-001",
@@ -8,8 +8,7 @@
       "size": 245760,
       "upload_date": "2024-01-15T09:30:00Z",
       "content_preview": "EMPLOYMENT AGREEMENT  This Employment Agreement (\"Agreement\") is entered into on 15 March 2022, between TechCorp Solutions Ltd., a company incorporate...",
-      "analysis_completed": true,
-      "full_content_path": "app/data/documents/case-001/employment_contract_sarah_chen.txt"
+      "full_content_path": "app/data/case_documents/case-001/doc-001_employment_contract_sarah_chen.txt"
     },
     {
       "id": "doc-002",
@@ -19,8 +18,7 @@
       "size": 89120,
       "upload_date": "2024-01-15T10:00:00Z",
       "content_preview": "INTERNAL SAFETY REPORT TechCorp Solutions Ltd.  Report Date: 10 December 2023 Reported By: Sarah Chen, Senior Safety Engineer Employee ID: TC-2022-084...",
-      "analysis_completed": true,
-      "full_content_path": "app/data/documents/case-001/safety_violation_report.txt"
+      "full_content_path": "app/data/case_documents/case-001/doc-002_safety_violation_report.txt"
     },
     {
       "id": "doc-003",
@@ -30,8 +28,7 @@
       "size": 12480,
       "upload_date": "2024-01-15T11:15:00Z",
       "content_preview": "From: hr@techcorp.co.uk To: sarah.chen@techcorp.co.uk CC: jennifer.walsh@techcorp.co.uk, legal@techcorp.co.uk Subject: Employment Termination - Effect...",
-      "analysis_completed": true,
-      "full_content_path": "app/data/documents/case-001/termination_notice_email.txt"
+      "full_content_path": "app/data/case_documents/case-001/doc-003_termination_notice_email.txt"
     },
     {
       "id": "doc-004",
@@ -41,8 +38,7 @@
       "size": 356480,
       "upload_date": "2024-02-03T15:00:00Z",
       "content_preview": "SOFTWARE LICENCE AGREEMENT  This Software Licence Agreement (\"Agreement\") is entered into on 1 June 2023, between DataFlow Ltd., a company incorporate...",
-      "analysis_completed": true,
-      "full_content_path": "app/data/documents/case-002/software_license_agreement.txt"
+      "full_content_path": "app/data/case_documents/case-002/doc-004_software_license_agreement.txt"
     },
     {
       "id": "doc-005",
@@ -52,8 +48,7 @@
       "size": 178240,
       "upload_date": "2024-02-04T09:15:00Z",
       "content_preview": "CLOUDTECH SYSTEMS LTD. - SERVER DEPLOYMENT LOG DataFlow Analytics Suite v3.2  Deployment Date: 15 January 2024 Deployed By: Robert Kim, CTO Deployment...",
-      "analysis_completed": true,
-      "full_content_path": "app/data/documents/case-002/server_deployment_logs.txt"
+      "full_content_path": "app/data/case_documents/case-002/doc-005_server_deployment_logs.txt"
     },
     {
       "id": "doc-006",
@@ -63,8 +58,7 @@
       "size": 45120,
       "upload_date": "2024-02-04T11:30:00Z",
       "content_preview": "DATAFLOW LTD. Legal Department 1234 Innovation Way London EC2A 4DP  1 February 2024  CloudTech Systems Ltd. Attention: Robert Kim, Chief Technology Of...",
-      "analysis_completed": true,
-      "full_content_path": "app/data/documents/case-002/license_violation_notice.txt"
+      "full_content_path": "app/data/case_documents/case-002/doc-006_license_violation_notice.txt"
     },
     {
       "id": "doc-007",
@@ -74,8 +68,7 @@
       "size": 23680,
       "upload_date": "2024-02-05T08:45:00Z",
       "content_preview": "From: legal@cloudtech.co.uk To: lisa.martinez@dataflow.co.uk CC: robert.kim@cloudtech.co.uk, licensing@dataflow.co.uk Subject: RE: Licence Violation N...",
-      "analysis_completed": true,
-      "full_content_path": "app/data/documents/case-002/email_thread_license_clarification.txt"
+      "full_content_path": "app/data/case_documents/case-002/doc-007_email_thread_license_clarification.txt"
     },
     {
       "id": "doc-008",
@@ -85,8 +78,7 @@
       "size": 298760,
       "upload_date": "2024-01-28T12:00:00Z",
       "content_preview": "CONSULTING SERVICES AGREEMENT  This Consulting Services Agreement (\"Agreement\") is entered into on 1 August 2023, between Premier Consulting Ltd., a c...",
-      "analysis_completed": true,
-      "full_content_path": "app/data/documents/case-003/consulting_services_agreement.txt"
+      "full_content_path": "app/data/case_documents/case-003/doc-008_consulting_services_agreement.txt"
     },
     {
       "id": "doc-009",
@@ -96,8 +88,7 @@
       "size": 67890,
       "upload_date": "2024-01-28T12:30:00Z",
       "content_preview": "PREMIER CONSULTING LTD. Invoice Summary and Collection Notice  Client: StartupXYZ Ltd. Account Number: PC-2023-0847 Date Prepared: 28 January 2024 Pre...",
-      "analysis_completed": true,
-      "full_content_path": "app/data/documents/case-003/outstanding_invoices.txt"
+      "full_content_path": "app/data/case_documents/case-003/doc-009_outstanding_invoices.txt"
     },
     {
       "id": "doc-010",
@@ -107,8 +98,7 @@
       "size": 18920,
       "upload_date": "2024-01-29T09:15:00Z",
       "content_preview": "From: michael.thompson@startupxyz.co.uk To: amanda.foster@premierconsulting.co.uk CC: sarah.johnson@startupxyz.co.uk, legal@startupxyz.co.uk Subject: ...",
-      "analysis_completed": true,
-      "full_content_path": "app/data/documents/case-003/client_complaint_email.txt"
+      "full_content_path": "app/data/case_documents/case-003/doc-010_client_complaint_email.txt"
     },
     {
       "id": "doc-011",
@@ -118,8 +108,7 @@
       "size": 234560,
       "upload_date": "2024-02-10T17:00:00Z",
       "content_preview": "EMPLOYMENT AGREEMENT  This Employment Agreement (\"Agreement\") is entered into on 1 June 2018, between MegaCorp Industries Ltd., a company incorporated...",
-      "analysis_completed": true,
-      "full_content_path": "app/data/documents/case-004/employment_contract_james_wilson.txt"
+      "full_content_path": "app/data/case_documents/case-004/doc-011_employment_contract_james_wilson.txt"
     },
     {
       "id": "doc-012",
@@ -129,8 +118,7 @@
       "size": 145680,
       "upload_date": "2024-02-10T17:30:00Z",
       "content_preview": "MEGACORP INDUSTRIES LTD. Human Resources Department Promotion Application Records - James Wilson  Employee ID: MC-2018-0542 Department: Consumer Produ...",
-      "analysis_completed": true,
-      "full_content_path": "app/data/documents/case-004/promotion_records_and_rejections.txt"
+      "full_content_path": "app/data/case_documents/case-004/doc-012_promotion_records_and_rejections.txt"
     },
     {
       "id": "doc-013",
@@ -140,8 +128,7 @@
       "size": 98760,
       "upload_date": "2024-02-11T08:00:00Z",
       "content_preview": "PERFORMANCE EVALUATIONS - James Wilson  Employee: James Wilson Position: Senior Software Developer Department: Engineering Review Period: 2021-2023  A...",
-      "analysis_completed": true,
-      "full_content_path": "app/data/documents/case-004/performance_reviews.txt"
+      "full_content_path": "app/data/case_documents/case-004/doc-013_performance_reviews.txt"
     },
     {
       "id": "doc-014",
@@ -151,8 +138,7 @@
       "size": 76540,
       "upload_date": "2024-02-11T10:15:00Z",
       "content_preview": "WITNESS STATEMENTS - Employment Dispute Case  Case: James Wilson vs TechCorp Solutions Ltd Date: March 2024 Collected by: Legal Department  WITNESS ST...",
-      "analysis_completed": true,
-      "full_content_path": "app/data/documents/case-004/witness_statements.txt"
+      "full_content_path": "app/data/case_documents/case-004/doc-014_witness_statements.txt"
     },
     {
       "id": "doc-015",
@@ -162,8 +148,7 @@
       "size": 187650,
       "upload_date": "2024-02-20T10:45:00Z",
       "content_preview": "NON-COMPETE AND NON-DISCLOSURE AGREEMENT  This Non-Compete and Non-Disclosure Agreement (\"Agreement\") is entered into on 15 January 2022, between Inno...",
-      "analysis_completed": true,
-      "full_content_path": "app/data/documents/case-005/non_compete_agreement.txt"
+      "full_content_path": "app/data/case_documents/case-005/doc-015_non_compete_agreement.txt"
     },
     {
       "id": "doc-016",
@@ -173,8 +158,7 @@
       "size": 45320,
       "upload_date": "2024-02-20T11:00:00Z",
       "content_preview": "EMPLOYMENT OFFER LETTER  CompetitorCorp Technologies Ltd. Innovation House, Tech Park Manchester, M1 4BT United Kingdom  Date: February 25, 2024  Mr. ...",
-      "analysis_completed": true,
-      "full_content_path": "app/data/documents/case-005/new_employment_offer_letter.txt"
+      "full_content_path": "app/data/case_documents/case-005/doc-016_new_employment_offer_letter.txt"
     },
     {
       "id": "doc-017",
@@ -184,8 +168,7 @@
       "size": 234890,
       "upload_date": "2024-02-21T09:30:00Z",
       "content_preview": "CONFIDENTIAL - TRADE SECRETS DOCUMENTATION  InnovateTech Solutions Ltd. Proprietary and Confidential Information Classification: HIGHLY CONFIDENTIAL -...",
-      "analysis_completed": true,
-      "full_content_path": "app/data/documents/case-005/trade_secrets_documentation.txt"
+      "full_content_path": "app/data/case_documents/case-005/doc-017_trade_secrets_documentation.txt"
     },
     {
       "id": "doc-018",
@@ -195,8 +178,7 @@
       "size": 312450,
       "upload_date": "2023-11-12T14:00:00Z",
       "content_preview": "PROVIDER SERVICES AGREEMENT  This Provider Services Agreement (\"Agreement\") is entered into on 1 January 2020, between HealthFirst Medical Group Ltd.,...",
-      "analysis_completed": true,
-      "full_content_path": "app/data/documents/case-006/medical_services_contract.txt"
+      "full_content_path": "app/data/case_documents/case-006/doc-018_medical_services_contract.txt"
     },
     {
       "id": "doc-019",
@@ -206,8 +188,7 @@
       "size": 156780,
       "upload_date": "2023-11-12T14:30:00Z",
       "content_preview": "COMPREHENSIVE CLAIMS DENIAL ANALYSIS  SecureHealth Insurance Ltd. Claims Review Department Analysis Period: January 1, 2023 - October 31, 2023 Report ...",
-      "analysis_completed": true,
-      "full_content_path": "app/data/documents/case-006/denied_claims_summary.txt"
+      "full_content_path": "app/data/case_documents/case-006/doc-019_denied_claims_summary.txt"
     },
     {
       "id": "doc-020",
@@ -217,8 +198,7 @@
       "size": 445670,
       "upload_date": "2023-11-13T09:00:00Z",
       "content_preview": "MEDICAL RECORDS AND TREATMENT JUSTIFICATION  HealthFirst Medical Group Ltd. Patient Care Documentation Prepared by: Dr. Maria Gonzalez, MD Date: Novem...",
-      "analysis_completed": true,
-      "full_content_path": "app/data/documents/case-006/medical_records_and_justification.txt"
+      "full_content_path": "app/data/case_documents/case-006/doc-020_medical_records_and_justification.txt"
     },
     {
       "id": "doc-021",
@@ -228,8 +208,7 @@
       "size": 567890,
       "upload_date": "2023-11-13T11:15:00Z",
       "content_preview": "INSURANCE POLICY TERMS AND CONDITIONS  SecureHealth Insurance Ltd. Policy Number: SH-CORP-2023-4567 Policy Holder: HealthFirst Medical Group Ltd Polic...",
-      "analysis_completed": true,
-      "full_content_path": "app/data/documents/case-006/insurance_policy_terms.txt"
+      "full_content_path": "app/data/case_documents/case-006/doc-021_insurance_policy_terms.txt"
     }
   ]
 }

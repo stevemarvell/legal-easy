@@ -13,8 +13,9 @@ class Document(BaseModel):
     size: int = Field(..., description="File size in bytes", example=245760)
     upload_date: datetime = Field(..., description="Date when the document was uploaded", example="2024-01-15T09:30:00Z")
     content_preview: str = Field(..., description="Preview of the document content", example="EMPLOYMENT AGREEMENT between TechCorp Solutions Ltd. and Sarah Chen...")
-    analysis_completed: bool = Field(..., description="Whether AI analysis has been completed for this document", example=True)
-    full_content_path: Optional[str] = Field(None, description="Path to the full document content file", example="backend/app/data/documents/case-001/employment_contract_sarah_chen.txt")
+
+    full_content_path: Optional[str] = Field(None, description="Path to the full document content file", example="backend/app/data/case_documents/case-001/doc-001_employment_contract_sarah_chen.txt")
+    analysis_completed: bool = Field(default=False, description="Whether AI analysis has been completed for this document (computed dynamically)")
 
     class Config:
         json_schema_extra = {

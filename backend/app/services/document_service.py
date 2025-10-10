@@ -2,6 +2,7 @@ import json
 import os
 from typing import List, Optional
 from app.models.document import Document, DocumentAnalysis
+from app.services.analysis_storage_service import AnalysisStorageService
 
 
 class DocumentService:
@@ -10,8 +11,9 @@ class DocumentService:
     def __init__(self):
         self._documents_cache = None
         self._analyses_cache = None
-        self._documents_file = os.path.join(os.path.dirname(__file__), "..", "data", "demo_documents.json")
+        self._documents_file = os.path.join(os.path.dirname(__file__), "..", "data", "case_documents", "case_documents_index.json")
         self._analyses_file = os.path.join(os.path.dirname(__file__), "..", "data", "demo_document_analysis.json")
+        self._analysis_storage = AnalysisStorageService()
     
     def _load_documents(self) -> List[Document]:
         """Load documents from JSON file with caching"""
@@ -19,7 +21,7 @@ class DocumentService:
             try:
                 with open(self._documents_file, 'r', encoding='utf-8') as f:
                     data = json.load(f)
-                    self._documents_cache = [Document(**doc_data) for doc_data in data["documents"]]
+                    self._documents_cache = [Document(**doc_data) for doc_data in data["case_documents"]]
             except FileNotFoundError:
                 raise FileNotFoundError(f"Demo documents file not found: {self._documents_file}")
             except json.JSONDecodeError as e:
@@ -43,13 +45,21 @@ class DocumentService:
     def get_case_documents(self, case_id: str) -> List[Document]:
         """Get all documents for a specific case"""
         documents = self._load_documents()
-        return [doc for doc in documents if doc.case_id == case_id]
+        case_docs = [doc for doc in documents if doc.case_id == case_id]
+        
+        # Add analysis_completed status dynamically
+        for doc in case_docs:
+            doc.analysis_completed = self._analysis_storage.has_analysis(doc.id)
+        
+        return case_docs
     
     def get_document_by_id(self, doc_id: str) -> Optional[Document]:
         """Get a specific document by ID"""
         documents = self._load_documents()
         for doc in documents:
             if doc.id == doc_id:
+                # Add analysis_completed status dynamically
+                doc.analysis_completed = self._analysis_storage.has_analysis(doc.id)
                 return doc
         return None
     

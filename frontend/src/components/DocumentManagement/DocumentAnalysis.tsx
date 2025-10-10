@@ -616,55 +616,8 @@ const DocumentAnalysis: React.FC<DocumentAnalysisProps> = ({
 
   return (
     <Box>
-      {/* Analysis Header */}
-      <Card sx={{ mb: 3 }}>
-        <CardContent>
-          <Box display="flex" alignItems="center" mb={2}>
-            <AIIcon color="primary" sx={{ mr: 1 }} />
-            <Typography variant="h5" component="h2">
-              AI Document Analysis
-            </Typography>
-          </Box>
-          <Typography variant="body2" color="text.secondary">
-            Automated analysis results for document {analysis.document_id}
-          </Typography>
-        </CardContent>
-      </Card>
 
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-        {/* Document Summary */}
-        <Card>
-          <CardContent>
-            <Box display="flex" alignItems="center" mb={2}>
-              <SummaryIcon color="primary" sx={{ mr: 1 }} />
-              <Typography variant="h6">
-                Document Summary
-              </Typography>
-            </Box>
-            <Divider sx={{ mb: 2 }} />
-            <Paper
-              variant="outlined"
-              sx={{
-                p: 3,
-                backgroundColor: 'grey.800',
-                borderColor: 'grey.600',
-                borderWidth: 2,
-                borderRadius: 2
-              }}
-            >
-              <Typography
-                variant="body1"
-                sx={{
-                  color: 'white',
-                  lineHeight: 1.6,
-                  fontWeight: 'medium'
-                }}
-              >
-                {analysis.summary}
-              </Typography>
-            </Paper>
-          </CardContent>
-        </Card>
 
         {/* Key Information and Legal Analysis */}
         <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 3 }}>

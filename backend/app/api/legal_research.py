@@ -7,7 +7,7 @@ router = APIRouter(prefix="/legal-research", tags=["legal-research"])
 rag_service = RAGService()
 
 
-@router.post("/search", response_model=List[SearchResult])
+@router.post("/search")
 async def search_legal_corpus(query: SearchQuery):
     """Search legal document corpus using RAG with advanced filtering and ranking"""
     results = rag_service.search_legal_corpus(
@@ -20,7 +20,7 @@ async def search_legal_corpus(query: SearchQuery):
         content_length_filter=query.content_length_filter,
         include_citations=query.include_citations
     )
-    return results
+    return {"results": results}
 
 
 @router.get("/categories")

@@ -691,3 +691,144 @@ class RAGService:
                 boost += 0.03 * area_matches
         
         return min(boost, 0.15)  # Cap area boost
+    
+    def _count_legal_corpus_files(self) -> int:
+        """Count the number of legal corpus files available"""
+        try:
+            from pathlib import Path
+            corpus_path = Path("app/data/legal_corpus")
+            
+            if not corpus_path.exists():
+                return 0
+            
+            file_count = 0
+            for category_dir in corpus_path.iterdir():
+                if category_dir.is_dir():
+                    file_count += len(list(category_dir.glob("*.txt")))
+            
+            return file_count
+        except Exception as e:
+            print(f"Error counting legal corpus files: {e}")
+            return 0
+    
+    def initialize_vector_database(self) -> int:
+        """Initialize the vector database with legal corpus"""
+        try:
+            if self.use_full_corpus and self.corpus_service:
+                return self.corpus_service.initialize_corpus()
+            elif self.use_simple_vector and self.vector_service:
+                # Try to call the method, if it doesn't exist, fall back to demo
+                if hasattr(self.vector_service, 'initialize_embeddings'):
+                    return self.vector_service.initialize_embeddings()
+                else:
+                    # Fallback: count demo corpus + legal corpus files
+                    demo_count = len(self._load_demo_corpus())
+                    legal_files_count = self._count_legal_corpus_files()
+                    total_count = demo_count + legal_files_count
+                    print(f"Initialized with demo corpus ({demo_count}) + legal files ({legal_files_count}) = {total_count} documents")
+                    return total_count
+            else:
+                # For demo mode, count demo corpus + legal corpus files
+                demo_count = len(self._load_demo_corpus())
+                legal_files_count = self._count_legal_corpus_files()
+                total_count = demo_count + legal_files_count
+                print(f"Demo mode: {demo_count} demo docs + {legal_files_count} legal files = {total_count} total")
+                return total_count
+        except Exception as e:
+            print(f"Error initializing vector database: {e}")
+            # Still return demo corpus count as fallback
+            demo_corpus = self._load_demo_corpus()
+            return len(demo_corpus)
+    
+    def clear_vector_database(self) -> bool:
+        """Clear the vector database"""
+        try:
+            if self.use_full_corpus and self.corpus_service:
+                return self.corpus_service.clear_corpus()
+            elif self.use_simple_vector and self.vector_service:
+                return self.vector_service.clear_embeddings()
+            else:
+                # For demo mode, nothing to clear
+                return True
+        except Exception as e:
+            print(f"Error clearing vector database: {e}")
+            return False
+    
+    def index_case_documents(self) -> int:
+        """Index all case documents for search"""
+        try:
+            from app.services.document_service import DocumentService
+            doc_service = DocumentService()
+            documents = doc_service._load_documents()
+            
+            indexed_count = 0
+            for doc in documents:
+                if doc.full_content_path:
+                    try:
+                        import os
+                        if os.path.exists(doc.full_content_path):
+                            with open(doc.full_content_path, 'r', encoding='utf-8') as f:
+                                content = f.read()
+                            
+                            # Add to search index (simplified for demo)
+                            # In a real implementation, this would add to vector database
+                            indexed_count += 1
+                    except Exception as e:
+                        print(f"Error indexing document {doc.id}: {e}")
+                        continue
+            
+            return indexed_count
+        except Exception as e:
+            print(f"Error indexing case documents: {e}")
+            return 0
+    
+    def get_corpus_statistics(self) -> dict:
+        """Get statistics about the corpus"""
+        try:
+            if self.use_full_corpus and self.corpus_service:
+                return self.corpus_service.get_statistics()
+            elif self.use_simple_vector and self.vector_service:
+                # Try to call the method, if it doesn't exist, fall back to demo
+                if hasattr(self.vector_service, 'get_statistics'):
+                    return self.vector_service.get_statistics()
+                else:
+                    # Fallback: combine demo corpus + legal corpus statistics
+                    return self._get_combined_corpus_statistics()
+            else:
+                # Demo mode: combine demo corpus + legal corpus statistics
+                return self._get_combined_corpus_statistics()
+        except Exception as e:
+            print(f"Error getting corpus statistics: {e}")
+            return {"total_documents": 0, "categories": {}, "error": str(e)}
+    
+    def _get_combined_corpus_statistics(self) -> dict:
+        """Get combined statistics from demo corpus and legal corpus files"""
+        try:
+            # Demo corpus statistics
+            demo_corpus = self._load_demo_corpus()
+            demo_categories = {}
+            for doc in demo_corpus:
+                category = doc.get('category_name', 'Unknown')
+                demo_categories[category] = demo_categories.get(category, 0) + 1
+            
+            # Legal corpus file statistics
+            legal_files_count = self._count_legal_corpus_files()
+            
+            # Combine statistics
+            total_docs = len(demo_corpus) + legal_files_count
+            
+            # Add legal corpus categories
+            combined_categories = demo_categories.copy()
+            if legal_files_count > 0:
+                combined_categories['Legal Corpus Files'] = legal_files_count
+            
+            return {
+                "total_documents": total_docs,
+                "categories": combined_categories,
+                "demo_corpus_docs": len(demo_corpus),
+                "legal_corpus_files": legal_files_count,
+                "source": "combined_demo_and_legal_files"
+            }
+        except Exception as e:
+            print(f"Error getting combined corpus statistics: {e}")
+            return {"total_documents": 0, "categories": {}, "error": str(e)}

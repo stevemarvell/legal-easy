@@ -7,84 +7,50 @@ import {
   Chip,
   Alert,
   CircularProgress,
-  Divider,
-  Grid,
   Paper,
-  List,
-  ListItem,
-  ListItemText,
-  ListItemIcon,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-  Tabs,
-  Tab,
   IconButton,
   Tooltip,
-  Button
+  Button,
+  Tabs,
+  Tab
 } from '@mui/material';
 import {
-  Description as DocumentIcon,
-  Person as PersonIcon,
-  Event as DateIcon,
-  Category as TypeIcon,
-  FileDownload as SizeIcon,
   CheckCircle as AnalyzedIcon,
   Schedule as PendingIcon,
-  ExpandMore as ExpandMoreIcon,
-  Visibility as PreviewIcon,
-  Psychology as AnalysisIcon,
   Refresh as RefreshIcon,
-  Fullscreen as FullscreenIcon
+  Psychology as AnalyzeIcon,
+  Description as DocumentIcon,
+  Analytics as AnalysisIcon
 } from '@mui/icons-material';
 import { documentService } from '../../services/documentService';
 import { Document } from '../../types/document';
 import DocumentAnalysis from './DocumentAnalysis';
 
 interface DocumentViewerProps {
-  documentId: string;
-  document?: Document; // Optional pre-loaded document
+  document: Document;
+  onDocumentAnalyzed?: () => void;
 }
 
-const DocumentViewer: React.FC<DocumentViewerProps> = ({ documentId, document: preloadedDocument }) => {
-  const [document, setDocument] = useState<Document | null>(preloadedDocument || null);
-  const [loading, setLoading] = useState(!preloadedDocument);
+const DocumentViewer: React.FC<DocumentViewerProps> = ({
+  document: initialDocument,
+  onDocumentAnalyzed
+}) => {
+  const [document, setDocument] = useState<Document>(initialDocument);
   const [error, setError] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState(0);
+
   const [fullContent, setFullContent] = useState<string>('');
   const [contentLoading, setContentLoading] = useState(false);
+  const [analyzing, setAnalyzing] = useState(false);
+  const [activeTab, setActiveTab] = useState(0);
 
+  // Update document when prop changes
   useEffect(() => {
-    const fetchDocument = async () => {
-      if (preloadedDocument) {
-        setDocument(preloadedDocument);
-        setLoading(false);
-        return;
-      }
-
-      try {
-        setLoading(true);
-        setError(null);
-        const fetchedDocument = await documentService.getDocumentById(documentId);
-        setDocument(fetchedDocument);
-      } catch (err) {
-        console.error('Failed to fetch document:', err);
-        setError('Failed to load document. Please try again.');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (documentId) {
-      fetchDocument();
-    }
-  }, [documentId, preloadedDocument]);
+    setDocument(initialDocument);
+  }, [initialDocument]);
 
   // Fetch full document content when document is loaded
   useEffect(() => {
     const fetchContent = async () => {
-      if (!document) return;
-
       try {
         setContentLoading(true);
         const contentData = await documentService.getDocumentContent(document.id);
@@ -99,7 +65,7 @@ const DocumentViewer: React.FC<DocumentViewerProps> = ({ documentId, document: p
     };
 
     fetchContent();
-  }, [document]);
+  }, [document.id]);
 
   const formatFileSize = (bytes: number): string => {
     if (bytes === 0) return '0 Bytes';
@@ -109,15 +75,7 @@ const DocumentViewer: React.FC<DocumentViewerProps> = ({ documentId, document: p
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
   };
 
-  const formatDate = (dateString: string): string => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    });
-  };
+
 
   const getStatusColor = (analyzed: boolean) => {
     return analyzed ? 'success' : 'warning';
@@ -131,13 +89,9 @@ const DocumentViewer: React.FC<DocumentViewerProps> = ({ documentId, document: p
     return analyzed ? 'AI Analysis Complete' : 'Analysis Pending';
   };
 
-  const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
-    setActiveTab(newValue);
-  };
+
 
   const handleRefreshContent = async () => {
-    if (!document) return;
-
     try {
       setContentLoading(true);
       const contentData = await documentService.getDocumentContent(document.id);
@@ -150,13 +104,28 @@ const DocumentViewer: React.FC<DocumentViewerProps> = ({ documentId, document: p
     }
   };
 
-  if (loading) {
-    return (
-      <Box display="flex" justifyContent="center" alignItems="center" minHeight="400px">
-        <CircularProgress />
-      </Box>
-    );
-  }
+  const handleAnalyzeDocument = async () => {
+    try {
+      setAnalyzing(true);
+      await documentService.analyzeDocument(document.id);
+      // Refresh document to get updated analysis status
+      const updatedDocument = await documentService.getDocumentById(document.id);
+      setDocument(updatedDocument);
+      // Switch to analysis tab after successful analysis
+      setActiveTab(1);
+      // Notify parent component to refresh document list
+      onDocumentAnalyzed?.();
+    } catch (err) {
+      console.error('Failed to analyze document:', err);
+      setError('Failed to analyze document. Please try again.');
+    } finally {
+      setAnalyzing(false);
+    }
+  };
+
+  const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
+    setActiveTab(newValue);
+  };
 
   if (error) {
     return (
@@ -166,18 +135,10 @@ const DocumentViewer: React.FC<DocumentViewerProps> = ({ documentId, document: p
     );
   }
 
-  if (!document) {
-    return (
-      <Alert severity="warning" sx={{ mb: 2 }}>
-        Document not found
-      </Alert>
-    );
-  }
-
   return (
-    <Box>
+    <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
       {/* Document Header */}
-      <Card sx={{ mb: 3 }}>
+      <Card sx={{ mb: 2, flexShrink: 0 }}>
         <CardContent>
           <Box display="flex" justifyContent="space-between" alignItems="flex-start" mb={2}>
             <Box flex={1}>
@@ -188,32 +149,47 @@ const DocumentViewer: React.FC<DocumentViewerProps> = ({ documentId, document: p
                 Document ID: {document.id}
               </Typography>
             </Box>
-            <Chip
-              icon={getStatusIcon(document.analysis_completed)}
-              label={getStatusText(document.analysis_completed)}
-              color={getStatusColor(document.analysis_completed)}
-              variant="outlined"
-            />
+            <Box display="flex" alignItems="center" gap={2}>
+              <Chip
+                icon={getStatusIcon(document.analysis_completed)}
+                label={getStatusText(document.analysis_completed)}
+                color={getStatusColor(document.analysis_completed)}
+                variant="outlined"
+              />
+              {!document.analysis_completed && (
+                <Button
+                  variant="contained"
+                  startIcon={analyzing ? <CircularProgress size={16} /> : <AnalyzeIcon />}
+                  onClick={handleAnalyzeDocument}
+                  disabled={analyzing}
+                  size="small"
+                >
+                  {analyzing ? 'Analyzing...' : 'Analyze Document'}
+                </Button>
+              )}
+            </Box>
           </Box>
         </CardContent>
       </Card>
 
+
+
       {/* Tabs Navigation */}
-      <Card sx={{ mb: 3 }}>
-        <Tabs 
-          value={activeTab} 
+      <Card sx={{ mb: 2, flexShrink: 0 }}>
+        <Tabs
+          value={activeTab}
           onChange={handleTabChange}
           variant="fullWidth"
           sx={{ borderBottom: 1, borderColor: 'divider' }}
         >
-          <Tab 
-            icon={<PreviewIcon />} 
-            label="Document Preview" 
+          <Tab
+            icon={<DocumentIcon />}
+            label="Document"
             iconPosition="start"
           />
-          <Tab 
-            icon={<AnalysisIcon />} 
-            label="AI Analysis" 
+          <Tab
+            icon={<AnalysisIcon />}
+            label="AI Analysis"
             iconPosition="start"
             disabled={!document.analysis_completed}
           />
@@ -221,165 +197,113 @@ const DocumentViewer: React.FC<DocumentViewerProps> = ({ documentId, document: p
       </Card>
 
       {/* Tab Content */}
-      {activeTab === 0 && (
-        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 3 }}>
-          {/* Document Metadata */}
-          <Box sx={{ width: { xs: '100%', md: '33%' } }}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6" gutterBottom>
-                  Document Information
-                </Typography>
-                <Divider sx={{ mb: 2 }} />
-                
-                <List dense>
-                  <ListItem>
-                    <ListItemIcon>
-                      <TypeIcon color="primary" />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary="Document Type"
-                      secondary={document.type}
-                    />
-                  </ListItem>
-                  
-                  <ListItem>
-                    <ListItemIcon>
-                      <SizeIcon color="primary" />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary="File Size"
-                      secondary={formatFileSize(document.size)}
-                    />
-                  </ListItem>
-                  
-                  <ListItem>
-                    <ListItemIcon>
-                      <DateIcon color="primary" />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary="Upload Date"
-                      secondary={formatDate(document.upload_date)}
-                    />
-                  </ListItem>
-                </List>
-              </CardContent>
-            </Card>
-
-            {/* Analysis Status Card */}
-            <Card sx={{ mt: 3 }}>
-              <CardContent>
-                <Typography variant="h6" gutterBottom>
-                  Analysis Status
-                </Typography>
-                <Divider sx={{ mb: 2 }} />
-                
-                <Box display="flex" alignItems="center" gap={1} mb={2}>
-                  {getStatusIcon(document.analysis_completed)}
-                  <Typography variant="body1">
-                    {getStatusText(document.analysis_completed)}
+      <Box sx={{ flex: 1, minHeight: 0 }}>
+        {/* Document Content Tab */}
+        {activeTab === 0 && (
+          <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+            <CardContent sx={{ flex: 1, display: 'flex', flexDirection: 'column', pb: 1 }}>
+              <Box display="flex" alignItems="center" justifyContent="space-between" mb={2}>
+                <Box display="flex" alignItems="center" gap={2}>
+                  <Typography variant="h6">
+                    Document Content
                   </Typography>
+                  <Chip
+                    size="small"
+                    label={document.type}
+                    variant="outlined"
+                  />
+                  <Chip
+                    size="small"
+                    label={formatFileSize(document.size)}
+                    variant="outlined"
+                  />
                 </Box>
-
-                {document.analysis_completed ? (
-                  <Alert severity="success" sx={{ mt: 2 }}>
-                    AI analysis is complete. Switch to the "AI Analysis" tab to view detailed results.
-                  </Alert>
-                ) : (
-                  <Alert severity="warning" sx={{ mt: 2 }}>
-                    This document is pending AI analysis. Analysis will extract key information such as 
-                    important dates, parties involved, and legal concepts.
-                  </Alert>
-                )}
-              </CardContent>
-            </Card>
-          </Box>
-
-          {/* Document Preview */}
-          <Box sx={{ flex: 1 }}>
-            <Card>
-              <CardContent>
-                <Box display="flex" alignItems="center" justifyContent="space-between" mb={2}>
-                  <Box display="flex" alignItems="center">
-                    <PreviewIcon color="primary" sx={{ mr: 1 }} />
-                    <Typography variant="h6">
-                      Document Content
-                    </Typography>
-                    {contentLoading && (
-                      <CircularProgress size={20} sx={{ ml: 2 }} />
-                    )}
-                  </Box>
-                  <Box>
-                    <Tooltip title="Refresh content">
-                      <IconButton 
-                        onClick={handleRefreshContent}
-                        disabled={contentLoading}
-                        size="small"
-                      >
-                        <RefreshIcon />
-                      </IconButton>
-                    </Tooltip>
-                  </Box>
-                </Box>
-                <Divider sx={{ mb: 2 }} />
-                
-                {contentLoading ? (
-                  <Box display="flex" justifyContent="center" alignItems="center" minHeight="200px">
-                    <CircularProgress />
-                  </Box>
-                ) : fullContent ? (
-                  <>
-                    <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
-                      <Typography variant="body2" color="text.secondary">
-                        {fullContent.length.toLocaleString()} characters
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        {fullContent.split('\n').length} lines
-                      </Typography>
-                    </Box>
-                    <Paper 
-                      variant="outlined" 
-                      sx={{ 
-                        p: 3, 
-                        backgroundColor: 'grey.50',
-                        maxHeight: '600px',
-                        overflow: 'auto',
-                        border: '1px solid',
-                        borderColor: 'grey.300',
-                        borderRadius: 2
-                      }}
+                <Box display="flex" alignItems="center" gap={1}>
+                  {contentLoading && <CircularProgress size={16} />}
+                  <Tooltip title="Refresh content">
+                    <IconButton
+                      onClick={handleRefreshContent}
+                      disabled={contentLoading}
+                      size="small"
                     >
-                      <Typography 
-                        variant="body2" 
-                        component="pre"
-                        sx={{ 
-                          whiteSpace: 'pre-wrap',
-                          fontFamily: 'monospace',
-                          fontSize: '0.875rem',
-                          lineHeight: 1.6,
-                          color: 'text.primary',
-                          margin: 0
-                        }}
-                      >
-                        {fullContent}
-                      </Typography>
-                    </Paper>
-                  </>
-                ) : (
-                  <Alert severity="info">
-                    Document content not available
-                  </Alert>
-                )}
-              </CardContent>
-            </Card>
-          </Box>
-        </Box>
-      )}
+                      <RefreshIcon />
+                    </IconButton>
+                  </Tooltip>
+                </Box>
+              </Box>
 
-      {/* AI Analysis Tab */}
-      {activeTab === 1 && document.analysis_completed && (
-        <DocumentAnalysis documentId={document.id} />
-      )}
+              {contentLoading ? (
+                <Box display="flex" justifyContent="center" alignItems="center" flex={1}>
+                  <CircularProgress />
+                </Box>
+              ) : fullContent ? (
+                <Paper
+                  variant="outlined"
+                  sx={{
+                    flex: 1,
+                    p: 2,
+                    backgroundColor: 'grey.50',
+                    overflow: 'auto',
+                    border: '1px solid',
+                    borderColor: 'grey.300',
+                    borderRadius: 1,
+                    '&::-webkit-scrollbar': {
+                      width: '8px',
+                    },
+                    '&::-webkit-scrollbar-track': {
+                      backgroundColor: 'grey.100',
+                      borderRadius: '4px',
+                    },
+                    '&::-webkit-scrollbar-thumb': {
+                      backgroundColor: 'grey.400',
+                      borderRadius: '4px',
+                      '&:hover': {
+                        backgroundColor: 'grey.500',
+                      },
+                    },
+                  }}
+                >
+                  <Typography
+                    variant="body2"
+                    component="pre"
+                    sx={{
+                      whiteSpace: 'pre-wrap',
+                      fontFamily: 'monospace',
+                      fontSize: '0.8rem',
+                      lineHeight: 1.5,
+                      color: 'text.primary',
+                      margin: 0
+                    }}
+                  >
+                    {fullContent}
+                  </Typography>
+                </Paper>
+              ) : (
+                <Alert severity="info">
+                  Document content not available
+                </Alert>
+              )}
+            </CardContent>
+          </Card>
+        )}
+
+        {/* AI Analysis Tab */}
+        {activeTab === 1 && document.analysis_completed && (
+          <Box sx={{ height: '100%', overflow: 'auto', p: 1 }}>
+            <DocumentAnalysis documentId={document.id} key={`analysis-${document.id}`} />
+          </Box>
+        )}
+
+        {/* Analysis Not Available Message */}
+        {activeTab === 1 && !document.analysis_completed && (
+          <Alert severity="info">
+            <Typography variant="body2">
+              AI analysis is not yet available for this document. Click "Analyze Document" above to extract key information such as
+              important dates, parties involved, and legal concepts.
+            </Typography>
+          </Alert>
+        )}
+      </Box>
     </Box>
   );
 };
