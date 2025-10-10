@@ -33,13 +33,15 @@ interface DocumentListProps {
   onDocumentSelect?: (document: Document) => void;
   selectedDocumentId?: string;
   refreshTrigger?: number; // Add refresh trigger
+  onDocumentsLoaded?: (documents: Document[]) => void; // Add callback for when documents are loaded
 }
 
 const DocumentList: React.FC<DocumentListProps> = ({ 
   caseId, 
   onDocumentSelect,
   selectedDocumentId,
-  refreshTrigger
+  refreshTrigger,
+  onDocumentsLoaded
 }) => {
   const [documents, setDocuments] = useState<Document[]>([]);
   const [loading, setLoading] = useState(true);
@@ -52,6 +54,7 @@ const DocumentList: React.FC<DocumentListProps> = ({
         setError(null);
         const fetchedDocuments = await documentService.getCaseDocuments(caseId);
         setDocuments(fetchedDocuments);
+        onDocumentsLoaded?.(fetchedDocuments);
       } catch (err) {
         console.error('Failed to fetch documents:', err);
         setError('Failed to load documents. Please try again.');
@@ -87,7 +90,7 @@ const DocumentList: React.FC<DocumentListProps> = ({
   };
 
   const formatDate = (dateString: string): string => {
-    return new Date(dateString).toLocaleDateString('en-US', {
+    return new Date(dateString).toLocaleDateString(undefined, {
       year: 'numeric',
       month: 'short',
       day: 'numeric'

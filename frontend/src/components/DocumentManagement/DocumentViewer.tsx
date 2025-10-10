@@ -191,61 +191,66 @@ const DocumentViewer: React.FC<DocumentViewerProps> = ({
             icon={<AnalysisIcon />}
             label="AI Analysis"
             iconPosition="start"
-            disabled={!document.analysis_completed}
           />
         </Tabs>
       </Card>
 
       {/* Tab Content */}
-      <Box sx={{ flex: 1, minHeight: 0 }}>
+      <Box sx={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
         {/* Document Content Tab */}
         {activeTab === 0 && (
-          <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-            <CardContent sx={{ flex: 1, display: 'flex', flexDirection: 'column', pb: 1 }}>
-              <Box display="flex" alignItems="center" justifyContent="space-between" mb={2}>
-                <Box display="flex" alignItems="center" gap={2}>
-                  <Typography variant="h6">
-                    Document Content
-                  </Typography>
-                  <Chip
-                    size="small"
-                    label={document.type}
-                    variant="outlined"
-                  />
-                  <Chip
-                    size="small"
-                    label={formatFileSize(document.size)}
-                    variant="outlined"
-                  />
-                </Box>
-                <Box display="flex" alignItems="center" gap={1}>
-                  {contentLoading && <CircularProgress size={16} />}
-                  <Tooltip title="Refresh content">
-                    <IconButton
-                      onClick={handleRefreshContent}
-                      disabled={contentLoading}
+          <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+            {/* Header */}
+            <Card sx={{ mb: 1, flexShrink: 0 }}>
+              <CardContent sx={{ pb: 2 }}>
+                <Box display="flex" alignItems="center" justifyContent="space-between">
+                  <Box display="flex" alignItems="center" gap={2}>
+                    <Typography variant="h6">
+                      Document Content
+                    </Typography>
+                    <Chip
                       size="small"
-                    >
-                      <RefreshIcon />
-                    </IconButton>
-                  </Tooltip>
+                      label={document.type}
+                      variant="outlined"
+                    />
+                    <Chip
+                      size="small"
+                      label={formatFileSize(document.size)}
+                      variant="outlined"
+                    />
+                  </Box>
+                  <Box display="flex" alignItems="center" gap={1}>
+                    {contentLoading && <CircularProgress size={16} />}
+                    <Tooltip title="Refresh content">
+                      <IconButton
+                        onClick={handleRefreshContent}
+                        disabled={contentLoading}
+                        size="small"
+                      >
+                        <RefreshIcon />
+                      </IconButton>
+                    </Tooltip>
+                  </Box>
                 </Box>
-              </Box>
+              </CardContent>
+            </Card>
 
+            {/* Content Area */}
+            <Box sx={{ flex: 1, minHeight: 0 }}>
               {contentLoading ? (
-                <Box display="flex" justifyContent="center" alignItems="center" flex={1}>
+                <Card sx={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <CircularProgress />
-                </Box>
+                </Card>
               ) : fullContent ? (
                 <Paper
                   variant="outlined"
                   sx={{
-                    flex: 1,
+                    height: '100%',
                     p: 2,
-                    backgroundColor: 'grey.50',
+                    backgroundColor: 'background.paper',
                     overflow: 'auto',
                     border: '1px solid',
-                    borderColor: 'grey.300',
+                    borderColor: 'divider',
                     borderRadius: 1,
                     '&::-webkit-scrollbar': {
                       width: '8px',
@@ -269,39 +274,62 @@ const DocumentViewer: React.FC<DocumentViewerProps> = ({
                     sx={{
                       whiteSpace: 'pre-wrap',
                       fontFamily: 'monospace',
-                      fontSize: '0.8rem',
-                      lineHeight: 1.5,
+                      fontSize: '0.875rem',
+                      lineHeight: 1.6,
                       color: 'text.primary',
-                      margin: 0
+                      margin: 0,
+                      wordBreak: 'break-word'
                     }}
                   >
                     {fullContent}
                   </Typography>
                 </Paper>
               ) : (
-                <Alert severity="info">
-                  Document content not available
-                </Alert>
+                <Card sx={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <Alert severity="info">
+                    Document content not available
+                  </Alert>
+                </Card>
               )}
-            </CardContent>
-          </Card>
-        )}
-
-        {/* AI Analysis Tab */}
-        {activeTab === 1 && document.analysis_completed && (
-          <Box sx={{ height: '100%', overflow: 'auto', p: 1 }}>
-            <DocumentAnalysis documentId={document.id} key={`analysis-${document.id}`} />
+            </Box>
           </Box>
         )}
 
-        {/* Analysis Not Available Message */}
-        {activeTab === 1 && !document.analysis_completed && (
-          <Alert severity="info">
-            <Typography variant="body2">
-              AI analysis is not yet available for this document. Click "Analyze Document" above to extract key information such as
-              important dates, parties involved, and legal concepts.
-            </Typography>
-          </Alert>
+        {/* AI Analysis Tab */}
+        {activeTab === 1 && (
+          <Box
+            sx={{
+              height: '100%',
+              overflow: 'auto',
+              '&::-webkit-scrollbar': {
+                width: '8px',
+              },
+              '&::-webkit-scrollbar-track': {
+                backgroundColor: 'grey.100',
+                borderRadius: '4px',
+              },
+              '&::-webkit-scrollbar-thumb': {
+                backgroundColor: 'grey.400',
+                borderRadius: '4px',
+                '&:hover': {
+                  backgroundColor: 'grey.500',
+                },
+              },
+            }}
+          >
+            {document.analysis_completed ? (
+              <DocumentAnalysis documentId={document.id} key={`analysis-${document.id}`} />
+            ) : (
+              <Box sx={{ p: 2 }}>
+                <Alert severity="info">
+                  <Typography variant="body2">
+                    AI analysis is not yet available for this document. Click "Analyze Document" above to extract key information such as
+                    important dates, parties involved, and legal concepts.
+                  </Typography>
+                </Alert>
+              </Box>
+            )}
+          </Box>
         )}
       </Box>
     </Box>

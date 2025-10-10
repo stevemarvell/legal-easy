@@ -27,6 +27,13 @@ const Documents: React.FC = () => {
     setSelectedDocument(document);
   };
 
+  const handleDocumentsLoaded = (documents: Document[]) => {
+    // Auto-select first document if none is selected and documents are available
+    if (!selectedDocument && documents.length > 0) {
+      setSelectedDocument(documents[0]);
+    }
+  };
+
   const handleDocumentAnalyzed = () => {
     // Trigger refresh of document list to update analysis status
     setRefreshTrigger(prev => prev + 1);
@@ -117,6 +124,7 @@ const Documents: React.FC = () => {
               onDocumentSelect={handleDocumentSelect}
               selectedDocumentId={selectedDocument?.id}
               refreshTrigger={refreshTrigger}
+              onDocumentsLoaded={handleDocumentsLoaded}
             />
           </Box>
 
@@ -136,10 +144,10 @@ const Documents: React.FC = () => {
                   justifyContent: 'center',
                   flexDirection: 'column',
                   textAlign: 'center',
-                  bgcolor: 'grey.50',
+                  bgcolor: 'background.paper',
                   borderRadius: 1,
                   border: '1px dashed',
-                  borderColor: 'grey.300'
+                  borderColor: 'divider'
                 }}
               >
                 <Typography variant="h6" color="text.secondary" gutterBottom>

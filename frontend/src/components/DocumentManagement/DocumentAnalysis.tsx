@@ -50,6 +50,7 @@ import {
 } from '@mui/icons-material';
 import { documentService } from '../../services/documentService';
 import { DocumentAnalysis as DocumentAnalysisType, Document } from '../../types/document';
+import { PartiesComponent, KeyDatesComponent, KeyClausesComponent } from './AnalysisComponents';
 
 interface DocumentAnalysisProps {
   documentId?: string;
@@ -262,13 +263,7 @@ const DocumentAnalysis: React.FC<DocumentAnalysisProps> = ({
     setSnackbarOpen(true);
   };
 
-  const formatDate = (dateString: string): string => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-  };
+
 
   const getConfidenceColor = (score: number): 'success' | 'warning' | 'error' => {
     if (score >= 0.8) return 'success';
@@ -485,29 +480,25 @@ const DocumentAnalysis: React.FC<DocumentAnalysisProps> = ({
                 label={`${analyzedDocuments.filter(d => d.status === 'pending').length} Pending`}
                 color="default"
                 size="small"
-                variant="filled"
-                sx={{ '& .MuiChip-label': { color: 'white !important' } }}
+                variant="outlined"
               />
               <Chip
                 label={`${analyzedDocuments.filter(d => d.status === 'analyzing').length} Analyzing`}
                 color="info"
                 size="small"
-                variant="filled"
-                sx={{ '& .MuiChip-label': { color: 'white !important' } }}
+                variant="outlined"
               />
               <Chip
                 label={`${analyzedDocuments.filter(d => d.status === 'completed').length} Completed`}
                 color="success"
                 size="small"
-                variant="filled"
-                sx={{ '& .MuiChip-label': { color: 'white !important' } }}
+                variant="outlined"
               />
               <Chip
                 label={`${analyzedDocuments.filter(d => d.status === 'error').length} Errors`}
                 color="error"
                 size="small"
-                variant="filled"
-                sx={{ '& .MuiChip-label': { color: 'white !important' } }}
+                variant="outlined"
               />
             </Box>
             <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
@@ -631,84 +622,10 @@ const DocumentAnalysis: React.FC<DocumentAnalysisProps> = ({
                 <Divider sx={{ mb: 2 }} />
 
                 {/* Key Dates */}
-                <Accordion defaultExpanded sx={{ backgroundColor: 'grey.900', color: 'white' }}>
-                  <AccordionSummary
-                    expandIcon={<ExpandMoreIcon sx={{ color: 'white' }} />}
-                    sx={{ backgroundColor: 'grey.800', color: 'white' }}
-                  >
-                    <Box display="flex" alignItems="center" gap={1}>
-                      <DateIcon sx={{ color: 'white' }} />
-                      <Typography variant="subtitle1" sx={{ color: 'white' }}>
-                        Key Dates ({analysis.key_dates.length})
-                      </Typography>
-                    </Box>
-                  </AccordionSummary>
-                  <AccordionDetails sx={{ backgroundColor: 'grey.900', color: 'white' }}>
-                    {analysis.key_dates.length > 0 ? (
-                      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-                        {analysis.key_dates.map((date, index) => (
-                          <Chip
-                            key={index}
-                            icon={<DateIcon sx={{ color: 'white !important' }} />}
-                            label={formatDate(date)}
-                            sx={{
-                              fontWeight: 'medium',
-                              backgroundColor: '#1a1a1a !important',
-                              color: 'white !important',
-                              '& .MuiChip-label': { color: 'white !important' },
-                              '& .MuiChip-icon': { color: 'white !important' },
-                              border: 'none !important'
-                            }}
-                          />
-                        ))}
-                      </Box>
-                    ) : (
-                      <Typography variant="body2" color="text.secondary">
-                        No key dates identified
-                      </Typography>
-                    )}
-                  </AccordionDetails>
-                </Accordion>
+                <KeyDatesComponent dates={analysis.key_dates} variant="accordion" />
 
                 {/* Parties Involved */}
-                <Accordion defaultExpanded sx={{ backgroundColor: 'grey.900', color: 'white' }}>
-                  <AccordionSummary
-                    expandIcon={<ExpandMoreIcon sx={{ color: 'white' }} />}
-                    sx={{ backgroundColor: 'grey.800', color: 'white' }}
-                  >
-                    <Box display="flex" alignItems="center" gap={1}>
-                      <PersonIcon sx={{ color: 'white' }} />
-                      <Typography variant="subtitle1" sx={{ color: 'white' }}>
-                        Parties Involved ({analysis.parties_involved.length})
-                      </Typography>
-                    </Box>
-                  </AccordionSummary>
-                  <AccordionDetails sx={{ backgroundColor: 'grey.900', color: 'white' }}>
-                    {analysis.parties_involved.length > 0 ? (
-                      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-                        {analysis.parties_involved.map((party, index) => (
-                          <Chip
-                            key={index}
-                            icon={<PersonIcon sx={{ color: 'white !important' }} />}
-                            label={party}
-                            sx={{
-                              fontWeight: 'medium',
-                              backgroundColor: '#1a1a1a !important',
-                              color: 'white !important',
-                              '& .MuiChip-label': { color: 'white !important' },
-                              '& .MuiChip-icon': { color: 'white !important' },
-                              border: 'none !important'
-                            }}
-                          />
-                        ))}
-                      </Box>
-                    ) : (
-                      <Typography variant="body2" color="text.secondary">
-                        No parties identified
-                      </Typography>
-                    )}
-                  </AccordionDetails>
-                </Accordion>
+                <PartiesComponent parties={analysis.parties_involved} variant="accordion" />
               </CardContent>
             </Card>
           </Box>
@@ -730,67 +647,13 @@ const DocumentAnalysis: React.FC<DocumentAnalysisProps> = ({
                   <Chip
                     label={analysis.document_type}
                     color="primary"
-                    variant="filled"
+                    variant="outlined"
                     size="medium"
-                    sx={{
-                      '& .MuiChip-label': { color: 'white !important' }
-                    }}
                   />
                 </Box>
 
                 {/* Key Clauses */}
-                <Accordion defaultExpanded sx={{ backgroundColor: 'grey.900', color: 'white' }}>
-                  <AccordionSummary
-                    expandIcon={<ExpandMoreIcon sx={{ color: 'white' }} />}
-                    sx={{ backgroundColor: 'grey.800', color: 'white' }}
-                  >
-                    <Box display="flex" alignItems="center" gap={1}>
-                      <LegalIcon sx={{ color: 'white' }} />
-                      <Typography variant="subtitle1" sx={{ color: 'white' }}>
-                        Key Clauses ({analysis.key_clauses.length})
-                      </Typography>
-                    </Box>
-                  </AccordionSummary>
-                  <AccordionDetails sx={{ backgroundColor: 'grey.900', color: 'white' }}>
-                    {analysis.key_clauses.length > 0 ? (
-                      <List dense>
-                        {analysis.key_clauses.map((clause, index) => (
-                          <ListItem key={index}>
-                            <ListItemIcon>
-                              <LegalIcon fontSize="small" color="warning" />
-                            </ListItemIcon>
-                            <ListItemText
-                              primary={
-                                <Paper
-                                  variant="outlined"
-                                  sx={{
-                                    p: 1.5,
-                                    backgroundColor: 'grey.800',
-                                    borderColor: 'grey.600',
-                                    borderWidth: 1,
-                                    color: 'white',
-                                    '&:hover': {
-                                      backgroundColor: 'grey.700',
-                                      color: 'white'
-                                    }
-                                  }}
-                                >
-                                  <Typography variant="body2" fontWeight="medium">
-                                    {clause}
-                                  </Typography>
-                                </Paper>
-                              }
-                            />
-                          </ListItem>
-                        ))}
-                      </List>
-                    ) : (
-                      <Typography variant="body2" color="text.secondary">
-                        No key clauses identified
-                      </Typography>
-                    )}
-                  </AccordionDetails>
-                </Accordion>
+                <KeyClausesComponent clauses={analysis.key_clauses} variant="accordion" />
               </CardContent>
             </Card>
           </Box>
@@ -954,15 +817,15 @@ const AnalyzedDocumentRow: React.FC<AnalyzedDocumentRowProps> = ({ item }) => {
   const getStatusChip = (status: AnalyzedDocument['status']) => {
     switch (status) {
       case 'pending':
-        return <Chip label="Pending" color="default" size="small" variant="filled" sx={{ '& .MuiChip-label': { color: 'white !important' } }} />;
+        return <Chip label="Pending" color="default" size="small" variant="outlined" />;
       case 'analyzing':
-        return <Chip label="Analyzing" color="info" size="small" variant="filled" icon={<CircularProgress size={16} />} sx={{ '& .MuiChip-label': { color: 'white !important' } }} />;
+        return <Chip label="Analyzing" color="info" size="small" variant="outlined" icon={<CircularProgress size={16} />} />;
       case 'completed':
-        return <Chip label="Completed" color="success" size="small" variant="filled" icon={<CheckIcon />} sx={{ '& .MuiChip-label': { color: 'white !important' } }} />;
+        return <Chip label="Completed" color="success" size="small" variant="outlined" icon={<CheckIcon />} />;
       case 'error':
-        return <Chip label="Error" color="error" size="small" variant="filled" icon={<WarningIcon />} sx={{ '& .MuiChip-label': { color: 'white !important' } }} />;
+        return <Chip label="Error" color="error" size="small" variant="outlined" icon={<WarningIcon />} />;
       default:
-        return <Chip label="Unknown" color="default" size="small" variant="filled" sx={{ '& .MuiChip-label': { color: 'white !important' } }} />;
+        return <Chip label="Unknown" color="default" size="small" variant="outlined" />;
     }
   };
 
@@ -1039,9 +902,8 @@ const AnalyzedDocumentRow: React.FC<AnalyzedDocumentRowProps> = ({ item }) => {
           <Chip
             label={item.analysis?.document_type || item.document.type}
             color="primary"
-            variant="filled"
+            variant="outlined"
             size="small"
-            sx={{ '& .MuiChip-label': { color: 'white !important' } }}
           />
         </TableCell>
         <TableCell>
@@ -1126,102 +988,18 @@ const AnalyzedDocumentRow: React.FC<AnalyzedDocumentRowProps> = ({ item }) => {
                   <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 3 }}>
                     {/* Parties */}
                     <Box sx={{ flex: 1 }}>
-                      <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
-                        <Box display="flex" alignItems="center" mb={2}>
-                          <PersonIcon color="success" sx={{ mr: 1 }} />
-                          <Typography variant="subtitle2" fontWeight="bold">
-                            Parties ({item.analysis.parties_involved.length})
-                          </Typography>
-                        </Box>
-                        {item.analysis.parties_involved.length > 0 ? (
-                          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                            {item.analysis.parties_involved.map((party, idx) => (
-                              <Chip
-                                key={idx}
-                                label={party}
-                                size="small"
-                                sx={{
-                                  fontWeight: 'medium',
-                                  backgroundColor: '#1a1a1a !important',
-                                  color: 'white !important',
-                                  '& .MuiChip-label': { color: 'white !important' },
-                                  border: 'none !important'
-                                }}
-                              />
-                            ))}
-                          </Box>
-                        ) : (
-                          <Typography variant="body2" color="text.secondary">
-                            No parties identified
-                          </Typography>
-                        )}
-                      </Paper>
+                      <PartiesComponent parties={item.analysis.parties_involved} variant="paper" />
                     </Box>
 
                     {/* Key Dates */}
                     <Box sx={{ flex: 1 }}>
-                      <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
-                        <Box display="flex" alignItems="center" mb={2}>
-                          <DateIcon color="info" sx={{ mr: 1 }} />
-                          <Typography variant="subtitle2" fontWeight="bold">
-                            Key Dates ({item.analysis.key_dates.length})
-                          </Typography>
-                        </Box>
-                        {item.analysis.key_dates.length > 0 ? (
-                          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                            {item.analysis.key_dates.map((date, idx) => (
-                              <Chip
-                                key={idx}
-                                label={new Date(date).toLocaleDateString()}
-                                size="small"
-                                sx={{
-                                  fontWeight: 'medium',
-                                  backgroundColor: '#1a1a1a !important',
-                                  color: 'white !important',
-                                  '& .MuiChip-label': { color: 'white !important' },
-                                  border: 'none !important'
-                                }}
-                              />
-                            ))}
-                          </Box>
-                        ) : (
-                          <Typography variant="body2" color="text.secondary">
-                            No key dates identified
-                          </Typography>
-                        )}
-                      </Paper>
+                      <KeyDatesComponent dates={item.analysis.key_dates} variant="paper" />
                     </Box>
                   </Box>
 
                   {/* Key Clauses */}
                   {item.analysis.key_clauses && item.analysis.key_clauses.length > 0 && (
-                    <Paper variant="outlined" sx={{ p: 2 }}>
-                      <Box display="flex" alignItems="center" mb={2}>
-                        <LegalIcon color="warning" sx={{ mr: 1 }} />
-                        <Typography variant="subtitle2" fontWeight="bold">
-                          Key Clauses ({item.analysis.key_clauses.length})
-                        </Typography>
-                      </Box>
-                      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-                        {item.analysis.key_clauses.map((clause, idx) => (
-                          <Paper
-                            key={idx}
-                            variant="outlined"
-                            sx={{
-                              p: 1.5,
-                              backgroundColor: 'grey.800',
-                              borderColor: 'grey.600',
-                              borderWidth: 1,
-                              color: 'white'
-                            }}
-                          >
-                            <Typography variant="body2" fontWeight="medium">
-                              {clause}
-                            </Typography>
-                          </Paper>
-                        ))}
-                      </Box>
-                    </Paper>
+                    <KeyClausesComponent clauses={item.analysis.key_clauses} variant="paper" />
                   )}
 
                   {/* Confidence Scores */}
