@@ -11,7 +11,7 @@ class DocumentService:
     def __init__(self):
         self._documents_cache = None
         self._analyses_cache = None
-        self._documents_file = os.path.join(os.path.dirname(__file__), "..", "data", "case_documents", "case_documents_index.json")
+        self._documents_file = os.path.join(os.path.dirname(__file__), "..", "data", "cases", "cases_index.json")
         self._analyses_file = os.path.join(os.path.dirname(__file__), "..", "data", "demo_document_analysis.json")
         self._analysis_storage = AnalysisStorageService()
     

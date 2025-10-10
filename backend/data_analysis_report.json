@@ -1,0 +1,970 @@
+{
+  "metadata": {
+    "analysis_date": "2025-10-10T09:26:29.606175",
+    "data_root": "backend\\app\\data",
+    "total_files": 44,
+    "total_directories": 19,
+    "total_size_bytes": 283038
+  },
+  "directory_structure": {
+    "root": {
+      "absolute_path": "backend\\app\\data",
+      "category": "demo_data",
+      "subdirectories": [
+        "ai",
+        "al",
+        "case_documents",
+        "embeddings",
+        "legal_corpus"
+      ],
+      "file_count": 5,
+      "files": [
+        "demo_cases.json",
+        "demo_case_analysis_summaries.json",
+        "demo_legal_corpus.json",
+        "demo_playbooks.json",
+        "__init__.py"
+      ]
+    },
+    "ai": {
+      "absolute_path": "backend\\app\\data\\ai",
+      "category": "analysis_data",
+      "subdirectories": [
+        "case_documents",
+        "legal_corpus"
+      ],
+      "file_count": 0,
+      "files": []
+    },
+    "ai\\case_documents": {
+      "absolute_path": "backend\\app\\data\\ai\\case_documents",
+      "category": "case_data",
+      "subdirectories": [],
+      "file_count": 1,
+      "files": [
+        "case_documents_analysis.json"
+      ]
+    },
+    "ai\\legal_corpus": {
+      "absolute_path": "backend\\app\\data\\ai\\legal_corpus",
+      "category": "corpus_data",
+      "subdirectories": [],
+      "file_count": 0,
+      "files": []
+    },
+    "al": {
+      "absolute_path": "backend\\app\\data\\al",
+      "category": "analysis_data",
+      "subdirectories": [
+        "case_documents"
+      ],
+      "file_count": 0,
+      "files": []
+    },
+    "al\\case_documents": {
+      "absolute_path": "backend\\app\\data\\al\\case_documents",
+      "category": "case_data",
+      "subdirectories": [],
+      "file_count": 1,
+      "files": [
+        "documents_analysis.json"
+      ]
+    },
+    "case_documents": {
+      "absolute_path": "backend\\app\\data\\case_documents",
+      "category": "case_data",
+      "subdirectories": [
+        "case-001",
+        "case-002",
+        "case-003",
+        "case-004",
+        "case-005",
+        "case-006"
+      ],
+      "file_count": 1,
+      "files": [
+        "case_documents_index.json"
+      ]
+    },
+    "case_documents\\case-001": {
+      "absolute_path": "backend\\app\\data\\case_documents\\case-001",
+      "category": "case_data",
+      "subdirectories": [],
+      "file_count": 3,
+      "files": [
+        "doc-001_employment_contract_sarah_chen.txt",
+        "doc-002_safety_violation_report.txt",
+        "doc-003_termination_notice_email.txt"
+      ]
+    },
+    "case_documents\\case-002": {
+      "absolute_path": "backend\\app\\data\\case_documents\\case-002",
+      "category": "case_data",
+      "subdirectories": [],
+      "file_count": 4,
+      "files": [
+        "doc-004_software_license_agreement.txt",
+        "doc-005_server_deployment_logs.txt",
+        "doc-006_license_violation_notice.txt",
+        "doc-007_email_thread_license_clarification.txt"
+      ]
+    },
+    "case_documents\\case-003": {
+      "absolute_path": "backend\\app\\data\\case_documents\\case-003",
+      "category": "case_data",
+      "subdirectories": [],
+      "file_count": 3,
+      "files": [
+        "doc-008_consulting_services_agreement.txt",
+        "doc-009_outstanding_invoices.txt",
+        "doc-010_client_complaint_email.txt"
+      ]
+    },
+    "case_documents\\case-004": {
+      "absolute_path": "backend\\app\\data\\case_documents\\case-004",
+      "category": "case_data",
+      "subdirectories": [],
+      "file_count": 4,
+      "files": [
+        "doc-011_employment_contract_james_wilson.txt",
+        "doc-012_promotion_records_and_rejections.txt",
+        "doc-013_performance_reviews.txt",
+        "doc-014_witness_statements.txt"
+      ]
+    },
+    "case_documents\\case-005": {
+      "absolute_path": "backend\\app\\data\\case_documents\\case-005",
+      "category": "case_data",
+      "subdirectories": [],
+      "file_count": 3,
+      "files": [
+        "doc-015_non_compete_agreement.txt",
+        "doc-016_new_employment_offer_letter.txt",
+        "doc-017_trade_secrets_documentation.txt"
+      ]
+    },
+    "case_documents\\case-006": {
+      "absolute_path": "backend\\app\\data\\case_documents\\case-006",
+      "category": "case_data",
+      "subdirectories": [],
+      "file_count": 4,
+      "files": [
+        "doc-018_medical_services_contract.txt",
+        "doc-019_denied_claims_summary.txt",
+        "doc-020_medical_records_and_justification.txt",
+        "doc-021_insurance_policy_terms.txt"
+      ]
+    },
+    "embeddings": {
+      "absolute_path": "backend\\app\\data\\embeddings",
+      "category": "ml_data",
+      "subdirectories": [],
+      "file_count": 3,
+      "files": [
+        "legal_corpus.json",
+        "simple_embeddings.npz",
+        "vocabulary.json"
+      ]
+    },
+    "legal_corpus": {
+      "absolute_path": "backend\\app\\data\\legal_corpus",
+      "category": "corpus_data",
+      "subdirectories": [
+        "clauses",
+        "contracts",
+        "precedents",
+        "statutes"
+      ],
+      "file_count": 2,
+      "files": [
+        "corpus_index.json",
+        "README.md"
+      ]
+    },
+    "legal_corpus\\clauses": {
+      "absolute_path": "backend\\app\\data\\legal_corpus\\clauses",
+      "category": "corpus_data",
+      "subdirectories": [],
+      "file_count": 3,
+      "files": [
+        "intellectual_property_clauses.txt",
+        "liability_clauses.txt",
+        "termination_clauses.txt"
+      ]
+    },
+    "legal_corpus\\contracts": {
+      "absolute_path": "backend\\app\\data\\legal_corpus\\contracts",
+      "category": "corpus_data",
+      "subdirectories": [],
+      "file_count": 3,
+      "files": [
+        "employment_template.txt",
+        "non_disclosure_agreement.txt",
+        "service_agreement_template.txt"
+      ]
+    },
+    "legal_corpus\\precedents": {
+      "absolute_path": "backend\\app\\data\\legal_corpus\\precedents",
+      "category": "corpus_data",
+      "subdirectories": [],
+      "file_count": 2,
+      "files": [
+        "contract_law_precedents.txt",
+        "employment_law_precedents.txt"
+      ]
+    },
+    "legal_corpus\\statutes": {
+      "absolute_path": "backend\\app\\data\\legal_corpus\\statutes",
+      "category": "corpus_data",
+      "subdirectories": [],
+      "file_count": 2,
+      "files": [
+        "contract_statutes.txt",
+        "employment_statutes.txt"
+      ]
+    }
+  },
+  "file_inventory": {
+    "demo_cases.json": {
+      "absolute_path": "backend\\app\\data\\demo_cases.json",
+      "size_bytes": 4801,
+      "modified_time": "2025-10-09T11:48:21.755449",
+      "file_hash": "6b4e2fd27e14c10eee9d4716fcdb4c678e7aa5a3591621816f8f1eb34dba0c05",
+      "extension": ".json",
+      "category": "demo_file",
+      "migration_action": "no_action"
+    },
+    "demo_case_analysis_summaries.json": {
+      "absolute_path": "backend\\app\\data\\demo_case_analysis_summaries.json",
+      "size_bytes": 10321,
+      "modified_time": "2025-10-09T11:49:01.292025",
+      "file_hash": "bbbe5cb1d68d65c4c4cfa7247a4e953daf62d869136e2bfba815ea1c2f9a4731",
+      "extension": ".json",
+      "category": "demo_file",
+      "migration_action": "no_action"
+    },
+    "demo_legal_corpus.json": {
+      "absolute_path": "backend\\app\\data\\demo_legal_corpus.json",
+      "size_bytes": 4534,
+      "modified_time": "2025-10-08T21:36:13.326035",
+      "file_hash": "5086c8993687b66fbbd7ab360059089eded58fb2485eb7e69d266ed96fac3e42",
+      "extension": ".json",
+      "category": "demo_file",
+      "migration_action": "no_action"
+    },
+    "demo_playbooks.json": {
+      "absolute_path": "backend\\app\\data\\demo_playbooks.json",
+      "size_bytes": 36501,
+      "modified_time": "2025-10-09T17:12:40.380266",
+      "file_hash": "2e41e11833d73b8b95c030f544eb32e022ed2d4e5078e419e94760aaac5a05b6",
+      "extension": ".json",
+      "category": "demo_file",
+      "migration_action": "no_action"
+    },
+    "__init__.py": {
+      "absolute_path": "backend\\app\\data\\__init__.py",
+      "size_bytes": 37,
+      "modified_time": "2025-10-08T20:22:45.172842",
+      "file_hash": "8b0e87f19ba1b548f5d1f2afc9aefde82adfb9176e8ec2357403a54b04a3111f",
+      "extension": ".py",
+      "category": "other_file",
+      "migration_action": "no_action"
+    },
+    "ai\\case_documents\\case_documents_analysis.json": {
+      "absolute_path": "backend\\app\\data\\ai\\case_documents\\case_documents_analysis.json",
+      "size_bytes": 167,
+      "modified_time": "2025-10-10T07:48:51.125263",
+      "file_hash": "24251377cc4770790a7530dcc967dc01a0d9dcdb5c376161cf75b53d2cc50f3f",
+      "extension": ".json",
+      "category": "analysis_file",
+      "migration_action": "move_to_cases"
+    },
+    "al\\case_documents\\documents_analysis.json": {
+      "absolute_path": "backend\\app\\data\\al\\case_documents\\documents_analysis.json",
+      "size_bytes": 28525,
+      "modified_time": "2025-10-10T08:34:50.285493",
+      "file_hash": "33e7dbd5c066ea1f879b6a700f37302babe15dc7a8c92ee157d7df396388054a",
+      "extension": ".json",
+      "category": "analysis_file",
+      "migration_action": "move_to_cases"
+    },
+    "case_documents\\case_documents_index.json": {
+      "absolute_path": "backend\\app\\data\\case_documents\\case_documents_index.json",
+      "size_bytes": 10399,
+      "modified_time": "2025-10-10T08:28:30.462094",
+      "file_hash": "1ceb0f74ab8f528438d75fae200e065cd8072225433f6b34d534c08ed7ba3bcb",
+      "extension": ".json",
+      "category": "index_file",
+      "migration_action": "move_to_cases"
+    },
+    "case_documents\\case-001\\doc-001_employment_contract_sarah_chen.txt": {
+      "absolute_path": "backend\\app\\data\\case_documents\\case-001\\doc-001_employment_contract_sarah_chen.txt",
+      "size_bytes": 2605,
+      "modified_time": "2025-10-08T21:14:42.145046",
+      "file_hash": "ed060c3399a2b142a1056f177820b88525beb4754d449514966810808aaf9819",
+      "extension": ".txt",
+      "category": "case_document",
+      "migration_action": "move_to_cases"
+    },
+    "case_documents\\case-001\\doc-002_safety_violation_report.txt": {
+      "absolute_path": "backend\\app\\data\\case_documents\\case-001\\doc-002_safety_violation_report.txt",
+      "size_bytes": 3030,
+      "modified_time": "2025-10-08T21:15:12.837275",
+      "file_hash": "8b99194ad96d9ddffddb182a2dcb955ffcc09e09ddc626f845ef09f1b85061bb",
+      "extension": ".txt",
+      "category": "case_document",
+      "migration_action": "move_to_cases"
+    },
+    "case_documents\\case-001\\doc-003_termination_notice_email.txt": {
+      "absolute_path": "backend\\app\\data\\case_documents\\case-001\\doc-003_termination_notice_email.txt",
+      "size_bytes": 2263,
+      "modified_time": "2025-10-08T21:15:40.204429",
+      "file_hash": "ba43ba81c6df7b94e5b09d10781de68e3b05fea7e9f81c75bdf2288f6052b8a4",
+      "extension": ".txt",
+      "category": "case_document",
+      "migration_action": "move_to_cases"
+    },
+    "case_documents\\case-002\\doc-004_software_license_agreement.txt": {
+      "absolute_path": "backend\\app\\data\\case_documents\\case-002\\doc-004_software_license_agreement.txt",
+      "size_bytes": 3686,
+      "modified_time": "2025-10-08T21:16:20.476150",
+      "file_hash": "1003a8874e9f27584a1deb8a60c17b1aae032d1a815908d1da950b006f0688d7",
+      "extension": ".txt",
+      "category": "case_document",
+      "migration_action": "move_to_cases"
+    },
+    "case_documents\\case-002\\doc-005_server_deployment_logs.txt": {
+      "absolute_path": "backend\\app\\data\\case_documents\\case-002\\doc-005_server_deployment_logs.txt",
+      "size_bytes": 3535,
+      "modified_time": "2025-10-08T21:17:22.091821",
+      "file_hash": "bbd1270075a18aa2261a6d4a97fce193fea7772aa793b9576a08e05d0a7e9391",
+      "extension": ".txt",
+      "category": "case_document",
+      "migration_action": "move_to_cases"
+    },
+    "case_documents\\case-002\\doc-006_license_violation_notice.txt": {
+      "absolute_path": "backend\\app\\data\\case_documents\\case-002\\doc-006_license_violation_notice.txt",
+      "size_bytes": 3297,
+      "modified_time": "2025-10-08T21:18:06.797939",
+      "file_hash": "cf4d108d9f9d0b70c71495bfae96c44eb87d56207c4c278b70e9d3b1a24ac356",
+      "extension": ".txt",
+      "category": "case_document",
+      "migration_action": "move_to_cases"
+    },
+    "case_documents\\case-002\\doc-007_email_thread_license_clarification.txt": {
+      "absolute_path": "backend\\app\\data\\case_documents\\case-002\\doc-007_email_thread_license_clarification.txt",
+      "size_bytes": 5119,
+      "modified_time": "2025-10-08T21:19:21.110509",
+      "file_hash": "4461aaa246749b21b028b8cb71e5a7c66fb6daec647d4c8a4fa14929c206d563",
+      "extension": ".txt",
+      "category": "case_document",
+      "migration_action": "move_to_cases"
+    },
+    "case_documents\\case-003\\doc-008_consulting_services_agreement.txt": {
+      "absolute_path": "backend\\app\\data\\case_documents\\case-003\\doc-008_consulting_services_agreement.txt",
+      "size_bytes": 3482,
+      "modified_time": "2025-10-08T21:19:58.942274",
+      "file_hash": "284622f677cc83b2bb6e239e46bdde0c3666311075b20c98565db1f8f173f4cb",
+      "extension": ".txt",
+      "category": "case_document",
+      "migration_action": "move_to_cases"
+    },
+    "case_documents\\case-003\\doc-009_outstanding_invoices.txt": {
+      "absolute_path": "backend\\app\\data\\case_documents\\case-003\\doc-009_outstanding_invoices.txt",
+      "size_bytes": 3876,
+      "modified_time": "2025-10-09T17:13:11.734595",
+      "file_hash": "877441782edcc7f5286c29405b2f6c90d1591666a27f28983dc7622ac8372d7c",
+      "extension": ".txt",
+      "category": "case_document",
+      "migration_action": "move_to_cases"
+    },
+    "case_documents\\case-003\\doc-010_client_complaint_email.txt": {
+      "absolute_path": "backend\\app\\data\\case_documents\\case-003\\doc-010_client_complaint_email.txt",
+      "size_bytes": 4124,
+      "modified_time": "2025-10-08T21:21:22.817153",
+      "file_hash": "d09ca7a9d2c691a85ab76a7300f3ac82519c95e0e91a596b5bf92cb8f88206d6",
+      "extension": ".txt",
+      "category": "case_document",
+      "migration_action": "move_to_cases"
+    },
+    "case_documents\\case-004\\doc-011_employment_contract_james_wilson.txt": {
+      "absolute_path": "backend\\app\\data\\case_documents\\case-004\\doc-011_employment_contract_james_wilson.txt",
+      "size_bytes": 3086,
+      "modified_time": "2025-10-08T21:21:50.056938",
+      "file_hash": "ecfc68f7c643c1ebe3295bcc62ca4a1ee441e943ffbe45c2bd592067bb40557e",
+      "extension": ".txt",
+      "category": "case_document",
+      "migration_action": "move_to_cases"
+    },
+    "case_documents\\case-004\\doc-012_promotion_records_and_rejections.txt": {
+      "absolute_path": "backend\\app\\data\\case_documents\\case-004\\doc-012_promotion_records_and_rejections.txt",
+      "size_bytes": 5190,
+      "modified_time": "2025-10-08T21:22:50.121356",
+      "file_hash": "9e2c97375e0fd1ff4add62af72cd9046dd48a177a87518974448a6a88fbec43f",
+      "extension": ".txt",
+      "category": "case_document",
+      "migration_action": "move_to_cases"
+    },
+    "case_documents\\case-004\\doc-013_performance_reviews.txt": {
+      "absolute_path": "backend\\app\\data\\case_documents\\case-004\\doc-013_performance_reviews.txt",
+      "size_bytes": 3233,
+      "modified_time": "2025-10-09T21:06:13.064842",
+      "file_hash": "c293ad586d648ef92c2934be26195587dd01addd2a198275b7cb326f06dd1f10",
+      "extension": ".txt",
+      "category": "case_document",
+      "migration_action": "move_to_cases"
+    },
+    "case_documents\\case-004\\doc-014_witness_statements.txt": {
+      "absolute_path": "backend\\app\\data\\case_documents\\case-004\\doc-014_witness_statements.txt",
+      "size_bytes": 6323,
+      "modified_time": "2025-10-09T21:06:47.328711",
+      "file_hash": "63c95f404780d544eae47a8f0b9912239aceb2d27450e67d8f43bc76c0ccce1b",
+      "extension": ".txt",
+      "category": "case_document",
+      "migration_action": "move_to_cases"
+    },
+    "case_documents\\case-005\\doc-015_non_compete_agreement.txt": {
+      "absolute_path": "backend\\app\\data\\case_documents\\case-005\\doc-015_non_compete_agreement.txt",
+      "size_bytes": 2943,
+      "modified_time": "2025-10-08T21:23:21.691711",
+      "file_hash": "0616172fcda20a9bbb66fff32ef0e8d83877d6084f31491b3d5700947e0448b7",
+      "extension": ".txt",
+      "category": "case_document",
+      "migration_action": "move_to_cases"
+    },
+    "case_documents\\case-005\\doc-016_new_employment_offer_letter.txt": {
+      "absolute_path": "backend\\app\\data\\case_documents\\case-005\\doc-016_new_employment_offer_letter.txt",
+      "size_bytes": 3868,
+      "modified_time": "2025-10-09T21:07:11.511077",
+      "file_hash": "c95dde836fbd5383f52a9c5c07651c846c398de742be5f977f642e2177681fc5",
+      "extension": ".txt",
+      "category": "case_document",
+      "migration_action": "move_to_cases"
+    },
+    "case_documents\\case-005\\doc-017_trade_secrets_documentation.txt": {
+      "absolute_path": "backend\\app\\data\\case_documents\\case-005\\doc-017_trade_secrets_documentation.txt",
+      "size_bytes": 5505,
+      "modified_time": "2025-10-09T21:07:41.881822",
+      "file_hash": "1454f0579bd2bc9efe643ba3de51a15fb3a99cbd1f44ed77c4acadffd1c8cfe7",
+      "extension": ".txt",
+      "category": "case_document",
+      "migration_action": "move_to_cases"
+    },
+    "case_documents\\case-006\\doc-018_medical_services_contract.txt": {
+      "absolute_path": "backend\\app\\data\\case_documents\\case-006\\doc-018_medical_services_contract.txt",
+      "size_bytes": 3515,
+      "modified_time": "2025-10-08T21:23:56.682128",
+      "file_hash": "bd5b5e2c5941bb261c8dcdd1f84de82a37849981f61325a772fba2dc5f97f1ab",
+      "extension": ".txt",
+      "category": "case_document",
+      "migration_action": "move_to_cases"
+    },
+    "case_documents\\case-006\\doc-019_denied_claims_summary.txt": {
+      "absolute_path": "backend\\app\\data\\case_documents\\case-006\\doc-019_denied_claims_summary.txt",
+      "size_bytes": 5514,
+      "modified_time": "2025-10-09T21:13:16.340754",
+      "file_hash": "7bacdb21355f15029be6d4d127f25a152e6eea1080308e9706b4918290e29463",
+      "extension": ".txt",
+      "category": "case_document",
+      "migration_action": "move_to_cases"
+    },
+    "case_documents\\case-006\\doc-020_medical_records_and_justification.txt": {
+      "absolute_path": "backend\\app\\data\\case_documents\\case-006\\doc-020_medical_records_and_justification.txt",
+      "size_bytes": 9427,
+      "modified_time": "2025-10-09T21:10:05.391507",
+      "file_hash": "120d06cdcc8419fefb321443b164892b9f80e8550ea7ee60eb1407d4fee49ebd",
+      "extension": ".txt",
+      "category": "case_document",
+      "migration_action": "move_to_cases"
+    },
+    "case_documents\\case-006\\doc-021_insurance_policy_terms.txt": {
+      "absolute_path": "backend\\app\\data\\case_documents\\case-006\\doc-021_insurance_policy_terms.txt",
+      "size_bytes": 7118,
+      "modified_time": "2025-10-09T21:08:57.081699",
+      "file_hash": "56ba599299a7dedcf4672a47ea3b7aaeb750c8ef45e0d0b5e39bc870446b7771",
+      "extension": ".txt",
+      "category": "case_document",
+      "migration_action": "move_to_cases"
+    },
+    "embeddings\\legal_corpus.json": {
+      "absolute_path": "backend\\app\\data\\embeddings\\legal_corpus.json",
+      "size_bytes": 40118,
+      "modified_time": "2025-10-09T11:49:33.402992",
+      "file_hash": "5e810787df831c18f28e026ab97abef29931d161a50a9e9e4759c524bf640994",
+      "extension": ".json",
+      "category": "corpus_file",
+      "migration_action": "no_action"
+    },
+    "embeddings\\simple_embeddings.npz": {
+      "absolute_path": "backend\\app\\data\\embeddings\\simple_embeddings.npz",
+      "size_bytes": 13918,
+      "modified_time": "2025-10-08T22:30:54.631669",
+      "file_hash": "d6cd228b075bc0ce4d2c7132fa7f7fe3c6c7ffd696247ff5432e2971b42fef66",
+      "extension": ".npz",
+      "category": "embedding_file",
+      "migration_action": "no_action"
+    },
+    "embeddings\\vocabulary.json": {
+      "absolute_path": "backend\\app\\data\\embeddings\\vocabulary.json",
+      "size_bytes": 9191,
+      "modified_time": "2025-10-08T22:30:54.633701",
+      "file_hash": "92a21175b85eb02f83fd4b32957ab975cf33cc0bab1cfb24f6bc3fb3a7e408ae",
+      "extension": ".json",
+      "category": "embedding_file",
+      "migration_action": "no_action"
+    },
+    "legal_corpus\\corpus_index.json": {
+      "absolute_path": "backend\\app\\data\\legal_corpus\\corpus_index.json",
+      "size_bytes": 1513,
+      "modified_time": "2025-10-08T21:35:49.667886",
+      "file_hash": "d6631e5b5ace7fa95aaf0a61aeb5d35122f2cafcb7308502ee2bc07417f58806",
+      "extension": ".json",
+      "category": "index_file",
+      "migration_action": "update_index"
+    },
+    "legal_corpus\\README.md": {
+      "absolute_path": "backend\\app\\data\\legal_corpus\\README.md",
+      "size_bytes": 2607,
+      "modified_time": "2025-10-08T21:35:30.121751",
+      "file_hash": "a91e82d7790cceada8379e2a6c154ff3b003442aa2115b2c9fefd85605a4d687",
+      "extension": ".md",
+      "category": "corpus_file",
+      "migration_action": "no_action"
+    },
+    "legal_corpus\\clauses\\intellectual_property_clauses.txt": {
+      "absolute_path": "backend\\app\\data\\legal_corpus\\clauses\\intellectual_property_clauses.txt",
+      "size_bytes": 2323,
+      "modified_time": "2025-10-08T21:28:26.247924",
+      "file_hash": "9fff3d6e060b155fc35b022d9e2d4124a3a8dc6cb0fec21f58aea8f5243ae7e3",
+      "extension": ".txt",
+      "category": "corpus_file",
+      "migration_action": "no_action"
+    },
+    "legal_corpus\\clauses\\liability_clauses.txt": {
+      "absolute_path": "backend\\app\\data\\legal_corpus\\clauses\\liability_clauses.txt",
+      "size_bytes": 2266,
+      "modified_time": "2025-10-08T21:28:12.227964",
+      "file_hash": "3e86a35343128f1f1d7d3259ffdac897bf74dc9c07befee256dd87e561365e1d",
+      "extension": ".txt",
+      "category": "corpus_file",
+      "migration_action": "no_action"
+    },
+    "legal_corpus\\clauses\\termination_clauses.txt": {
+      "absolute_path": "backend\\app\\data\\legal_corpus\\clauses\\termination_clauses.txt",
+      "size_bytes": 2125,
+      "modified_time": "2025-10-08T21:28:00.370799",
+      "file_hash": "ef3998b3609ca0544622855081f3e66d17f5806979ca24e42d7e3e0f1eac3a1f",
+      "extension": ".txt",
+      "category": "corpus_file",
+      "migration_action": "no_action"
+    },
+    "legal_corpus\\contracts\\employment_template.txt": {
+      "absolute_path": "backend\\app\\data\\legal_corpus\\contracts\\employment_template.txt",
+      "size_bytes": 2184,
+      "modified_time": "2025-10-08T21:30:45.057285",
+      "file_hash": "95d59195fa0ab47652bb2b206252b89209c69e9d1280fd060e1d644918eadf34",
+      "extension": ".txt",
+      "category": "corpus_file",
+      "migration_action": "no_action"
+    },
+    "legal_corpus\\contracts\\non_disclosure_agreement.txt": {
+      "absolute_path": "backend\\app\\data\\legal_corpus\\contracts\\non_disclosure_agreement.txt",
+      "size_bytes": 2439,
+      "modified_time": "2025-10-08T21:31:17.266994",
+      "file_hash": "be5447975dba913269bc22c6bb1f153e678f9ea5247c5b69900289e02bfd5683",
+      "extension": ".txt",
+      "category": "corpus_file",
+      "migration_action": "no_action"
+    },
+    "legal_corpus\\contracts\\service_agreement_template.txt": {
+      "absolute_path": "backend\\app\\data\\legal_corpus\\contracts\\service_agreement_template.txt",
+      "size_bytes": 2268,
+      "modified_time": "2025-10-08T21:31:00.842268",
+      "file_hash": "08f6a1ecaeec0e572808c6cfc00a31e6f34e15b92d037355a0da0c29fdf7204c",
+      "extension": ".txt",
+      "category": "corpus_file",
+      "migration_action": "no_action"
+    },
+    "legal_corpus\\precedents\\contract_law_precedents.txt": {
+      "absolute_path": "backend\\app\\data\\legal_corpus\\precedents\\contract_law_precedents.txt",
+      "size_bytes": 3423,
+      "modified_time": "2025-10-08T21:32:26.402964",
+      "file_hash": "795327b83880f5075629307d81a8f13c7810ba66e342d11148bce451828b276b",
+      "extension": ".txt",
+      "category": "corpus_file",
+      "migration_action": "no_action"
+    },
+    "legal_corpus\\precedents\\employment_law_precedents.txt": {
+      "absolute_path": "backend\\app\\data\\legal_corpus\\precedents\\employment_law_precedents.txt",
+      "size_bytes": 3453,
+      "modified_time": "2025-10-08T21:31:52.245371",
+      "file_hash": "7b2abe03eb5ca0849b82cb88ae396aa0e9be72ace15ce25ea7f85863283e4e5d",
+      "extension": ".txt",
+      "category": "corpus_file",
+      "migration_action": "no_action"
+    },
+    "legal_corpus\\statutes\\contract_statutes.txt": {
+      "absolute_path": "backend\\app\\data\\legal_corpus\\statutes\\contract_statutes.txt",
+      "size_bytes": 4881,
+      "modified_time": "2025-10-08T21:33:48.067125",
+      "file_hash": "80f8f49d71f354261c97b84a0b50d6fa4e7a4c450be9d5d1aed43a81da7d120c",
+      "extension": ".txt",
+      "category": "corpus_file",
+      "migration_action": "no_action"
+    },
+    "legal_corpus\\statutes\\employment_statutes.txt": {
+      "absolute_path": "backend\\app\\data\\legal_corpus\\statutes\\employment_statutes.txt",
+      "size_bytes": 4305,
+      "modified_time": "2025-10-08T21:33:05.751940",
+      "file_hash": "50e7f12b8fb5c22fe506661d307bdb4119f2ffade325ca3edc0d42f43f00880a",
+      "extension": ".txt",
+      "category": "corpus_file",
+      "migration_action": "no_action"
+    }
+  },
+  "dependencies": {
+    "demo_cases.json": [
+      "case-001",
+      "case-002",
+      "case-003",
+      "case-004",
+      "case-005",
+      "case-006"
+    ],
+    "demo_case_analysis_summaries.json": [
+      "case-001",
+      "case-002",
+      "case-003",
+      "case-004"
+    ],
+    "demo_legal_corpus.json": [
+      "employment_template.txt",
+      "employment_template.txt",
+      "termination_clauses.txt",
+      "termination_clauses.txt",
+      "employment_law_precedents.txt",
+      "contract_law_precedents.txt",
+      "employment_statutes.txt",
+      "contract_statutes.txt"
+    ],
+    "al\\case_documents\\documents_analysis.json": [
+      "doc-001",
+      "doc-002",
+      "doc-003",
+      "doc-004",
+      "doc-005",
+      "doc-006",
+      "doc-007",
+      "doc-008",
+      "doc-009",
+      "doc-010",
+      "doc-011",
+      "doc-012",
+      "doc-013",
+      "doc-014",
+      "doc-015",
+      "doc-016",
+      "doc-017",
+      "doc-018",
+      "doc-019",
+      "doc-020",
+      "doc-021"
+    ],
+    "case_documents\\case_documents_index.json": [
+      "doc-001",
+      "case-001",
+      "app/data/case_documents/case-001/doc-001_employment_contract_sarah_chen.txt",
+      "doc-002",
+      "case-001",
+      "app/data/case_documents/case-001/doc-002_safety_violation_report.txt",
+      "doc-003",
+      "case-001",
+      "app/data/case_documents/case-001/doc-003_termination_notice_email.txt",
+      "doc-004",
+      "case-002",
+      "app/data/case_documents/case-002/doc-004_software_license_agreement.txt",
+      "doc-005",
+      "case-002",
+      "app/data/case_documents/case-002/doc-005_server_deployment_logs.txt",
+      "doc-006",
+      "case-002",
+      "app/data/case_documents/case-002/doc-006_license_violation_notice.txt",
+      "doc-007",
+      "case-002",
+      "app/data/case_documents/case-002/doc-007_email_thread_license_clarification.txt",
+      "doc-008",
+      "case-003",
+      "app/data/case_documents/case-003/doc-008_consulting_services_agreement.txt",
+      "doc-009",
+      "case-003",
+      "app/data/case_documents/case-003/doc-009_outstanding_invoices.txt",
+      "doc-010",
+      "case-003",
+      "app/data/case_documents/case-003/doc-010_client_complaint_email.txt",
+      "doc-011",
+      "case-004",
+      "app/data/case_documents/case-004/doc-011_employment_contract_james_wilson.txt",
+      "doc-012",
+      "case-004",
+      "app/data/case_documents/case-004/doc-012_promotion_records_and_rejections.txt",
+      "doc-013",
+      "case-004",
+      "app/data/case_documents/case-004/doc-013_performance_reviews.txt",
+      "doc-014",
+      "case-004",
+      "app/data/case_documents/case-004/doc-014_witness_statements.txt",
+      "doc-015",
+      "case-005",
+      "app/data/case_documents/case-005/doc-015_non_compete_agreement.txt",
+      "doc-016",
+      "case-005",
+      "app/data/case_documents/case-005/doc-016_new_employment_offer_letter.txt",
+      "doc-017",
+      "case-005",
+      "app/data/case_documents/case-005/doc-017_trade_secrets_documentation.txt",
+      "doc-018",
+      "case-006",
+      "app/data/case_documents/case-006/doc-018_medical_services_contract.txt",
+      "doc-019",
+      "case-006",
+      "app/data/case_documents/case-006/doc-019_denied_claims_summary.txt",
+      "doc-020",
+      "case-006",
+      "app/data/case_documents/case-006/doc-020_medical_records_and_justification.txt",
+      "doc-021",
+      "case-006",
+      "app/data/case_documents/case-006/doc-021_insurance_policy_terms.txt"
+    ],
+    "embeddings\\legal_corpus.json": [
+      "employment_template.txt",
+      "employment_template.txt",
+      "employment_template.txt",
+      "non_disclosure_agreement.txt",
+      "non_disclosure_agreement.txt",
+      "non_disclosure_agreement.txt",
+      "service_agreement_template.txt",
+      "service_agreement_template.txt",
+      "service_agreement_template.txt",
+      "intellectual_property_clauses.txt",
+      "intellectual_property_clauses.txt",
+      "intellectual_property_clauses.txt",
+      "liability_clauses.txt",
+      "liability_clauses.txt",
+      "liability_clauses.txt",
+      "termination_clauses.txt",
+      "termination_clauses.txt",
+      "termination_clauses.txt",
+      "contract_law_precedents.txt",
+      "contract_law_precedents.txt",
+      "contract_law_precedents.txt",
+      "contract_law_precedents.txt",
+      "employment_law_precedents.txt",
+      "employment_law_precedents.txt",
+      "employment_law_precedents.txt",
+      "employment_law_precedents.txt",
+      "contract_statutes.txt",
+      "contract_statutes.txt",
+      "contract_statutes.txt",
+      "contract_statutes.txt",
+      "contract_statutes.txt",
+      "contract_statutes.txt",
+      "employment_statutes.txt",
+      "employment_statutes.txt",
+      "employment_statutes.txt",
+      "employment_statutes.txt",
+      "employment_statutes.txt"
+    ]
+  },
+  "migration_plan": {
+    "files_to_move": [
+      {
+        "source": "ai\\case_documents\\case_documents_analysis.json",
+        "destination": "ai\\cases\\cases_analysis.json",
+        "reason": "Consolidate case documents"
+      },
+      {
+        "source": "al\\case_documents\\documents_analysis.json",
+        "destination": "al\\cases\\documents_analysis.json",
+        "reason": "Consolidate case documents"
+      },
+      {
+        "source": "case_documents\\case_documents_index.json",
+        "destination": "cases\\cases_index.json",
+        "reason": "Consolidate case documents"
+      },
+      {
+        "source": "case_documents\\case-001\\doc-001_employment_contract_sarah_chen.txt",
+        "destination": "cases\\case-001\\doc-001_employment_contract_sarah_chen.txt",
+        "reason": "Consolidate case documents"
+      },
+      {
+        "source": "case_documents\\case-001\\doc-002_safety_violation_report.txt",
+        "destination": "cases\\case-001\\doc-002_safety_violation_report.txt",
+        "reason": "Consolidate case documents"
+      },
+      {
+        "source": "case_documents\\case-001\\doc-003_termination_notice_email.txt",
+        "destination": "cases\\case-001\\doc-003_termination_notice_email.txt",
+        "reason": "Consolidate case documents"
+      },
+      {
+        "source": "case_documents\\case-002\\doc-004_software_license_agreement.txt",
+        "destination": "cases\\case-002\\doc-004_software_license_agreement.txt",
+        "reason": "Consolidate case documents"
+      },
+      {
+        "source": "case_documents\\case-002\\doc-005_server_deployment_logs.txt",
+        "destination": "cases\\case-002\\doc-005_server_deployment_logs.txt",
+        "reason": "Consolidate case documents"
+      },
+      {
+        "source": "case_documents\\case-002\\doc-006_license_violation_notice.txt",
+        "destination": "cases\\case-002\\doc-006_license_violation_notice.txt",
+        "reason": "Consolidate case documents"
+      },
+      {
+        "source": "case_documents\\case-002\\doc-007_email_thread_license_clarification.txt",
+        "destination": "cases\\case-002\\doc-007_email_thread_license_clarification.txt",
+        "reason": "Consolidate case documents"
+      },
+      {
+        "source": "case_documents\\case-003\\doc-008_consulting_services_agreement.txt",
+        "destination": "cases\\case-003\\doc-008_consulting_services_agreement.txt",
+        "reason": "Consolidate case documents"
+      },
+      {
+        "source": "case_documents\\case-003\\doc-009_outstanding_invoices.txt",
+        "destination": "cases\\case-003\\doc-009_outstanding_invoices.txt",
+        "reason": "Consolidate case documents"
+      },
+      {
+        "source": "case_documents\\case-003\\doc-010_client_complaint_email.txt",
+        "destination": "cases\\case-003\\doc-010_client_complaint_email.txt",
+        "reason": "Consolidate case documents"
+      },
+      {
+        "source": "case_documents\\case-004\\doc-011_employment_contract_james_wilson.txt",
+        "destination": "cases\\case-004\\doc-011_employment_contract_james_wilson.txt",
+        "reason": "Consolidate case documents"
+      },
+      {
+        "source": "case_documents\\case-004\\doc-012_promotion_records_and_rejections.txt",
+        "destination": "cases\\case-004\\doc-012_promotion_records_and_rejections.txt",
+        "reason": "Consolidate case documents"
+      },
+      {
+        "source": "case_documents\\case-004\\doc-013_performance_reviews.txt",
+        "destination": "cases\\case-004\\doc-013_performance_reviews.txt",
+        "reason": "Consolidate case documents"
+      },
+      {
+        "source": "case_documents\\case-004\\doc-014_witness_statements.txt",
+        "destination": "cases\\case-004\\doc-014_witness_statements.txt",
+        "reason": "Consolidate case documents"
+      },
+      {
+        "source": "case_documents\\case-005\\doc-015_non_compete_agreement.txt",
+        "destination": "cases\\case-005\\doc-015_non_compete_agreement.txt",
+        "reason": "Consolidate case documents"
+      },
+      {
+        "source": "case_documents\\case-005\\doc-016_new_employment_offer_letter.txt",
+        "destination": "cases\\case-005\\doc-016_new_employment_offer_letter.txt",
+        "reason": "Consolidate case documents"
+      },
+      {
+        "source": "case_documents\\case-005\\doc-017_trade_secrets_documentation.txt",
+        "destination": "cases\\case-005\\doc-017_trade_secrets_documentation.txt",
+        "reason": "Consolidate case documents"
+      },
+      {
+        "source": "case_documents\\case-006\\doc-018_medical_services_contract.txt",
+        "destination": "cases\\case-006\\doc-018_medical_services_contract.txt",
+        "reason": "Consolidate case documents"
+      },
+      {
+        "source": "case_documents\\case-006\\doc-019_denied_claims_summary.txt",
+        "destination": "cases\\case-006\\doc-019_denied_claims_summary.txt",
+        "reason": "Consolidate case documents"
+      },
+      {
+        "source": "case_documents\\case-006\\doc-020_medical_records_and_justification.txt",
+        "destination": "cases\\case-006\\doc-020_medical_records_and_justification.txt",
+        "reason": "Consolidate case documents"
+      },
+      {
+        "source": "case_documents\\case-006\\doc-021_insurance_policy_terms.txt",
+        "destination": "cases\\case-006\\doc-021_insurance_policy_terms.txt",
+        "reason": "Consolidate case documents"
+      }
+    ],
+    "files_to_merge": [],
+    "directories_to_create": [
+      "cases",
+      "analysis",
+      "demo"
+    ],
+    "directories_to_remove": [
+      "case_documents",
+      "ai",
+      "al"
+    ],
+    "index_files_to_update": [
+      {
+        "file": "legal_corpus\\corpus_index.json",
+        "reason": "Update paths after reorganization"
+      }
+    ]
+  },
+  "issues_identified": [
+    {
+      "type": "duplicate_directories",
+      "description": "Both 'ai' and 'al' directories exist with similar content",
+      "severity": "high"
+    },
+    {
+      "type": "mixed_demo_content",
+      "description": "Found 4 demo files in root data directory",
+      "files": [
+        "demo_cases.json",
+        "demo_case_analysis_summaries.json",
+        "demo_legal_corpus.json",
+        "demo_playbooks.json"
+      ],
+      "severity": "medium"
+    },
+    {
+      "type": "missing_index",
+      "description": "No cases index file found",
+      "severity": "medium"
+    }
+  ],
+  "recommendations": [
+    "Merge 'ai' and 'al' directories into single 'analysis' directory",
+    "Move all demo files to dedicated demo/ directory",
+    "Create cases_index.json after reorganization"
+  ],
+  "summary": {
+    "total_files": 44,
+    "total_directories": 19,
+    "files_by_category": {
+      "demo_file": 4,
+      "other_file": 1,
+      "analysis_file": 2,
+      "index_file": 2,
+      "case_document": 21,
+      "corpus_file": 12,
+      "embedding_file": 2
+    },
+    "migration_actions_needed": {
+      "no_action": 19,
+      "move_to_cases": 24,
+      "update_index": 1
+    },
+    "issues_by_severity": {
+      "high": 1,
+      "medium": 2,
+      "low": 0
+    }
+  }
+}

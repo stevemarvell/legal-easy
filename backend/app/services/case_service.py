@@ -10,7 +10,7 @@ class CaseService:
     
     def __init__(self):
         self._cases_cache = None
-        self._data_file = os.path.join(os.path.dirname(__file__), "..", "data", "demo_cases.json")
+        self._data_file = os.path.join(os.path.dirname(__file__), "..", "data", "cases", "cases_data.json")
     
     def _load_cases(self) -> List[Case]:
         """Load cases from JSON file with caching"""
@@ -20,9 +20,9 @@ class CaseService:
                     cases_data = json.load(f)
                     self._cases_cache = [Case(**case_data) for case_data in cases_data]
             except FileNotFoundError:
-                raise FileNotFoundError(f"Demo cases file not found: {self._data_file}")
+                raise FileNotFoundError(f"Cases file not found: {self._data_file}")
             except json.JSONDecodeError as e:
-                raise ValueError(f"Invalid JSON in demo cases file: {e}")
+                raise ValueError(f"Invalid JSON in cases file: {e}")
         return self._cases_cache
     
     def get_all_cases(self) -> List[Case]:

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from app.main import app
+from main import app
 from fastapi.testclient import TestClient
 
 # Test the actual API endpoint
@@ -9,7 +9,7 @@ client = TestClient(app)
 print('=== TESTING API ENDPOINT DIRECTLY ===')
 
 # Test with doc-001 (Sarah Chen's contract)
-response = client.get('/api/documents/doc-001/analyze')
+response = client.post('/api/documents/doc-001/analyze')
 
 print(f'Status Code: {response.status_code}')
 if response.status_code == 200:

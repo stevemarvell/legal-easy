@@ -7,7 +7,6 @@ import {
   Chip,
   Alert,
   CircularProgress,
-  Paper,
   IconButton,
   Tooltip,
   Button,
@@ -136,7 +135,7 @@ const DocumentViewer: React.FC<DocumentViewerProps> = ({
   }
 
   return (
-    <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+    <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }} data-testid="document-viewer">
       {/* Document Header */}
       <Card sx={{ mb: 2, flexShrink: 0 }}>
         <CardContent>
@@ -163,9 +162,20 @@ const DocumentViewer: React.FC<DocumentViewerProps> = ({
                   onClick={handleAnalyzeDocument}
                   disabled={analyzing}
                   size="small"
+                  data-testid="analyze-button"
                 >
                   {analyzing ? 'Analyzing...' : 'Analyze Document'}
                 </Button>
+              )}
+              {document.analysis_completed && (
+                <Box data-testid="analysis-complete">
+                  <Chip
+                    icon={<AnalyzedIcon />}
+                    label="Analysis Complete"
+                    color="success"
+                    variant="outlined"
+                  />
+                </Box>
               )}
             </Box>
           </Box>
@@ -235,55 +245,65 @@ const DocumentViewer: React.FC<DocumentViewerProps> = ({
               </CardContent>
             </Card>
 
-            {/* Content Area */}
+            {/* Content Area - Scrollable Card */}
             <Box sx={{ flex: 1, minHeight: 0 }}>
               {contentLoading ? (
                 <Card sx={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <CircularProgress />
                 </Card>
               ) : fullContent ? (
-                <Paper
+                <Card
                   variant="outlined"
                   sx={{
                     height: '100%',
-                    p: 2,
+                    display: 'flex',
+                    flexDirection: 'column',
                     backgroundColor: 'background.paper',
-                    overflow: 'auto',
-                    border: '1px solid',
-                    borderColor: 'divider',
-                    borderRadius: 1,
-                    '&::-webkit-scrollbar': {
-                      width: '8px',
-                    },
-                    '&::-webkit-scrollbar-track': {
-                      backgroundColor: 'grey.100',
-                      borderRadius: '4px',
-                    },
-                    '&::-webkit-scrollbar-thumb': {
-                      backgroundColor: 'grey.400',
-                      borderRadius: '4px',
-                      '&:hover': {
-                        backgroundColor: 'grey.500',
-                      },
-                    },
+                    border: '2px solid',
+                    borderColor: 'primary.100',
+                    borderRadius: 2,
+                    overflow: 'hidden'
                   }}
                 >
-                  <Typography
-                    variant="body2"
-                    component="pre"
+                  <CardContent
                     sx={{
-                      whiteSpace: 'pre-wrap',
-                      fontFamily: 'monospace',
-                      fontSize: '0.875rem',
-                      lineHeight: 1.6,
-                      color: 'text.primary',
-                      margin: 0,
-                      wordBreak: 'break-word'
+                      flex: 1,
+                      overflow: 'auto',
+                      p: 3,
+                      '&::-webkit-scrollbar': {
+                        width: '12px',
+                      },
+                      '&::-webkit-scrollbar-track': {
+                        backgroundColor: 'grey.100',
+                        borderRadius: '6px',
+                      },
+                      '&::-webkit-scrollbar-thumb': {
+                        backgroundColor: 'primary.300',
+                        borderRadius: '6px',
+                        '&:hover': {
+                          backgroundColor: 'primary.400',
+                        },
+                      },
                     }}
                   >
-                    {fullContent}
-                  </Typography>
-                </Paper>
+                    <Typography
+                      variant="body2"
+                      component="pre"
+                      data-testid="document-content"
+                      sx={{
+                        whiteSpace: 'pre-wrap',
+                        fontFamily: 'monospace',
+                        fontSize: '0.9rem',
+                        lineHeight: 1.7,
+                        color: 'text.primary',
+                        margin: 0,
+                        wordBreak: 'break-word'
+                      }}
+                    >
+                      {fullContent}
+                    </Typography>
+                  </CardContent>
+                </Card>
               ) : (
                 <Card sx={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <Alert severity="info">

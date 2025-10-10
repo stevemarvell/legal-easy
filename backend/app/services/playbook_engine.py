@@ -16,7 +16,7 @@ class PlaybookEngine:
     def _load_demo_playbooks(self) -> None:
         """Load demo playbooks from JSON file"""
         try:
-            playbooks_file = os.path.join(os.path.dirname(__file__), '..', 'data', 'demo_playbooks.json')
+            playbooks_file = os.path.join(os.path.dirname(__file__), '..', 'data', 'playbooks', 'playbooks_index.json')
             with open(playbooks_file, 'r', encoding='utf-8') as f:
                 playbooks_data = json.load(f)
             

@@ -10,9 +10,9 @@ class AnalysisStorageService:
     """Service for storing and retrieving document analysis results"""
     
     def __init__(self):
-        self.storage_dir = Path("app/data/al/case_documents")
+        self.storage_dir = Path("app/data/ai/case_documents")
         self.storage_dir.mkdir(parents=True, exist_ok=True)
-        self.storage_file = self.storage_dir / "documents_analysis.json"
+        self.storage_file = self.storage_dir / "case_documents_analysis.json"
         self._ensure_storage_file()
     
     def _ensure_storage_file(self):

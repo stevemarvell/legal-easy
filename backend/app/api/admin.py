@@ -326,7 +326,7 @@ class SystemStatus:
             
             # Playbooks summary
             try:
-                playbooks_file = Path("app/data/demo_playbooks.json")
+                playbooks_file = Path("app/data/playbooks/playbooks_index.json")
                 if playbooks_file.exists():
                     with open(playbooks_file, 'r') as f:
                         playbooks_data = json.load(f)
