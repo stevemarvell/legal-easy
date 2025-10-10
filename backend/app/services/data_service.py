@@ -398,3 +398,176 @@ class DataService:
         except Exception as e:
             print(f"Error getting related corpus items: {e}")
             return []
+    
+    # === DOCUMENTATION MANAGEMENT ===
+    
+    @staticmethod
+    def load_documentation_categories() -> Dict[str, Dict[str, Any]]:
+        """Load all documentation categories."""
+        try:
+            docs_index_path = Path("data/docs/documentation_index.json")
+            if not docs_index_path.exists():
+                return {}
+            
+            with open(docs_index_path, 'r', encoding='utf-8') as f:
+                docs_data = json.load(f)
+                
+            return docs_data.get('categories', {})
+        except Exception as e:
+            print(f"Error loading documentation categories: {e}")
+            return {}
+    
+    @staticmethod
+    def load_documentation_by_category(category: str) -> List[Dict[str, Any]]:
+        """Load documentation items by category."""
+        try:
+            docs_index_path = Path("data/docs/documentation_index.json")
+            if not docs_index_path.exists():
+                return []
+            
+            with open(docs_index_path, 'r', encoding='utf-8') as f:
+                docs_data = json.load(f)
+                
+            # Get documents for the specified category
+            categories = docs_data.get('categories', {})
+            if category not in categories:
+                return []
+            
+            document_ids = categories[category].get('document_ids', [])
+            documents = docs_data.get('documents', {})
+            
+            # Return list of documents for the category
+            result = []
+            for doc_id in document_ids:
+                if doc_id in documents:
+                    doc = documents[doc_id].copy()
+                    doc['id'] = doc_id  # Ensure ID is included
+                    result.append(doc)
+            
+            return result
+        except Exception as e:
+            print(f"Error loading documentation by category: {e}")
+            return []
+    
+    @staticmethod
+    def load_documentation_item_by_id(item_id: str) -> Optional[Dict[str, Any]]:
+        """Load a specific documentation item by ID with full content."""
+        try:
+            docs_index_path = Path("data/docs/documentation_index.json")
+            if not docs_index_path.exists():
+                return None
+            
+            with open(docs_index_path, 'r', encoding='utf-8') as f:
+                docs_data = json.load(f)
+            
+            documents = docs_data.get('documents', {})
+            if item_id not in documents:
+                return None
+            
+            item = documents[item_id].copy()
+            item['id'] = item_id
+            
+            # Load full content from file
+            filename = item.get('filename', '')
+            
+            if filename:
+                # Look for the file in the docs directory
+                content_path = Path(f"docs/{filename}")
+                if content_path.exists():
+                    with open(content_path, 'r', encoding='utf-8') as f:
+                        item['content'] = f.read()
+                else:
+                    # Try backend/docs directory
+                    content_path = Path(f"backend/docs/{filename}")
+                    if content_path.exists():
+                        with open(content_path, 'r', encoding='utf-8') as f:
+                            item['content'] = f.read()
+                    else:
+                        item['content'] = ""
+            
+            return item
+        except Exception as e:
+            print(f"Error loading documentation item: {e}")
+            return None
+    
+    @staticmethod
+    def search_documentation(query: str) -> List[Dict[str, Any]]:
+        """Search documentation by name, description, or tags."""
+        try:
+            docs_index_path = Path("data/docs/documentation_index.json")
+            if not docs_index_path.exists():
+                return []
+            
+            with open(docs_index_path, 'r', encoding='utf-8') as f:
+                docs_data = json.load(f)
+            
+            documents = docs_data.get('documents', {})
+            
+            if not query:
+                # Return all documents as list
+                result = []
+                for doc_id, doc_data in documents.items():
+                    doc = doc_data.copy()
+                    doc['id'] = doc_id
+                    result.append(doc)
+                return result
+            
+            query_lower = query.lower()
+            filtered_documents = []
+            
+            for doc_id, doc_data in documents.items():
+                # Search in name, description, and tags
+                searchable_text = " ".join([
+                    doc_data.get('name', ''),
+                    doc_data.get('description', ''),
+                    " ".join(doc_data.get('tags', []))
+                ]).lower()
+                
+                if query_lower in searchable_text:
+                    doc = doc_data.copy()
+                    doc['id'] = doc_id
+                    filtered_documents.append(doc)
+            
+            return filtered_documents
+        except Exception as e:
+            print(f"Error searching documentation: {e}")
+            return []
+    
+    @staticmethod
+    def load_json_schemas() -> Dict[str, Dict[str, Any]]:
+        """Load all JSON schemas."""
+        try:
+            docs_index_path = Path("data/docs/documentation_index.json")
+            if not docs_index_path.exists():
+                return {}
+            
+            with open(docs_index_path, 'r', encoding='utf-8') as f:
+                docs_data = json.load(f)
+                
+            return docs_data.get('schemas', {})
+        except Exception as e:
+            print(f"Error loading JSON schemas: {e}")
+            return {}
+    
+    @staticmethod
+    def get_all_documentation_tags() -> List[str]:
+        """Get all available documentation tags."""
+        try:
+            docs_index_path = Path("data/docs/documentation_index.json")
+            if not docs_index_path.exists():
+                return []
+            
+            with open(docs_index_path, 'r', encoding='utf-8') as f:
+                docs_data = json.load(f)
+            
+            documents = docs_data.get('documents', {})
+            all_tags = set()
+            
+            for doc_data in documents.values():
+                tags = doc_data.get('tags', [])
+                all_tags.update(tags)
+            
+            return sorted(list(all_tags))
+        except Exception as e:
+            print(f"Error getting documentation tags: {e}")
+            return []

@@ -1,0 +1,129 @@
+{
+  "categories": {
+    "api": {
+      "name": "API Documentation",
+      "description": "Complete API reference and examples",
+      "document_ids": ["api-overview", "api-examples", "api-schemas"]
+    },
+    "architecture": {
+      "name": "System Architecture",
+      "description": "Technical architecture and design documentation",
+      "document_ids": ["data-models", "system-overview"]
+    },
+    "deployment": {
+      "name": "Deployment Guide",
+      "description": "Deployment and configuration documentation",
+      "document_ids": ["deployment-guide"]
+    }
+  },
+  "documents": {
+    "api-overview": {
+      "name": "API Overview",
+      "filename": "README.md",
+      "category": "api",
+      "document_type": "API Reference",
+      "description": "Complete API overview and getting started guide",
+      "tags": ["api", "reference", "getting-started"]
+    },
+    "api-examples": {
+      "name": "API Examples",
+      "filename": "api-examples.md",
+      "category": "api",
+      "document_type": "Examples",
+      "description": "Practical API usage examples and code samples",
+      "tags": ["api", "examples", "code-samples"]
+    },
+    "api-schemas": {
+      "name": "API Schemas",
+      "filename": "openapi-spec.md",
+      "category": "api",
+      "document_type": "Schema Reference",
+      "description": "JSON schemas and API specifications",
+      "tags": ["api", "schemas", "openapi"]
+    },
+    "data-models": {
+      "name": "Data Models",
+      "filename": "data-models.md",
+      "category": "architecture",
+      "document_type": "Technical Documentation",
+      "description": "System data models and structures",
+      "tags": ["architecture", "data-models", "technical"]
+    },
+    "system-overview": {
+      "name": "System Overview",
+      "filename": "index.md",
+      "category": "architecture",
+      "document_type": "Architecture Guide",
+      "description": "Complete system architecture documentation",
+      "tags": ["architecture", "overview", "system"]
+    },
+    "deployment-guide": {
+      "name": "Deployment Guide",
+      "filename": "deployment.md",
+      "category": "deployment",
+      "document_type": "Deployment Guide",
+      "description": "Step-by-step deployment instructions",
+      "tags": ["deployment", "configuration", "setup"]
+    }
+  },
+  "schemas": {
+    "Case": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string", "description": "Unique case identifier"},
+        "title": {"type": "string", "description": "Case title"},
+        "case_type": {"type": "string", "description": "Type of legal case"},
+        "client_name": {"type": "string", "description": "Client name"},
+        "status": {"type": "string", "enum": ["Active", "Under Review", "Resolved"], "description": "Case status"},
+        "created_date": {"type": "string", "format": "date-time", "description": "Case creation date"},
+        "summary": {"type": "string", "description": "Case summary"},
+        "key_parties": {"type": "array", "items": {"type": "string"}, "description": "Key parties involved"},
+        "documents": {"type": "array", "items": {"type": "string"}, "description": "Associated document IDs"},
+        "playbook_id": {"type": "string", "description": "Associated playbook ID"}
+      },
+      "required": ["id", "title", "case_type", "client_name", "status"]
+    },
+    "Document": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string", "description": "Unique document identifier"},
+        "case_id": {"type": "string", "description": "Associated case ID"},
+        "name": {"type": "string", "description": "Document name"},
+        "type": {"type": "string", "description": "Document type"},
+        "size": {"type": "integer", "description": "Document size in bytes"},
+        "upload_date": {"type": "string", "format": "date-time", "description": "Upload date"},
+        "content_preview": {"type": "string", "description": "Content preview"},
+        "analysis_completed": {"type": "boolean", "description": "Whether AI analysis is completed"}
+      },
+      "required": ["id", "case_id", "name", "type"]
+    },
+    "DocumentAnalysis": {
+      "type": "object",
+      "properties": {
+        "document_id": {"type": "string", "description": "Document ID"},
+        "key_dates": {"type": "array", "items": {"type": "string", "format": "date"}, "description": "Key dates found"},
+        "parties_involved": {"type": "array", "items": {"type": "string"}, "description": "Parties mentioned"},
+        "document_type": {"type": "string", "description": "Analyzed document type"},
+        "summary": {"type": "string", "description": "Document summary"},
+        "key_clauses": {"type": "array", "items": {"type": "string"}, "description": "Important clauses"},
+        "confidence_scores": {"type": "object", "description": "Confidence scores for each analysis category"},
+        "overall_confidence": {"type": "number", "description": "Overall analysis confidence"},
+        "uncertainty_flags": {"type": "array", "items": {"type": "string"}, "description": "Areas with low confidence"}
+      },
+      "required": ["document_id", "confidence_scores", "overall_confidence"]
+    },
+    "CorpusItem": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string", "description": "Unique corpus item identifier"},
+        "name": {"type": "string", "description": "Item name"},
+        "category": {"type": "string", "enum": ["contracts", "clauses", "precedents", "statutes"], "description": "Corpus category"},
+        "document_type": {"type": "string", "description": "Type of legal document"},
+        "research_areas": {"type": "array", "items": {"type": "string"}, "description": "Research areas"},
+        "description": {"type": "string", "description": "Item description"},
+        "content": {"type": "string", "description": "Full content"}
+      },
+      "required": ["id", "name", "category"]
+    }
+  }
+}
