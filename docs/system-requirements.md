@@ -63,9 +63,9 @@ The Legal AI System is a comprehensive legal case management and analysis platfo
    - File paths and sizes
    - Document types and categories
 
-3. **Legal Corpus Index** (`legal_corpus/legal_corpus_index.json`)
-   - Legal reference materials
-   - Categorized legal content
+3. **Research Corpus Index** (`research_corpus/research_corpus_index.json`)
+   - Research reference materials
+   - Categorized research content
    - Search metadata
 
 ### AI Analysis Storage
@@ -75,9 +75,9 @@ The Legal AI System is a comprehensive legal case management and analysis platfo
    - Confidence scores
    - Analysis metadata
 
-2. **Legal Corpus Analysis** (`ai/legal_corpus/corpus_analysis.json`)
+2. **Research Corpus Analysis** (`ai/research_corpus/corpus_analysis.json`)
    - Corpus analysis results
-   - Legal concept extraction
+   - Research concept extraction
    - Reference relationships
    - Semantic analysis
 

@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 """
-PlaybookService - Simplified playbook service for the Legal AI System
+PlaybookService - Simple playbook service for the Legal AI System
 
-This service handles all playbook-related operations including:
-- Loading and managing playbooks
-- Applying playbook rules to cases
-- Generating case assessments
-- Playbook rule evaluation and scoring
+This service handles playbook-related operations including:
+- Playbook matching for case type matching
+- Comprehensive case analysis using playbooks
+- Fallback to general analysis when no playbook matches
 """
 
 import json
@@ -16,77 +15,94 @@ from datetime import datetime
 
 
 class PlaybookService:
-    """Simplified playbook service for case assessment and rule application."""
+    """Simple playbook matching and case analysis."""
     
-    def __init__(self, data_root: str = "data"):
-        self.data_root = Path(data_root)
-        self.playbooks_path = self.data_root / "playbooks"
-        
-        # Ensure playbooks directory exists
-        self.playbooks_path.mkdir(parents=True, exist_ok=True)
+    # === PLAYBOOK MATCHING ===
     
-    # === PLAYBOOK MANAGEMENT ===
-    
-    def get_all_playbooks(self) -> List[Dict[str, Any]]:
-        """Get all available playbooks."""
+    @staticmethod
+    def match_playbook(case_type: str) -> Optional[Dict[str, Any]]:
+        """Match playbook for case type matching."""
         try:
-            playbooks_index_path = self.playbooks_path / "playbooks_index.json"
+            playbooks_index_path = Path("data/playbooks/playbooks_index.json")
             if not playbooks_index_path.exists():
-                return []
+                return None
             
             with open(playbooks_index_path, 'r', encoding='utf-8') as f:
-                data = json.load(f)
-                return data.get('playbooks', [])
+                playbooks_data = json.load(f)
+                # Handle both array format and object with 'playbooks' key
+                if isinstance(playbooks_data, list):
+                    playbooks = playbooks_data
+                else:
+                    playbooks = playbooks_data.get('playbooks', [])
+            
+            # Find matching playbook by case type
+            for playbook in playbooks:
+                if playbook.get('case_type') == case_type:
+                    return playbook
+            
+            return None
         except Exception as e:
-            print(f"Error loading playbooks: {e}")
-            return []
-    
-    def get_playbook_by_case_type(self, case_type: str) -> Optional[Dict[str, Any]]:
-        """Get playbook for a specific case type."""
-        playbooks = self.get_all_playbooks()
-        for playbook in playbooks:
-            if playbook.get('case_type') == case_type:
-                return playbook
-        return None
-    
-    def get_playbook_by_id(self, playbook_id: str) -> Optional[Dict[str, Any]]:
-        """Get a specific playbook by ID."""
-        playbooks = self.get_all_playbooks()
-        for playbook in playbooks:
-            if playbook.get('id') == playbook_id:
-                return playbook
-        return None
-    
-    # === CASE ASSESSMENT ===
-    
-    def generate_case_assessment(self, case: Dict[str, Any]) -> Optional[Dict[str, Any]]:
-        """Generate AI-powered case assessment using appropriate playbook."""
-        case_type = case.get('case_type')
-        if not case_type:
+            print(f"Error matching playbook: {e}")
             return None
-        
-        playbook = self.get_playbook_by_case_type(case_type)
-        if not playbook:
-            return None
-        
-        # Apply playbook rules to generate assessment
-        playbook_result = self.apply_playbook_rules(case, playbook)
-        
-        # Convert to case assessment format
-        assessment = {
-            "case_id": case.get('id'),
-            "playbook_used": playbook.get('name', 'Unknown Playbook'),
-            "case_strength": playbook_result.get('case_strength', 'Unknown'),
-            "key_issues": self._extract_key_issues(case, playbook_result),
-            "recommended_actions": playbook_result.get('recommendations', []),
-            "monetary_assessment": self._calculate_monetary_assessment(playbook, playbook_result),
-            "applied_rules": playbook_result.get('applied_rules', []),
-            "reasoning": playbook_result.get('reasoning', 'No reasoning available')
-        }
-        
-        return assessment
     
-    def apply_playbook_rules(self, case: Dict[str, Any], playbook: Dict[str, Any]) -> Dict[str, Any]:
+    # === COMPREHENSIVE CASE ANALYSIS ===
+    
+    @staticmethod
+    def analyze_case_with_playbook(case_id: str) -> Dict[str, Any]:
+        """Analyze case with playbook for comprehensive case analysis."""
+        try:
+            # Load case data
+            from .data_service import DataService
+            cases = DataService.load_cases()
+            case = None
+            for c in cases:
+                if c.get('id') == case_id:
+                    case = c
+                    break
+            
+            if not case:
+                return PlaybookService._generate_fallback_analysis(case_id, "Case not found")
+            
+            case_type = case.get('case_type')
+            if not case_type:
+                return PlaybookService._generate_fallback_analysis(case_id, "No case type specified")
+            
+            # Try to match playbook
+            playbook = PlaybookService.match_playbook(case_type)
+            if not playbook:
+                return PlaybookService._generate_fallback_analysis(case_id, f"No playbook found for case type: {case_type}")
+            
+            # Apply playbook rules to generate comprehensive analysis
+            playbook_result = PlaybookService._apply_playbook_rules(case, playbook)
+            
+            # Generate comprehensive case analysis
+            analysis = {
+                "case_id": case_id,
+                "case_strength_assessment": {
+                    "overall_strength": playbook_result.get('case_strength', 'Unknown'),
+                    "confidence_level": playbook_result.get('confidence_level', 0.5),
+                    "key_strengths": playbook_result.get('key_strengths', []),
+                    "potential_weaknesses": playbook_result.get('potential_weaknesses', []),
+                    "supporting_evidence": playbook_result.get('supporting_evidence', [])
+                },
+                "strategic_recommendations": PlaybookService._generate_strategic_recommendations(playbook_result),
+                "relevant_precedents": PlaybookService._get_relevant_precedents(case_type),
+                "applied_playbook": {
+                    "id": playbook.get('id'),
+                    "name": playbook.get('name'),
+                    "case_type": playbook.get('case_type')
+                },
+                "analysis_timestamp": datetime.now().isoformat()
+            }
+            
+            return analysis
+            
+        except Exception as e:
+            print(f"Error analyzing case with playbook: {e}")
+            return PlaybookService._generate_fallback_analysis(case_id, f"Analysis error: {str(e)}")
+    
+    @staticmethod
+    def _apply_playbook_rules(case: Dict[str, Any], playbook: Dict[str, Any]) -> Dict[str, Any]:
         """Apply playbook rules to a case and return detailed results."""
         case_id = case.get('id', '')
         playbook_id = playbook.get('id', '')
@@ -99,17 +115,24 @@ class PlaybookService:
                 "playbook_id": playbook_id,
                 "applied_rules": [],
                 "recommendations": [],
-                "case_strength": "Unknown",
+                "case_strength": "Weak",
+                "confidence_level": 0.2,
+                "key_strengths": [],
+                "potential_weaknesses": ["No applicable rules found"],
+                "supporting_evidence": [],
                 "reasoning": "No rules available in playbook"
             }
         
         # Evaluate each rule against the case
         applied_rules = []
         recommendations = []
+        key_strengths = []
+        potential_weaknesses = []
+        supporting_evidence = []
         total_weight = 0.0
         
         for rule in rules:
-            if self._evaluate_rule_condition(case, rule):
+            if PlaybookService._evaluate_rule_condition(case, rule):
                 applied_rules.append(rule.get('id', ''))
                 
                 # Add rule's action as recommendation
@@ -117,15 +140,29 @@ class PlaybookService:
                 if action and action not in recommendations:
                     recommendations.append(action)
                 
-                # Add rule weight to total
+                # Add to strengths if high weight rule
                 weight = rule.get('weight', 0.5)
+                if weight >= 0.8:
+                    key_strengths.append(rule.get('description', 'Strong legal position'))
+                
+                # Add evidence requirements as supporting evidence
+                evidence = rule.get('evidence_required', [])
+                supporting_evidence.extend(evidence)
+                
                 total_weight += weight
+            else:
+                # Add to potential weaknesses if important rule not met
+                weight = rule.get('weight', 0.5)
+                if weight >= 0.7:
+                    potential_weaknesses.append(f"Does not meet: {rule.get('description', 'Important criteria')}")
         
-        # Calculate case strength based on applied rules
-        case_strength = self._calculate_case_strength(total_weight, len(applied_rules))
+        # Calculate case strength and confidence
+        case_strength, confidence_level = PlaybookService._calculate_case_strength_and_confidence(
+            total_weight, len(applied_rules), len(rules)
+        )
         
         # Generate reasoning
-        reasoning = self._generate_reasoning(applied_rules, case_strength, len(rules))
+        reasoning = PlaybookService._generate_reasoning(applied_rules, case_strength, len(rules))
         
         return {
             "case_id": case_id,
@@ -133,19 +170,19 @@ class PlaybookService:
             "applied_rules": applied_rules,
             "recommendations": recommendations,
             "case_strength": case_strength,
+            "confidence_level": confidence_level,
+            "key_strengths": list(set(key_strengths)),
+            "potential_weaknesses": list(set(potential_weaknesses)),
+            "supporting_evidence": list(set(supporting_evidence)),
             "reasoning": reasoning,
             "total_weight": total_weight,
             "rules_applied_count": len(applied_rules),
             "total_rules_count": len(rules)
         }
     
-    def _evaluate_rule_condition(self, case: Dict[str, Any], rule: Dict[str, Any]) -> bool:
-        """
-        Evaluate if a rule condition applies to a case.
-        
-        This is a simplified implementation. In production, this would use
-        more sophisticated rule evaluation logic.
-        """
+    @staticmethod
+    def _evaluate_rule_condition(case: Dict[str, Any], rule: Dict[str, Any]) -> bool:
+        """Evaluate if a rule condition applies to a case."""
         condition = rule.get('condition', '').lower()
         case_summary = case.get('summary', '').lower()
         case_type = case.get('case_type', '').lower()
@@ -153,13 +190,31 @@ class PlaybookService:
         # Simple keyword matching for common conditions
         condition_keywords = {
             'termination_within_protected_period': ['termination', 'dismissal', 'fired', 'protected'],
-            'harassment_documented': ['harassment', 'bullying', 'discrimination', 'documented'],
-            'contract_breach': ['breach', 'violation', 'failed to', 'did not'],
-            'safety_violation': ['safety', 'health', 'violation', 'dangerous'],
-            'confidentiality_breach': ['confidential', 'disclosure', 'leaked', 'shared'],
-            'intellectual_property_dispute': ['intellectual property', 'copyright', 'patent', 'trademark'],
-            'payment_dispute': ['payment', 'invoice', 'unpaid', 'overdue'],
-            'liability_claim': ['liability', 'damages', 'compensation', 'injury']
+            'age_over_40_and_replaced_by_younger': ['age', 'discrimination', 'younger', 'replaced'],
+            'documented_performance_issues': ['performance', 'issues', 'documented', 'problems'],
+            'hostile_work_environment_pattern': ['hostile', 'harassment', 'bullying', 'environment'],
+            'whistleblower_activity': ['whistleblower', 'reporting', 'violations', 'safety'],
+            'pregnancy_or_family_leave_involved': ['pregnancy', 'maternity', 'family', 'leave'],
+            'disability_accommodation_denied': ['disability', 'accommodation', 'denied', 'adjustments'],
+            'clear_contract_terms_violated': ['breach', 'violation', 'failed to', 'did not'],
+            'ambiguous_contract_language': ['ambiguous', 'unclear', 'disputed', 'interpretation'],
+            'non_compete_violation': ['non-compete', 'competition', 'competitor', 'restraint'],
+            'damages_easily_calculable': ['damages', 'loss', 'financial', 'calculable'],
+            'ongoing_harm_occurring': ['ongoing', 'continuing', 'harm', 'damage'],
+            'force_majeure_claimed': ['force majeure', 'impossible', 'unforeseen', 'circumstances'],
+            'statute_of_frauds_issue': ['writing', 'written', 'signed', 'agreement'],
+            'clear_debt_documentation': ['debt', 'invoice', 'payment', 'owed'],
+            'debtor_disputes_amount': ['dispute', 'disagree', 'contest', 'challenge'],
+            'debtor_claims_defective_services': ['defective', 'poor quality', 'unsatisfactory', 'substandard'],
+            'debt_over_statute_limitations': ['old debt', 'statute', 'limitations', 'time-barred'],
+            'debtor_has_assets': ['assets', 'property', 'income', 'resources'],
+            'consumer_debt_uk_applies': ['consumer', 'personal', 'individual', 'household'],
+            'debtor_filed_bankruptcy': ['bankruptcy', 'insolvency', 'administration', 'liquidation'],
+            'personal_guarantee_exists': ['guarantee', 'guarantor', 'personal liability', 'surety'],
+            'clear_liability_established': ['liability', 'fault', 'negligence', 'responsible'],
+            'comparative_negligence_issue': ['comparative', 'contributory', 'shared fault', 'partial blame'],
+            'serious_permanent_injury': ['serious', 'permanent', 'disability', 'life-changing'],
+            'insurance_coverage_adequate': ['insurance', 'coverage', 'policy', 'insured']
         }
         
         # Check if condition keywords appear in case summary
@@ -170,153 +225,226 @@ class PlaybookService:
         # Fallback: simple substring matching
         return condition in case_summary or condition in case_type
     
-    def _calculate_case_strength(self, total_weight: float, rules_count: int) -> str:
-        """Calculate case strength based on applied rules and weights."""
+    @staticmethod
+    def _calculate_case_strength_and_confidence(total_weight: float, rules_count: int, total_rules: int) -> tuple:
+        """Calculate case strength and confidence level based on applied rules and weights."""
         if rules_count == 0:
-            return "Weak"
+            return "Weak", 0.2
         
-        # Normalize weight by number of rules
+        # Normalize weight by number of rules applied
         average_weight = total_weight / rules_count if rules_count > 0 else 0
         
-        if average_weight >= 0.8:
-            return "Strong"
-        elif average_weight >= 0.6:
-            return "Moderate"
+        # Calculate coverage (percentage of rules that applied)
+        coverage = rules_count / total_rules if total_rules > 0 else 0
+        
+        # Determine case strength
+        if average_weight >= 0.8 and coverage >= 0.5:
+            case_strength = "Strong"
+            confidence = min(0.9, 0.7 + (coverage * 0.2))
+        elif average_weight >= 0.6 and coverage >= 0.3:
+            case_strength = "Moderate"
+            confidence = min(0.7, 0.5 + (coverage * 0.2))
         else:
-            return "Weak"
+            case_strength = "Weak"
+            confidence = min(0.5, 0.2 + (coverage * 0.3))
+        
+        return case_strength, round(confidence, 2)
     
-    def _generate_reasoning(self, applied_rules: List[str], case_strength: str, total_rules: int) -> str:
+    @staticmethod
+    def _generate_reasoning(applied_rules: List[str], case_strength: str, total_rules: int) -> str:
         """Generate reasoning text for the case assessment."""
         rules_count = len(applied_rules)
         
         if rules_count == 0:
-            return f"No applicable rules found. Case assessment is inconclusive based on available playbook rules."
+            return "No applicable rules found. Case assessment is inconclusive based on available playbook rules."
         
         strength_desc = {
-            "Strong": "strong prospects",
-            "Moderate": "moderate prospects", 
-            "Weak": "limited prospects"
+            "Strong": "strong prospects for success",
+            "Moderate": "moderate prospects with reasonable chance of success", 
+            "Weak": "limited prospects requiring careful consideration"
         }
         
         return (f"Case shows {strength_desc.get(case_strength, 'uncertain prospects')} "
                 f"based on {rules_count} applicable rule{'s' if rules_count != 1 else ''} "
-                f"out of {total_rules} total rules. "
-                f"Key factors support the client's position in this {case_strength.lower()} case matter.")
+                f"out of {total_rules} total rules in the playbook. "
+                f"The analysis indicates this is a {case_strength.lower()} case with "
+                f"{'significant' if case_strength == 'Strong' else 'some' if case_strength == 'Moderate' else 'limited'} "
+                f"supporting factors.")
     
-    def _extract_key_issues(self, case: Dict[str, Any], playbook_result: Dict[str, Any]) -> List[str]:
-        """Extract key legal issues from case and playbook results."""
-        issues = []
-        
-        # Extract from case type
-        case_type = case.get('case_type', '')
-        if 'Employment' in case_type:
-            issues.append('Employment law matter')
-        if 'Contract' in case_type:
-            issues.append('Contract dispute')
-        
-        # Extract from applied rules (simplified)
+    @staticmethod
+    def _generate_strategic_recommendations(playbook_result: Dict[str, Any]) -> List[Dict[str, Any]]:
+        """Generate strategic recommendations from playbook results."""
+        recommendations = []
+        case_strength = playbook_result.get('case_strength', 'Weak')
         applied_rules = playbook_result.get('applied_rules', [])
+        
+        # Base recommendations on case strength
+        if case_strength == "Strong":
+            recommendations.extend([
+                {
+                    "id": "pursue_full_damages",
+                    "title": "Pursue Full Compensatory Damages",
+                    "description": "Strong case merits pursuing maximum available damages",
+                    "priority": "High",
+                    "rationale": "High likelihood of success supports aggressive approach",
+                    "supporting_precedents": ["Strong legal position", "Clear rule violations"]
+                },
+                {
+                    "id": "consider_injunctive_relief",
+                    "title": "Consider Injunctive Relief",
+                    "description": "Seek court orders to prevent ongoing harm",
+                    "priority": "Medium",
+                    "rationale": "Strong case position supports equitable remedies",
+                    "supporting_precedents": ["Ongoing harm prevention", "Court intervention justified"]
+                }
+            ])
+        elif case_strength == "Moderate":
+            recommendations.extend([
+                {
+                    "id": "negotiate_settlement",
+                    "title": "Negotiate Favorable Settlement",
+                    "description": "Reasonable prospects support settlement negotiations",
+                    "priority": "High",
+                    "rationale": "Moderate case strength suggests settlement may be optimal",
+                    "supporting_precedents": ["Risk mitigation", "Cost-effective resolution"]
+                },
+                {
+                    "id": "gather_additional_evidence",
+                    "title": "Strengthen Evidence Base",
+                    "description": "Collect additional supporting documentation and testimony",
+                    "priority": "Medium",
+                    "rationale": "Additional evidence could strengthen case position",
+                    "supporting_precedents": ["Evidence strengthening", "Case improvement potential"]
+                }
+            ])
+        else:  # Weak
+            recommendations.extend([
+                {
+                    "id": "assess_settlement_options",
+                    "title": "Explore Settlement Options",
+                    "description": "Consider early settlement to minimize risks and costs",
+                    "priority": "High",
+                    "rationale": "Limited prospects suggest settlement may be preferable to litigation",
+                    "supporting_precedents": ["Risk management", "Cost containment"]
+                },
+                {
+                    "id": "advise_client_risks",
+                    "title": "Advise Client of Litigation Risks",
+                    "description": "Ensure client understands potential adverse outcomes",
+                    "priority": "High",
+                    "rationale": "Professional duty to inform client of case weaknesses",
+                    "supporting_precedents": ["Client counseling", "Risk disclosure"]
+                }
+            ])
+        
+        # Add rule-specific recommendations
         for rule_id in applied_rules:
             if 'termination' in rule_id.lower():
-                issues.append('Wrongful termination claim')
-            elif 'harassment' in rule_id.lower():
-                issues.append('Workplace harassment')
+                recommendations.append({
+                    "id": "document_termination_circumstances",
+                    "title": "Document Termination Circumstances",
+                    "description": "Gather comprehensive documentation of termination events",
+                    "priority": "Medium",
+                    "rationale": "Termination cases require detailed factual record",
+                    "supporting_precedents": ["Employment law requirements", "Factual documentation"]
+                })
             elif 'breach' in rule_id.lower():
-                issues.append('Contract breach')
-            elif 'discrimination' in rule_id.lower():
-                issues.append('Discrimination claim')
+                recommendations.append({
+                    "id": "analyze_contract_terms",
+                    "title": "Analyze Contract Terms and Performance",
+                    "description": "Detailed review of contract obligations and performance",
+                    "priority": "Medium",
+                    "rationale": "Contract breach cases require thorough contract analysis",
+                    "supporting_precedents": ["Contract interpretation", "Performance standards"]
+                })
         
-        # Add generic issue if none found
-        if not issues:
-            issues.append('Legal dispute requiring assessment')
-        
-        return issues[:5]  # Limit to 5 key issues
+        return recommendations[:5]  # Limit to 5 recommendations
     
-    def _calculate_monetary_assessment(self, playbook: Dict[str, Any], playbook_result: Dict[str, Any]) -> List[int]:
-        """Calculate monetary assessment range based on case strength."""
-        case_strength = playbook_result.get('case_strength', 'Weak')
+    @staticmethod
+    def _get_relevant_precedents(case_type: str) -> List[Dict[str, Any]]:
+        """Get relevant legal precedents based on case type."""
+        # This would typically query the legal corpus, but for now return mock data
+        precedents = []
         
-        # Get monetary ranges from playbook
-        monetary_ranges = playbook.get('monetary_ranges', {})
+        if "Employment" in case_type:
+            precedents.extend([
+                {
+                    "id": "employment_precedent_1",
+                    "title": "Employment Rights Act 1996 - Unfair Dismissal",
+                    "category": "statutes",
+                    "relevance": "Primary legislation governing employment termination",
+                    "key_principle": "Employees have right not to be unfairly dismissed"
+                },
+                {
+                    "id": "employment_precedent_2", 
+                    "title": "Equality Act 2010 - Discrimination Protection",
+                    "category": "statutes",
+                    "relevance": "Protection against workplace discrimination",
+                    "key_principle": "Prohibition of discrimination based on protected characteristics"
+                }
+            ])
+        elif "Contract" in case_type:
+            precedents.extend([
+                {
+                    "id": "contract_precedent_1",
+                    "title": "Sale of Goods Act 1979 - Contract Performance",
+                    "category": "statutes", 
+                    "relevance": "Fundamental contract law principles",
+                    "key_principle": "Contracts must be performed according to their terms"
+                },
+                {
+                    "id": "contract_precedent_2",
+                    "title": "Unfair Contract Terms Act 1977 - Term Validity",
+                    "category": "statutes",
+                    "relevance": "Regulation of unfair contract terms",
+                    "key_principle": "Certain contract terms may be unenforceable if unfair"
+                }
+            ])
+        elif "Intellectual Property" in case_type:
+            precedents.extend([
+                {
+                    "id": "ip_precedent_1",
+                    "title": "Copyright, Designs and Patents Act 1988",
+                    "category": "statutes",
+                    "relevance": "Intellectual property protection framework",
+                    "key_principle": "Protection of creative works and inventions"
+                }
+            ])
         
-        # Default ranges if not specified in playbook
-        default_ranges = {
-            "Strong": [100000, 500000],
-            "Moderate": [50000, 200000],
-            "Weak": [10000, 75000]
+        return precedents
+    
+    @staticmethod
+    def _generate_fallback_analysis(case_id: str, reason: str) -> Dict[str, Any]:
+        """Generate fallback analysis when no playbook matches."""
+        return {
+            "case_id": case_id,
+            "case_strength_assessment": {
+                "overall_strength": "Unknown",
+                "confidence_level": 0.1,
+                "key_strengths": [],
+                "potential_weaknesses": [reason],
+                "supporting_evidence": []
+            },
+            "strategic_recommendations": [
+                {
+                    "id": "general_legal_review",
+                    "title": "Conduct General Legal Review",
+                    "description": "Perform comprehensive legal analysis without specialized playbook",
+                    "priority": "High",
+                    "rationale": "No specific playbook available for this case type",
+                    "supporting_precedents": ["General legal principles"]
+                },
+                {
+                    "id": "consult_specialist",
+                    "title": "Consult Subject Matter Expert",
+                    "description": "Seek advice from specialist in relevant area of law",
+                    "priority": "Medium",
+                    "rationale": "Specialized expertise may be required",
+                    "supporting_precedents": ["Professional consultation"]
+                }
+            ],
+            "relevant_precedents": [],
+            "applied_playbook": None,
+            "analysis_timestamp": datetime.now().isoformat(),
+            "fallback_reason": reason
         }
-        
-        # Use playbook ranges if available, otherwise use defaults
-        if case_strength.lower() in monetary_ranges:
-            range_data = monetary_ranges[case_strength.lower()]
-            if isinstance(range_data, dict) and 'range' in range_data:
-                return range_data['range']
-        
-        return default_ranges.get(case_strength, [10000, 50000])
-    
-    # === PLAYBOOK STATISTICS ===
-    
-    def get_playbook_statistics(self) -> Dict[str, Any]:
-        """Get statistics about all playbooks."""
-        playbooks = self.get_all_playbooks()
-        
-        stats = {
-            "total_playbooks": len(playbooks),
-            "case_types": [],
-            "total_rules": 0,
-            "playbook_details": []
-        }
-        
-        for playbook in playbooks:
-            case_type = playbook.get('case_type')
-            if case_type:
-                stats["case_types"].append(case_type)
-            
-            rules = playbook.get('rules', [])
-            stats["total_rules"] += len(rules)
-            
-            stats["playbook_details"].append({
-                "id": playbook.get('id'),
-                "name": playbook.get('name'),
-                "case_type": case_type,
-                "rules_count": len(rules)
-            })
-        
-        return stats
-    
-    # === UTILITY METHODS ===
-    
-    def validate_playbook(self, playbook: Dict[str, Any]) -> Dict[str, Any]:
-        """Validate a playbook structure and content."""
-        validation_result = {
-            "valid": True,
-            "issues": [],
-            "warnings": []
-        }
-        
-        # Check required fields
-        required_fields = ['id', 'name', 'case_type']
-        for field in required_fields:
-            if not playbook.get(field):
-                validation_result["valid"] = False
-                validation_result["issues"].append(f"Missing required field: {field}")
-        
-        # Check rules structure
-        rules = playbook.get('rules', [])
-        if not rules:
-            validation_result["warnings"].append("Playbook has no rules defined")
-        else:
-            for i, rule in enumerate(rules):
-                if not rule.get('id'):
-                    validation_result["issues"].append(f"Rule {i} missing ID")
-                    validation_result["valid"] = False
-                
-                if not rule.get('condition'):
-                    validation_result["issues"].append(f"Rule {rule.get('id', i)} missing condition")
-                    validation_result["valid"] = False
-                
-                if not rule.get('action'):
-                    validation_result["issues"].append(f"Rule {rule.get('id', i)} missing action")
-                    validation_result["valid"] = False
-        
-        return validation_result

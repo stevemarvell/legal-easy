@@ -37,6 +37,7 @@ class SearchQuery(BaseModel):
     sort_by: str = "relevance"  # "relevance", "document_type", "research_area", "authority"
     include_citations: bool = True
 
+
 class ResearchFilter(BaseModel):
     """Filter options for research queries"""
     research_areas: Optional[List[str]] = None

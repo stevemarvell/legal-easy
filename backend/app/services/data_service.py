@@ -1,108 +1,62 @@
 #!/usr/bin/env python3
 """
-DataService - Simplified data management service for the Legal AI System
+DataService - Simplified data service for the Legal AI System
 
-This service handles all data operations including:
-- Loading and managing cases, documents, research corpus, and playbooks
-- Data structure analysis and validation
-- File system operations and data integrity checks
-- Index management and data synchronization
+This service handles all JSON data loading and searching operations including:
+- Loading cases, documents, research corpus, and playbooks from JSON files
+- Simple search functionality across all data types
+- Direct file access without complex repository patterns
 """
 
 import os
 import json
-import hashlib
 from pathlib import Path
-from typing import Dict, List, Any, Optional, Set
+from typing import Dict, List, Any, Optional
 from datetime import datetime
 
 
 class DataService:
-    """Simplified data management service for all system data."""
+    """Single service for all JSON data loading and searching."""
     
     def __init__(self, data_root: str = "data"):
         self.data_root = Path(data_root)
         self.cases_path = self.data_root / "cases"
         self.research_corpus_path = self.data_root / "research_corpus"
         self.playbooks_path = self.data_root / "playbooks"
-        
-        # Ensure data directories exist
-        self._ensure_directories()
-    
-    def _ensure_directories(self):
-        """Ensure all required data directories exist."""
-        for path in [self.cases_path, self.research_corpus_path, self.playbooks_path]:
-            path.mkdir(parents=True, exist_ok=True)
     
     # === CASES MANAGEMENT ===
     
-    def load_cases(self) -> List[Dict[str, Any]]:
+    @staticmethod
+    def load_cases() -> List[Dict[str, Any]]:
         """Load all cases from the cases index."""
         try:
-            cases_index_path = self.cases_path / "cases_index.json"
+            cases_index_path = Path("data/cases/cases_index.json")
             if not cases_index_path.exists():
                 return []
             
             with open(cases_index_path, 'r', encoding='utf-8') as f:
-                data = json.load(f)
-                return data.get('cases', [])
+                cases_data = json.load(f)
+                # Handle both array format and object with 'cases' key
+                if isinstance(cases_data, list):
+                    return cases_data
+                return cases_data.get('cases', [])
         except Exception as e:
             print(f"Error loading cases: {e}")
             return []
     
-    def get_case_by_id(self, case_id: str) -> Optional[Dict[str, Any]]:
-        """Get a specific case by ID."""
-        cases = self.load_cases()
-        for case in cases:
-            if case.get('id') == case_id:
-                return case
-        return None
-    
-    def get_case_statistics(self) -> Dict[str, Any]:
-        """Get statistics about all cases."""
-        cases = self.load_cases()
-        total_cases = len(cases)
-        
-        # Count by status
-        status_counts = {}
-        for case in cases:
-            status = case.get('status', 'Unknown')
-            status_counts[status] = status_counts.get(status, 0) + 1
-        
-        # Count recent activity (last 30 days)
-        recent_count = 0
-        thirty_days_ago = datetime.now().timestamp() - (30 * 24 * 60 * 60)
-        
-        for case in cases:
-            created_date = case.get('created_date', '')
-            if created_date:
-                try:
-                    case_timestamp = datetime.fromisoformat(created_date.replace('Z', '+00:00')).timestamp()
-                    if case_timestamp > thirty_days_ago:
-                        recent_count += 1
-                except:
-                    pass
-        
-        return {
-            "total_cases": total_cases,
-            "active_cases": status_counts.get('Active', 0),
-            "resolved_cases": status_counts.get('Resolved', 0),
-            "under_review_cases": status_counts.get('Under Review', 0),
-            "recent_activity_count": recent_count
-        }
-    
     # === DOCUMENTS MANAGEMENT ===
     
-    def load_case_documents(self, case_id: str) -> List[Dict[str, Any]]:
+    @staticmethod
+    def load_case_documents(case_id: str) -> List[Dict[str, Any]]:
         """Load all documents for a specific case."""
         try:
-            case_docs_path = self.cases_path / "case_documents" / "case_documents_index.json"
+            case_docs_path = Path("data/cases/case_documents/case_documents_index.json")
             if not case_docs_path.exists():
                 return []
             
             with open(case_docs_path, 'r', encoding='utf-8') as f:
                 data = json.load(f)
-                documents = data.get('documents', [])
+                documents = data.get('case_documents', [])
                 
                 # Filter documents for the specific case
                 case_documents = [doc for doc in documents if doc.get('case_id') == case_id]
@@ -111,266 +65,336 @@ class DataService:
             print(f"Error loading case documents: {e}")
             return []
     
-    def get_document_by_id(self, document_id: str) -> Optional[Dict[str, Any]]:
-        """Get a specific document by ID."""
+    @staticmethod
+    def load_document_content(doc_id: str) -> str:
+        """Load the full content of a document by ID."""
         try:
-            case_docs_path = self.cases_path / "case_documents" / "case_documents_index.json"
+            # First get document metadata to find the content path
+            case_docs_path = Path("data/cases/case_documents/case_documents_index.json")
             if not case_docs_path.exists():
-                return None
+                return ""
             
             with open(case_docs_path, 'r', encoding='utf-8') as f:
                 data = json.load(f)
-                documents = data.get('documents', [])
+                documents = data.get('case_documents', [])
                 
+                # Find the document
+                document = None
                 for doc in documents:
-                    if doc.get('id') == document_id:
-                        return doc
-                return None
+                    if doc.get('id') == doc_id:
+                        document = doc
+                        break
+                
+                if not document:
+                    return ""
+                
+                # Get content from file path
+                content_path = document.get('full_content_path', '')
+                if content_path:
+                    # Convert relative path to absolute from data root
+                    full_path = Path("data") / content_path.replace('app/data/', '')
+                    if full_path.exists():
+                        with open(full_path, 'r', encoding='utf-8') as content_file:
+                            return content_file.read()
+                
+                # Fallback to content preview
+                return document.get('content_preview', '')
+                
         except Exception as e:
-            print(f"Error loading document: {e}")
-            return None
+            print(f"Error loading document content: {e}")
+            return ""
     
     # === RESEARCH CORPUS MANAGEMENT ===
     
-    def load_research_corpus(self) -> Dict[str, Any]:
-        """Load the research corpus index."""
+    @staticmethod
+    def load_corpus_by_category(category: str) -> List[Dict[str, Any]]:
+        """Load research corpus documents by category (contracts, clauses, precedents, statutes)."""
         try:
-            corpus_index_path = self.research_corpus_path / "research_corpus_index.json"
+            corpus_index_path = Path("data/research_corpus/research_corpus_index.json")
             if not corpus_index_path.exists():
-                return {}
+                return []
             
             with open(corpus_index_path, 'r', encoding='utf-8') as f:
-                return json.load(f)
+                corpus_data = json.load(f)
+                
+            # Get documents for the specified category
+            categories = corpus_data.get('categories', {})
+            if category not in categories:
+                return []
+            
+            document_ids = categories[category].get('document_ids', [])
+            documents = corpus_data.get('documents', {})
+            
+            # Return list of documents for the category
+            result = []
+            for doc_id in document_ids:
+                if doc_id in documents:
+                    doc = documents[doc_id].copy()
+                    doc['id'] = doc_id  # Ensure ID is included
+                    result.append(doc)
+            
+            return result
         except Exception as e:
-            print(f"Error loading research corpus: {e}")
-            return {}
-    
-    def get_research_document_by_id(self, doc_id: str) -> Optional[Dict[str, Any]]:
-        """Get a specific research corpus document by ID."""
-        corpus = self.load_research_corpus()
-        documents = corpus.get('documents', {})
-        return documents.get(doc_id)
-    
-    def get_research_documents_by_category(self, category: str) -> List[Dict[str, Any]]:
-        """Get all research documents in a specific category."""
-        corpus = self.load_research_corpus()
-        categories = corpus.get('categories', {})
-        
-        if category not in categories:
+            print(f"Error loading corpus by category: {e}")
             return []
-        
-        document_ids = categories[category].get('document_ids', [])
-        documents = corpus.get('documents', {})
-        
-        return [documents[doc_id] for doc_id in document_ids if doc_id in documents]
     
     # === PLAYBOOKS MANAGEMENT ===
     
-    def load_playbooks(self) -> List[Dict[str, Any]]:
+    @staticmethod
+    def load_playbooks() -> List[Dict[str, Any]]:
         """Load all playbooks from the playbooks index."""
         try:
-            playbooks_index_path = self.playbooks_path / "playbooks_index.json"
+            playbooks_index_path = Path("data/playbooks/playbooks_index.json")
             if not playbooks_index_path.exists():
                 return []
             
             with open(playbooks_index_path, 'r', encoding='utf-8') as f:
-                data = json.load(f)
-                return data.get('playbooks', [])
+                playbooks_data = json.load(f)
+                # Handle both array format and object with 'playbooks' key
+                if isinstance(playbooks_data, list):
+                    return playbooks_data
+                return playbooks_data.get('playbooks', [])
         except Exception as e:
             print(f"Error loading playbooks: {e}")
             return []
     
-    def get_playbook_by_case_type(self, case_type: str) -> Optional[Dict[str, Any]]:
-        """Get a playbook for a specific case type."""
-        playbooks = self.load_playbooks()
-        for playbook in playbooks:
-            if playbook.get('case_type') == case_type:
-                return playbook
-        return None
+    # === SEARCH METHODS ===
     
-    # === DATA ANALYSIS AND VALIDATION ===
-    
-    def analyze_data_structure(self) -> Dict[str, Any]:
-        """Analyze the current data structure and generate a report."""
-        analysis_results = {
-            "metadata": {
-                "analysis_date": datetime.now().isoformat(),
-                "data_root": str(self.data_root),
-                "total_files": 0,
-                "total_directories": 0,
-                "total_size_bytes": 0
-            },
-            "cases": {
-                "total_cases": 0,
-                "total_documents": 0,
-                "status_distribution": {}
-            },
-            "research_corpus": {
-                "total_documents": 0,
-                "categories": {},
-                "research_areas": []
-            },
-            "playbooks": {
-                "total_playbooks": 0,
-                "case_types": []
-            },
-            "issues_identified": [],
-            "recommendations": []
-        }
-        
+    @staticmethod
+    def search_cases(query: str) -> List[Dict[str, Any]]:
+        """Search cases by title, summary, or client name."""
         try:
-            # Analyze file system
-            total_files = 0
-            total_dirs = 0
-            total_size = 0
+            cases = DataService.load_cases()
+            if not query:
+                return cases
             
-            for root, dirs, files in os.walk(self.data_root):
-                total_dirs += len(dirs)
-                for file in files:
-                    file_path = Path(root) / file
-                    if file_path.exists():
-                        total_files += 1
-                        total_size += file_path.stat().st_size
+            query_lower = query.lower()
+            filtered_cases = []
             
-            analysis_results["metadata"]["total_files"] = total_files
-            analysis_results["metadata"]["total_directories"] = total_dirs
-            analysis_results["metadata"]["total_size_bytes"] = total_size
-            
-            # Analyze cases
-            cases = self.load_cases()
-            analysis_results["cases"]["total_cases"] = len(cases)
-            
-            status_dist = {}
             for case in cases:
-                status = case.get('status', 'Unknown')
-                status_dist[status] = status_dist.get(status, 0) + 1
-            analysis_results["cases"]["status_distribution"] = status_dist
-            
-            # Count total documents across all cases
-            total_docs = 0
-            for case in cases:
-                case_docs = self.load_case_documents(case.get('id', ''))
-                total_docs += len(case_docs)
-            analysis_results["cases"]["total_documents"] = total_docs
-            
-            # Analyze research corpus
-            corpus = self.load_research_corpus()
-            corpus_docs = corpus.get('documents', {})
-            analysis_results["research_corpus"]["total_documents"] = len(corpus_docs)
-            
-            categories = corpus.get('categories', {})
-            category_counts = {}
-            for cat_name, cat_data in categories.items():
-                category_counts[cat_name] = len(cat_data.get('document_ids', []))
-            analysis_results["research_corpus"]["categories"] = category_counts
-            analysis_results["research_corpus"]["research_areas"] = corpus.get('research_areas', [])
-            
-            # Analyze playbooks
-            playbooks = self.load_playbooks()
-            analysis_results["playbooks"]["total_playbooks"] = len(playbooks)
-            analysis_results["playbooks"]["case_types"] = [pb.get('case_type') for pb in playbooks]
-            
-            # Identify potential issues
-            if len(cases) == 0:
-                analysis_results["issues_identified"].append("No cases found in the system")
-            
-            if len(corpus_docs) == 0:
-                analysis_results["issues_identified"].append("No research corpus documents found")
-            
-            if len(playbooks) == 0:
-                analysis_results["issues_identified"].append("No playbooks found in the system")
-            
-            # Generate recommendations
-            if total_docs == 0:
-                analysis_results["recommendations"].append("Consider adding sample documents to cases")
-            
-            if len(corpus.get('research_areas', [])) < 3:
-                analysis_results["recommendations"].append("Consider expanding research areas coverage")
-            
-        except Exception as e:
-            analysis_results["issues_identified"].append(f"Error during analysis: {str(e)}")
-        
-        return analysis_results
-    
-    def validate_data_integrity(self) -> Dict[str, Any]:
-        """Validate data integrity across all data sources."""
-        validation_results = {
-            "validation_date": datetime.now().isoformat(),
-            "overall_status": "PASS",
-            "cases_validation": {"status": "PASS", "issues": []},
-            "documents_validation": {"status": "PASS", "issues": []},
-            "corpus_validation": {"status": "PASS", "issues": []},
-            "playbooks_validation": {"status": "PASS", "issues": []}
-        }
-        
-        try:
-            # Validate cases
-            cases = self.load_cases()
-            for case in cases:
-                if not case.get('id'):
-                    validation_results["cases_validation"]["issues"].append("Case missing ID")
-                    validation_results["cases_validation"]["status"] = "FAIL"
+                # Search in title, summary, client_name, and key_parties
+                searchable_text = " ".join([
+                    case.get('title', ''),
+                    case.get('summary', ''),
+                    case.get('client_name', ''),
+                    " ".join(case.get('key_parties', []))
+                ]).lower()
                 
-                if not case.get('title'):
-                    validation_results["cases_validation"]["issues"].append(f"Case {case.get('id')} missing title")
-                    validation_results["cases_validation"]["status"] = "FAIL"
+                if query_lower in searchable_text:
+                    filtered_cases.append(case)
             
-            # Validate research corpus
-            corpus = self.load_research_corpus()
-            documents = corpus.get('documents', {})
+            return filtered_cases
+        except Exception as e:
+            print(f"Error searching cases: {e}")
+            return []
+    
+    @staticmethod
+    def search_documents(query: str) -> List[Dict[str, Any]]:
+        """Search documents by name, type, or content preview."""
+        try:
+            # Load all documents from all cases
+            case_docs_path = Path("data/cases/case_documents/case_documents_index.json")
+            if not case_docs_path.exists():
+                return []
+            
+            with open(case_docs_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+                documents = data.get('case_documents', [])
+            
+            if not query:
+                return documents
+            
+            query_lower = query.lower()
+            filtered_documents = []
+            
+            for doc in documents:
+                # Search in name, type, and content_preview
+                searchable_text = " ".join([
+                    doc.get('name', ''),
+                    doc.get('type', ''),
+                    doc.get('content_preview', '')
+                ]).lower()
+                
+                if query_lower in searchable_text:
+                    filtered_documents.append(doc)
+            
+            return filtered_documents
+        except Exception as e:
+            print(f"Error searching documents: {e}")
+            return []
+    
+    @staticmethod
+    def search_corpus(query: str) -> List[Dict[str, Any]]:
+        """Search research corpus by name, description, or research areas."""
+        try:
+            corpus_index_path = Path("data/research_corpus/research_corpus_index.json")
+            if not corpus_index_path.exists():
+                return []
+            
+            with open(corpus_index_path, 'r', encoding='utf-8') as f:
+                corpus_data = json.load(f)
+            
+            documents = corpus_data.get('documents', {})
+            
+            if not query:
+                # Return all documents as list
+                result = []
+                for doc_id, doc_data in documents.items():
+                    doc = doc_data.copy()
+                    doc['id'] = doc_id
+                    result.append(doc)
+                return result
+            
+            query_lower = query.lower()
+            filtered_documents = []
             
             for doc_id, doc_data in documents.items():
-                if not doc_data.get('filename'):
-                    validation_results["corpus_validation"]["issues"].append(f"Document {doc_id} missing filename")
-                    validation_results["corpus_validation"]["status"] = "FAIL"
+                # Search in name, description, and research_areas
+                searchable_text = " ".join([
+                    doc_data.get('name', ''),
+                    doc_data.get('description', ''),
+                    " ".join(doc_data.get('research_areas', []))
+                ]).lower()
                 
-                # Check if file exists
-                category = doc_data.get('category')
-                filename = doc_data.get('filename')
-                if category and filename:
-                    file_path = self.research_corpus_path / category / filename
-                    if not file_path.exists():
-                        validation_results["corpus_validation"]["issues"].append(f"File not found: {file_path}")
-                        validation_results["corpus_validation"]["status"] = "FAIL"
+                if query_lower in searchable_text:
+                    doc = doc_data.copy()
+                    doc['id'] = doc_id
+                    filtered_documents.append(doc)
             
-            # Validate playbooks
-            playbooks = self.load_playbooks()
-            for playbook in playbooks:
-                if not playbook.get('id'):
-                    validation_results["playbooks_validation"]["issues"].append("Playbook missing ID")
-                    validation_results["playbooks_validation"]["status"] = "FAIL"
-                
-                if not playbook.get('case_type'):
-                    validation_results["playbooks_validation"]["issues"].append(f"Playbook {playbook.get('id')} missing case_type")
-                    validation_results["playbooks_validation"]["status"] = "FAIL"
-            
-            # Set overall status
-            if any(v["status"] == "FAIL" for v in [
-                validation_results["cases_validation"],
-                validation_results["documents_validation"],
-                validation_results["corpus_validation"],
-                validation_results["playbooks_validation"]
-            ]):
-                validation_results["overall_status"] = "FAIL"
-        
+            return filtered_documents
         except Exception as e:
-            validation_results["overall_status"] = "ERROR"
-            validation_results["error"] = str(e)
-        
-        return validation_results
+            print(f"Error searching corpus: {e}")
+            return []
     
-    # === UTILITY METHODS ===
+    # === CORPUS SPECIFIC METHODS ===
     
-    def get_system_statistics(self) -> Dict[str, Any]:
-        """Get comprehensive system statistics."""
-        return {
-            "cases": self.get_case_statistics(),
-            "research_corpus": {
-                "total_documents": len(self.load_research_corpus().get('documents', {})),
-                "categories": len(self.load_research_corpus().get('categories', {}))
-            },
-            "playbooks": {
-                "total_playbooks": len(self.load_playbooks())
-            },
-            "data_analysis": self.analyze_data_structure()
-        }
+    @staticmethod
+    def load_corpus_categories() -> Dict[str, Dict[str, Any]]:
+        """Load all corpus categories."""
+        try:
+            corpus_index_path = Path("data/research_corpus/research_corpus_index.json")
+            if not corpus_index_path.exists():
+                return {}
+            
+            with open(corpus_index_path, 'r', encoding='utf-8') as f:
+                corpus_data = json.load(f)
+                
+            return corpus_data.get('categories', {})
+        except Exception as e:
+            print(f"Error loading corpus categories: {e}")
+            return {}
+    
+    @staticmethod
+    def load_corpus_item_by_id(item_id: str) -> Optional[Dict[str, Any]]:
+        """Load a specific corpus item by ID with full content."""
+        try:
+            corpus_index_path = Path("data/research_corpus/research_corpus_index.json")
+            if not corpus_index_path.exists():
+                return None
+            
+            with open(corpus_index_path, 'r', encoding='utf-8') as f:
+                corpus_data = json.load(f)
+            
+            documents = corpus_data.get('documents', {})
+            if item_id not in documents:
+                return None
+            
+            item = documents[item_id].copy()
+            item['id'] = item_id
+            
+            # Load full content from file
+            filename = item.get('filename', '')
+            category = item.get('category', '')
+            
+            if filename and category:
+                content_path = Path(f"data/research_corpus/{category}/{filename}")
+                if content_path.exists():
+                    with open(content_path, 'r', encoding='utf-8') as f:
+                        item['content'] = f.read()
+                else:
+                    item['content'] = ""
+            
+            return item
+        except Exception as e:
+            print(f"Error loading corpus item: {e}")
+            return None
+    
+    @staticmethod
+    def load_corpus_metadata() -> Dict[str, Any]:
+        """Load corpus metadata."""
+        try:
+            corpus_index_path = Path("data/research_corpus/research_corpus_index.json")
+            if not corpus_index_path.exists():
+                return {}
+            
+            with open(corpus_index_path, 'r', encoding='utf-8') as f:
+                corpus_data = json.load(f)
+                
+            return corpus_data.get('corpus_metadata', {})
+        except Exception as e:
+            print(f"Error loading corpus metadata: {e}")
+            return {}
+    
+    @staticmethod
+    def get_corpus_research_areas() -> List[str]:
+        """Get all research areas from corpus."""
+        try:
+            corpus_index_path = Path("data/research_corpus/research_corpus_index.json")
+            if not corpus_index_path.exists():
+                return []
+            
+            with open(corpus_index_path, 'r', encoding='utf-8') as f:
+                corpus_data = json.load(f)
+                
+            return corpus_data.get('research_areas', [])
+        except Exception as e:
+            print(f"Error loading research areas: {e}")
+            return []
+    
+    @staticmethod
+    def get_related_corpus_items(item_id: str) -> List[Dict[str, Any]]:
+        """Get related corpus items based on research areas and category."""
+        try:
+            # First get the item to find its research areas and category
+            item = DataService.load_corpus_item_by_id(item_id)
+            if not item:
+                return []
+            
+            item_research_areas = set(item.get('research_areas', []))
+            item_category = item.get('category', '')
+            
+            # Load all corpus items
+            corpus_index_path = Path("data/research_corpus/research_corpus_index.json")
+            with open(corpus_index_path, 'r', encoding='utf-8') as f:
+                corpus_data = json.load(f)
+            
+            documents = corpus_data.get('documents', {})
+            related_items = []
+            
+            for doc_id, doc_data in documents.items():
+                if doc_id == item_id:  # Skip the item itself
+                    continue
+                
+                doc_research_areas = set(doc_data.get('research_areas', []))
+                doc_category = doc_data.get('category', '')
+                
+                # Calculate relevance based on shared research areas and category
+                shared_areas = item_research_areas.intersection(doc_research_areas)
+                same_category = item_category == doc_category
+                
+                if shared_areas or same_category:
+                    doc = doc_data.copy()
+                    doc['id'] = doc_id
+                    # Add relevance score
+                    relevance_score = len(shared_areas) * 2 + (1 if same_category else 0)
+                    doc['relevance_score'] = relevance_score
+                    related_items.append(doc)
+            
+            # Sort by relevance score (highest first)
+            related_items.sort(key=lambda x: x.get('relevance_score', 0), reverse=True)
+            
+            # Return top 5 related items
+            return related_items[:5]
+        except Exception as e:
+            print(f"Error getting related corpus items: {e}")
+            return []

@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import Layout from './pages/Layout';
 import Dashboard from './pages/Dashboard';
 import Cases from './pages/Cases';
+import CaseAnalysis from './pages/CaseAnalysis';
 import Documents from './pages/Documents';
 import DocumentAnalysisManagement from './pages/DocumentAnalysisManagement';
 import Playbooks from './pages/Playbooks';
@@ -27,6 +28,10 @@ export const router = createBrowserRouter([
       {
         path: 'cases/:caseId',
         element: <Cases />, // Cases component should handle individual case view
+      },
+      {
+        path: 'cases/:caseId/analysis',
+        element: <CaseAnalysis />, // Comprehensive case analysis page
       },
       {
         path: 'cases/:caseId/documents',
