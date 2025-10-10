@@ -1,110 +1,14 @@
 {
   "metadata": {
-    "created": "2025-10-10T07:48:51.125262",
-    "last_updated": "2025-10-10T11:13:37.623138",
-    "total_analyses": 5
+    "created": "2025-10-10T08:26:19.102631",
+    "last_updated": "2025-10-10T08:34:50.284492",
+    "total_analyses": 21
   },
   "analyses": {
-    "doc-contract": {
-      "document_id": "doc-contract",
+    "doc-001": {
+      "document_id": "doc-001",
       "key_dates": [
         "2022-03-15"
       ],
       "parties_involved": [
-        "Test Party"
-      ],
-      "document_type": "Contract",
-      "summary": "Test contract analysis",
-      "key_clauses": [
-        "Test contract clause"
-      ],
-      "confidence_scores": {
-        "parties": 0.9,
-        "dates": 0.9
-      },
-      "analyzed_at": "2025-10-10T10:59:26.181590",
-      "analysis_source": "live_ai_analysis"
-    },
-    "doc-email": {
-      "document_id": "doc-email",
-      "key_dates": [
-        "2022-03-15"
-      ],
-      "parties_involved": [
-        "Test Party"
-      ],
-      "document_type": "Email",
-      "summary": "Test email analysis",
-      "key_clauses": [
-        "Test email clause"
-      ],
-      "confidence_scores": {
-        "parties": 0.9,
-        "dates": 0.9
-      },
-      "analyzed_at": "2025-10-10T10:59:26.192099",
-      "analysis_source": "live_ai_analysis"
-    },
-    "doc-evidence": {
-      "document_id": "doc-evidence",
-      "key_dates": [
-        "2022-03-15"
-      ],
-      "parties_involved": [
-        "Test Party"
-      ],
-      "document_type": "Evidence",
-      "summary": "Test evidence analysis",
-      "key_clauses": [
-        "Test evidence clause"
-      ],
-      "confidence_scores": {
-        "parties": 0.9,
-        "dates": 0.9
-      },
-      "analyzed_at": "2025-10-10T10:59:26.204100",
-      "analysis_source": "live_ai_analysis"
-    },
-    "doc-legal brief": {
-      "document_id": "doc-legal brief",
-      "key_dates": [
-        "2022-03-15"
-      ],
-      "parties_involved": [
-        "Test Party"
-      ],
-      "document_type": "Legal Brief",
-      "summary": "Test legal brief analysis",
-      "key_clauses": [
-        "Test legal brief clause"
-      ],
-      "confidence_scores": {
-        "parties": 0.9,
-        "dates": 0.9
-      },
-      "analyzed_at": "2025-10-10T10:59:26.215099",
-      "analysis_source": "live_ai_analysis"
-    },
-    "doc-003": {
-      "document_id": "doc-003",
-      "key_dates": [],
-      "parties_involved": [
-        "Employment Termination",
-        "Sarah Chen",
-        "Jennifer Walsh"
-      ],
-      "document_type": "Termination Notice",
-      "summary": "Termination Notice involving Employment Termination, Sarah Chen. From: hr@techcorp",
-      "key_clauses": [],
-      "confidence_scores": {
-        "parties": 0.85,
-        "dates": 0.5,
-        "contract_terms": 0.4,
-        "key_clauses": 0.4,
-        "legal_analysis": 0.4
-      },
-      "analyzed_at": "2025-10-10T11:13:37.465112",
-      "analysis_source": "live_ai_analysis"
-    }
-  }
-}
+        "TechCor
