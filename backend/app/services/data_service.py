@@ -30,12 +30,16 @@ class DataService:
     def load_cases() -> List[Dict[str, Any]]:
         """Load all cases from the cases index."""
         try:
-            cases_index_path = Path("data/cases/cases_index.json")
+            # Use absolute path from the backend directory
+            backend_dir = Path(__file__).parent.parent.parent
+            cases_index_path = backend_dir / "data" / "cases" / "cases_index.json"
+            
             if not cases_index_path.exists():
                 return []
             
             with open(cases_index_path, 'r', encoding='utf-8') as f:
                 cases_data = json.load(f)
+                
                 # Handle both array format and object with 'cases' key
                 if isinstance(cases_data, list):
                     return cases_data

@@ -59,6 +59,34 @@ class TestCasesAPI:
         assert 'title' in case
         assert 'case_type' in case
         assert 'status' in case
+
+    def test_get_case_includes_description_field(self):
+        """Test that GET /api/cases/{case_id} includes description field"""
+        # Test with case-001 which should have a description
+        response = client.get("/api/cases/case-001")
+        assert response.status_code == 200
+        
+        case = response.json()
+        assert case['id'] == 'case-001'
+        assert 'description' in case
+        assert case['description'] is not None
+        assert len(case['description']) > 100  # Should be a substantial description
+        assert 'Sarah Chen' in case['description']  # Should contain case-specific content
+
+    def test_get_cases_list_includes_description_field(self):
+        """Test that GET /api/cases/ includes description field for all cases"""
+        response = client.get("/api/cases/")
+        assert response.status_code == 200
+        
+        cases = response.json()
+        assert len(cases) > 0
+        
+        # Check that at least case-001 has a description
+        case_001 = next((case for case in cases if case['id'] == 'case-001'), None)
+        assert case_001 is not None
+        assert 'description' in case_001
+        assert case_001['description'] is not None
+        assert len(case_001['description']) > 100
     
     def test_get_case_not_found(self):
         """Test GET /api/cases/{case_id} with non-existent ID"""

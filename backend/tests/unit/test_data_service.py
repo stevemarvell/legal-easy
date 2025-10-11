@@ -33,6 +33,19 @@ class TestDataService:
         assert len(result) == 1
         assert result[0]["id"] == "case1"
 
+    @patch("builtins.open", new_callable=mock_open, read_data='[{"id": "case-001", "title": "Test Case", "description": "This is a detailed case description with comprehensive information about the legal matter."}]')
+    @patch("pathlib.Path.exists", return_value=True)
+    def test_load_cases_includes_description_field(self, mock_exists, mock_file):
+        """Test that load_cases includes the description field"""
+        result = DataService.load_cases()
+        
+        assert len(result) == 1
+        assert result[0]["id"] == "case-001"
+        assert result[0]["title"] == "Test Case"
+        assert "description" in result[0]
+        assert result[0]["description"] == "This is a detailed case description with comprehensive information about the legal matter."
+        assert len(result[0]["description"]) > 50  # Ensure it's a substantial description
+
     @patch("pathlib.Path.exists", return_value=False)
     def test_load_cases_file_not_exists(self, mock_exists):
         """Test loading cases when file doesn't exist"""

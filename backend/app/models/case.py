@@ -13,6 +13,7 @@ class Case(BaseModel):
     status: str = Field(..., description="Current status of the case", example="Active", enum=["Active", "Under Review", "Resolved"])
     created_date: datetime = Field(..., description="Date when the case was created", example="2024-01-15T09:00:00Z")
     summary: str = Field(..., description="Brief summary of the case", example="Employee alleges wrongful dismissal after reporting safety violations...")
+    description: Optional[str] = Field(None, description="Detailed description of the case with comprehensive background information", example="Sarah Chen commenced employment with TechCorp Solutions Ltd. on 15 March 2022...")
     key_parties: List[str] = Field(..., description="List of key parties involved in the case", example=["Sarah Chen (Claimant)", "TechCorp Solutions Ltd. (Respondent)"])
     documents: List[str] = Field(..., description="List of document IDs associated with this case", example=["doc-001", "doc-002", "doc-003"])
     playbook_id: str = Field(..., description="ID of the playbook used for this case type", example="employment-dispute")
@@ -27,6 +28,7 @@ class Case(BaseModel):
                 "status": "Active",
                 "created_date": "2024-01-15T09:00:00Z",
                 "summary": "Employee alleges wrongful dismissal after reporting safety violations. Claims retaliation and seeks reinstatement plus damages.",
+                "description": "Sarah Chen commenced employment with TechCorp Solutions Ltd. on 15 March 2022 as a Senior Safety Engineer under a comprehensive employment agreement...",
                 "key_parties": [
                     "Sarah Chen (Claimant)",
                     "TechCorp Solutions Ltd. (Respondent)",

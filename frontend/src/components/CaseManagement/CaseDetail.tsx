@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
 import {
   Box,
   Card,
@@ -49,6 +50,8 @@ const CaseDetail: React.FC = () => {
   const [documentsLoading, setDocumentsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState(0);
+
+
 
   useEffect(() => {
     const fetchCaseDetail = async () => {
@@ -246,6 +249,12 @@ const CaseDetail: React.FC = () => {
               sx={{ minHeight: 48 }}
             />
             <Tab
+              icon={<AssignmentIcon />}
+              label="Details"
+              iconPosition="start"
+              sx={{ minHeight: 48 }}
+            />
+            <Tab
               icon={<DocumentIcon />}
               label="Documents"
               iconPosition="start"
@@ -365,8 +374,77 @@ const CaseDetail: React.FC = () => {
               </Box>
             )}
 
-            {/* Documents Tab */}
+            {/* Details Tab */}
             {activeTab === 1 && (
+              <Card sx={{ mb: 4 }} data-testid="case-details">
+                <CardContent>
+                  <Typography variant="h5" component="h2" gutterBottom>
+                    Detailed Case Information
+                  </Typography>
+                  <Divider sx={{ mb: 3 }} />
+
+                  {caseData.description ? (
+                    <Box
+                      data-testid="case-full-description"
+                      sx={{
+                        '& h2': {
+                          color: 'primary.main',
+                          fontSize: '1.5rem',
+                          fontWeight: 600,
+                          mt: 3,
+                          mb: 2,
+                          '&:first-of-type': { mt: 0 }
+                        },
+                        '& h3': {
+                          color: 'primary.dark',
+                          fontSize: '1.25rem',
+                          fontWeight: 500,
+                          mt: 2.5,
+                          mb: 1.5
+                        },
+                        '& p': {
+                          lineHeight: 1.8,
+                          textAlign: 'justify',
+                          mb: 2,
+                          fontSize: '1rem'
+                        },
+                        '& ul, & ol': {
+                          mb: 2,
+                          pl: 3
+                        },
+                        '& li': {
+                          mb: 0.5,
+                          lineHeight: 1.6
+                        },
+                        '& strong': {
+                          color: 'text.primary',
+                          fontWeight: 600
+                        },
+                        '& em': {
+                          fontStyle: 'italic',
+                          color: 'text.secondary'
+                        }
+                      }}
+                    >
+                      <ReactMarkdown>{caseData.description}</ReactMarkdown>
+                    </Box>
+                  ) : (
+                    <Box textAlign="center" py={4}>
+                      <AssignmentIcon sx={{ fontSize: 48, color: 'text.disabled', mb: 2 }} />
+                      <Typography variant="body2" color="text.secondary" gutterBottom>
+                        No detailed description available for this case
+                      </Typography>
+                      <Typography variant="caption" color="text.secondary">
+                        The case summary is available in the Overview tab
+                      </Typography>
+                    </Box>
+                  )}
+                </CardContent>
+              </Card>
+            )}
+
+            {/* Documents Tab */}
+            {activeTab === 2 && (
               <Card sx={{ mb: 4 }} data-testid="documents-section">
                 <CardContent>
                   <Box display="flex" alignItems="center" justifyContent="space-between" mb={2}>
@@ -475,7 +553,7 @@ const CaseDetail: React.FC = () => {
             )}
 
             {/* Analysis Tab */}
-            {activeTab === 2 && analysisStatus.completed > 0 && (
+            {activeTab === 3 && analysisStatus.completed > 0 && (
               <Box>
                 <Typography variant="h5" component="h2" gutterBottom>
                   Integrated Case Analysis
@@ -488,7 +566,7 @@ const CaseDetail: React.FC = () => {
             )}
 
             {/* Timeline Tab */}
-            {activeTab === 3 && (
+            {activeTab === 4 && (
               <Card sx={{ mb: 4 }}>
                 <CardContent>
                   <Box display="flex" alignItems="center" mb={2}>
