@@ -1,22 +1,17 @@
 from typing import List, Optional, Dict, Any
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from datetime import datetime
 
 
 class CorpusItem(BaseModel):
-    """Legal corpus item model"""
+    """Legal corpus item model as specified in design document"""
     id: str
-    name: str
-    filename: str
+    title: str
     category: str  # contracts, clauses, precedents, statutes
-    document_type: str
-    research_areas: List[str]
-    description: str
-    content: Optional[str] = None  # Full content when requested
-    research_concepts: Optional[List[str]] = None
-    related_items: Optional[List[str]] = None
-    relevance_score: Optional[float] = None  # Relevance score for search/related results
-    metadata: Optional[Dict[str, Any]] = None
+    content: str
+    legal_concepts: List[str]
+    related_items: List[str]
+    metadata: Dict[str, Any]
 
 
 class CorpusCategory(BaseModel):
@@ -35,8 +30,17 @@ class CorpusMetadata(BaseModel):
     embedding_model: Optional[str] = None
 
 
+class LegalConcept(BaseModel):
+    """Legal concept model as specified in design document"""
+    id: str
+    name: str
+    definition: str
+    related_concepts: List[str]
+    corpus_references: List[str]
+
+
 class ResearchConcept(BaseModel):
-    """Research concept model for concept analysis"""
+    """Research concept model for concept analysis (legacy compatibility)"""
     id: str
     name: str
     definition: str

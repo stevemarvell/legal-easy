@@ -4,23 +4,32 @@
     "created_date": "2024-01-01",
     "total_documents": 10,
     "research_jurisdiction": "United Kingdom",
-    "embedding_model": "all-MiniLM-L6-v2"
+    "embedding_model": "all-MiniLM-L6-v2",
+    "legal_concepts_count": 15,
+    "last_updated": "2025-01-11"
   },
   "documents": {
     "rc-001": {
       "id": "rc-001",
-      "name": "Employment Contract Template",
+      "title": "Employment Contract Template",
       "filename": "rc-001_employment_template.txt",
       "category": "contracts",
       "document_type": "Contract Template",
       "research_areas": [
         "Employment Law"
       ],
-      "description": "Standard UK employment contract template with key clauses"
+      "description": "Standard UK employment contract template with key clauses",
+      "legal_concepts": ["lc-001", "lc-002"],
+      "related_items": ["rc-004", "rc-007"],
+      "metadata": {
+        "jurisdiction": "United Kingdom",
+        "document_type": "Contract Template",
+        "research_areas": ["Employment Law"]
+      }
     },
     "rc-002": {
       "id": "rc-002",
-      "name": "Service Agreement Template",
+      "title": "Service Agreement Template",
       "filename": "rc-002_service_agreement_template.txt",
       "category": "contracts",
       "document_type": "Contract Template",
@@ -28,11 +37,18 @@
         "Commercial Law",
         "Contract Law"
       ],
-      "description": "Professional services agreement template for UK businesses"
+      "description": "Professional services agreement template for UK businesses",
+      "legal_concepts": ["lc-004", "lc-005", "lc-006"],
+      "related_items": ["rc-005", "rc-008"],
+      "metadata": {
+        "jurisdiction": "United Kingdom",
+        "document_type": "Contract Template",
+        "research_areas": ["Commercial Law", "Contract Law"]
+      }
     },
     "rc-003": {
       "id": "rc-003",
-      "name": "Non-Disclosure Agreement",
+      "title": "Non-Disclosure Agreement",
       "filename": "rc-003_non_disclosure_agreement.txt",
       "category": "contracts",
       "document_type": "Contract Template",
@@ -40,11 +56,18 @@
         "Intellectual Property",
         "Data Protection"
       ],
-      "description": "UK confidentiality agreement template"
+      "description": "UK confidentiality agreement template",
+      "legal_concepts": ["lc-011", "lc-012", "lc-013"],
+      "related_items": ["rc-006"],
+      "metadata": {
+        "jurisdiction": "United Kingdom",
+        "document_type": "Contract Template",
+        "research_areas": ["Intellectual Property", "Data Protection"]
+      }
     },
     "rc-004": {
       "id": "rc-004",
-      "name": "Termination Clauses",
+      "title": "Termination Clauses",
       "filename": "rc-004_termination_clauses.txt",
       "category": "clauses",
       "document_type": "Research Clause",
@@ -52,11 +75,18 @@
         "Employment Law",
         "Contract Law"
       ],
-      "description": "Various termination clause templates and examples"
+      "description": "Various termination clause templates and examples",
+      "legal_concepts": ["lc-001", "lc-002", "lc-003"],
+      "related_items": ["rc-001", "rc-007"],
+      "metadata": {
+        "jurisdiction": "United Kingdom",
+        "document_type": "Research Clause",
+        "research_areas": ["Employment Law", "Contract Law"]
+      }
     },
     "rc-005": {
       "id": "rc-005",
-      "name": "Liability Clauses",
+      "title": "Liability Clauses",
       "filename": "rc-005_liability_clauses.txt",
       "category": "clauses",
       "document_type": "Research Clause",
@@ -64,62 +94,104 @@
         "Liability and Risk",
         "Commercial Law"
       ],
-      "description": "Liability limitation and indemnification clauses"
+      "description": "Liability limitation and indemnification clauses",
+      "legal_concepts": ["lc-004", "lc-005", "lc-006"],
+      "related_items": ["rc-002", "rc-008"],
+      "metadata": {
+        "jurisdiction": "United Kingdom",
+        "document_type": "Research Clause",
+        "research_areas": ["Liability and Risk", "Commercial Law"]
+      }
     },
     "rc-006": {
       "id": "rc-006",
-      "name": "Intellectual Property Clauses",
+      "title": "Intellectual Property Clauses",
       "filename": "rc-006_intellectual_property_clauses.txt",
       "category": "clauses",
       "document_type": "Research Clause",
       "research_areas": [
         "Intellectual Property"
       ],
-      "description": "IP ownership and licensing clauses"
+      "description": "IP ownership and licensing clauses",
+      "legal_concepts": ["lc-011", "lc-012", "lc-013"],
+      "related_items": ["rc-003"],
+      "metadata": {
+        "jurisdiction": "United Kingdom",
+        "document_type": "Research Clause",
+        "research_areas": ["Intellectual Property"]
+      }
     },
     "rc-007": {
       "id": "rc-007",
-      "name": "Employment Law Precedents",
+      "title": "Employment Law Precedents",
       "filename": "rc-007_employment_law_precedents.txt",
       "category": "precedents",
       "document_type": "Case Law",
       "research_areas": [
         "Employment Law"
       ],
-      "description": "Major UK employment law cases and principles"
+      "description": "Major UK employment law cases and principles",
+      "legal_concepts": ["lc-001", "lc-002", "lc-003"],
+      "related_items": ["rc-001", "rc-004", "rc-009"],
+      "metadata": {
+        "jurisdiction": "United Kingdom",
+        "document_type": "Case Law",
+        "research_areas": ["Employment Law"]
+      }
     },
     "rc-008": {
       "id": "rc-008",
-      "name": "Contract Law Precedents",
+      "title": "Contract Law Precedents",
       "filename": "rc-008_contract_law_precedents.txt",
       "category": "precedents",
       "document_type": "Case Law",
       "research_areas": [
         "Contract Law"
       ],
-      "description": "Fundamental UK contract law precedents"
+      "description": "Fundamental UK contract law precedents",
+      "legal_concepts": ["lc-006", "lc-007", "lc-008", "lc-009", "lc-010"],
+      "related_items": ["rc-002", "rc-005", "rc-010"],
+      "metadata": {
+        "jurisdiction": "United Kingdom",
+        "document_type": "Case Law",
+        "research_areas": ["Contract Law"]
+      }
     },
     "rc-009": {
       "id": "rc-009",
-      "name": "Employment Statutes",
+      "title": "Employment Statutes",
       "filename": "rc-009_employment_statutes.txt",
       "category": "statutes",
       "document_type": "Statute/Regulation",
       "research_areas": [
         "Employment Law"
       ],
-      "description": "Major UK employment law statutes and regulations"
+      "description": "Major UK employment law statutes and regulations",
+      "legal_concepts": ["lc-001", "lc-003", "lc-014", "lc-015"],
+      "related_items": ["rc-007", "rc-010"],
+      "metadata": {
+        "jurisdiction": "United Kingdom",
+        "document_type": "Statute/Regulation",
+        "research_areas": ["Employment Law"]
+      }
     },
     "rc-010": {
       "id": "rc-010",
-      "name": "Contract Statutes",
+      "title": "Contract Statutes",
       "filename": "rc-010_contract_statutes.txt",
       "category": "statutes",
       "document_type": "Statute/Regulation",
       "research_areas": [
         "Contract Law"
       ],
-      "description": "UK contract and consumer protection law"
+      "description": "UK contract and consumer protection law",
+      "legal_concepts": ["lc-006", "lc-007", "lc-008", "lc-014", "lc-015"],
+      "related_items": ["rc-008", "rc-009"],
+      "metadata": {
+        "jurisdiction": "United Kingdom",
+        "document_type": "Statute/Regulation",
+        "research_areas": ["Contract Law"]
+      }
     }
   },
   "categories": {
