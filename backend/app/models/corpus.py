@@ -8,10 +8,16 @@ class CorpusItem(BaseModel):
     id: str
     title: str
     category: str  # contracts, clauses, precedents, statutes
-    content: str
-    legal_concepts: List[str]
-    related_items: List[str]
-    metadata: Dict[str, Any]
+    content: Optional[str] = None  # Optional for browsing, required for full item view
+    legal_concepts: List[str] = []
+    related_items: List[str] = []
+    metadata: Dict[str, Any] = {}
+    
+    # Additional fields from the data structure
+    filename: Optional[str] = None
+    document_type: Optional[str] = None
+    research_areas: List[str] = []
+    description: Optional[str] = None
 
 
 class CorpusCategory(BaseModel):

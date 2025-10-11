@@ -29,7 +29,7 @@ python scripts/initialize_research_corpus.py
 ```
 
 This will:
-- Process all research documents in `app/data/research_corpus/`
+- Process all research documents in `data/research_corpus/`
 - Generate vector embeddings using sentence-transformers
 - Save the corpus and embeddings for fast retrieval
 

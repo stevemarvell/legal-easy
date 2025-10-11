@@ -404,7 +404,7 @@ class AIService:
         """Load existing analysis results for a document."""
         try:
             # Use absolute path from the backend/app directory
-            analysis_path = Path(__file__).parent.parent / "data" / "ai" / "case_documents" / "case_documents_analysis.json"
+            analysis_path = Path(__file__).parent.parent.parent / "data" / "ai" / "case_documents" / "case_documents_analysis.json"
             if not analysis_path.exists():
                 return None
             
@@ -420,7 +420,7 @@ class AIService:
         """Save analysis results to storage."""
         try:
             # Use absolute path from the backend/app directory
-            analysis_path = Path(__file__).parent.parent / "data" / "ai" / "case_documents" / "case_documents_analysis.json"
+            analysis_path = Path(__file__).parent.parent.parent / "data" / "ai" / "case_documents" / "case_documents_analysis.json"
             
             # Ensure directory exists
             analysis_path.parent.mkdir(parents=True, exist_ok=True)

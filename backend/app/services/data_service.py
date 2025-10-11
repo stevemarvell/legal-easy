@@ -92,7 +92,7 @@ class DataService:
                 content_path = document.get('full_content_path', '')
                 if content_path:
                     # Convert relative path to absolute from data root
-                    full_path = Path("data") / content_path.replace('app/data/', '')
+                    full_path = Path("data") / content_path.replace('data/', '')
                     if full_path.exists():
                         with open(full_path, 'r', encoding='utf-8') as content_file:
                             return content_file.read()

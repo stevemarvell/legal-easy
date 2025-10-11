@@ -89,7 +89,7 @@ Each playbook demonstrates unique legal considerations:
 - ✅ Legal basis and evidence requirements included
 
 ### Files Created/Modified
-- `backend/app/data/demo_playbooks.json` - Enhanced with comprehensive playbook data
+- `backend/data/demo_playbooks.json` - Enhanced with comprehensive playbook data
 - `backend/validate_playbooks.py` - Validation script for data integrity
 - `backend/PLAYBOOK_IMPLEMENTATION_SUMMARY.md` - This summary document
 
