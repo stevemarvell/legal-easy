@@ -171,7 +171,7 @@ const DocumentDetail: React.FC = () => {
             {document.name}
           </Typography>
           <Typography variant="h6" color="text.secondary">
-            {document.type} • {document.size ? `${Math.round(document.size / 1024)} KB` : 'Unknown size'}
+            {document.id} • {document.type} • {document.size ? `${Math.round(document.size / 1024)} KB` : 'Unknown size'}
           </Typography>
         </Box>
 

@@ -141,14 +141,9 @@ const DocumentViewer: React.FC<DocumentViewerProps> = ({
         <CardContent>
           <Box display="flex" justifyContent="space-between" alignItems="flex-start" mb={2}>
             <Box flex={1}>
-              <Typography variant="h5" component="h2" gutterBottom>
-                {document.name}
+              <Typography variant="h6">
+                {document.content_preview}
               </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Document ID: {document.id}
-              </Typography>
-            </Box>
-            <Box display="flex" alignItems="center" gap={2}>
               <Chip
                 icon={getStatusIcon(document.analysis_completed)}
                 label={getStatusText(document.analysis_completed)}
@@ -182,6 +177,26 @@ const DocumentViewer: React.FC<DocumentViewerProps> = ({
         </CardContent>
       </Card>
 
+            {/* Header */}
+            <Card sx={{ mb: 1, flexShrink: 0 }}>
+              <CardContent sx={{ pb: 2 }}>
+                <Box display="flex" alignItems="center" justifyContent="space-between">
+
+                  <Box display="flex" alignItems="center" gap={1}>
+                    {contentLoading && <CircularProgress size={16} />}
+                    <Tooltip title="Refresh content">
+                      <IconButton
+                        onClick={handleRefreshContent}
+                        disabled={contentLoading}
+                        size="small"
+                      >
+                        <RefreshIcon />
+                      </IconButton>
+                    </Tooltip>
+                  </Box>
+                </Box>
+              </CardContent>
+            </Card>
 
 
       {/* Tabs Navigation */}
@@ -210,41 +225,6 @@ const DocumentViewer: React.FC<DocumentViewerProps> = ({
         {/* Document Content Tab */}
         {activeTab === 0 && (
           <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-            {/* Header */}
-            <Card sx={{ mb: 1, flexShrink: 0 }}>
-              <CardContent sx={{ pb: 2 }}>
-                <Box display="flex" alignItems="center" justifyContent="space-between">
-                  <Box display="flex" alignItems="center" gap={2}>
-                    <Typography variant="h6">
-                      Document Content
-                    </Typography>
-                    <Chip
-                      size="small"
-                      label={document.type}
-                      variant="outlined"
-                    />
-                    <Chip
-                      size="small"
-                      label={formatFileSize(document.size)}
-                      variant="outlined"
-                    />
-                  </Box>
-                  <Box display="flex" alignItems="center" gap={1}>
-                    {contentLoading && <CircularProgress size={16} />}
-                    <Tooltip title="Refresh content">
-                      <IconButton
-                        onClick={handleRefreshContent}
-                        disabled={contentLoading}
-                        size="small"
-                      >
-                        <RefreshIcon />
-                      </IconButton>
-                    </Tooltip>
-                  </Box>
-                </Box>
-              </CardContent>
-            </Card>
-
             {/* Content Area - Scrollable Card */}
             <Box sx={{ flex: 1, minHeight: 0 }}>
               {contentLoading ? (
