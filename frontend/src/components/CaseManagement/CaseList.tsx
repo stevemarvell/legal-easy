@@ -268,16 +268,6 @@ const CaseList: React.FC = () => {
                     }
                   </Typography>
                 </CardContent>
-
-                <CardActions>
-                  <Button
-                    size="small"
-                    variant="outlined"
-                    onClick={(event) => handleViewDocuments(case_.id, event)}
-                  >
-                    Documents
-                  </Button>
-                </CardActions>
               </Card>
             </Box>
           ))}

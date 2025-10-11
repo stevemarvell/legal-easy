@@ -53,7 +53,7 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
-# Include API routers with /api prefix (excluding legal_research for now)
+# Include API routers with /api 
 app.include_router(cases.router, prefix="/api")
 app.include_router(documents.router, prefix="/api")
 app.include_router(playbooks.router, prefix="/api")
