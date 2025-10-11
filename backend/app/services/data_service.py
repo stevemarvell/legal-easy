@@ -1418,3 +1418,48 @@ class DataService:
         except Exception as e:
             print(f"Error loading document deadlines: {e}")
             return None
+    
+    @staticmethod
+    def load_playbook_by_id(playbook_id: str) -> Optional[Dict[str, Any]]:
+        """Load a specific playbook by ID."""
+        try:
+            playbooks_path = Path("data/playbooks/playbooks_index.json")
+            if not playbooks_path.exists():
+                return None
+            
+            with open(playbooks_path, 'r', encoding='utf-8') as f:
+                playbooks = json.load(f)
+                
+                for playbook in playbooks:
+                    if playbook.get('id') == playbook_id:
+                        return playbook
+                return None
+        except Exception as e:
+            print(f"Error loading playbook {playbook_id}: {e}")
+            return None
+    
+    @staticmethod
+    def load_case_by_id(case_id: str) -> Optional[Dict[str, Any]]:
+        """Load a specific case by ID."""
+        try:
+            cases_path = Path("data/cases/cases_index.json")
+            if not cases_path.exists():
+                return None
+            
+            with open(cases_path, 'r', encoding='utf-8') as f:
+                cases = json.load(f)
+                
+                # Handle both array and object formats
+                if isinstance(cases, list):
+                    for case in cases:
+                        if case.get('id') == case_id:
+                            return case
+                elif isinstance(cases, dict) and 'cases' in cases:
+                    for case in cases['cases']:
+                        if case.get('id') == case_id:
+                            return case
+                
+                return None
+        except Exception as e:
+            print(f"Error loading case {case_id}: {e}")
+            return None

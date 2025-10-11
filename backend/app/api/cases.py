@@ -277,3 +277,392 @@ async def get_comprehensive_analysis(
         return analysis
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to generate comprehensive analysis: {str(e)}")
+
+
+@router.get(
+    "/{case_id}/integrated-analysis",
+    summary="Get integrated case analysis linking documents, research, and playbooks",
+    description="""
+    Get comprehensive integrated analysis of a case that combines:
+    - Document analysis from all case documents
+    - Relevant research corpus items and precedents
+    - Applicable playbook strategies and recommendations
+    - Strategic recommendations and risk assessment
+    - Overall case strength assessment
+    
+    This endpoint provides a holistic view by linking together all information sources.
+    """,
+    responses={
+        200: {
+            "description": "Integrated case analysis completed successfully",
+            "content": {
+                "application/json": {
+                    "example": {
+                        "case_id": "case-001",
+                        "case_info": {
+                            "title": "Wrongful Dismissal - Sarah Chen vs TechCorp Solutions",
+                            "case_type": "Employment Dispute",
+                            "status": "Active"
+                        },
+                        "document_analysis": {
+                            "summary": {
+                                "total_documents": 3,
+                                "key_dates": ["2022-03-15", "2023-12-10"],
+                                "parties_involved": ["Sarah Chen", "TechCorp Solutions"],
+                                "themes": ["employment", "termination", "safety"]
+                            }
+                        },
+                        "research_analysis": {
+                            "total_found": 15,
+                            "top_relevant": [
+                                {
+                                    "name": "Employment Termination Precedents",
+                                    "relevance_score": 0.9
+                                }
+                            ]
+                        },
+                        "playbook_analysis": {
+                            "playbook_name": "Employment Law Playbook",
+                            "decision_path": {
+                                "result": "Strong case with high likelihood of success"
+                            },
+                            "monetary_assessment": {
+                                "range": [50000, 200000],
+                                "description": "Moderate to high damages expected"
+                            }
+                        },
+                        "strategic_recommendations": {
+                            "recommendations": [
+                                {
+                                    "category": "Strategic Action",
+                                    "priority": "High",
+                                    "recommendation": "File formal complaint"
+                                }
+                            ],
+                            "strength_assessment": {
+                                "overall": "Strong"
+                            }
+                        },
+                        "case_assessment": {
+                            "overall_score": 0.85,
+                            "assessment_level": "Strong",
+                            "confidence": "High"
+                        }
+                    }
+                }
+            }
+        },
+        404: {
+            "description": "Case not found",
+            "content": {
+                "application/json": {
+                    "example": {"detail": "Case not found"}
+                }
+            }
+        },
+        500: {
+            "description": "Analysis failed",
+            "content": {
+                "application/json": {
+                    "example": {"detail": "Failed to perform integrated case analysis"}
+                }
+            }
+        }
+    }
+)
+async def get_integrated_case_analysis(
+    case_id: str = Path(..., description="Unique identifier of the case to analyze", example="case-001")
+):
+    """Get integrated analysis linking case documents, research, and playbooks"""
+    try:
+        from app.services.case_analysis_service import CaseAnalysisService
+        
+        analysis = CaseAnalysisService.analyze_case_comprehensive(case_id)
+        
+        if "error" in analysis:
+            if "not found" in analysis["error"].lower():
+                raise HTTPException(status_code=404, detail=analysis["error"])
+            else:
+                raise HTTPException(status_code=500, detail=analysis["error"])
+        
+        return analysis
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to perform integrated case analysis: {str(e)}")
+
+
+@router.get(
+    "/{case_id}/strategic-recommendations",
+    summary="Get strategic recommendations for a case",
+    description="""
+    Get strategic recommendations for a case based on integrated analysis of:
+    - Case documents and their analysis
+    - Relevant legal research and precedents
+    - Applicable playbook strategies
+    
+    Returns prioritized recommendations with next steps and risk factors.
+    """,
+    responses={
+        200: {
+            "description": "Strategic recommendations generated successfully",
+            "content": {
+                "application/json": {
+                    "example": {
+                        "case_id": "case-001",
+                        "recommendations": [
+                            {
+                                "category": "Strategic Action",
+                                "priority": "High",
+                                "recommendation": "File formal complaint with Employment Tribunal",
+                                "basis": "Strong evidence of victimisation following safety report"
+                            },
+                            {
+                                "category": "Evidence Gathering",
+                                "priority": "High",
+                                "recommendation": "Collect witness statements from colleagues",
+                                "basis": "Corroboration needed for hostile work environment claim"
+                            }
+                        ],
+                        "next_steps": [
+                            "File ACAS early conciliation",
+                            "Gather additional witness evidence",
+                            "Document timeline of events"
+                        ],
+                        "risk_factors": [
+                            "Employer may claim performance-based dismissal",
+                            "Limited documentation of safety concerns"
+                        ],
+                        "strength_assessment": {
+                            "overall": "Strong",
+                            "strengths": [
+                                "Clear timeline established",
+                                "Supporting legal precedents available"
+                            ],
+                            "weaknesses": [
+                                "Some gaps in documentation"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+)
+async def get_strategic_recommendations(
+    case_id: str = Path(..., description="Unique identifier of the case", example="case-001")
+):
+    """Get strategic recommendations for a case"""
+    try:
+        from app.services.case_analysis_service import CaseAnalysisService
+        
+        analysis = CaseAnalysisService.analyze_case_comprehensive(case_id)
+        
+        if "error" in analysis:
+            if "not found" in analysis["error"].lower():
+                raise HTTPException(status_code=404, detail=analysis["error"])
+            else:
+                raise HTTPException(status_code=500, detail=analysis["error"])
+        
+        # Extract just the strategic recommendations
+        strategic_recs = analysis.get("strategic_recommendations", {})
+        
+        return {
+            "case_id": case_id,
+            "recommendations": strategic_recs.get("recommendations", []),
+            "next_steps": strategic_recs.get("next_steps", []),
+            "risk_factors": strategic_recs.get("risk_factors", []),
+            "strength_assessment": strategic_recs.get("strength_assessment", {})
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to generate strategic recommendations: {str(e)}")
+
+
+@router.get(
+    "/{case_id}/research-links",
+    summary="Get relevant research links for a case",
+    description="""
+    Get relevant research corpus items linked to a case based on:
+    - Case type and subject matter
+    - Key themes extracted from case documents
+    - Legal concepts and precedents
+    
+    Returns categorized research items with relevance scores.
+    """,
+    responses={
+        200: {
+            "description": "Research links found successfully",
+            "content": {
+                "application/json": {
+                    "example": {
+                        "case_id": "case-001",
+                        "total_found": 25,
+                        "top_relevant": [
+                            {
+                                "id": "rc-001",
+                                "name": "Employment Termination Precedents",
+                                "category": "precedents",
+                                "relevance_score": 0.95,
+                                "description": "Key cases on wrongful dismissal and victimisation"
+                            }
+                        ],
+                        "categorized": {
+                            "precedents": [
+                                {
+                                    "name": "Employment Termination Cases",
+                                    "relevance_score": 0.9
+                                }
+                            ],
+                            "statutes": [
+                                {
+                                    "name": "Employment Rights Act 1996",
+                                    "relevance_score": 0.85
+                                }
+                            ]
+                        },
+                        "search_terms": ["employment dispute", "termination", "safety"]
+                    }
+                }
+            }
+        }
+    }
+)
+async def get_case_research_links(
+    case_id: str = Path(..., description="Unique identifier of the case", example="case-001")
+):
+    """Get relevant research corpus items for a case"""
+    try:
+        from app.services.case_analysis_service import CaseAnalysisService
+        
+        analysis = CaseAnalysisService.analyze_case_comprehensive(case_id)
+        
+        if "error" in analysis:
+            if "not found" in analysis["error"].lower():
+                raise HTTPException(status_code=404, detail=analysis["error"])
+            else:
+                raise HTTPException(status_code=500, detail=analysis["error"])
+        
+        # Extract just the research analysis
+        research_analysis = analysis.get("research_analysis", {})
+        
+        return {
+            "case_id": case_id,
+            "total_found": research_analysis.get("total_found", 0),
+            "top_relevant": research_analysis.get("top_relevant", []),
+            "categorized": research_analysis.get("categorized", {}),
+            "search_terms": research_analysis.get("search_terms", [])
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to get research links: {str(e)}")
+
+
+@router.post(
+    "/regenerate-analysis",
+    summary="Regenerate integrated analysis for all cases",
+    description="""
+    Regenerate comprehensive integrated analysis for all cases in the system.
+    
+    This endpoint will:
+    - Re-analyze all case documents
+    - Update research corpus correlations
+    - Refresh playbook-based strategic recommendations
+    - Recalculate case strength assessments
+    
+    This is an administrative function that should be used after:
+    - Adding new legal research materials
+    - Updating playbook rules
+    - Modifying analysis algorithms
+    """,
+    responses={
+        200: {
+            "description": "Case analysis regeneration completed successfully",
+            "content": {
+                "application/json": {
+                    "example": {
+                        "success": True,
+                        "message": "Successfully regenerated analysis for all cases",
+                        "total_cases": 6,
+                        "analyzed_cases": 6,
+                        "failed_cases": 0,
+                        "average_confidence": 0.82,
+                        "processing_time_seconds": 45,
+                        "analysis_types": [
+                            "Document Analysis",
+                            "Research Correlation",
+                            "Strategic Recommendations",
+                            "Case Strength Assessment"
+                        ]
+                    }
+                }
+            }
+        },
+        500: {
+            "description": "Analysis regeneration failed",
+            "content": {
+                "application/json": {
+                    "example": {
+                        "success": False,
+                        "message": "Failed to regenerate case analysis",
+                        "error": "Database connection error"
+                    }
+                }
+            }
+        }
+    }
+)
+async def regenerate_case_analysis():
+    """Regenerate integrated analysis for all cases"""
+    import time
+    from datetime import datetime
+    
+    start_time = time.time()
+    
+    try:
+        from app.services.case_analysis_service import CaseAnalysisService
+        
+        # Use the new regeneration method
+        result = CaseAnalysisService.regenerate_all_case_analyses()
+        
+        processing_time = time.time() - start_time
+        
+        if "error" in result:
+            return {
+                "success": False,
+                "message": "Failed to regenerate case analysis",
+                "error": result["error"],
+                "processing_time_seconds": round(processing_time, 1)
+            }
+        
+        analysis_types = [
+            "Document Analysis",
+            "Research Correlation", 
+            "Strategic Recommendations",
+            "Case Strength Assessment"
+        ]
+        
+        return {
+            "success": True,
+            "message": f"Successfully regenerated analysis for {result['analyzed_cases']} out of {result['total_cases']} cases",
+            "total_cases": result["total_cases"],
+            "analyzed_cases": result["analyzed_cases"],
+            "failed_cases": result["failed_cases"],
+            "average_confidence": result["average_confidence"],
+            "processing_time_seconds": round(processing_time, 1),
+            "analysis_types": analysis_types
+        }
+        
+    except Exception as e:
+        processing_time = time.time() - start_time
+        return {
+            "success": False,
+            "message": "Failed to regenerate case analysis",
+            "error": str(e),
+            "processing_time_seconds": round(processing_time, 1)
+        }

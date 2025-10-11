@@ -20,7 +20,8 @@ import {
   Storage as StorageIcon,
   CheckCircle as CheckIcon,
   Error as ErrorIcon,
-  Info as InfoIcon
+  Info as InfoIcon,
+  Analytics as AnalyticsIcon
 } from '@mui/icons-material';
 import { apiClient } from '../services/api';
 
@@ -43,6 +44,17 @@ interface DocumentAnalysisResult {
   processing_time_seconds: number;
 }
 
+interface CaseAnalysisResult {
+  success: boolean;
+  message: string;
+  total_cases: number;
+  analyzed_cases: number;
+  failed_cases: number;
+  average_confidence: number;
+  processing_time_seconds: number;
+  analysis_types: string[];
+}
+
 const Admin: React.FC = () => {
   const [corpusLoading, setCorpusLoading] = useState(false);
   const [corpusResult, setCorpusResult] = useState<CorpusRegenerationResult | null>(null);
@@ -51,6 +63,10 @@ const Admin: React.FC = () => {
   const [analysisLoading, setAnalysisLoading] = useState(false);
   const [analysisResult, setAnalysisResult] = useState<DocumentAnalysisResult | null>(null);
   const [analysisError, setAnalysisError] = useState<string | null>(null);
+  
+  const [caseAnalysisLoading, setCaseAnalysisLoading] = useState(false);
+  const [caseAnalysisResult, setCaseAnalysisResult] = useState<CaseAnalysisResult | null>(null);
+  const [caseAnalysisError, setCaseAnalysisError] = useState<string | null>(null);
 
   const handleRegenerateIndex = async () => {
     setCorpusLoading(true);
@@ -84,6 +100,22 @@ const Admin: React.FC = () => {
     }
   };
 
+  const handleRegenerateCaseAnalysis = async () => {
+    setCaseAnalysisLoading(true);
+    setCaseAnalysisError(null);
+    setCaseAnalysisResult(null);
+
+    try {
+      const response = await apiClient.post<CaseAnalysisResult>('/api/cases/regenerate-analysis');
+      setCaseAnalysisResult(response.data);
+    } catch (err: any) {
+      console.error('Failed to regenerate case analysis:', err);
+      setCaseAnalysisError(err.response?.data?.detail || 'Failed to regenerate case analysis');
+    } finally {
+      setCaseAnalysisLoading(false);
+    }
+  };
+
   return (
     <Container maxWidth="lg">
       <Box sx={{ py: 4 }}>
@@ -91,7 +123,7 @@ const Admin: React.FC = () => {
         <Typography variant="h4" component="h1" color="primary" gutterBottom>
           System Administration
         </Typography>
-        <Typography variant="body1" color="text.secondary" paragraph>
+        <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
           Administrative functions for managing the legal AI system
         </Typography>
 
@@ -105,7 +137,7 @@ const Admin: React.FC = () => {
               </Typography>
             </Box>
             
-            <Typography variant="body1" color="text.secondary" paragraph>
+            <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
               The corpus index organizes all legal documents, templates, and precedents for search and analysis. 
               Regenerate the index after adding new legal documents or updating existing ones.
             </Typography>
@@ -368,35 +400,162 @@ const Admin: React.FC = () => {
           </CardContent>
         </Card>
 
-        {/* Future Admin Functions */}
-        <Card>
+        {/* Case Analysis Management */}
+        <Card sx={{ mb: 4 }}>
           <CardContent>
-            <Typography variant="h5" component="h2" gutterBottom>
-              Additional Admin Functions
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+              <AnalyticsIcon color="primary" sx={{ mr: 1 }} />
+              <Typography variant="h5" component="h2">
+                Integrated Case Analysis
+              </Typography>
+            </Box>
+            
+            <Typography variant="body1" color="text.secondary" sx={{ mb: 3 }}>
+              Comprehensive AI-powered analysis that integrates document analysis, research corpus, and legal playbooks 
+              to provide strategic insights and recommendations for all cases.
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-              More administrative functions will be available here in future updates, including:
-            </Typography>
-            <List dense sx={{ mt: 1 }}>
-              <ListItem>
-                <ListItemText 
-                  primary="• System Health Monitoring" 
-                  secondary="View system status and performance metrics"
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText 
-                  primary="• Data Export/Import" 
-                  secondary="Backup and restore system data"
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText 
-                  primary="• User Management" 
-                  secondary="Manage user accounts and permissions"
-                />
-              </ListItem>
-            </List>
+
+            <Box sx={{ mb: 3 }}>
+              <Typography variant="h6" gutterBottom>
+                What integrated case analysis includes:
+              </Typography>
+              <List dense>
+                <ListItem>
+                  <ListItemIcon>
+                    <InfoIcon color="primary" />
+                  </ListItemIcon>
+                  <ListItemText 
+                    primary="Document Integration" 
+                    secondary="Links case documents with extracted key information and themes"
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemIcon>
+                    <InfoIcon color="primary" />
+                  </ListItemIcon>
+                  <ListItemText 
+                    primary="Research Correlation" 
+                    secondary="Matches cases with relevant precedents, statutes, and legal materials"
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemIcon>
+                    <InfoIcon color="primary" />
+                  </ListItemIcon>
+                  <ListItemText 
+                    primary="Strategic Recommendations" 
+                    secondary="AI-generated legal strategies based on playbook rules and case analysis"
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemIcon>
+                    <InfoIcon color="primary" />
+                  </ListItemIcon>
+                  <ListItemText 
+                    primary="Risk Assessment" 
+                    secondary="Comprehensive evaluation of case strengths, weaknesses, and potential outcomes"
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemIcon>
+                    <InfoIcon color="primary" />
+                  </ListItemIcon>
+                  <ListItemText 
+                    primary="Monetary Evaluation" 
+                    secondary="Estimated case values and settlement ranges based on similar cases"
+                  />
+                </ListItem>
+              </List>
+            </Box>
+
+            <Divider sx={{ my: 3 }} />
+
+            {/* Action Button */}
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 3 }}>
+              <Button
+                variant="contained"
+                color="warning"
+                size="large"
+                startIcon={caseAnalysisLoading ? <CircularProgress size={20} /> : <AnalyticsIcon />}
+                onClick={handleRegenerateCaseAnalysis}
+                disabled={caseAnalysisLoading}
+              >
+                {caseAnalysisLoading ? 'Regenerating Case Analysis...' : 'Regenerate Case Analysis'}
+              </Button>
+              
+              {caseAnalysisLoading && (
+                <Typography variant="body2" color="text.secondary">
+                  This may take several minutes for comprehensive analysis...
+                </Typography>
+              )}
+            </Box>
+
+            {/* Error Display */}
+            {caseAnalysisError && (
+              <Alert severity="error" sx={{ mb: 3 }} icon={<ErrorIcon />}>
+                <Typography variant="body2">
+                  <strong>Error:</strong> {caseAnalysisError}
+                </Typography>
+              </Alert>
+            )}
+
+            {/* Success Result */}
+            {caseAnalysisResult && caseAnalysisResult.success && (
+              <Alert severity="success" sx={{ mb: 3 }} icon={<CheckIcon />}>
+                <Typography variant="body2" gutterBottom>
+                  <strong>Success:</strong> {caseAnalysisResult.message}
+                </Typography>
+                
+                <Box sx={{ mt: 2, display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                  <Chip 
+                    label={`${caseAnalysisResult.total_cases} Total Cases`} 
+                    color="info" 
+                    size="small" 
+                  />
+                  <Chip 
+                    label={`${caseAnalysisResult.analyzed_cases} Analyzed`} 
+                    color="success" 
+                    size="small" 
+                  />
+                  {caseAnalysisResult.failed_cases > 0 && (
+                    <Chip 
+                      label={`${caseAnalysisResult.failed_cases} Failed`} 
+                      color="error" 
+                      size="small" 
+                    />
+                  )}
+                  <Chip 
+                    label={`${Math.round(caseAnalysisResult.average_confidence * 100)}% Avg Confidence`} 
+                    color="secondary" 
+                    size="small" 
+                  />
+                  <Chip 
+                    label={`${caseAnalysisResult.processing_time_seconds}s Processing Time`} 
+                    color="default" 
+                    size="small" 
+                  />
+                </Box>
+
+                {caseAnalysisResult.analysis_types.length > 0 && (
+                  <Box sx={{ mt: 2 }}>
+                    <Typography variant="caption" color="text.secondary" display="block">
+                      Analysis Types:
+                    </Typography>
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5, mt: 0.5 }}>
+                      {caseAnalysisResult.analysis_types.map((type) => (
+                        <Chip
+                          key={type}
+                          label={type}
+                          size="small"
+                          variant="outlined"
+                          color="warning"
+                        />
+                      ))}
+                    </Box>
+                  </Box>
+                )}
+              </Alert>
+            )}
           </CardContent>
         </Card>
       </Box>
