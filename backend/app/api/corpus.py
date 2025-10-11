@@ -440,3 +440,71 @@ async def get_related_materials(
         raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to get related materials: {str(e)}")
+
+
+@router.post(
+    "/regenerate-index",
+    summary="Regenerate corpus index",
+    description="""
+    Regenerate the corpus index by scanning the corpus directory structure.
+    
+    This endpoint will:
+    - Scan all corpus directories (contracts, clauses, precedents, statutes)
+    - Extract metadata from document files
+    - Generate legal concept mappings
+    - Update the research_corpus_index.json file
+    
+    **Use cases:**
+    - After adding new documents to the corpus
+    - Updating metadata and relationships
+    - Maintenance and data refresh
+    
+    **Note:** This operation may take some time for large corpora.
+    """,
+    responses={
+        200: {
+            "description": "Index regenerated successfully",
+            "content": {
+                "application/json": {
+                    "example": {
+                        "success": True,
+                        "message": "Corpus index regenerated successfully",
+                        "total_documents": 10,
+                        "research_areas": ["Employment Law", "Contract Law"],
+                        "legal_concepts_count": 15
+                    }
+                }
+            }
+        },
+        500: {
+            "description": "Index regeneration failed",
+            "content": {
+                "application/json": {
+                    "example": {"detail": "Failed to regenerate corpus index"}
+                }
+            }
+        }
+    }
+)
+async def regenerate_corpus_index():
+    """Regenerate the corpus index by scanning the directory structure"""
+    try:
+        success = DataService.regenerate_corpus_index()
+        
+        if not success:
+            raise HTTPException(status_code=500, detail="Failed to regenerate corpus index")
+        
+        # Load the new index to get statistics
+        corpus_metadata = DataService.load_corpus_metadata()
+        research_areas = DataService.get_corpus_research_areas()
+        
+        return {
+            "success": True,
+            "message": "Corpus index regenerated successfully",
+            "total_documents": corpus_metadata.get("total_documents", 0),
+            "research_areas": research_areas,
+            "legal_concepts_count": corpus_metadata.get("legal_concepts_count", 0),
+            "last_updated": corpus_metadata.get("last_updated", "")
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to regenerate corpus index: {str(e)}")

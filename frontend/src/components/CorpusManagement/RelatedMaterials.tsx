@@ -364,47 +364,46 @@ const RelatedMaterials: React.FC<RelatedMaterialsProps> = ({
                             </Box>
                           }
                           secondary={
-                            <Box>
-                              <Typography variant="caption" color="text.secondary" display="block">
-                                {getCategoryName(item.category)}
-                                {item.document_type && ` • ${item.document_type}`}
-                              </Typography>
-                              
-                              <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, mt: 0.5 }}>
+                            <Typography variant="caption" color="text.secondary" component="span">
+                              {getCategoryName(item.category)}
+                              {item.document_type && ` • ${item.document_type}`}
+                            </Typography>
+                          }
+                        />
+                        <Box sx={{ ml: 6, mt: 0.5 }}>
+                          <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, mb: 0.5 }}>
+                            <Chip
+                              size="small"
+                              label={relationshipType}
+                              color="info"
+                              variant="outlined"
+                              sx={{ fontSize: '0.6rem', height: '16px' }}
+                            />
+                          </Box>
+                          
+                          {item.research_areas.length > 0 && (
+                            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                              {item.research_areas.slice(0, 2).map((area) => (
                                 <Chip
+                                  key={area}
                                   size="small"
-                                  label={relationshipType}
-                                  color="info"
+                                  label={area}
+                                  color="secondary"
                                   variant="outlined"
                                   sx={{ fontSize: '0.6rem', height: '16px' }}
                                 />
-                              </Box>
-                              
-                              {item.research_areas.length > 0 && (
-                                <Box sx={{ mt: 0.5, display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                                  {item.research_areas.slice(0, 2).map((area) => (
-                                    <Chip
-                                      key={area}
-                                      size="small"
-                                      label={area}
-                                      color="secondary"
-                                      variant="outlined"
-                                      sx={{ fontSize: '0.6rem', height: '16px' }}
-                                    />
-                                  ))}
-                                  {item.research_areas.length > 2 && (
-                                    <Chip
-                                      size="small"
-                                      label={`+${item.research_areas.length - 2}`}
-                                      variant="outlined"
-                                      sx={{ fontSize: '0.6rem', height: '16px' }}
-                                    />
-                                  )}
-                                </Box>
+                              ))}
+                              {item.research_areas.length > 2 && (
+                                <Chip
+                                  size="small"
+                                  label={`+${item.research_areas.length - 2}`}
+                                  variant="outlined"
+                                  sx={{ fontSize: '0.6rem', height: '16px' }}
+                                />
                               )}
                             </Box>
-                          }
-                        />
+                          )}
+                        </Box>
                       </ListItemButton>
                     </ListItem>
                   </React.Fragment>

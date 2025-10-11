@@ -1,37 +1,48 @@
 {
   "corpus_metadata": {
     "version": "1.0",
-    "created_date": "2024-01-01",
+    "created_date": "2025-10-11",
     "total_documents": 10,
     "research_jurisdiction": "United Kingdom",
     "embedding_model": "all-MiniLM-L6-v2",
     "legal_concepts_count": 15,
-    "last_updated": "2025-01-11"
+    "last_updated": "2025-10-11"
   },
   "documents": {
     "rc-001": {
       "id": "rc-001",
-      "title": "Employment Contract Template",
+      "title": "Employment Template",
       "filename": "rc-001_employment_template.txt",
       "category": "contracts",
       "document_type": "Contract Template",
       "research_areas": [
-        "Employment Law"
+        "Employment Law",
+        "Contract Law",
+        "Intellectual Property",
+        "Data Protection",
+        "Liability and Risk"
       ],
-      "description": "Standard UK employment contract template with key clauses",
+      "description": "This Contract of Employment is made between [COMPANY NAME], a company incorporated in England and Wales (\"Company\"), and [EMPLOYEE NAME] (\"Employee\").",
       "legal_concepts": [
-        "lc-001",
-        "lc-002"
+        "lc-002",
+        "lc-006",
+        "lc-011",
+        "lc-004",
+        "lc-003",
+        "lc-005",
+        "lc-012",
+        "lc-001"
       ],
-      "related_items": [
-        "rc-004",
-        "rc-007"
-      ],
+      "related_items": [],
       "metadata": {
         "jurisdiction": "United Kingdom",
         "document_type": "Contract Template",
         "research_areas": [
-          "Employment Law"
+          "Employment Law",
+          "Contract Law",
+          "Intellectual Property",
+          "Data Protection",
+          "Liability and Risk"
         ]
       }
     },
@@ -42,53 +53,67 @@
       "category": "contracts",
       "document_type": "Contract Template",
       "research_areas": [
+        "Employment Law",
+        "Contract Law",
+        "Intellectual Property",
+        "Data Protection",
         "Commercial Law",
-        "Contract Law"
+        "Liability and Risk"
       ],
-      "description": "Professional services agreement template for UK businesses",
+      "description": "This Service Agreement is made between [CLIENT NAME] (\"Client\") and [SERVICE PROVIDER NAME] (\"Provider\").",
       "legal_concepts": [
+        "lc-002",
+        "lc-006",
+        "lc-011",
         "lc-004",
+        "lc-013",
+        "lc-003",
         "lc-005",
-        "lc-006"
+        "lc-012",
+        "lc-001"
       ],
-      "related_items": [
-        "rc-005",
-        "rc-008"
-      ],
+      "related_items": [],
       "metadata": {
         "jurisdiction": "United Kingdom",
         "document_type": "Contract Template",
         "research_areas": [
+          "Employment Law",
+          "Contract Law",
+          "Intellectual Property",
+          "Data Protection",
           "Commercial Law",
-          "Contract Law"
+          "Liability and Risk"
         ]
       }
     },
     "rc-003": {
       "id": "rc-003",
-      "title": "Non-Disclosure Agreement",
+      "title": "Non Disclosure Agreement",
       "filename": "rc-003_non_disclosure_agreement.txt",
       "category": "contracts",
       "document_type": "Contract Template",
       "research_areas": [
+        "Contract Law",
         "Intellectual Property",
-        "Data Protection"
+        "Data Protection",
+        "Commercial Law",
+        "Liability and Risk"
       ],
-      "description": "UK confidentiality agreement template",
+      "description": "This Confidentiality Agreement is entered into between [DISCLOSING PARTY] (\"Disclosing Party\") and [RECEIVING PARTY] (\"Receiving Party\").",
       "legal_concepts": [
-        "lc-011",
         "lc-012",
-        "lc-013"
+        "lc-011"
       ],
-      "related_items": [
-        "rc-006"
-      ],
+      "related_items": [],
       "metadata": {
         "jurisdiction": "United Kingdom",
         "document_type": "Contract Template",
         "research_areas": [
+          "Contract Law",
           "Intellectual Property",
-          "Data Protection"
+          "Data Protection",
+          "Commercial Law",
+          "Liability and Risk"
         ]
       }
     },
@@ -100,24 +125,34 @@
       "document_type": "Research Clause",
       "research_areas": [
         "Employment Law",
-        "Contract Law"
+        "Contract Law",
+        "Intellectual Property",
+        "Data Protection",
+        "Commercial Law",
+        "Liability and Risk"
       ],
-      "description": "Various termination clause templates and examples",
+      "description": "\"Either party may terminate this Agreement at any time, with or without cause, by providing [30/60/90] days written notice to the other party.\"",
       "legal_concepts": [
-        "lc-001",
         "lc-002",
-        "lc-003"
+        "lc-011",
+        "lc-004",
+        "lc-013",
+        "lc-003",
+        "lc-005",
+        "lc-012",
+        "lc-001"
       ],
-      "related_items": [
-        "rc-001",
-        "rc-007"
-      ],
+      "related_items": [],
       "metadata": {
         "jurisdiction": "United Kingdom",
         "document_type": "Research Clause",
         "research_areas": [
           "Employment Law",
-          "Contract Law"
+          "Contract Law",
+          "Intellectual Property",
+          "Data Protection",
+          "Commercial Law",
+          "Liability and Risk"
         ]
       }
     },
@@ -128,25 +163,35 @@
       "category": "clauses",
       "document_type": "Research Clause",
       "research_areas": [
-        "Liability and Risk",
-        "Commercial Law"
+        "Employment Law",
+        "Contract Law",
+        "Intellectual Property",
+        "Data Protection",
+        "Commercial Law",
+        "Liability and Risk"
       ],
-      "description": "Liability limitation and indemnification clauses",
+      "description": "Liability Clauses templates and examples",
       "legal_concepts": [
+        "lc-002",
+        "lc-011",
         "lc-004",
+        "lc-013",
+        "lc-003",
         "lc-005",
-        "lc-006"
+        "lc-012",
+        "lc-001"
       ],
-      "related_items": [
-        "rc-002",
-        "rc-008"
-      ],
+      "related_items": [],
       "metadata": {
         "jurisdiction": "United Kingdom",
         "document_type": "Research Clause",
         "research_areas": [
-          "Liability and Risk",
-          "Commercial Law"
+          "Employment Law",
+          "Contract Law",
+          "Intellectual Property",
+          "Data Protection",
+          "Commercial Law",
+          "Liability and Risk"
         ]
       }
     },
@@ -157,22 +202,34 @@
       "category": "clauses",
       "document_type": "Research Clause",
       "research_areas": [
-        "Intellectual Property"
+        "Employment Law",
+        "Contract Law",
+        "Intellectual Property",
+        "Data Protection",
+        "Commercial Law"
       ],
-      "description": "IP ownership and licensing clauses",
+      "description": "\"All work product, inventions, and intellectual property created by Contractor in connection with this Agreement shall be deemed work made for hire and shall be owned exclusively by Client.\"",
       "legal_concepts": [
+        "lc-002",
+        "lc-006",
         "lc-011",
+        "lc-004",
+        "lc-013",
+        "lc-003",
+        "lc-005",
         "lc-012",
-        "lc-013"
+        "lc-001"
       ],
-      "related_items": [
-        "rc-003"
-      ],
+      "related_items": [],
       "metadata": {
         "jurisdiction": "United Kingdom",
         "document_type": "Research Clause",
         "research_areas": [
-          "Intellectual Property"
+          "Employment Law",
+          "Contract Law",
+          "Intellectual Property",
+          "Data Protection",
+          "Commercial Law"
         ]
       }
     },
@@ -183,24 +240,37 @@
       "category": "precedents",
       "document_type": "Case Law",
       "research_areas": [
-        "Employment Law"
+        "Employment Law",
+        "Contract Law",
+        "Intellectual Property",
+        "Data Protection",
+        "Commercial Law"
       ],
-      "description": "Major UK employment law cases and principles",
+      "description": "Under Employment Rights Act 1996, employees with 2+ years' service are protected from unfair dismissal. Dismissal must be for a fair reason and follow a fair procedure.",
       "legal_concepts": [
-        "lc-001",
         "lc-002",
-        "lc-003"
+        "lc-006",
+        "lc-011",
+        "lc-004",
+        "lc-003",
+        "lc-009",
+        "lc-005",
+        "lc-007",
+        "lc-008",
+        "lc-010",
+        "lc-012",
+        "lc-001"
       ],
-      "related_items": [
-        "rc-001",
-        "rc-004",
-        "rc-009"
-      ],
+      "related_items": [],
       "metadata": {
         "jurisdiction": "United Kingdom",
         "document_type": "Case Law",
         "research_areas": [
-          "Employment Law"
+          "Employment Law",
+          "Contract Law",
+          "Intellectual Property",
+          "Data Protection",
+          "Commercial Law"
         ]
       }
     },
@@ -211,26 +281,26 @@
       "category": "precedents",
       "document_type": "Case Law",
       "research_areas": [
-        "Contract Law"
+        "Contract Law",
+        "Liability and Risk"
       ],
-      "description": "Fundamental UK contract law precedents",
+      "description": "Key UK contract law precedents and principles",
       "legal_concepts": [
         "lc-006",
-        "lc-007",
+        "lc-004",
         "lc-008",
-        "lc-009",
-        "lc-010"
+        "lc-007",
+        "lc-005",
+        "lc-010",
+        "lc-009"
       ],
-      "related_items": [
-        "rc-002",
-        "rc-005",
-        "rc-010"
-      ],
+      "related_items": [],
       "metadata": {
         "jurisdiction": "United Kingdom",
         "document_type": "Case Law",
         "research_areas": [
-          "Contract Law"
+          "Contract Law",
+          "Liability and Risk"
         ]
       }
     },
@@ -241,24 +311,33 @@
       "category": "statutes",
       "document_type": "Statute/Regulation",
       "research_areas": [
-        "Employment Law"
+        "Employment Law",
+        "Contract Law",
+        "Data Protection",
+        "Commercial Law",
+        "Liability and Risk"
       ],
-      "description": "Major UK employment law statutes and regulations",
+      "description": "Primary statute governing individual employment rights in the UK.",
       "legal_concepts": [
-        "lc-001",
+        "lc-002",
+        "lc-006",
+        "lc-004",
         "lc-003",
+        "lc-005",
         "lc-014",
-        "lc-015"
+        "lc-015",
+        "lc-001"
       ],
-      "related_items": [
-        "rc-007",
-        "rc-010"
-      ],
+      "related_items": [],
       "metadata": {
         "jurisdiction": "United Kingdom",
         "document_type": "Statute/Regulation",
         "research_areas": [
-          "Employment Law"
+          "Employment Law",
+          "Contract Law",
+          "Data Protection",
+          "Commercial Law",
+          "Liability and Risk"
         ]
       }
     },
@@ -269,25 +348,30 @@
       "category": "statutes",
       "document_type": "Statute/Regulation",
       "research_areas": [
-        "Contract Law"
+        "Contract Law",
+        "Intellectual Property",
+        "Data Protection",
+        "Commercial Law",
+        "Liability and Risk"
       ],
-      "description": "UK contract and consumer protection law",
+      "description": "UK contract statutes and regulations",
       "legal_concepts": [
         "lc-006",
-        "lc-007",
-        "lc-008",
+        "lc-004",
         "lc-014",
-        "lc-015"
+        "lc-015",
+        "lc-005"
       ],
-      "related_items": [
-        "rc-008",
-        "rc-009"
-      ],
+      "related_items": [],
       "metadata": {
         "jurisdiction": "United Kingdom",
         "document_type": "Statute/Regulation",
         "research_areas": [
-          "Contract Law"
+          "Contract Law",
+          "Intellectual Property",
+          "Data Protection",
+          "Commercial Law",
+          "Liability and Risk"
         ]
       }
     }
@@ -329,17 +413,17 @@
     }
   },
   "research_areas": [
-    "Employment Law",
-    "Contract Law",
-    "Intellectual Property",
-    "Data Protection",
     "Commercial Law",
+    "Contract Law",
+    "Data Protection",
+    "Employment Law",
+    "Intellectual Property",
     "Liability and Risk"
   ],
   "document_types": [
+    "Case Law",
     "Contract Template",
     "Research Clause",
-    "Case Law",
     "Statute/Regulation"
   ]
 }

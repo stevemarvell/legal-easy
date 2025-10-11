@@ -851,3 +851,214 @@ class TestDataService:
         assert DataService.analyze_concept_relationships("lc-001") == {}
         assert DataService.build_concept_relationship_map() == {}
         assert DataService.analyze_corpus_item_concepts("rc-001") == {}
+
+    # === CORPUS INDEX REGENERATION TESTS ===
+
+    @patch("builtins.open", new_callable=mock_open)
+    @patch("pathlib.Path.exists")
+    @patch("pathlib.Path.iterdir")
+    @patch("pathlib.Path.is_file")
+    @patch("json.dump")
+    def test_regenerate_corpus_index_success(self, mock_json_dump, mock_is_file, mock_iterdir, mock_exists, mock_file):
+        """Test successful corpus index regeneration"""
+        # Mock directory structure
+        mock_contracts_dir = MagicMock()
+        mock_contracts_dir.name = "contracts"
+        mock_contracts_dir.is_dir.return_value = True
+        
+        mock_clauses_dir = MagicMock()
+        mock_clauses_dir.name = "clauses"
+        mock_clauses_dir.is_dir.return_value = True
+        
+        # Mock files in directories
+        mock_contract_file = MagicMock()
+        mock_contract_file.name = "rc-001_employment_contract.txt"
+        mock_contract_file.is_file.return_value = True
+        mock_contract_file.suffix = ".txt"
+        
+        mock_clause_file = MagicMock()
+        mock_clause_file.name = "rc-004_termination_clause.txt"
+        mock_clause_file.is_file.return_value = True
+        mock_clause_file.suffix = ".txt"
+        
+        # Setup directory iteration
+        def iterdir_side_effect(path_obj):
+            if "contracts" in str(path_obj):
+                return [mock_contract_file]
+            elif "clauses" in str(path_obj):
+                return [mock_clause_file]
+            else:
+                return [mock_contracts_dir, mock_clauses_dir]
+        
+        mock_iterdir.side_effect = iterdir_side_effect
+        mock_exists.return_value = True
+        mock_is_file.return_value = True
+        
+        # Mock file content
+        contract_content = "EMPLOYMENT CONTRACT\nThis agreement covers employment terms..."
+        clause_content = "TERMINATION CLAUSE\nEither party may terminate..."
+        
+        def file_side_effect(path, *args, **kwargs):
+            if "employment_contract" in str(path):
+                return mock_open(read_data=contract_content).return_value
+            elif "termination_clause" in str(path):
+                return mock_open(read_data=clause_content).return_value
+            else:
+                return mock_open().return_value
+        
+        mock_file.side_effect = file_side_effect
+        
+        # Test regeneration
+        result = DataService.regenerate_corpus_index()
+        
+        assert result is True
+        # Verify json.dump was called to save the index
+        mock_json_dump.assert_called()
+
+    @patch("pathlib.Path.exists", return_value=False)
+    def test_regenerate_corpus_index_directory_not_exists(self, mock_exists):
+        """Test corpus index regeneration when corpus directory doesn't exist"""
+        result = DataService.regenerate_corpus_index("nonexistent_path")
+        
+        assert result is False
+
+    @patch("builtins.open", side_effect=Exception("File write error"))
+    @patch("pathlib.Path.exists", return_value=True)
+    @patch("pathlib.Path.iterdir", return_value=[])
+    def test_regenerate_corpus_index_write_error(self, mock_iterdir, mock_exists, mock_file):
+        """Test corpus index regeneration with file write error"""
+        result = DataService.regenerate_corpus_index()
+        
+        assert result is False
+
+    @patch("builtins.open", new_callable=mock_open)
+    @patch("pathlib.Path.exists", return_value=True)
+    @patch("pathlib.Path.iterdir")
+    @patch("pathlib.Path.is_file")
+    @patch("json.dump")
+    def test_regenerate_corpus_index_extracts_metadata(self, mock_json_dump, mock_is_file, mock_iterdir, mock_exists, mock_file):
+        """Test that corpus index regeneration extracts proper metadata"""
+        # Mock a single file
+        mock_file_obj = MagicMock()
+        mock_file_obj.name = "rc-001_employment_contract.txt"
+        mock_file_obj.is_file.return_value = True
+        mock_file_obj.suffix = ".txt"
+        
+        mock_dir = MagicMock()
+        mock_dir.name = "contracts"
+        mock_dir.is_dir.return_value = True
+        
+        def iterdir_side_effect(path_obj):
+            if "contracts" in str(path_obj):
+                return [mock_file_obj]
+            else:
+                return [mock_dir]
+        
+        mock_iterdir.side_effect = iterdir_side_effect
+        mock_is_file.return_value = True
+        
+        # Mock file content with employment-related terms
+        file_content = """EMPLOYMENT CONTRACT
+        
+        This employment agreement is between ABC Company and the Employee.
+        
+        Terms of employment include:
+        - Job responsibilities and duties
+        - Compensation and benefits
+        - Termination procedures
+        - Confidentiality requirements
+        """
+        
+        mock_file.return_value = mock_open(read_data=file_content).return_value
+        
+        # Test regeneration
+        result = DataService.regenerate_corpus_index()
+        
+        assert result is True
+        
+        # Verify the structure of data passed to json.dump
+        call_args = mock_json_dump.call_args
+        saved_data = call_args[0][0]  # First argument to json.dump
+        
+        assert 'documents' in saved_data
+        assert 'categories' in saved_data
+        assert 'corpus_metadata' in saved_data
+        
+        # Check that the document was processed
+        assert len(saved_data['documents']) > 0
+        
+        # Check document structure
+        doc_id = list(saved_data['documents'].keys())[0]
+        document = saved_data['documents'][doc_id]
+        
+        assert 'name' in document or 'title' in document
+        assert 'category' in document
+        assert 'filename' in document
+        assert document['category'] == 'contracts'
+
+    @patch("builtins.open", new_callable=mock_open)
+    @patch("pathlib.Path.exists", return_value=True)
+    @patch("pathlib.Path.iterdir")
+    @patch("pathlib.Path.is_file")
+    @patch("json.dump")
+    def test_regenerate_corpus_index_handles_multiple_categories(self, mock_json_dump, mock_is_file, mock_iterdir, mock_exists, mock_file):
+        """Test corpus index regeneration with multiple categories"""
+        # Mock files in different categories
+        mock_contract_file = MagicMock()
+        mock_contract_file.name = "rc-001_contract.txt"
+        mock_contract_file.is_file.return_value = True
+        mock_contract_file.suffix = ".txt"
+        
+        mock_statute_file = MagicMock()
+        mock_statute_file.name = "rc-002_statute.txt"
+        mock_statute_file.is_file.return_value = True
+        mock_statute_file.suffix = ".txt"
+        
+        # Mock directories
+        mock_contracts_dir = MagicMock()
+        mock_contracts_dir.name = "contracts"
+        mock_contracts_dir.is_dir.return_value = True
+        
+        mock_statutes_dir = MagicMock()
+        mock_statutes_dir.name = "statutes"
+        mock_statutes_dir.is_dir.return_value = True
+        
+        def iterdir_side_effect(path_obj):
+            if "contracts" in str(path_obj):
+                return [mock_contract_file]
+            elif "statutes" in str(path_obj):
+                return [mock_statute_file]
+            else:
+                return [mock_contracts_dir, mock_statutes_dir]
+        
+        mock_iterdir.side_effect = iterdir_side_effect
+        mock_is_file.return_value = True
+        
+        # Mock file contents
+        def file_side_effect(path, *args, **kwargs):
+            if "contract" in str(path):
+                return mock_open(read_data="Contract content here").return_value
+            elif "statute" in str(path):
+                return mock_open(read_data="Statute content here").return_value
+            else:
+                return mock_open().return_value
+        
+        mock_file.side_effect = file_side_effect
+        
+        # Test regeneration
+        result = DataService.regenerate_corpus_index()
+        
+        assert result is True
+        
+        # Verify multiple categories were processed
+        call_args = mock_json_dump.call_args
+        saved_data = call_args[0][0]
+        
+        assert 'contracts' in saved_data['categories']
+        assert 'statutes' in saved_data['categories']
+        
+        # Verify documents from both categories
+        documents = saved_data['documents']
+        categories_found = set(doc['category'] for doc in documents.values())
+        assert 'contracts' in categories_found
+        assert 'statutes' in categories_found

@@ -336,27 +336,25 @@ const CorpusViewer: React.FC<CorpusViewerProps> = ({
                       </Typography>
                     }
                     secondary={
-                      <Box>
-                        <Typography variant="caption" color="text.secondary">
-                          {getCategoryName(relatedItem.category)}
-                          {relatedItem.document_type && ` • ${relatedItem.document_type}`}
-                        </Typography>
-                        {relatedItem.research_areas.length > 0 && (
-                          <Box sx={{ mt: 0.5, display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                            {relatedItem.research_areas.slice(0, 2).map((area) => (
-                              <Chip
-                                key={area}
-                                size="small"
-                                label={area}
-                                variant="outlined"
-                                sx={{ fontSize: '0.6rem', height: '16px' }}
-                              />
-                            ))}
-                          </Box>
-                        )}
-                      </Box>
+                      <Typography variant="caption" color="text.secondary" component="span">
+                        {getCategoryName(relatedItem.category)}
+                        {relatedItem.document_type && ` • ${relatedItem.document_type}`}
+                      </Typography>
                     }
                   />
+                  {relatedItem.research_areas.length > 0 && (
+                    <Box sx={{ mt: 0.5, display: 'flex', flexWrap: 'wrap', gap: 0.5, ml: 6 }}>
+                      {relatedItem.research_areas.slice(0, 2).map((area) => (
+                        <Chip
+                          key={area}
+                          size="small"
+                          label={area}
+                          variant="outlined"
+                          sx={{ fontSize: '0.6rem', height: '16px' }}
+                        />
+                      ))}
+                    </Box>
+                  )}
                   </ListItemButton>
                 </ListItem>
               ))}

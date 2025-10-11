@@ -110,7 +110,7 @@ class DataService:
     def load_corpus_by_category(category: str) -> List[Dict[str, Any]]:
         """Load research corpus documents by category (contracts, clauses, precedents, statutes)."""
         try:
-            corpus_index_path = Path("data/research_corpus/research_corpus_index.json")
+            corpus_index_path = Path("data/ai/research_corpus/research_corpus_index.json")
             if not corpus_index_path.exists():
                 return []
             
@@ -227,8 +227,8 @@ class DataService:
     def search_corpus(query: str) -> List[Dict[str, Any]]:
         """Search research corpus using concept-based searching."""
         try:
-            corpus_index_path = Path("data/research_corpus/research_corpus_index.json")
-            concepts_path = Path("data/research_corpus/concepts/research_concepts.json")
+            corpus_index_path = Path("data/ai/research_corpus/research_corpus_index.json")
+            concepts_path = Path("data/ai/research_corpus/research_concepts.json")
             
             if not corpus_index_path.exists():
                 return []
@@ -301,7 +301,7 @@ class DataService:
     def load_corpus_categories() -> Dict[str, Dict[str, Any]]:
         """Load all corpus categories."""
         try:
-            corpus_index_path = Path("data/research_corpus/research_corpus_index.json")
+            corpus_index_path = Path("data/ai/research_corpus/research_corpus_index.json")
             if not corpus_index_path.exists():
                 return {}
             
@@ -317,7 +317,7 @@ class DataService:
     def load_corpus_item_by_id(item_id: str) -> Optional[Dict[str, Any]]:
         """Load a specific corpus item by ID with full content."""
         try:
-            corpus_index_path = Path("data/research_corpus/research_corpus_index.json")
+            corpus_index_path = Path("data/ai/research_corpus/research_corpus_index.json")
             if not corpus_index_path.exists():
                 return None
             
@@ -365,7 +365,7 @@ class DataService:
     def load_corpus_metadata() -> Dict[str, Any]:
         """Load corpus metadata."""
         try:
-            corpus_index_path = Path("data/research_corpus/research_corpus_index.json")
+            corpus_index_path = Path("data/ai/research_corpus/research_corpus_index.json")
             if not corpus_index_path.exists():
                 return {}
             
@@ -381,7 +381,7 @@ class DataService:
     def get_corpus_research_areas() -> List[str]:
         """Get all research areas from corpus."""
         try:
-            corpus_index_path = Path("data/research_corpus/research_corpus_index.json")
+            corpus_index_path = Path("data/ai/research_corpus/research_corpus_index.json")
             if not corpus_index_path.exists():
                 return []
             
@@ -407,7 +407,7 @@ class DataService:
             item_legal_concepts = set(item.get('legal_concepts', []))
             
             # Load all corpus items
-            corpus_index_path = Path("data/research_corpus/research_corpus_index.json")
+            corpus_index_path = Path("data/ai/research_corpus/research_corpus_index.json")
             with open(corpus_index_path, 'r', encoding='utf-8') as f:
                 corpus_data = json.load(f)
             
@@ -448,7 +448,7 @@ class DataService:
     def load_legal_concepts() -> Dict[str, Dict[str, Any]]:
         """Load all legal concepts from research_concepts.json."""
         try:
-            concepts_path = Path("data/research_corpus/concepts/research_concepts.json")
+            concepts_path = Path("data/ai/research_corpus/research_concepts.json")
             if not concepts_path.exists():
                 return {}
             
@@ -464,7 +464,7 @@ class DataService:
     def load_concept_relationships() -> Dict[str, Dict[str, Any]]:
         """Load concept relationships from research_concepts.json."""
         try:
-            concepts_path = Path("data/research_corpus/concepts/research_concepts.json")
+            concepts_path = Path("data/ai/research_corpus/research_concepts.json")
             if not concepts_path.exists():
                 return {}
             
@@ -634,7 +634,7 @@ class DataService:
     def update_concept_analysis(concept_id: str, analysis_data: Dict[str, Any]) -> bool:
         """Update concept analysis in research_concepts.json."""
         try:
-            concepts_path = Path("data/research_corpus/concepts/research_concepts.json")
+            concepts_path = Path("data/ai/research_corpus/research_concepts.json")
             if not concepts_path.exists():
                 return False
             
@@ -876,3 +876,285 @@ class DataService:
         except Exception as e:
             print(f"Error getting documentation tags: {e}")
             return []
+    
+    # === CORPUS INDEX GENERATION ===
+    
+    @staticmethod
+    def generate_corpus_index(corpus_path: str = "data/research_corpus") -> Dict[str, Any]:
+        """Generate corpus index by scanning the corpus directory structure."""
+        try:
+            corpus_root = Path(corpus_path)
+            if not corpus_root.exists():
+                raise FileNotFoundError(f"Corpus directory not found: {corpus_path}")
+            
+            # Initialize index structure
+            index_data = {
+                "corpus_metadata": {
+                    "version": "1.0",
+                    "created_date": datetime.now().strftime("%Y-%m-%d"),
+                    "total_documents": 0,
+                    "research_jurisdiction": "United Kingdom",
+                    "embedding_model": "all-MiniLM-L6-v2",
+                    "legal_concepts_count": 0,
+                    "last_updated": datetime.now().strftime("%Y-%m-%d")
+                },
+                "documents": {},
+                "categories": {
+                    "contracts": {
+                        "name": "Contract Templates",
+                        "description": "Standard UK contract templates",
+                        "document_ids": []
+                    },
+                    "clauses": {
+                        "name": "Research Clauses", 
+                        "description": "Library of standard research clauses",
+                        "document_ids": []
+                    },
+                    "precedents": {
+                        "name": "Case Law and Precedents",
+                        "description": "Key UK research precedents and principles", 
+                        "document_ids": []
+                    },
+                    "statutes": {
+                        "name": "Statutes and Regulations",
+                        "description": "UK legislation and regulations",
+                        "document_ids": []
+                    }
+                },
+                "research_areas": set(),
+                "document_types": set()
+            }
+            
+            # Scan each category directory
+            categories = ["contracts", "clauses", "precedents", "statutes"]
+            document_counter = 1
+            
+            for category in categories:
+                category_path = corpus_root / category
+                if not category_path.exists():
+                    continue
+                
+                # Scan files in category directory
+                for file_path in category_path.glob("*.txt"):
+                    doc_id = f"rc-{document_counter:03d}"
+                    
+                    # Extract metadata from filename and content
+                    doc_metadata = DataService._extract_document_metadata(file_path, category, doc_id)
+                    
+                    # Add to documents
+                    index_data["documents"][doc_id] = doc_metadata
+                    
+                    # Add to category
+                    index_data["categories"][category]["document_ids"].append(doc_id)
+                    
+                    # Collect research areas and document types
+                    index_data["research_areas"].update(doc_metadata.get("research_areas", []))
+                    if doc_metadata.get("document_type"):
+                        index_data["document_types"].add(doc_metadata["document_type"])
+                    
+                    document_counter += 1
+            
+            # Convert sets to sorted lists
+            index_data["research_areas"] = sorted(list(index_data["research_areas"]))
+            index_data["document_types"] = sorted(list(index_data["document_types"]))
+            
+            # Update metadata
+            index_data["corpus_metadata"]["total_documents"] = len(index_data["documents"])
+            
+            # Generate legal concepts and relationships
+            DataService._generate_legal_concepts(index_data)
+            
+            return index_data
+            
+        except Exception as e:
+            print(f"Error generating corpus index: {e}")
+            return {}
+    
+    @staticmethod
+    def _extract_document_metadata(file_path: Path, category: str, doc_id: str) -> Dict[str, Any]:
+        """Extract metadata from a document file."""
+        try:
+            # Read file content
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            # Extract title from filename
+            filename = file_path.name
+            title = DataService._filename_to_title(filename)
+            
+            # Determine document type based on category
+            document_type_map = {
+                "contracts": "Contract Template",
+                "clauses": "Research Clause", 
+                "precedents": "Case Law",
+                "statutes": "Statute/Regulation"
+            }
+            document_type = document_type_map.get(category, "Legal Document")
+            
+            # Extract research areas from content and filename
+            research_areas = DataService._extract_research_areas(content, filename)
+            
+            # Generate description
+            description = DataService._generate_description(content, title, category)
+            
+            # Extract legal concepts (placeholder - would use AI in production)
+            legal_concepts = DataService._extract_legal_concepts_from_content(content, category)
+            
+            return {
+                "id": doc_id,
+                "title": title,
+                "filename": filename,
+                "category": category,
+                "document_type": document_type,
+                "research_areas": research_areas,
+                "description": description,
+                "legal_concepts": legal_concepts,
+                "related_items": [],  # Will be populated after all documents are processed
+                "metadata": {
+                    "jurisdiction": "United Kingdom",
+                    "document_type": document_type,
+                    "research_areas": research_areas
+                }
+            }
+            
+        except Exception as e:
+            print(f"Error extracting metadata from {file_path}: {e}")
+            return {}
+    
+    @staticmethod
+    def _filename_to_title(filename: str) -> str:
+        """Convert filename to human-readable title."""
+        # Remove file extension and ID prefix
+        name = filename.replace('.txt', '')
+        
+        # Remove rc-XXX_ prefix if present
+        if name.startswith('rc-') and '_' in name:
+            name = name.split('_', 1)[1]
+        
+        # Replace underscores with spaces and title case
+        title = name.replace('_', ' ').title()
+        
+        return title
+    
+    @staticmethod
+    def _extract_research_areas(content: str, filename: str) -> List[str]:
+        """Extract research areas from content and filename."""
+        research_areas = []
+        
+        # Common research area keywords
+        area_keywords = {
+            "Employment Law": ["employment", "employee", "employer", "dismissal", "termination", "workplace"],
+            "Contract Law": ["contract", "agreement", "breach", "consideration", "offer", "acceptance"],
+            "Intellectual Property": ["intellectual", "property", "copyright", "patent", "trademark", "confidential"],
+            "Data Protection": ["data", "protection", "privacy", "gdpr", "personal", "information"],
+            "Commercial Law": ["commercial", "business", "trade", "service", "liability", "indemnity"],
+            "Liability and Risk": ["liability", "risk", "damages", "negligence", "indemnification"]
+        }
+        
+        content_lower = content.lower()
+        filename_lower = filename.lower()
+        
+        for area, keywords in area_keywords.items():
+            if any(keyword in content_lower or keyword in filename_lower for keyword in keywords):
+                research_areas.append(area)
+        
+        return research_areas if research_areas else ["General Legal"]
+    
+    @staticmethod
+    def _generate_description(content: str, title: str, category: str) -> str:
+        """Generate a description for the document."""
+        # Extract first meaningful sentence or paragraph
+        lines = content.split('\n')
+        
+        # Look for a description in the first few lines
+        for line in lines[:5]:
+            line = line.strip()
+            if len(line) > 50 and not line.isupper():  # Skip headers
+                return line[:200] + "..." if len(line) > 200 else line
+        
+        # Fallback to generic description
+        category_descriptions = {
+            "contracts": f"{title} for UK legal practice",
+            "clauses": f"{title} templates and examples",
+            "precedents": f"Key UK {title.lower()} and principles", 
+            "statutes": f"UK {title.lower()} and regulations"
+        }
+        
+        return category_descriptions.get(category, f"UK legal document: {title}")
+    
+    @staticmethod
+    def _extract_legal_concepts_from_content(content: str, category: str) -> List[str]:
+        """Extract legal concept IDs from document content."""
+        # This is a simplified version - in production would use AI/NLP
+        concept_mapping = {
+            "employment": ["lc-001", "lc-002", "lc-003"],
+            "contract": ["lc-004", "lc-005", "lc-006"],
+            "intellectual": ["lc-011", "lc-012", "lc-013"],
+            "liability": ["lc-004", "lc-005"],
+            "termination": ["lc-001", "lc-002", "lc-003"],
+            "confidential": ["lc-011", "lc-012"],
+            "statute": ["lc-014", "lc-015"],
+            "precedent": ["lc-006", "lc-007", "lc-008", "lc-009", "lc-010"]
+        }
+        
+        content_lower = content.lower()
+        legal_concepts = []
+        
+        for keyword, concepts in concept_mapping.items():
+            if keyword in content_lower:
+                legal_concepts.extend(concepts)
+        
+        return list(set(legal_concepts))  # Remove duplicates
+    
+    @staticmethod
+    def _generate_legal_concepts(index_data: Dict[str, Any]) -> None:
+        """Generate legal concepts metadata and update concept count."""
+        # Count unique legal concepts
+        all_concepts = set()
+        for doc_data in index_data["documents"].values():
+            all_concepts.update(doc_data.get("legal_concepts", []))
+        
+        index_data["corpus_metadata"]["legal_concepts_count"] = len(all_concepts)
+    
+    @staticmethod
+    def save_corpus_index(index_data: Dict[str, Any], output_path: str = "data/ai/research_corpus/research_corpus_index.json") -> bool:
+        """Save the generated corpus index to file."""
+        try:
+            output_file = Path(output_path)
+            output_file.parent.mkdir(parents=True, exist_ok=True)
+            
+            with open(output_file, 'w', encoding='utf-8') as f:
+                json.dump(index_data, f, indent=2, ensure_ascii=False)
+            
+            print(f"Corpus index saved to: {output_path}")
+            return True
+            
+        except Exception as e:
+            print(f"Error saving corpus index: {e}")
+            return False
+    
+    @staticmethod
+    def regenerate_corpus_index(corpus_path: str = "data/research_corpus") -> bool:
+        """Regenerate and save the corpus index."""
+        try:
+            print("Generating corpus index...")
+            index_data = DataService.generate_corpus_index(corpus_path)
+            
+            if not index_data:
+                print("Failed to generate corpus index")
+                return False
+            
+            # Save the index to AI directory
+            index_path = "data/ai/research_corpus/research_corpus_index.json"
+            success = DataService.save_corpus_index(index_data, index_path)
+            
+            if success:
+                print(f"Successfully regenerated corpus index with {index_data['corpus_metadata']['total_documents']} documents")
+                print(f"Research areas: {', '.join(index_data['research_areas'])}")
+                print(f"Legal concepts: {index_data['corpus_metadata']['legal_concepts_count']}")
+            
+            return success
+            
+        except Exception as e:
+            print(f"Error regenerating corpus index: {e}")
+            return False

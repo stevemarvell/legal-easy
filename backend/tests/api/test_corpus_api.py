@@ -318,3 +318,89 @@ class TestCorpusAPI:
             assert 'categories_found' in results
             assert 'research_areas_found' in results
             assert results['query'] == query
+    
+    def test_regenerate_corpus_index_success(self):
+        """Test POST /api/corpus/regenerate-index - Successful index regeneration"""
+        response = client.post("/api/corpus/regenerate-index")
+        assert response.status_code == 200
+        
+        result = response.json()
+        assert result['success'] is True
+        assert 'message' in result
+        assert 'total_documents' in result
+        assert 'research_areas' in result
+        assert 'legal_concepts_count' in result
+        assert 'last_updated' in result
+        
+        # Verify the response structure
+        assert isinstance(result['total_documents'], int)
+        assert isinstance(result['research_areas'], list)
+        assert isinstance(result['legal_concepts_count'], int)
+        assert result['total_documents'] >= 0
+        assert result['legal_concepts_count'] >= 0
+    
+    def test_regenerate_corpus_index_updates_data(self):
+        """Test that corpus index regeneration actually updates the data"""
+        # Get initial corpus state
+        initial_response = client.get("/api/corpus/")
+        assert initial_response.status_code == 200
+        initial_items = initial_response.json()
+        
+        # Regenerate index
+        regen_response = client.post("/api/corpus/regenerate-index")
+        assert regen_response.status_code == 200
+        
+        # Get updated corpus state
+        updated_response = client.get("/api/corpus/")
+        assert updated_response.status_code == 200
+        updated_items = updated_response.json()
+        
+        # Should have same or more items (in case new files were added)
+        assert len(updated_items) >= len(initial_items)
+        
+        # Verify structure is maintained
+        for item in updated_items:
+            assert 'id' in item
+            assert 'title' in item or 'name' in item
+            assert 'category' in item
+    
+    def test_regenerate_corpus_index_updates_categories(self):
+        """Test that index regeneration updates category information"""
+        # Regenerate index
+        regen_response = client.post("/api/corpus/regenerate-index")
+        assert regen_response.status_code == 200
+        
+        # Get categories after regeneration
+        categories_response = client.get("/api/corpus/categories")
+        assert categories_response.status_code == 200
+        
+        categories = categories_response.json()
+        assert isinstance(categories, dict)
+        
+        # Should have the main categories
+        expected_categories = ['contracts', 'clauses', 'precedents', 'statutes']
+        for category in expected_categories:
+            if category in categories:  # May not exist if no documents in that category
+                assert 'name' in categories[category]
+                assert 'description' in categories[category]
+                assert 'document_ids' in categories[category]
+    
+    def test_regenerate_corpus_index_updates_concepts(self):
+        """Test that index regeneration updates research concepts"""
+        # Regenerate index
+        regen_response = client.post("/api/corpus/regenerate-index")
+        assert regen_response.status_code == 200
+        
+        # Get concepts after regeneration
+        concepts_response = client.get("/api/corpus/concepts")
+        assert concepts_response.status_code == 200
+        
+        concepts = concepts_response.json()
+        assert 'concepts' in concepts
+        assert 'total_concepts' in concepts
+        assert 'research_areas' in concepts
+        
+        # Should have research areas from regeneration response
+        regen_result = regen_response.json()
+        if regen_result['research_areas']:
+            assert len(concepts['research_areas']) > 0

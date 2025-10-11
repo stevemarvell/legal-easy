@@ -1,229 +1,243 @@
 import React, { useState } from 'react';
 import {
-  Box,
+  Container,
   Card,
   CardContent,
   Typography,
   Button,
   Alert,
   CircularProgress,
-  Container,
-  Grid
+  Box,
+  Divider,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Chip
 } from '@mui/material';
 import {
-  PlayArrow as PlayIcon,
-  Settings as AdminIcon
+  Refresh as RefreshIcon,
+  Storage as StorageIcon,
+  CheckCircle as CheckIcon,
+  Error as ErrorIcon,
+  Info as InfoIcon
 } from '@mui/icons-material';
 import { apiClient } from '../services/api';
 
-const Admin = () => {
+interface RegenerationResult {
+  success: boolean;
+  message: string;
+  total_documents: number;
+  research_areas: string[];
+  legal_concepts_count: number;
+  last_updated: string;
+}
+
+const Admin: React.FC = () => {
+  const [loading, setLoading] = useState(false);
+  const [result, setResult] = useState<RegenerationResult | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [actionLoading, setActionLoading] = useState<string | null>(null);
 
-  const handleAction = async (action: string) => {
+  const handleRegenerateIndex = async () => {
+    setLoading(true);
+    setError(null);
+    setResult(null);
+
     try {
-      setActionLoading(action);
-      setError(null);
-
-      let response;
-      if (action === 'initialize-corpus') {
-        response = await apiClient.post('/api/admin/actions/initialize-corpus');
-      } else if (action === 'reindex-all') {
-        response = await apiClient.post('/api/admin/actions/reindex-all');
-      } else if (action === 'clear-index') {
-        response = await apiClient.post('/api/admin/actions/clear-index');
-      } else if (action === 'test-search') {
-        response = await apiClient.post('/api/admin/actions/test-rag-search?query=employment contract');
-      } else if (action === 'index-case-documents') {
-        response = await apiClient.post('/api/admin/actions/index-case-documents');
-      }
-
-      if (response?.data.success) {
-        // Show success message briefly
-        setError(`✅ ${response.data.message}`);
-        setTimeout(() => setError(null), 3000);
-      }
+      const response = await apiClient.post<RegenerationResult>('/api/corpus/regenerate-index');
+      setResult(response.data);
     } catch (err: any) {
-      console.error(`Action ${action} failed:`, err);
-      setError(`❌ Action failed: ${err.response?.data?.detail || err.message}`);
+      console.error('Failed to regenerate corpus index:', err);
+      setError(err.response?.data?.detail || 'Failed to regenerate corpus index');
     } finally {
-      setActionLoading(null);
+      setLoading(false);
     }
   };
 
   return (
     <Container maxWidth="lg">
-      <Box>
+      <Box sx={{ py: 4 }}>
         {/* Header */}
-        <Box mb={4}>
-          <Box display="flex" alignItems="center" gap={2} mb={2}>
-            <AdminIcon color="primary" />
-            <Typography variant="h4" component="h1" color="primary">
-              Admin
+        <Typography variant="h4" component="h1" color="primary" gutterBottom>
+          System Administration
+        </Typography>
+        <Typography variant="body1" color="text.secondary" paragraph>
+          Administrative functions for managing the legal AI system
+        </Typography>
+
+        {/* Corpus Index Management */}
+        <Card sx={{ mb: 4 }}>
+          <CardContent>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+              <StorageIcon color="primary" sx={{ mr: 1 }} />
+              <Typography variant="h5" component="h2">
+                Research Corpus Index
+              </Typography>
+            </Box>
+            
+            <Typography variant="body1" color="text.secondary" paragraph>
+              The corpus index organizes all legal documents, templates, and precedents for search and analysis. 
+              Regenerate the index after adding new legal documents or updating existing ones.
             </Typography>
-          </Box>
-          <Typography variant="body1" color="text.secondary">
-            Index documents for search functionality
-          </Typography>
-        </Box>
 
-        {/* Error/Success Alert */}
-        {error && (
-          <Alert 
-            severity={error.startsWith('✅') ? 'success' : 'error'} 
-            sx={{ mb: 3 }}
-          >
-            {error}
-          </Alert>
-        )}
+            <Box sx={{ mb: 3 }}>
+              <Typography variant="h6" gutterBottom>
+                What the corpus index includes:
+              </Typography>
+              <List dense>
+                <ListItem>
+                  <ListItemIcon>
+                    <InfoIcon color="primary" />
+                  </ListItemIcon>
+                  <ListItemText 
+                    primary="Document Metadata" 
+                    secondary="Titles, descriptions, categories, and research areas"
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemIcon>
+                    <InfoIcon color="primary" />
+                  </ListItemIcon>
+                  <ListItemText 
+                    primary="Legal Concept Mapping" 
+                    secondary="Links documents to relevant legal concepts for intelligent search"
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemIcon>
+                    <InfoIcon color="primary" />
+                  </ListItemIcon>
+                  <ListItemText 
+                    primary="Document Relationships" 
+                    secondary="Connections between related legal materials and precedents"
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemIcon>
+                    <InfoIcon color="primary" />
+                  </ListItemIcon>
+                  <ListItemText 
+                    primary="Search Optimization" 
+                    secondary="Enables concept-based search and document discovery"
+                  />
+                </ListItem>
+              </List>
+            </Box>
 
-        {/* Indexing Actions */}
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={6}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6" gutterBottom>
-                  🔍 Build Search Index
-                </Typography>
-                <Typography variant="body2" color="text.secondary" paragraph>
-                  Index legal documents for research functionality.
-                </Typography>
-                <Button
-                  variant="contained"
-                  startIcon={<PlayIcon />}
-                  onClick={() => handleAction('initialize-corpus')}
-                  disabled={!!actionLoading}
-                  fullWidth
-                >
-                  {actionLoading === 'initialize-corpus' ? (
-                    <>
-                      <CircularProgress size={16} sx={{ mr: 1 }} />
-                      Indexing...
-                    </>
-                  ) : (
-                    'Build Index'
-                  )}
-                </Button>
-              </CardContent>
-            </Card>
-          </Grid>
+            <Divider sx={{ my: 3 }} />
 
-          <Grid item xs={12} md={6}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6" gutterBottom>
-                  📁 Index Case Documents
+            {/* Action Button */}
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 3 }}>
+              <Button
+                variant="contained"
+                color="primary"
+                size="large"
+                startIcon={loading ? <CircularProgress size={20} /> : <RefreshIcon />}
+                onClick={handleRegenerateIndex}
+                disabled={loading}
+              >
+                {loading ? 'Regenerating Index...' : 'Regenerate Corpus Index'}
+              </Button>
+              
+              {loading && (
+                <Typography variant="body2" color="text.secondary">
+                  This may take a few moments...
                 </Typography>
-                <Typography variant="body2" color="text.secondary" paragraph>
-                  Index case documents for search.
-                </Typography>
-                <Button
-                  variant="contained"
-                  startIcon={<PlayIcon />}
-                  onClick={() => handleAction('index-case-documents')}
-                  disabled={!!actionLoading}
-                  fullWidth
-                >
-                  {actionLoading === 'index-case-documents' ? (
-                    <>
-                      <CircularProgress size={16} sx={{ mr: 1 }} />
-                      Indexing...
-                    </>
-                  ) : (
-                    'Index Cases'
-                  )}
-                </Button>
-              </CardContent>
-            </Card>
-          </Grid>
+              )}
+            </Box>
 
-          <Grid item xs={12} md={6}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6" gutterBottom>
-                  🔄 Reindex All
+            {/* Error Display */}
+            {error && (
+              <Alert severity="error" sx={{ mb: 3 }} icon={<ErrorIcon />}>
+                <Typography variant="body2">
+                  <strong>Error:</strong> {error}
                 </Typography>
-                <Typography variant="body2" color="text.secondary" paragraph>
-                  Rebuild complete search index.
-                </Typography>
-                <Button
-                  variant="contained"
-                  startIcon={<PlayIcon />}
-                  onClick={() => handleAction('reindex-all')}
-                  disabled={!!actionLoading}
-                  fullWidth
-                >
-                  {actionLoading === 'reindex-all' ? (
-                    <>
-                      <CircularProgress size={16} sx={{ mr: 1 }} />
-                      Reindexing...
-                    </>
-                  ) : (
-                    'Reindex All'
-                  )}
-                </Button>
-              </CardContent>
-            </Card>
-          </Grid>
+              </Alert>
+            )}
 
-          <Grid item xs={12} md={6}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6" gutterBottom>
-                  🧪 Test Search
+            {/* Success Result */}
+            {result && result.success && (
+              <Alert severity="success" sx={{ mb: 3 }} icon={<CheckIcon />}>
+                <Typography variant="body2" gutterBottom>
+                  <strong>Success:</strong> {result.message}
                 </Typography>
-                <Typography variant="body2" color="text.secondary" paragraph>
-                  Test search functionality.
-                </Typography>
-                <Button
-                  variant="contained"
-                  startIcon={<PlayIcon />}
-                  onClick={() => handleAction('test-search')}
-                  disabled={!!actionLoading}
-                  fullWidth
-                >
-                  {actionLoading === 'test-search' ? (
-                    <>
-                      <CircularProgress size={16} sx={{ mr: 1 }} />
-                      Testing...
-                    </>
-                  ) : (
-                    'Test Search'
-                  )}
-                </Button>
-              </CardContent>
-            </Card>
-          </Grid>
+                
+                <Box sx={{ mt: 2, display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                  <Chip 
+                    label={`${result.total_documents} Documents`} 
+                    color="success" 
+                    size="small" 
+                  />
+                  <Chip 
+                    label={`${result.legal_concepts_count} Legal Concepts`} 
+                    color="success" 
+                    size="small" 
+                  />
+                  <Chip 
+                    label={`${result.research_areas.length} Research Areas`} 
+                    color="success" 
+                    size="small" 
+                  />
+                </Box>
 
-          <Grid item xs={12}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6" gutterBottom color="error">
-                  🗑️ Clear Index
+                {result.research_areas.length > 0 && (
+                  <Box sx={{ mt: 2 }}>
+                    <Typography variant="caption" color="text.secondary" display="block">
+                      Research Areas:
+                    </Typography>
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5, mt: 0.5 }}>
+                      {result.research_areas.map((area) => (
+                        <Chip
+                          key={area}
+                          label={area}
+                          size="small"
+                          variant="outlined"
+                          color="secondary"
+                        />
+                      ))}
+                    </Box>
+                  </Box>
+                )}
+
+                <Typography variant="caption" color="text.secondary" display="block" sx={{ mt: 1 }}>
+                  Last updated: {new Date(result.last_updated).toLocaleString()}
                 </Typography>
-                <Typography variant="body2" color="text.secondary" paragraph>
-                  Clear all search indexes. Use before rebuilding.
-                </Typography>
-                <Button
-                  variant="outlined"
-                  color="error"
-                  startIcon={<PlayIcon />}
-                  onClick={() => handleAction('clear-index')}
-                  disabled={!!actionLoading}
-                >
-                  {actionLoading === 'clear-index' ? (
-                    <>
-                      <CircularProgress size={16} sx={{ mr: 1 }} />
-                      Clearing...
-                    </>
-                  ) : (
-                    'Clear Index'
-                  )}
-                </Button>
-              </CardContent>
-            </Card>
-          </Grid>
-        </Grid>
+              </Alert>
+            )}
+          </CardContent>
+        </Card>
+
+        {/* Future Admin Functions */}
+        <Card>
+          <CardContent>
+            <Typography variant="h5" component="h2" gutterBottom>
+              Additional Admin Functions
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              More administrative functions will be available here in future updates, including:
+            </Typography>
+            <List dense sx={{ mt: 1 }}>
+              <ListItem>
+                <ListItemText 
+                  primary="• Document Analysis Management" 
+                  secondary="Bulk reprocess AI analysis for case documents"
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemText 
+                  primary="• System Health Monitoring" 
+                  secondary="View system status and performance metrics"
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemText 
+                  primary="• Data Export/Import" 
+                  secondary="Backup and restore system data"
+                />
+              </ListItem>
+            </List>
+          </CardContent>
+        </Card>
       </Box>
     </Container>
   );

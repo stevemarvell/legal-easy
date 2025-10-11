@@ -18,12 +18,12 @@ import {
   Search as SearchIcon
 } from '@mui/icons-material';
 import { apiClient } from '../services/api';
-import { LegalSearchResult } from '../types/api';
+import { CorpusItem, CorpusSearchResult } from '../types/corpus';
 
 const Research = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState('');
-  const [searchResults, setSearchResults] = useState<LegalSearchResult[]>([]);
+  const [searchResults, setSearchResults] = useState<CorpusItem[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -43,10 +43,8 @@ const Research = () => {
     setError(null);
 
     try {
-      const response = await apiClient.post<{ results: LegalSearchResult[] }>('/api/legal-research/search', {
-        query: searchTerm.trim()
-      });
-      setSearchResults(response.data.results || []);
+      const response = await apiClient.get<CorpusSearchResult>(`/api/corpus/search?q=${encodeURIComponent(searchTerm.trim())}`);
+      setSearchResults(response.data.items || []);
     } catch (err) {
       console.error('Search failed:', err);
       setError('Failed to perform search. Please try again.');
@@ -144,47 +142,96 @@ const Research = () => {
                         </Typography>
                         <Box display="flex" gap={1}>
                           <Chip
-                            label={result.document_type}
+                            label={result.document_type || result.category}
                             color="primary"
                             size="small"
                           />
                           <Chip
-                            label={`${Math.round(result.relevance_score * 100)}% match`}
-                            color="success"
+                            label={result.category.charAt(0).toUpperCase() + result.category.slice(1)}
+                            color="secondary"
                             size="small"
                           />
                         </Box>
                       </Box>
 
-                      <Typography variant="body1" paragraph>
-                        {result.content}
-                      </Typography>
+                      {result.description && (
+                        <Typography variant="body1" paragraph>
+                          {result.description}
+                        </Typography>
+                      )}
+
+                      {result.content && (
+                        <Typography variant="body2" paragraph sx={{ 
+                          bgcolor: 'grey.50', 
+                          p: 2, 
+                          borderRadius: 1,
+                          fontFamily: 'monospace',
+                          fontSize: '0.875rem',
+                          maxHeight: '200px',
+                          overflow: 'auto'
+                        }}>
+                          {result.content.substring(0, 500)}
+                          {result.content.length > 500 && '...'}
+                        </Typography>
+                      )}
 
                       <Box display="flex" gap={2} mb={2} flexWrap="wrap">
-                        <Typography variant="caption" color="text.secondary">
-                          Source: {result.source}
-                        </Typography>
-                        {result.jurisdiction && (
+                        {result.filename && (
                           <Typography variant="caption" color="text.secondary">
-                            Jurisdiction: {result.jurisdiction}
+                            File: {result.filename}
                           </Typography>
                         )}
-                        {result.date && (
-                          <Typography variant="caption" color="text.secondary">
-                            Date: {new Date(result.date).toLocaleDateString()}
-                          </Typography>
+                        {result.research_areas.length > 0 && (
+                          <Box display="flex" gap={0.5} flexWrap="wrap">
+                            <Typography variant="caption" color="text.secondary">
+                              Research Areas:
+                            </Typography>
+                            {result.research_areas.slice(0, 3).map((area) => (
+                              <Chip
+                                key={area}
+                                label={area}
+                                size="small"
+                                variant="outlined"
+                                sx={{ fontSize: '0.7rem', height: '20px' }}
+                              />
+                            ))}
+                            {result.research_areas.length > 3 && (
+                              <Chip
+                                label={`+${result.research_areas.length - 3} more`}
+                                size="small"
+                                variant="outlined"
+                                sx={{ fontSize: '0.7rem', height: '20px' }}
+                              />
+                            )}
+                          </Box>
                         )}
                       </Box>
 
-                      {result.url && (
-                        <Link
-                          href={result.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          color="primary"
-                        >
-                          View Full Document
-                        </Link>
+                      {result.legal_concepts.length > 0 && (
+                        <Box display="flex" gap={0.5} flexWrap="wrap">
+                          <Typography variant="caption" color="text.secondary">
+                            Legal Concepts:
+                          </Typography>
+                          {result.legal_concepts.slice(0, 3).map((concept) => (
+                            <Chip
+                              key={concept}
+                              label={concept}
+                              size="small"
+                              color="info"
+                              variant="outlined"
+                              sx={{ fontSize: '0.7rem', height: '20px' }}
+                            />
+                          ))}
+                          {result.legal_concepts.length > 3 && (
+                            <Chip
+                              label={`+${result.legal_concepts.length - 3} more`}
+                              size="small"
+                              color="info"
+                              variant="outlined"
+                              sx={{ fontSize: '0.7rem', height: '20px' }}
+                            />
+                          )}
+                        </Box>
                       )}
                     </CardContent>
                   </Card>

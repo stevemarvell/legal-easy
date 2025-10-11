@@ -4,7 +4,6 @@ import {
   Card,
   CardContent,
   Typography,
-  Grid,
   Chip,
   Alert,
   CircularProgress,
@@ -267,49 +266,52 @@ const CorpusList: React.FC<CorpusListProps> = ({
                           </Typography>
                         }
                         secondary={
-                          <Box>
-                            <Typography variant="caption" color="text.secondary" display="block">
+                          <span>
+                            <Typography variant="caption" color="text.secondary" component="span">
                               {item.document_type || item.category}
                             </Typography>
                             {item.description && (
-                              <Typography 
-                                variant="caption" 
-                                color="text.secondary" 
-                                display="block"
-                                sx={{ 
-                                  overflow: 'hidden',
-                                  textOverflow: 'ellipsis',
-                                  whiteSpace: 'nowrap',
-                                  maxWidth: '300px'
-                                }}
-                              >
-                                {item.description}
-                              </Typography>
+                              <>
+                                <br />
+                                <Typography 
+                                  variant="caption" 
+                                  color="text.secondary" 
+                                  component="span"
+                                  sx={{ 
+                                    overflow: 'hidden',
+                                    textOverflow: 'ellipsis',
+                                    whiteSpace: 'nowrap',
+                                    maxWidth: '300px'
+                                  }}
+                                >
+                                  {item.description}
+                                </Typography>
+                              </>
                             )}
-                            {item.research_areas.length > 0 && (
-                              <Box sx={{ mt: 0.5, display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                                {item.research_areas.slice(0, 2).map((area) => (
-                                  <Chip
-                                    key={area}
-                                    size="small"
-                                    label={area}
-                                    variant="outlined"
-                                    sx={{ fontSize: '0.6rem', height: '16px' }}
-                                  />
-                                ))}
-                                {item.research_areas.length > 2 && (
-                                  <Chip
-                                    size="small"
-                                    label={`+${item.research_areas.length - 2}`}
-                                    variant="outlined"
-                                    sx={{ fontSize: '0.6rem', height: '16px' }}
-                                  />
-                                )}
-                              </Box>
-                            )}
-                          </Box>
+                          </span>
                         }
                       />
+                      {item.research_areas.length > 0 && (
+                        <Box sx={{ mt: 0.5, display: 'flex', flexWrap: 'wrap', gap: 0.5, ml: 6 }}>
+                          {item.research_areas.slice(0, 2).map((area) => (
+                            <Chip
+                              key={area}
+                              size="small"
+                              label={area}
+                              variant="outlined"
+                              sx={{ fontSize: '0.6rem', height: '16px' }}
+                            />
+                          ))}
+                          {item.research_areas.length > 2 && (
+                            <Chip
+                              size="small"
+                              label={`+${item.research_areas.length - 2}`}
+                              variant="outlined"
+                              sx={{ fontSize: '0.6rem', height: '16px' }}
+                            />
+                          )}
+                        </Box>
+                      )}
                     </ListItemButton>
                   </ListItem>
                 </React.Fragment>
