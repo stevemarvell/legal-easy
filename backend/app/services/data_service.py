@@ -225,9 +225,11 @@ class DataService:
     
     @staticmethod
     def search_corpus(query: str) -> List[Dict[str, Any]]:
-        """Search research corpus by name, description, or research areas."""
+        """Search research corpus using concept-based searching."""
         try:
             corpus_index_path = Path("data/research_corpus/research_corpus_index.json")
+            concepts_path = Path("data/research_corpus/concepts/research_concepts.json")
+            
             if not corpus_index_path.exists():
                 return []
             
@@ -248,18 +250,45 @@ class DataService:
             query_lower = query.lower()
             filtered_documents = []
             
+            # Load legal concepts for enhanced searching
+            legal_concepts = {}
+            if concepts_path.exists():
+                with open(concepts_path, 'r', encoding='utf-8') as f:
+                    concepts_data = json.load(f)
+                    legal_concepts = concepts_data.get('legal_concepts', {})
+            
+            # Find matching concepts first
+            matching_concept_ids = []
+            for concept_id, concept_data in legal_concepts.items():
+                concept_text = " ".join([
+                    concept_data.get('name', ''),
+                    concept_data.get('definition', '')
+                ]).lower()
+                
+                if query_lower in concept_text:
+                    matching_concept_ids.append(concept_id)
+            
             for doc_id, doc_data in documents.items():
-                # Search in name, description, and research_areas
+                # Search in name, description, research_areas, and legal concepts
                 searchable_text = " ".join([
-                    doc_data.get('name', ''),
+                    doc_data.get('title', ''),
                     doc_data.get('description', ''),
                     " ".join(doc_data.get('research_areas', []))
                 ]).lower()
                 
-                if query_lower in searchable_text:
+                # Check if document contains matching legal concepts
+                doc_legal_concepts = doc_data.get('legal_concepts', [])
+                has_matching_concept = any(concept_id in matching_concept_ids for concept_id in doc_legal_concepts)
+                
+                if query_lower in searchable_text or has_matching_concept:
                     doc = doc_data.copy()
                     doc['id'] = doc_id
+                    # Add relevance score based on concept matching
+                    doc['concept_match'] = has_matching_concept
                     filtered_documents.append(doc)
+            
+            # Sort by concept relevance (concept matches first)
+            filtered_documents.sort(key=lambda x: x.get('concept_match', False), reverse=True)
             
             return filtered_documents
         except Exception as e:
@@ -320,6 +349,19 @@ class DataService:
             return None
     
     @staticmethod
+    def load_corpus_content_file(category: str, filename: str) -> str:
+        """Load corpus content file by category and filename."""
+        try:
+            content_path = Path(f"data/research_corpus/{category}/{filename}")
+            if content_path.exists():
+                with open(content_path, 'r', encoding='utf-8') as f:
+                    return f.read()
+            return ""
+        except Exception as e:
+            print(f"Error loading corpus content file: {e}")
+            return ""
+    
+    @staticmethod
     def load_corpus_metadata() -> Dict[str, Any]:
         """Load corpus metadata."""
         try:
@@ -353,7 +395,7 @@ class DataService:
     
     @staticmethod
     def get_related_corpus_items(item_id: str) -> List[Dict[str, Any]]:
-        """Get related corpus items based on research areas and category."""
+        """Get related corpus items based on research areas, category, and legal concepts."""
         try:
             # First get the item to find its research areas and category
             item = DataService.load_corpus_item_by_id(item_id)
@@ -362,6 +404,7 @@ class DataService:
             
             item_research_areas = set(item.get('research_areas', []))
             item_category = item.get('category', '')
+            item_legal_concepts = set(item.get('legal_concepts', []))
             
             # Load all corpus items
             corpus_index_path = Path("data/research_corpus/research_corpus_index.json")
@@ -377,16 +420,18 @@ class DataService:
                 
                 doc_research_areas = set(doc_data.get('research_areas', []))
                 doc_category = doc_data.get('category', '')
+                doc_legal_concepts = set(doc_data.get('legal_concepts', []))
                 
-                # Calculate relevance based on shared research areas and category
+                # Calculate relevance based on shared research areas, category, and legal concepts
                 shared_areas = item_research_areas.intersection(doc_research_areas)
+                shared_concepts = item_legal_concepts.intersection(doc_legal_concepts)
                 same_category = item_category == doc_category
                 
-                if shared_areas or same_category:
+                if shared_areas or same_category or shared_concepts:
                     doc = doc_data.copy()
                     doc['id'] = doc_id
-                    # Add relevance score
-                    relevance_score = len(shared_areas) * 2 + (1 if same_category else 0)
+                    # Add relevance score (concepts weighted highest, then areas, then category)
+                    relevance_score = len(shared_concepts) * 3 + len(shared_areas) * 2 + (1 if same_category else 0)
                     doc['relevance_score'] = relevance_score
                     related_items.append(doc)
             
@@ -398,6 +443,266 @@ class DataService:
         except Exception as e:
             print(f"Error getting related corpus items: {e}")
             return []
+    
+    @staticmethod
+    def load_legal_concepts() -> Dict[str, Dict[str, Any]]:
+        """Load all legal concepts from research_concepts.json."""
+        try:
+            concepts_path = Path("data/research_corpus/concepts/research_concepts.json")
+            if not concepts_path.exists():
+                return {}
+            
+            with open(concepts_path, 'r', encoding='utf-8') as f:
+                concepts_data = json.load(f)
+                
+            return concepts_data.get('legal_concepts', {})
+        except Exception as e:
+            print(f"Error loading legal concepts: {e}")
+            return {}
+    
+    @staticmethod
+    def load_concept_relationships() -> Dict[str, Dict[str, Any]]:
+        """Load concept relationships from research_concepts.json."""
+        try:
+            concepts_path = Path("data/research_corpus/concepts/research_concepts.json")
+            if not concepts_path.exists():
+                return {}
+            
+            with open(concepts_path, 'r', encoding='utf-8') as f:
+                concepts_data = json.load(f)
+                
+            return concepts_data.get('concept_relationships', {})
+        except Exception as e:
+            print(f"Error loading concept relationships: {e}")
+            return {}
+    
+    @staticmethod
+    def get_concepts_for_corpus_item(item_id: str) -> List[Dict[str, Any]]:
+        """Get legal concepts associated with a specific corpus item."""
+        try:
+            # Load the corpus item to get its legal concepts
+            item = DataService.load_corpus_item_by_id(item_id)
+            if not item:
+                return []
+            
+            item_concept_ids = item.get('legal_concepts', [])
+            
+            # Load all legal concepts
+            legal_concepts = DataService.load_legal_concepts()
+            
+            # Return the concepts for this item
+            result = []
+            for concept_id in item_concept_ids:
+                if concept_id in legal_concepts:
+                    concept = legal_concepts[concept_id].copy()
+                    concept['id'] = concept_id
+                    result.append(concept)
+            
+            return result
+        except Exception as e:
+            print(f"Error getting concepts for corpus item: {e}")
+            return []
+    
+    # === CONCEPT ANALYSIS AND EXTRACTION ===
+    
+    @staticmethod
+    def extract_concepts_from_text(text: str) -> List[str]:
+        """Extract legal concepts from text content by matching against known concepts."""
+        try:
+            if not text:
+                return []
+            
+            # Load all legal concepts
+            legal_concepts = DataService.load_legal_concepts()
+            
+            text_lower = text.lower()
+            found_concepts = []
+            
+            # Look for concept names and key terms in the text
+            for concept_id, concept_data in legal_concepts.items():
+                concept_name = concept_data.get('name', '').lower()
+                concept_definition = concept_data.get('definition', '').lower()
+                
+                # Check if concept name appears in text
+                if concept_name in text_lower:
+                    found_concepts.append(concept_id)
+                    continue
+                
+                # Check for key terms from the definition
+                key_terms = DataService._extract_key_terms_from_definition(concept_definition)
+                for term in key_terms:
+                    if term in text_lower and len(term) > 3:  # Avoid short common words
+                        found_concepts.append(concept_id)
+                        break
+            
+            return list(set(found_concepts))  # Remove duplicates
+        except Exception as e:
+            print(f"Error extracting concepts from text: {e}")
+            return []
+    
+    @staticmethod
+    def _extract_key_terms_from_definition(definition: str) -> List[str]:
+        """Extract key terms from a concept definition for matching."""
+        # Simple keyword extraction - look for important legal terms
+        key_terms = []
+        
+        # Split definition into words and look for legal terminology
+        words = definition.lower().split()
+        
+        # Common legal term patterns
+        legal_indicators = [
+            'contract', 'agreement', 'clause', 'liability', 'breach', 'termination',
+            'employment', 'dismissal', 'notice', 'statutory', 'legal', 'rights',
+            'obligation', 'damages', 'remedy', 'intellectual', 'property',
+            'confidential', 'disclosure', 'indemnification', 'consideration'
+        ]
+        
+        for word in words:
+            # Remove punctuation
+            clean_word = word.strip('.,;:()[]{}"\'-')
+            if clean_word in legal_indicators and len(clean_word) > 3:
+                key_terms.append(clean_word)
+        
+        return key_terms
+    
+    @staticmethod
+    def analyze_concept_relationships(concept_id: str) -> Dict[str, Any]:
+        """Analyze relationships for a specific legal concept."""
+        try:
+            legal_concepts = DataService.load_legal_concepts()
+            concept_relationships = DataService.load_concept_relationships()
+            
+            if concept_id not in legal_concepts:
+                return {}
+            
+            concept = legal_concepts[concept_id]
+            
+            # Get direct relationships
+            related_concept_ids = concept.get('related_concepts', [])
+            related_concepts = []
+            
+            for related_id in related_concept_ids:
+                if related_id in legal_concepts:
+                    related_concept = legal_concepts[related_id].copy()
+                    related_concept['id'] = related_id
+                    related_concepts.append(related_concept)
+            
+            # Find concept clusters this concept belongs to
+            concept_clusters = []
+            for cluster_name, cluster_data in concept_relationships.items():
+                cluster_concepts = cluster_data.get('concepts', [])
+                if concept_id in cluster_concepts:
+                    concept_clusters.append({
+                        'name': cluster_name,
+                        'description': cluster_data.get('description', ''),
+                        'concepts': cluster_concepts
+                    })
+            
+            # Get corpus references
+            corpus_references = concept.get('corpus_references', [])
+            
+            return {
+                'concept_id': concept_id,
+                'concept_name': concept.get('name', ''),
+                'definition': concept.get('definition', ''),
+                'related_concepts': related_concepts,
+                'concept_clusters': concept_clusters,
+                'corpus_references': corpus_references,
+                'relationship_strength': len(related_concept_ids)
+            }
+        except Exception as e:
+            print(f"Error analyzing concept relationships: {e}")
+            return {}
+    
+    @staticmethod
+    def build_concept_relationship_map() -> Dict[str, List[str]]:
+        """Build a comprehensive map of concept relationships."""
+        try:
+            legal_concepts = DataService.load_legal_concepts()
+            relationship_map = {}
+            
+            for concept_id, concept_data in legal_concepts.items():
+                related_concepts = concept_data.get('related_concepts', [])
+                relationship_map[concept_id] = related_concepts
+            
+            return relationship_map
+        except Exception as e:
+            print(f"Error building concept relationship map: {e}")
+            return {}
+    
+    @staticmethod
+    def update_concept_analysis(concept_id: str, analysis_data: Dict[str, Any]) -> bool:
+        """Update concept analysis in research_concepts.json."""
+        try:
+            concepts_path = Path("data/research_corpus/concepts/research_concepts.json")
+            if not concepts_path.exists():
+                return False
+            
+            # Load existing data
+            with open(concepts_path, 'r', encoding='utf-8') as f:
+                concepts_data = json.load(f)
+            
+            # Update the specific concept
+            legal_concepts = concepts_data.get('legal_concepts', {})
+            if concept_id in legal_concepts:
+                legal_concepts[concept_id].update(analysis_data)
+                
+                # Update metadata
+                concepts_data['concepts_metadata']['last_updated'] = datetime.now().isoformat()
+                
+                # Save back to file
+                with open(concepts_path, 'w', encoding='utf-8') as f:
+                    json.dump(concepts_data, f, indent=2, ensure_ascii=False)
+                
+                return True
+            
+            return False
+        except Exception as e:
+            print(f"Error updating concept analysis: {e}")
+            return False
+    
+    @staticmethod
+    def analyze_corpus_item_concepts(item_id: str) -> Dict[str, Any]:
+        """Analyze legal concepts for a specific corpus item."""
+        try:
+            # Load the corpus item with content
+            item = DataService.load_corpus_item_by_id(item_id)
+            if not item:
+                return {}
+            
+            content = item.get('content', '')
+            existing_concepts = item.get('legal_concepts', [])
+            
+            # Extract concepts from content
+            extracted_concepts = DataService.extract_concepts_from_text(content)
+            
+            # Combine existing and extracted concepts
+            all_concepts = list(set(existing_concepts + extracted_concepts))
+            
+            # Get detailed concept information
+            legal_concepts = DataService.load_legal_concepts()
+            concept_details = []
+            
+            for concept_id in all_concepts:
+                if concept_id in legal_concepts:
+                    concept = legal_concepts[concept_id].copy()
+                    concept['id'] = concept_id
+                    concept['source'] = 'existing' if concept_id in existing_concepts else 'extracted'
+                    concept_details.append(concept)
+            
+            return {
+                'item_id': item_id,
+                'item_title': item.get('title', ''),
+                'category': item.get('category', ''),
+                'total_concepts': len(all_concepts),
+                'existing_concepts': len(existing_concepts),
+                'extracted_concepts': len(extracted_concepts),
+                'concept_details': concept_details,
+                'analysis_timestamp': datetime.now().isoformat()
+            }
+        except Exception as e:
+            print(f"Error analyzing corpus item concepts: {e}")
+            return {}
     
     # === DOCUMENTATION MANAGEMENT ===
     

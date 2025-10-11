@@ -223,18 +223,26 @@ class TestDataService:
         """Test searching corpus with query string"""
         corpus_data = {
             "documents": {
-                "doc1": {"name": "Employment Law", "description": "Employment regulations", "research_areas": ["employment"]},
-                "doc2": {"name": "Contract Law", "description": "Contract principles", "research_areas": ["contracts"]}
+                "doc1": {"title": "Employment Law", "description": "Employment regulations", "research_areas": ["employment"]},
+                "doc2": {"title": "Contract Law", "description": "Contract principles", "research_areas": ["contracts"]}
             }
         }
         
-        mock_file.return_value = mock_open(read_data=json.dumps(corpus_data)).return_value
+        # Mock both corpus index and concepts files
+        def side_effect(path, *args, **kwargs):
+            if "research_corpus_index.json" in str(path):
+                return mock_open(read_data=json.dumps(corpus_data)).return_value
+            elif "research_concepts.json" in str(path):
+                return mock_open(read_data='{"legal_concepts": {}}').return_value
+            return mock_open(read_data="{}").return_value
+        
+        mock_file.side_effect = side_effect
         
         result = DataService.search_corpus("employment")
         
         assert len(result) == 1
         assert result[0]["id"] == "doc1"
-        assert result[0]["name"] == "Employment Law"
+        assert result[0]["title"] == "Employment Law"
 
     @patch("builtins.open", new_callable=mock_open)
     @patch("pathlib.Path.exists", return_value=True)
@@ -537,3 +545,309 @@ class TestDataService:
         assert DataService.search_documents("test") == []
         assert DataService.search_corpus("test") == []
         assert DataService.search_documentation("test") == []
+
+    # === CORPUS CONCEPT ANALYSIS TESTS ===
+
+    @patch("builtins.open", new_callable=mock_open)
+    @patch("pathlib.Path.exists", return_value=True)
+    def test_load_legal_concepts_success(self, mock_exists, mock_file):
+        """Test loading legal concepts successfully"""
+        concepts_data = {
+            "legal_concepts": {
+                "lc-001": {
+                    "name": "Employment Termination",
+                    "definition": "The legal process of ending employment",
+                    "related_concepts": ["lc-002"],
+                    "corpus_references": ["rc-001"]
+                }
+            }
+        }
+        
+        mock_file.return_value = mock_open(read_data=json.dumps(concepts_data)).return_value
+        
+        result = DataService.load_legal_concepts()
+        
+        assert "lc-001" in result
+        assert result["lc-001"]["name"] == "Employment Termination"
+
+    @patch("builtins.open", new_callable=mock_open)
+    @patch("pathlib.Path.exists", return_value=True)
+    def test_load_concept_relationships_success(self, mock_exists, mock_file):
+        """Test loading concept relationships successfully"""
+        concepts_data = {
+            "concept_relationships": {
+                "employment_cluster": {
+                    "concepts": ["lc-001", "lc-002"],
+                    "description": "Employment law concepts"
+                }
+            }
+        }
+        
+        mock_file.return_value = mock_open(read_data=json.dumps(concepts_data)).return_value
+        
+        result = DataService.load_concept_relationships()
+        
+        assert "employment_cluster" in result
+        assert result["employment_cluster"]["description"] == "Employment law concepts"
+
+    @patch.object(DataService, 'load_corpus_item_by_id')
+    @patch.object(DataService, 'load_legal_concepts')
+    def test_get_concepts_for_corpus_item_success(self, mock_load_concepts, mock_load_item):
+        """Test getting concepts for corpus item successfully"""
+        mock_load_item.return_value = {
+            "id": "rc-001",
+            "legal_concepts": ["lc-001", "lc-002"]
+        }
+        
+        mock_load_concepts.return_value = {
+            "lc-001": {"name": "Concept 1", "definition": "Definition 1"},
+            "lc-002": {"name": "Concept 2", "definition": "Definition 2"}
+        }
+        
+        result = DataService.get_concepts_for_corpus_item("rc-001")
+        
+        assert len(result) == 2
+        assert result[0]["id"] == "lc-001"
+        assert result[1]["id"] == "lc-002"
+
+    @patch.object(DataService, 'load_legal_concepts')
+    def test_extract_concepts_from_text_success(self, mock_load_concepts):
+        """Test extracting concepts from text successfully"""
+        mock_load_concepts.return_value = {
+            "lc-001": {
+                "name": "Employment Termination",
+                "definition": "The legal process of ending employment relationship"
+            },
+            "lc-002": {
+                "name": "Contract Breach",
+                "definition": "Failure to perform contractual obligations"
+            }
+        }
+        
+        text = "This document discusses employment termination procedures and contract obligations."
+        
+        result = DataService.extract_concepts_from_text(text)
+        
+        assert "lc-001" in result  # Should find "employment termination"
+
+    def test_extract_concepts_from_empty_text(self):
+        """Test extracting concepts from empty text"""
+        result = DataService.extract_concepts_from_text("")
+        
+        assert result == []
+
+    def test_extract_key_terms_from_definition(self):
+        """Test extracting key terms from concept definition"""
+        definition = "The legal process of ending an employment relationship with proper notice"
+        
+        result = DataService._extract_key_terms_from_definition(definition)
+        
+        assert "legal" in result
+        assert "employment" in result
+        assert "notice" in result
+
+    @patch.object(DataService, 'load_legal_concepts')
+    @patch.object(DataService, 'load_concept_relationships')
+    def test_analyze_concept_relationships_success(self, mock_load_relationships, mock_load_concepts):
+        """Test analyzing concept relationships successfully"""
+        mock_load_concepts.return_value = {
+            "lc-001": {
+                "name": "Employment Termination",
+                "definition": "Legal process of ending employment",
+                "related_concepts": ["lc-002"],
+                "corpus_references": ["rc-001"]
+            },
+            "lc-002": {
+                "name": "Notice Period",
+                "definition": "Required advance notice",
+                "related_concepts": ["lc-001"],
+                "corpus_references": ["rc-001"]
+            }
+        }
+        
+        mock_load_relationships.return_value = {
+            "employment_cluster": {
+                "concepts": ["lc-001", "lc-002"],
+                "description": "Employment law concepts"
+            }
+        }
+        
+        result = DataService.analyze_concept_relationships("lc-001")
+        
+        assert result["concept_id"] == "lc-001"
+        assert result["concept_name"] == "Employment Termination"
+        assert len(result["related_concepts"]) == 1
+        assert len(result["concept_clusters"]) == 1
+        assert result["relationship_strength"] == 1
+
+    @patch.object(DataService, 'load_legal_concepts')
+    def test_build_concept_relationship_map_success(self, mock_load_concepts):
+        """Test building concept relationship map successfully"""
+        mock_load_concepts.return_value = {
+            "lc-001": {"related_concepts": ["lc-002", "lc-003"]},
+            "lc-002": {"related_concepts": ["lc-001"]},
+            "lc-003": {"related_concepts": ["lc-001"]}
+        }
+        
+        result = DataService.build_concept_relationship_map()
+        
+        assert "lc-001" in result
+        assert result["lc-001"] == ["lc-002", "lc-003"]
+        assert result["lc-002"] == ["lc-001"]
+
+    @patch("builtins.open", new_callable=mock_open)
+    @patch("pathlib.Path.exists", return_value=True)
+    def test_update_concept_analysis_success(self, mock_exists, mock_file):
+        """Test updating concept analysis successfully"""
+        existing_data = {
+            "legal_concepts": {
+                "lc-001": {
+                    "name": "Employment Termination",
+                    "definition": "Original definition"
+                }
+            },
+            "concepts_metadata": {
+                "last_updated": "2024-01-01"
+            }
+        }
+        
+        # Mock reading existing data
+        mock_file.return_value = mock_open(read_data=json.dumps(existing_data)).return_value
+        
+        update_data = {"definition": "Updated definition"}
+        
+        result = DataService.update_concept_analysis("lc-001", update_data)
+        
+        assert result is True
+
+    @patch("pathlib.Path.exists", return_value=False)
+    def test_update_concept_analysis_file_not_exists(self, mock_exists):
+        """Test updating concept analysis when file doesn't exist"""
+        result = DataService.update_concept_analysis("lc-001", {})
+        
+        assert result is False
+
+    @patch.object(DataService, 'load_corpus_item_by_id')
+    @patch.object(DataService, 'extract_concepts_from_text')
+    @patch.object(DataService, 'load_legal_concepts')
+    def test_analyze_corpus_item_concepts_success(self, mock_load_concepts, mock_extract, mock_load_item):
+        """Test analyzing corpus item concepts successfully"""
+        mock_load_item.return_value = {
+            "id": "rc-001",
+            "title": "Employment Contract",
+            "category": "contracts",
+            "content": "Employment termination procedures",
+            "legal_concepts": ["lc-001"]
+        }
+        
+        mock_extract.return_value = ["lc-002"]
+        
+        mock_load_concepts.return_value = {
+            "lc-001": {"name": "Existing Concept", "definition": "Existing"},
+            "lc-002": {"name": "Extracted Concept", "definition": "Extracted"}
+        }
+        
+        result = DataService.analyze_corpus_item_concepts("rc-001")
+        
+        assert result["item_id"] == "rc-001"
+        assert result["total_concepts"] == 2
+        assert result["existing_concepts"] == 1
+        assert result["extracted_concepts"] == 1
+        assert len(result["concept_details"]) == 2
+
+    @patch.object(DataService, 'load_corpus_item_by_id')
+    def test_analyze_corpus_item_concepts_item_not_found(self, mock_load_item):
+        """Test analyzing corpus item concepts when item not found"""
+        mock_load_item.return_value = None
+        
+        result = DataService.analyze_corpus_item_concepts("nonexistent")
+        
+        assert result == {}
+
+    @patch("builtins.open", new_callable=mock_open)
+    @patch("pathlib.Path.exists", return_value=True)
+    def test_search_corpus_with_concept_matching(self, mock_exists, mock_file):
+        """Test searching corpus with concept-based matching"""
+        corpus_data = {
+            "documents": {
+                "doc1": {
+                    "title": "Employment Law",
+                    "description": "Employment regulations",
+                    "research_areas": ["employment"],
+                    "legal_concepts": ["lc-001"]
+                },
+                "doc2": {
+                    "title": "Contract Law",
+                    "description": "Contract principles",
+                    "research_areas": ["contracts"],
+                    "legal_concepts": ["lc-002"]
+                }
+            }
+        }
+        
+        concepts_data = {
+            "legal_concepts": {
+                "lc-001": {
+                    "name": "Employment Termination",
+                    "definition": "Process of ending employment"
+                },
+                "lc-002": {
+                    "name": "Contract Breach",
+                    "definition": "Failure to perform contract"
+                }
+            }
+        }
+        
+        def side_effect(path, *args, **kwargs):
+            if "research_corpus_index.json" in str(path):
+                return mock_open(read_data=json.dumps(corpus_data)).return_value
+            elif "research_concepts.json" in str(path):
+                return mock_open(read_data=json.dumps(concepts_data)).return_value
+            return mock_open(read_data="{}").return_value
+        
+        mock_file.side_effect = side_effect
+        
+        result = DataService.search_corpus("termination")
+        
+        # Should find doc1 because "termination" matches the concept definition
+        assert len(result) >= 1
+        found_doc1 = any(doc["id"] == "doc1" for doc in result)
+        assert found_doc1
+
+    @patch("builtins.open", new_callable=mock_open)
+    @patch("pathlib.Path.exists", return_value=True)
+    def test_load_corpus_content_file_success(self, mock_exists, mock_file):
+        """Test loading corpus content file successfully"""
+        content = "This is the full content of the legal document."
+        mock_file.return_value = mock_open(read_data=content).return_value
+        
+        result = DataService.load_corpus_content_file("contracts", "test_contract.txt")
+        
+        assert result == content
+
+    @patch("pathlib.Path.exists", return_value=False)
+    def test_load_corpus_content_file_not_exists(self, mock_exists):
+        """Test loading corpus content file when file doesn't exist"""
+        result = DataService.load_corpus_content_file("contracts", "nonexistent.txt")
+        
+        assert result == ""
+
+    @patch("builtins.open", side_effect=Exception("File read error"))
+    @patch("pathlib.Path.exists", return_value=True)
+    def test_load_corpus_content_file_exception(self, mock_exists, mock_file):
+        """Test loading corpus content file with exception"""
+        result = DataService.load_corpus_content_file("contracts", "test.txt")
+        
+        assert result == ""
+
+    @patch("builtins.open", side_effect=Exception("Concept error"))
+    @patch("pathlib.Path.exists", return_value=True)
+    def test_concept_methods_error_handling(self, mock_exists, mock_file):
+        """Test error handling in concept analysis methods"""
+        # Test that concept methods return empty results on errors
+        assert DataService.load_legal_concepts() == {}
+        assert DataService.load_concept_relationships() == {}
+        assert DataService.extract_concepts_from_text("test") == []
+        assert DataService.analyze_concept_relationships("lc-001") == {}
+        assert DataService.build_concept_relationship_map() == {}
+        assert DataService.analyze_corpus_item_concepts("rc-001") == {}
