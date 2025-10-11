@@ -1,35 +1,49 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import {
   Box,
   Container,
   Button,
   Typography,
   Breadcrumbs,
-  Link
+  Link,
+  ToggleButton,
+  ToggleButtonGroup
 } from '@mui/material';
 import {
   ArrowBack as ArrowBackIcon,
   Home as HomeIcon,
-  Folder as CaseIcon
+  Folder as CaseIcon,
+  ViewList as ListIcon,
+  ViewModule as GridIcon
 } from '@mui/icons-material';
 import DocumentList from '../components/DocumentManagement/DocumentList';
+import DocumentGrid from '../components/DocumentManagement/DocumentGrid';
 import DocumentViewer from '../components/DocumentManagement/DocumentViewer';
 import { Document } from '../types/document';
+
+type ViewMode = 'list' | 'grid';
 
 const Documents: React.FC = () => {
   const { caseId } = useParams<{ caseId: string }>();
   const navigate = useNavigate();
+  const location = useLocation();
   const [selectedDocument, setSelectedDocument] = useState<Document | null>(null);
   const [refreshTrigger, setRefreshTrigger] = useState(0);
+  const [viewMode, setViewMode] = useState<ViewMode>('grid');
+  const [searchQuery, setSearchQuery] = useState('');
+
+  // Determine if we're in case context or general documents
+  const isInCaseContext = location.pathname.includes('/cases/');
 
   const handleDocumentSelect = (document: Document) => {
     setSelectedDocument(document);
   };
 
   const handleDocumentsLoaded = (documents: Document[]) => {
-    // Auto-select first document if none is selected and documents are available
-    if (!selectedDocument && documents.length > 0) {
+    // Auto-select first document if none is selected and documents are available (only in list view)
+    if (!selectedDocument && documents.length > 0 && viewMode === 'list') {
       setSelectedDocument(documents[0]);
     }
   };
@@ -47,11 +61,38 @@ const Documents: React.FC = () => {
     navigate(path);
   };
 
-  if (!caseId) {
+  const handleViewModeChange = (
+    event: React.MouseEvent<HTMLElement>,
+    newViewMode: ViewMode,
+  ) => {
+    if (newViewMode !== null) {
+      setViewMode(newViewMode);
+      // Clear selected document when switching to grid view
+      if (newViewMode === 'grid') {
+        setSelectedDocument(null);
+      }
+    }
+  };
+
+  // Grid view - show documents as cards
+  if (viewMode === 'grid') {
+    return (
+      <DocumentGrid
+        caseId={caseId}
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
+        showCaseInfo={!isInCaseContext}
+        onDocumentAnalyze={handleDocumentAnalyzed}
+      />
+    );
+  }
+
+  // List view - show traditional two-column layout
+  if (!caseId && !isInCaseContext) {
     return (
       <Container maxWidth="xl">
         <Typography variant="h4" color="error">
-          Case ID is required
+          Case ID is required for list view
         </Typography>
       </Container>
     );
@@ -62,14 +103,16 @@ const Documents: React.FC = () => {
       <Box>
         {/* Header with Navigation */}
         <Box mb={4}>
-          <Button
-            variant="outlined"
-            startIcon={<ArrowBackIcon />}
-            onClick={handleBackToCase}
-            sx={{ mb: 2 }}
-          >
-            Back to Case
-          </Button>
+          {isInCaseContext && (
+            <Button
+              variant="outlined"
+              startIcon={<ArrowBackIcon />}
+              onClick={handleBackToCase}
+              sx={{ mb: 2 }}
+            >
+              Back to Case
+            </Button>
+          )}
 
           {/* Breadcrumbs */}
           <Breadcrumbs aria-label="breadcrumb" sx={{ mb: 2 }}>
@@ -91,25 +134,49 @@ const Documents: React.FC = () => {
               <CaseIcon sx={{ mr: 0.5 }} fontSize="inherit" />
               Cases
             </Link>
-            <Link
-              component="button"
-              variant="body2"
-              onClick={handleBackToCase}
-              sx={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}
-            >
-              Case {caseId}
-            </Link>
+            {isInCaseContext && caseId && (
+              <Link
+                component="button"
+                variant="body2"
+                onClick={handleBackToCase}
+                sx={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}
+              >
+                Case {caseId}
+              </Link>
+            )}
             <Typography color="text.primary" variant="body2">
               Documents
             </Typography>
           </Breadcrumbs>
 
-          <Typography variant="h3" component="h1" color="primary">
-            Document Management
-          </Typography>
-          <Typography variant="h6" color="text.secondary">
-            Case {caseId}
-          </Typography>
+          <Box display="flex" justifyContent="space-between" alignItems="center">
+            <Box>
+              <Typography variant="h3" component="h1" color="primary">
+                Document Management
+              </Typography>
+              {caseId && (
+                <Typography variant="h6" color="text.secondary">
+                  Case {caseId}
+                </Typography>
+              )}
+            </Box>
+
+            {/* View Mode Toggle */}
+            <ToggleButtonGroup
+              value={viewMode}
+              exclusive
+              onChange={handleViewModeChange}
+              aria-label="view mode"
+              size="small"
+            >
+              <ToggleButton value="list" aria-label="list view">
+                <ListIcon />
+              </ToggleButton>
+              <ToggleButton value="grid" aria-label="grid view">
+                <GridIcon />
+              </ToggleButton>
+            </ToggleButtonGroup>
+          </Box>
         </Box>
 
         {/* Main Content - Two Column Layout */}
@@ -120,7 +187,7 @@ const Documents: React.FC = () => {
               Case Documents
             </Typography>
             <DocumentList
-              caseId={caseId}
+              caseId={caseId!}
               onDocumentSelect={handleDocumentSelect}
               selectedDocumentId={selectedDocument?.id}
               refreshTrigger={refreshTrigger}

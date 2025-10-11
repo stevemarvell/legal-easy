@@ -4,6 +4,7 @@ import Dashboard from './pages/Dashboard';
 import Cases from './pages/Cases';
 import CaseAnalysis from './pages/CaseAnalysis';
 import Documents from './pages/Documents';
+import DocumentDetail from './pages/DocumentDetail';
 import DocumentAnalysisManagement from './pages/DocumentAnalysisManagement';
 import Playbooks from './pages/Playbooks';
 import Documentation from './pages/Documentation';
@@ -36,6 +37,18 @@ export const router = createBrowserRouter([
       {
         path: 'cases/:caseId/documents',
         element: <Documents />, // Dedicated Documents page
+      },
+      {
+        path: 'cases/:caseId/documents/:documentId',
+        element: <DocumentDetail />, // Individual document detail page
+      },
+      {
+        path: 'documents',
+        element: <Documents />, // All documents page
+      },
+      {
+        path: 'documents/:documentId',
+        element: <DocumentDetail />, // Individual document detail page (no case context)
       },
       {
         path: 'analysis',

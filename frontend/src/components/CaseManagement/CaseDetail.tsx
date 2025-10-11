@@ -359,7 +359,7 @@ const CaseDetail: React.FC = () => {
                               minWidth: 'auto',
                               '&:hover': { backgroundColor: 'transparent', textDecoration: 'underline' }
                             }}
-                            onClick={() => navigate(`/documents/${doc.id}`)}
+                            onClick={() => navigate(`/cases/${caseId}/documents/${doc.id}`)}
                             data-testid="document-link"
                           >
                             {doc.name}
@@ -406,7 +406,7 @@ const CaseDetail: React.FC = () => {
                 <Button
                   variant="outlined"
                   fullWidth
-                  onClick={() => navigate(`/documents`)}
+                  onClick={() => navigate(`/cases/${caseId}/documents`)}
                 >
                   View All Documents
                 </Button>
