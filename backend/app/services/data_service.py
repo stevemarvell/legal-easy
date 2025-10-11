@@ -60,6 +60,11 @@ class DataService:
                 
                 # Filter documents for the specific case
                 case_documents = [doc for doc in documents if doc.get('case_id') == case_id]
+                
+                # Add analysis_completed field by checking if analysis exists
+                for doc in case_documents:
+                    doc['analysis_completed'] = DataService._has_document_analysis(doc.get('id'))
+                
                 return case_documents
         except Exception as e:
             print(f"Error loading case documents: {e}")
@@ -1158,3 +1163,248 @@ class DataService:
         except Exception as e:
             print(f"Error regenerating corpus index: {e}")
             return False
+    # === DOCUMENT ANALYSIS REGENERATION ===
+    
+    @staticmethod
+    def regenerate_document_analysis() -> bool:
+        """Regenerate AI analysis for all documents in the system."""
+        try:
+            from app.services.ai_service import AIService
+            
+            # Statistics tracking
+            stats = {
+                "total_documents": 0,
+                "analyzed_documents": 0,
+                "failed_documents": 0,
+                "confidence_scores": []
+            }
+            
+            # Load all cases
+            cases = DataService.load_cases()
+            
+            for case in cases:
+                case_id = case.get('id') if isinstance(case, dict) else case.id
+                documents = DataService.load_case_documents(case_id)
+                
+                for document in documents:
+                    doc_id = document.get('id') if isinstance(document, dict) else document.id
+                    stats["total_documents"] += 1
+                    
+                    try:
+                        # Load document content
+                        content = DataService.load_document_content(doc_id)
+                        if not content:
+                            stats["failed_documents"] += 1
+                            continue
+                        
+                        # Perform AI analysis
+                        analysis = AIService.analyze_document(doc_id, content)
+                        
+                        # Save analysis results
+                        AIService.save_analysis(doc_id, analysis)
+                        
+                        stats["analyzed_documents"] += 1
+                        stats["confidence_scores"].append(analysis.get("overall_confidence", 0.0))
+                        
+                    except Exception as e:
+                        print(f"Failed to analyze document {doc_id}: {e}")
+                        stats["failed_documents"] += 1
+            
+            # Calculate average confidence
+            if stats["confidence_scores"]:
+                stats["average_confidence"] = sum(stats["confidence_scores"]) / len(stats["confidence_scores"])
+            else:
+                stats["average_confidence"] = 0.0
+            
+            # Save statistics
+            DataService._save_document_analysis_stats(stats)
+            
+            return True
+            
+        except Exception as e:
+            print(f"Error regenerating document analysis: {e}")
+            return False
+    
+    @staticmethod
+    def get_document_analysis_stats() -> Dict[str, Any]:
+        """Get statistics from the last document analysis regeneration."""
+        try:
+            stats_path = Path("data/ai/case_documents/analysis_stats.json")
+            if not stats_path.exists():
+                return {
+                    "total_documents": 0,
+                    "analyzed_documents": 0,
+                    "failed_documents": 0,
+                    "average_confidence": 0.0
+                }
+            
+            with open(stats_path, 'r', encoding='utf-8') as f:
+                return json.load(f)
+                
+        except Exception as e:
+            print(f"Error loading document analysis stats: {e}")
+            return {
+                "total_documents": 0,
+                "analyzed_documents": 0,
+                "failed_documents": 0,
+                "average_confidence": 0.0
+            }
+    
+    @staticmethod
+    def _save_document_analysis_stats(stats: Dict[str, Any]) -> None:
+        """Save document analysis statistics."""
+        try:
+            stats_path = Path("data/ai/case_documents/analysis_stats.json")
+            stats_path.parent.mkdir(parents=True, exist_ok=True)
+            
+            # Clean up stats for JSON serialization
+            clean_stats = {
+                "total_documents": stats["total_documents"],
+                "analyzed_documents": stats["analyzed_documents"],
+                "failed_documents": stats["failed_documents"],
+                "average_confidence": round(stats["average_confidence"], 3),
+                "last_regenerated": datetime.now().isoformat()
+            }
+            
+            with open(stats_path, 'w', encoding='utf-8') as f:
+                json.dump(clean_stats, f, indent=2)
+                
+        except Exception as e:
+            print(f"Error saving document analysis stats: {e}")
+    
+    @staticmethod
+    def _has_document_analysis(doc_id: str) -> bool:
+        """Check if analysis exists for a document."""
+        try:
+            analysis_path = Path("data/ai/case_documents/case_documents_analysis.json")
+            if not analysis_path.exists():
+                return False
+            
+            with open(analysis_path, 'r', encoding='utf-8') as f:
+                analyses = json.load(f)
+                return doc_id in analyses
+                
+        except Exception as e:
+            print(f"Error checking document analysis: {e}")
+            return False
+    
+    @staticmethod
+    def load_document_analysis(doc_id: str) -> Dict[str, Any]:
+        """Load AI analysis for a specific document."""
+        try:
+            analysis_path = Path("data/ai/case_documents/case_documents_analysis.json")
+            if not analysis_path.exists():
+                return None
+            
+            with open(analysis_path, 'r', encoding='utf-8') as f:
+                analyses = json.load(f)
+                return analyses.get(doc_id)
+                
+        except Exception as e:
+            print(f"Error loading document analysis: {e}")
+            return None
+    
+    @staticmethod
+    def load_document_summary(doc_id: str) -> Dict[str, Any]:
+        """Load AI-generated summary for a specific document."""
+        try:
+            analysis = DataService.load_document_analysis(doc_id)
+            if not analysis:
+                return None
+            
+            return {
+                "document_id": doc_id,
+                "summary": analysis.get("summary", ""),
+                "key_points": analysis.get("key_points", []),
+                "confidence_score": analysis.get("overall_confidence", 0.0)
+            }
+        except Exception as e:
+            print(f"Error loading document summary: {e}")
+            return None
+    
+    @staticmethod
+    def load_document_key_dates(doc_id: str) -> Dict[str, Any]:
+        """Load key dates extracted from a specific document."""
+        try:
+            analysis = DataService.load_document_analysis(doc_id)
+            if not analysis:
+                return None
+            
+            return {
+                "document_id": doc_id,
+                "key_dates": analysis.get("key_dates", []),
+                "confidence_score": analysis.get("confidence_scores", {}).get("key_dates", 0.0)
+            }
+        except Exception as e:
+            print(f"Error loading document key dates: {e}")
+            return None
+    
+    @staticmethod
+    def load_document_parties(doc_id: str) -> Dict[str, Any]:
+        """Load parties extracted from a specific document."""
+        try:
+            analysis = DataService.load_document_analysis(doc_id)
+            if not analysis:
+                return None
+            
+            return {
+                "document_id": doc_id,
+                "parties": analysis.get("parties_involved", []),
+                "confidence_score": analysis.get("confidence_scores", {}).get("parties", 0.0)
+            }
+        except Exception as e:
+            print(f"Error loading document parties: {e}")
+            return None
+    
+    @staticmethod
+    def load_document_risks(doc_id: str) -> Dict[str, Any]:
+        """Load risk assessment for a specific document."""
+        try:
+            analysis = DataService.load_document_analysis(doc_id)
+            if not analysis:
+                return None
+            
+            return {
+                "document_id": doc_id,
+                "risks": analysis.get("potential_issues", []),
+                "risk_level": analysis.get("risk_level", "unknown"),
+                "confidence_score": analysis.get("confidence_scores", {}).get("risks", 0.0)
+            }
+        except Exception as e:
+            print(f"Error loading document risks: {e}")
+            return None
+    
+    @staticmethod
+    def load_document_compliance(doc_id: str) -> Dict[str, Any]:
+        """Load compliance status for a specific document."""
+        try:
+            analysis = DataService.load_document_analysis(doc_id)
+            if not analysis:
+                return None
+            
+            return {
+                "document_id": doc_id,
+                "compliance_status": analysis.get("compliance_status", "unknown"),
+                "compliance_issues": analysis.get("compliance_issues", []),
+                "confidence_score": analysis.get("confidence_scores", {}).get("compliance", 0.0)
+            }
+        except Exception as e:
+            print(f"Error loading document compliance: {e}")
+            return None
+    
+    @staticmethod
+    def load_document_deadlines(doc_id: str) -> Dict[str, Any]:
+        """Load deadlines extracted from a specific document."""
+        try:
+            analysis = DataService.load_document_analysis(doc_id)
+            if not analysis:
+                return None
+            
+            return {
+                "document_id": doc_id,
+                "deadlines": analysis.get("critical_deadlines", []),
+                "confidence_score": analysis.get("confidence_scores", {}).get("deadlines", 0.0)
+            }
+        except Exception as e:
+            print(f"Error loading document deadlines: {e}")
+            return None

@@ -24,13 +24,13 @@
       ],
       "description": "This Contract of Employment is made between [COMPANY NAME], a company incorporated in England and Wales (\"Company\"), and [EMPLOYEE NAME] (\"Employee\").",
       "legal_concepts": [
-        "lc-002",
-        "lc-006",
-        "lc-011",
-        "lc-004",
         "lc-003",
         "lc-005",
+        "lc-006",
+        "lc-011",
         "lc-012",
+        "lc-004",
+        "lc-002",
         "lc-001"
       ],
       "related_items": [],
@@ -62,14 +62,14 @@
       ],
       "description": "This Service Agreement is made between [CLIENT NAME] (\"Client\") and [SERVICE PROVIDER NAME] (\"Provider\").",
       "legal_concepts": [
-        "lc-002",
-        "lc-006",
-        "lc-011",
-        "lc-004",
-        "lc-013",
         "lc-003",
         "lc-005",
+        "lc-006",
+        "lc-011",
         "lc-012",
+        "lc-004",
+        "lc-013",
+        "lc-002",
         "lc-001"
       ],
       "related_items": [],
@@ -101,8 +101,8 @@
       ],
       "description": "This Confidentiality Agreement is entered into between [DISCLOSING PARTY] (\"Disclosing Party\") and [RECEIVING PARTY] (\"Receiving Party\").",
       "legal_concepts": [
-        "lc-012",
-        "lc-011"
+        "lc-011",
+        "lc-012"
       ],
       "related_items": [],
       "metadata": {
@@ -133,13 +133,13 @@
       ],
       "description": "\"Either party may terminate this Agreement at any time, with or without cause, by providing [30/60/90] days written notice to the other party.\"",
       "legal_concepts": [
-        "lc-002",
-        "lc-011",
-        "lc-004",
-        "lc-013",
         "lc-003",
+        "lc-011",
         "lc-005",
         "lc-012",
+        "lc-004",
+        "lc-013",
+        "lc-002",
         "lc-001"
       ],
       "related_items": [],
@@ -172,13 +172,13 @@
       ],
       "description": "Liability Clauses templates and examples",
       "legal_concepts": [
-        "lc-002",
-        "lc-011",
-        "lc-004",
-        "lc-013",
         "lc-003",
+        "lc-011",
         "lc-005",
         "lc-012",
+        "lc-004",
+        "lc-013",
+        "lc-002",
         "lc-001"
       ],
       "related_items": [],
@@ -210,14 +210,14 @@
       ],
       "description": "\"All work product, inventions, and intellectual property created by Contractor in connection with this Agreement shall be deemed work made for hire and shall be owned exclusively by Client.\"",
       "legal_concepts": [
-        "lc-002",
-        "lc-006",
-        "lc-011",
-        "lc-004",
-        "lc-013",
         "lc-003",
         "lc-005",
+        "lc-006",
+        "lc-011",
         "lc-012",
+        "lc-004",
+        "lc-013",
+        "lc-002",
         "lc-001"
       ],
       "related_items": [],
@@ -248,17 +248,17 @@
       ],
       "description": "Under Employment Rights Act 1996, employees with 2+ years' service are protected from unfair dismissal. Dismissal must be for a fair reason and follow a fair procedure.",
       "legal_concepts": [
-        "lc-002",
-        "lc-006",
-        "lc-011",
-        "lc-004",
         "lc-003",
         "lc-009",
-        "lc-005",
-        "lc-007",
-        "lc-008",
         "lc-010",
+        "lc-005",
+        "lc-006",
+        "lc-011",
         "lc-012",
+        "lc-004",
+        "lc-008",
+        "lc-002",
+        "lc-007",
         "lc-001"
       ],
       "related_items": [],
@@ -286,13 +286,13 @@
       ],
       "description": "Key UK contract law precedents and principles",
       "legal_concepts": [
+        "lc-009",
+        "lc-010",
+        "lc-005",
         "lc-006",
         "lc-004",
         "lc-008",
-        "lc-007",
-        "lc-005",
-        "lc-010",
-        "lc-009"
+        "lc-007"
       ],
       "related_items": [],
       "metadata": {
@@ -319,13 +319,13 @@
       ],
       "description": "Primary statute governing individual employment rights in the UK.",
       "legal_concepts": [
-        "lc-002",
-        "lc-006",
-        "lc-004",
         "lc-003",
-        "lc-005",
         "lc-014",
+        "lc-005",
+        "lc-006",
         "lc-015",
+        "lc-004",
+        "lc-002",
         "lc-001"
       ],
       "related_items": [],
@@ -356,11 +356,11 @@
       ],
       "description": "UK contract statutes and regulations",
       "legal_concepts": [
-        "lc-006",
-        "lc-004",
         "lc-014",
+        "lc-005",
+        "lc-006",
         "lc-015",
-        "lc-005"
+        "lc-004"
       ],
       "related_items": [],
       "metadata": {

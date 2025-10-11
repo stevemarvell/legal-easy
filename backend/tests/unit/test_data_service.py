@@ -1061,4 +1061,349 @@ class TestDataService:
         documents = saved_data['documents']
         categories_found = set(doc['category'] for doc in documents.values())
         assert 'contracts' in categories_found
-        assert 'statutes' in categories_found
+        assert 'statutes' in categories_found  
+  # === DOCUMENT ANALYSIS REGENERATION TESTS ===
+
+    @patch.object(DataService, 'load_cases')
+    @patch.object(DataService, 'load_case_documents')
+    @patch.object(DataService, 'load_document_content')
+    @patch('app.services.ai_service.AIService.analyze_document')
+    @patch('app.services.ai_service.AIService.save_analysis')
+    @patch.object(DataService, '_save_document_analysis_stats')
+    def test_regenerate_document_analysis_success(self, mock_save_stats, mock_save_analysis, 
+                                                mock_analyze, mock_load_content, mock_load_docs, mock_load_cases):
+        """Test successful document analysis regeneration"""
+        # Mock data
+        mock_load_cases.return_value = [{'id': 'case-001'}]
+        mock_load_docs.return_value = [{'id': 'doc-001'}, {'id': 'doc-002'}]
+        mock_load_content.side_effect = ['Content 1', 'Content 2']
+        mock_analyze.side_effect = [
+            {'overall_confidence': 0.9, 'document_id': 'doc-001'},
+            {'overall_confidence': 0.8, 'document_id': 'doc-002'}
+        ]
+        
+        # Test regeneration
+        result = DataService.regenerate_document_analysis()
+        
+        assert result is True
+        
+        # Verify calls
+        mock_load_cases.assert_called_once()
+        mock_load_docs.assert_called_once_with('case-001')
+        assert mock_load_content.call_count == 2
+        assert mock_analyze.call_count == 2
+        assert mock_save_analysis.call_count == 2
+        mock_save_stats.assert_called_once()
+
+    @patch.object(DataService, 'load_cases')
+    def test_regenerate_document_analysis_no_cases(self, mock_load_cases):
+        """Test document analysis regeneration with no cases"""
+        mock_load_cases.return_value = []
+        
+        result = DataService.regenerate_document_analysis()
+        
+        assert result is True  # Should succeed even with no cases
+
+    @patch.object(DataService, 'load_cases')
+    @patch.object(DataService, 'load_case_documents')
+    @patch.object(DataService, 'load_document_content')
+    @patch('app.services.ai_service.AIService.analyze_document')
+    @patch('app.services.ai_service.AIService.save_analysis')
+    @patch.object(DataService, '_save_document_analysis_stats')
+    def test_regenerate_document_analysis_handles_failures(self, mock_save_stats, mock_save_analysis,
+                                                          mock_analyze, mock_load_content, mock_load_docs, mock_load_cases):
+        """Test document analysis regeneration handles individual document failures"""
+        # Mock data with one failure
+        mock_load_cases.return_value = [{'id': 'case-001'}]
+        mock_load_docs.return_value = [{'id': 'doc-001'}, {'id': 'doc-002'}]
+        mock_load_content.side_effect = ['Content 1', '']  # Second document has no content
+        mock_analyze.return_value = {'overall_confidence': 0.9, 'document_id': 'doc-001'}
+        
+        result = DataService.regenerate_document_analysis()
+        
+        assert result is True
+        
+        # Should only analyze the first document
+        assert mock_analyze.call_count == 1
+        assert mock_save_analysis.call_count == 1
+        
+        # Should still save stats
+        mock_save_stats.assert_called_once()
+
+    @patch("builtins.open", new_callable=mock_open)
+    @patch("pathlib.Path.exists", return_value=True)
+    def test_get_document_analysis_stats_success(self, mock_exists, mock_file):
+        """Test getting document analysis statistics successfully"""
+        stats_data = {
+            "total_documents": 10,
+            "analyzed_documents": 8,
+            "failed_documents": 2,
+            "average_confidence": 0.85,
+            "last_regenerated": "2024-01-01T12:00:00"
+        }
+        
+        mock_file.return_value = mock_open(read_data=json.dumps(stats_data)).return_value
+        
+        result = DataService.get_document_analysis_stats()
+        
+        assert result["total_documents"] == 10
+        assert result["analyzed_documents"] == 8
+        assert result["failed_documents"] == 2
+        assert result["average_confidence"] == 0.85
+
+    @patch("pathlib.Path.exists", return_value=False)
+    def test_get_document_analysis_stats_no_file(self, mock_exists):
+        """Test getting document analysis statistics when file doesn't exist"""
+        result = DataService.get_document_analysis_stats()
+        
+        assert result["total_documents"] == 0
+        assert result["analyzed_documents"] == 0
+        assert result["failed_documents"] == 0
+        assert result["average_confidence"] == 0.0
+
+    @patch("builtins.open", new_callable=mock_open)
+    @patch("pathlib.Path.mkdir")
+    @patch("json.dump")
+    def test_save_document_analysis_stats_success(self, mock_json_dump, mock_mkdir, mock_file):
+        """Test saving document analysis statistics successfully"""
+        stats = {
+            "total_documents": 10,
+            "analyzed_documents": 8,
+            "failed_documents": 2,
+            "average_confidence": 0.85,
+            "confidence_scores": [0.9, 0.8]  # Should be cleaned up
+        }
+        
+        DataService._save_document_analysis_stats(stats)
+        
+        # Verify json.dump was called
+        mock_json_dump.assert_called_once()
+        
+        # Verify the data structure passed to json.dump
+        call_args = mock_json_dump.call_args
+        saved_data = call_args[0][0]
+        
+        assert saved_data["total_documents"] == 10
+        assert saved_data["analyzed_documents"] == 8
+        assert saved_data["failed_documents"] == 2
+        assert saved_data["average_confidence"] == 0.85
+        assert "last_regenerated" in saved_data
+        assert "confidence_scores" not in saved_data  # Should be cleaned up 
+   # === DOCUMENT ANALYSIS STATUS TESTS ===
+
+    @patch("builtins.open", new_callable=mock_open)
+    @patch("pathlib.Path.exists")
+    def test_load_case_documents_adds_analysis_completed_field(self, mock_exists, mock_file):
+        """Test that load_case_documents adds analysis_completed field"""
+        # Mock case documents
+        case_docs_data = {
+            "case_documents": [
+                {"id": "doc-001", "case_id": "case-001", "name": "Test Doc 1"},
+                {"id": "doc-002", "case_id": "case-001", "name": "Test Doc 2"}
+            ]
+        }
+        
+        # Mock analysis data (only doc-001 has analysis)
+        analysis_data = {
+            "doc-001": {"document_id": "doc-001", "overall_confidence": 0.9}
+        }
+        
+        def file_side_effect(path, *args, **kwargs):
+            if "case_documents_index.json" in str(path):
+                return mock_open(read_data=json.dumps(case_docs_data)).return_value
+            elif "case_documents_analysis.json" in str(path):
+                return mock_open(read_data=json.dumps(analysis_data)).return_value
+            return mock_open(read_data="{}").return_value
+        
+        mock_file.side_effect = file_side_effect
+        mock_exists.return_value = True
+        
+        # Test loading case documents
+        result = DataService.load_case_documents("case-001")
+        
+        assert len(result) == 2
+        assert result[0]["id"] == "doc-001"
+        assert result[0]["analysis_completed"] is True  # Has analysis
+        assert result[1]["id"] == "doc-002"
+        assert result[1]["analysis_completed"] is False  # No analysis
+
+    @patch("builtins.open", new_callable=mock_open)
+    @patch("pathlib.Path.exists")
+    def test_has_document_analysis_success(self, mock_exists, mock_file):
+        """Test _has_document_analysis method"""
+        analysis_data = {
+            "doc-001": {"document_id": "doc-001", "overall_confidence": 0.9},
+            "doc-002": {"document_id": "doc-002", "overall_confidence": 0.8}
+        }
+        
+        # Mock file to return the same data each time it's opened
+        mock_file.side_effect = lambda *args, **kwargs: mock_open(read_data=json.dumps(analysis_data)).return_value
+        mock_exists.return_value = True
+        
+        # Test existing analysis
+        assert DataService._has_document_analysis("doc-001") is True
+        assert DataService._has_document_analysis("doc-002") is True
+        
+        # Test non-existing analysis
+        assert DataService._has_document_analysis("doc-999") is False
+
+    @patch("pathlib.Path.exists", return_value=False)
+    def test_has_document_analysis_no_file(self, mock_exists):
+        """Test _has_document_analysis when analysis file doesn't exist"""
+        result = DataService._has_document_analysis("doc-001")
+        assert result is False
+
+    @patch.object(DataService, 'load_document_analysis')
+    def test_load_document_risks_success(self, mock_load_analysis):
+        """Test loading document risks successfully"""
+        mock_analysis = {
+            "potential_issues": ["Risk 1", "Risk 2"],
+            "risk_level": "medium",
+            "confidence_scores": {"risks": 0.85}
+        }
+        mock_load_analysis.return_value = mock_analysis
+        
+        result = DataService.load_document_risks("doc-001")
+        
+        assert result is not None
+        assert result["document_id"] == "doc-001"
+        assert result["risks"] == ["Risk 1", "Risk 2"]
+        assert result["risk_level"] == "medium"
+        assert result["confidence_score"] == 0.85
+
+    @patch.object(DataService, 'load_document_analysis')
+    def test_load_document_compliance_success(self, mock_load_analysis):
+        """Test loading document compliance successfully"""
+        mock_analysis = {
+            "compliance_status": "compliant",
+            "compliance_issues": ["Issue 1"],
+            "confidence_scores": {"compliance": 0.9}
+        }
+        mock_load_analysis.return_value = mock_analysis
+        
+        result = DataService.load_document_compliance("doc-001")
+        
+        assert result is not None
+        assert result["document_id"] == "doc-001"
+        assert result["compliance_status"] == "compliant"
+        assert result["compliance_issues"] == ["Issue 1"]
+        assert result["confidence_score"] == 0.9
+
+    @patch.object(DataService, 'load_document_analysis')
+    def test_load_document_deadlines_success(self, mock_load_analysis):
+        """Test loading document deadlines successfully"""
+        mock_analysis = {
+            "critical_deadlines": [{"date": "2024-12-31", "type": "completion"}],
+            "confidence_scores": {"deadlines": 0.75}
+        }
+        mock_load_analysis.return_value = mock_analysis
+        
+        result = DataService.load_document_deadlines("doc-001")
+        
+        assert result is not None
+        assert result["document_id"] == "doc-001"
+        assert result["deadlines"] == [{"date": "2024-12-31", "type": "completion"}]
+        assert result["confidence_score"] == 0.75
+
+    @patch.object(DataService, 'load_document_analysis')
+    def test_analysis_methods_handle_missing_confidence_scores(self, mock_load_analysis):
+        """Test that analysis methods handle missing confidence scores gracefully"""
+        # Analysis without confidence_scores field
+        mock_analysis = {
+            "summary": "Test summary",
+            "key_dates": ["2024-01-01"],
+            "parties": ["Party A"],
+            "risks": ["Risk 1"],
+            "compliance_status": "compliant",
+            "deadlines": []
+        }
+        mock_load_analysis.return_value = mock_analysis
+        
+        # All methods should handle missing confidence scores
+        summary = DataService.load_document_summary("doc-001")
+        assert summary["confidence_score"] == 0.0
+        
+        dates = DataService.load_document_key_dates("doc-001")
+        assert dates["confidence_score"] == 0.0
+        
+        parties = DataService.load_document_parties("doc-001")
+        assert parties["confidence_score"] == 0.0
+        
+        risks = DataService.load_document_risks("doc-001")
+        assert risks["confidence_score"] == 0.0
+        
+        compliance = DataService.load_document_compliance("doc-001")
+        assert compliance["confidence_score"] == 0.0
+        
+        deadlines = DataService.load_document_deadlines("doc-001")
+        assert deadlines["confidence_score"] == 0.0
+
+    @patch.object(DataService, 'load_document_analysis')
+    def test_analysis_methods_handle_missing_fields(self, mock_load_analysis):
+        """Test that analysis methods handle missing analysis fields gracefully"""
+        # Analysis with minimal fields
+        mock_analysis = {
+            "document_id": "doc-001"
+        }
+        mock_load_analysis.return_value = mock_analysis
+        
+        # All methods should handle missing fields with defaults
+        summary = DataService.load_document_summary("doc-001")
+        assert summary["summary"] == ""
+        assert summary["key_points"] == []
+        
+        dates = DataService.load_document_key_dates("doc-001")
+        assert dates["key_dates"] == []
+        
+        parties = DataService.load_document_parties("doc-001")
+        assert parties["parties"] == []
+        
+        risks = DataService.load_document_risks("doc-001")
+        assert risks["risks"] == []
+        assert risks["risk_level"] == "unknown"
+        
+        compliance = DataService.load_document_compliance("doc-001")
+        assert compliance["compliance_status"] == "unknown"
+        assert compliance["compliance_issues"] == []
+        
+        deadlines = DataService.load_document_deadlines("doc-001")
+        assert deadlines["deadlines"] == []
+
+    @patch("builtins.open", side_effect=Exception("File read error"))
+    @patch("pathlib.Path.exists", return_value=True)
+    def test_load_document_analysis_error_handling(self, mock_exists, mock_file):
+        """Test that load_document_analysis handles file read errors gracefully"""
+        result = DataService.load_document_analysis("doc-001")
+        assert result is None
+
+    @patch("builtins.open", new_callable=mock_open)
+    @patch("pathlib.Path.exists")
+    def test_load_document_analysis_invalid_json(self, mock_exists, mock_file):
+        """Test that load_document_analysis handles invalid JSON gracefully"""
+        mock_file.side_effect = lambda *args, **kwargs: mock_open(read_data="invalid json").return_value
+        mock_exists.return_value = True
+        
+        result = DataService.load_document_analysis("doc-001")
+        assert result is None
+
+    @patch.object(DataService, 'load_document_analysis', side_effect=Exception("Analysis error"))
+    def test_analysis_methods_error_handling(self, mock_load_analysis):
+        """Test that all analysis methods handle errors gracefully"""
+        # All methods should return None when load_document_analysis raises an exception
+        assert DataService.load_document_summary("doc-001") is None
+        assert DataService.load_document_key_dates("doc-001") is None
+        assert DataService.load_document_parties("doc-001") is None
+        assert DataService.load_document_risks("doc-001") is None
+        assert DataService.load_document_compliance("doc-001") is None
+        assert DataService.load_document_deadlines("doc-001") is None
+
+    def test_analysis_methods_handle_missing_analysis_gracefully(self):
+        """Test that analysis loading methods handle missing analysis gracefully"""
+        with patch.object(DataService, 'load_document_analysis', return_value=None):
+            # Test all methods return None when no analysis exists
+            assert DataService.load_document_summary("doc-999") is None
+            assert DataService.load_document_key_dates("doc-999") is None
+            assert DataService.load_document_parties("doc-999") is None
+            assert DataService.load_document_risks("doc-999") is None
+            assert DataService.load_document_compliance("doc-999") is None
+            assert DataService.load_document_deadlines("doc-999") is None

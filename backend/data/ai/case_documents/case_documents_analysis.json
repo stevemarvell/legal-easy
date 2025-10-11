@@ -1,0 +1,727 @@
+{
+  "doc-001": {
+    "document_id": "doc-001",
+    "analysis_timestamp": "2025-10-11T15:14:39.797655",
+    "key_dates": [
+      "2022-03-15"
+    ],
+    "parties_involved": [
+      "Solutions Ltd",
+      "TechCorp Solutions Ltd"
+    ],
+    "document_type": "Employment Document",
+    "summary": "EMPLOYMENT AGREEMENT  This Employment Agreement (\"Agreement\") is entered into on 15 March 2022, between TechCorp Solutions Ltd. , a company incorporate",
+    "key_clauses": [],
+    "confidence_scores": {
+      "dates": 0.7,
+      "parties": 0.85,
+      "document_type": 0.6,
+      "summary": 0.4,
+      "key_clauses": 0.2
+    },
+    "overall_confidence": 0.55,
+    "uncertainty_flags": [
+      "Low confidence in summary extraction",
+      "Low confidence in key_clauses extraction",
+      "Document content is very short"
+    ],
+    "risk_level": "low",
+    "potential_issues": null,
+    "compliance_status": "Under review",
+    "critical_deadlines": null,
+    "document_intent": "Agreement",
+    "complexity_score": 0.03
+  },
+  "doc-002": {
+    "document_id": "doc-002",
+    "analysis_timestamp": "2025-10-11T15:14:39.798657",
+    "key_dates": [
+      "2023-12-10"
+    ],
+    "parties_involved": [
+      "Solutions Ltd",
+      "Report Date",
+      "Reported By",
+      "Sarah Chen",
+      "Senior Safety Engineer"
+    ],
+    "document_type": "Employment Document",
+    "summary": "INTERNAL SAFETY REPORT TechCorp Solutions Ltd. Report Date: 10 December 2023 Reported By: Sarah Chen, Senior Safety Engineer Employee ID: TC-2022-084",
+    "key_clauses": [],
+    "confidence_scores": {
+      "dates": 0.7,
+      "parties": 0.85,
+      "document_type": 0.6,
+      "summary": 0.4,
+      "key_clauses": 0.2
+    },
+    "overall_confidence": 0.55,
+    "uncertainty_flags": [
+      "Low confidence in summary extraction",
+      "Low confidence in key_clauses extraction",
+      "Document content is very short"
+    ],
+    "risk_level": null,
+    "potential_issues": null,
+    "compliance_status": "Under review",
+    "critical_deadlines": null,
+    "document_intent": "Report",
+    "complexity_score": 0.03
+  },
+  "doc-003": {
+    "document_id": "doc-003",
+    "analysis_timestamp": "2025-10-11T15:14:39.807655",
+    "key_dates": [],
+    "parties_involved": [
+      "Employment Termination"
+    ],
+    "document_type": "Employment Document",
+    "summary": "From: hr@techcorp. co. uk To: sarah",
+    "key_clauses": [],
+    "confidence_scores": {
+      "dates": 0.3,
+      "parties": 0.6,
+      "document_type": 0.95,
+      "summary": 0.4,
+      "key_clauses": 0.2
+    },
+    "overall_confidence": 0.49,
+    "uncertainty_flags": [
+      "Low confidence in dates extraction",
+      "Low confidence in summary extraction",
+      "Low confidence in key_clauses extraction",
+      "Document content is very short",
+      "No clear date references found"
+    ],
+    "risk_level": "medium",
+    "potential_issues": [
+      "Termination issues"
+    ],
+    "compliance_status": "Under review",
+    "critical_deadlines": null,
+    "document_intent": "Termination",
+    "complexity_score": 0.02
+  },
+  "doc-004": {
+    "document_id": "doc-004",
+    "analysis_timestamp": "2025-10-11T15:14:39.823663",
+    "key_dates": [
+      "2023-06-01"
+    ],
+    "parties_involved": [
+      "DataFlow Ltd"
+    ],
+    "document_type": "Contract",
+    "summary": "SOFTWARE LICENCE AGREEMENT  This Software Licence Agreement (\"Agreement\") is entered into on 1 June 2023, between DataFlow Ltd. , a company incorporate",
+    "key_clauses": [],
+    "confidence_scores": {
+      "dates": 0.7,
+      "parties": 0.6,
+      "document_type": 0.6,
+      "summary": 0.4,
+      "key_clauses": 0.2
+    },
+    "overall_confidence": 0.5,
+    "uncertainty_flags": [
+      "Low confidence in summary extraction",
+      "Low confidence in key_clauses extraction",
+      "Document content is very short"
+    ],
+    "risk_level": "low",
+    "potential_issues": null,
+    "compliance_status": "Under review",
+    "critical_deadlines": null,
+    "document_intent": "Agreement",
+    "complexity_score": 0.03
+  },
+  "doc-005": {
+    "document_id": "doc-005",
+    "analysis_timestamp": "2025-10-11T15:14:39.824666",
+    "key_dates": [
+      "2024-01-15"
+    ],
+    "parties_involved": [
+      "Analytics Suite",
+      "Deployment Date",
+      "Deployed By",
+      "Robert Kim"
+    ],
+    "document_type": "Legal Document",
+    "summary": "CLOUDTECH SYSTEMS LTD. - SERVER DEPLOYMENT LOG DataFlow Analytics Suite v3. 2  Deployment Date: 15 January 2024 Deployed By: Robert Kim, CTO Deployment",
+    "key_clauses": [],
+    "confidence_scores": {
+      "dates": 0.7,
+      "parties": 0.85,
+      "document_type": 0.4,
+      "summary": 0.4,
+      "key_clauses": 0.2
+    },
+    "overall_confidence": 0.51,
+    "uncertainty_flags": [
+      "Low confidence in document_type extraction",
+      "Low confidence in summary extraction",
+      "Low confidence in key_clauses extraction",
+      "Document content is very short"
+    ],
+    "risk_level": null,
+    "potential_issues": null,
+    "compliance_status": "Under review",
+    "critical_deadlines": null,
+    "document_intent": "General correspondence",
+    "complexity_score": 0.03
+  },
+  "doc-006": {
+    "document_id": "doc-006",
+    "analysis_timestamp": "2025-10-11T15:14:39.834178",
+    "key_dates": [
+      "2024-02-01"
+    ],
+    "parties_involved": [
+      "Legal Department",
+      "Innovation Way London",
+      "Systems Ltd",
+      "Robert Kim",
+      "Chief Technology Of"
+    ],
+    "document_type": "Legal Document",
+    "summary": "DATAFLOW LTD. Legal Department 1234 Innovation Way London EC2A 4DP  1 February 2024  CloudTech Systems Ltd. Attention: Robert Kim, Chief Technology Of",
+    "key_clauses": [],
+    "confidence_scores": {
+      "dates": 0.7,
+      "parties": 0.85,
+      "document_type": 0.4,
+      "summary": 0.4,
+      "key_clauses": 0.2
+    },
+    "overall_confidence": 0.51,
+    "uncertainty_flags": [
+      "Low confidence in document_type extraction",
+      "Low confidence in summary extraction",
+      "Low confidence in key_clauses extraction",
+      "Document content is very short"
+    ],
+    "risk_level": null,
+    "potential_issues": null,
+    "compliance_status": "Under review",
+    "critical_deadlines": null,
+    "document_intent": "General correspondence",
+    "complexity_score": 0.03
+  },
+  "doc-007": {
+    "document_id": "doc-007",
+    "analysis_timestamp": "2025-10-11T15:14:39.842314",
+    "key_dates": [],
+    "parties_involved": [
+      "Licence Violation"
+    ],
+    "document_type": "Email",
+    "summary": "From: legal@cloudtech. co. uk To: lisa",
+    "key_clauses": [],
+    "confidence_scores": {
+      "dates": 0.3,
+      "parties": 0.6,
+      "document_type": 0.95,
+      "summary": 0.4,
+      "key_clauses": 0.2
+    },
+    "overall_confidence": 0.49,
+    "uncertainty_flags": [
+      "Low confidence in dates extraction",
+      "Low confidence in summary extraction",
+      "Low confidence in key_clauses extraction",
+      "Document content is very short",
+      "No clear date references found"
+    ],
+    "risk_level": "medium",
+    "potential_issues": [
+      "Contract breach",
+      "Compliance issues"
+    ],
+    "compliance_status": "Non-compliant",
+    "critical_deadlines": null,
+    "document_intent": "General correspondence",
+    "complexity_score": 0.02
+  },
+  "doc-008": {
+    "document_id": "doc-008",
+    "analysis_timestamp": "2025-10-11T15:14:39.858312",
+    "key_dates": [
+      "2023-08-01"
+    ],
+    "parties_involved": [
+      "Premier Consulting Ltd"
+    ],
+    "document_type": "Contract",
+    "summary": "CONSULTING SERVICES AGREEMENT  This Consulting Services Agreement (\"Agreement\") is entered into on 1 August 2023, between Premier Consulting Ltd. , a c",
+    "key_clauses": [],
+    "confidence_scores": {
+      "dates": 0.7,
+      "parties": 0.6,
+      "document_type": 0.6,
+      "summary": 0.4,
+      "key_clauses": 0.2
+    },
+    "overall_confidence": 0.5,
+    "uncertainty_flags": [
+      "Low confidence in summary extraction",
+      "Low confidence in key_clauses extraction",
+      "Document content is very short"
+    ],
+    "risk_level": "low",
+    "potential_issues": null,
+    "compliance_status": "Under review",
+    "critical_deadlines": null,
+    "document_intent": "Agreement",
+    "complexity_score": 0.03
+  },
+  "doc-009": {
+    "document_id": "doc-009",
+    "analysis_timestamp": "2025-10-11T15:14:39.860311",
+    "key_dates": [
+      "2024-01-28"
+    ],
+    "parties_involved": [
+      "Invoice Summary",
+      "Collection Notice  Client",
+      "Account Number",
+      "Date Prepared",
+      "StartupXYZ Ltd"
+    ],
+    "document_type": "Financial Document",
+    "summary": "PREMIER CONSULTING LTD. Invoice Summary and Collection Notice  Client: StartupXYZ Ltd. Account Number: PC-2023-0847 Date Prepared: 28 January 2024 Pre",
+    "key_clauses": [],
+    "confidence_scores": {
+      "dates": 0.7,
+      "parties": 0.85,
+      "document_type": 0.6,
+      "summary": 0.4,
+      "key_clauses": 0.2
+    },
+    "overall_confidence": 0.55,
+    "uncertainty_flags": [
+      "Low confidence in summary extraction",
+      "Low confidence in key_clauses extraction",
+      "Document content is very short"
+    ],
+    "risk_level": null,
+    "potential_issues": [
+      "Payment dispute"
+    ],
+    "compliance_status": "Under review",
+    "critical_deadlines": null,
+    "document_intent": "Notice",
+    "complexity_score": 0.03
+  },
+  "doc-010": {
+    "document_id": "doc-010",
+    "analysis_timestamp": "2025-10-11T15:14:39.869313",
+    "key_dates": [],
+    "parties_involved": [],
+    "document_type": "Confidentiality Agreement",
+    "summary": "From: michael. thompson@startupxyz. co",
+    "key_clauses": [],
+    "confidence_scores": {
+      "dates": 0.3,
+      "parties": 0.2,
+      "document_type": 0.95,
+      "summary": 0.4,
+      "key_clauses": 0.2
+    },
+    "overall_confidence": 0.41,
+    "uncertainty_flags": [
+      "Low confidence in dates extraction",
+      "Low confidence in parties extraction",
+      "Low confidence in summary extraction",
+      "Low confidence in key_clauses extraction",
+      "Document content is very short",
+      "No clear date references found",
+      "No clear party names identified"
+    ],
+    "risk_level": null,
+    "potential_issues": null,
+    "compliance_status": "Under review",
+    "critical_deadlines": null,
+    "document_intent": "General correspondence",
+    "complexity_score": 0.02
+  },
+  "doc-011": {
+    "document_id": "doc-011",
+    "analysis_timestamp": "2025-10-11T15:14:39.886313",
+    "key_dates": [
+      "2018-06-01"
+    ],
+    "parties_involved": [
+      "Industries Ltd",
+      "MegaCorp Industries Ltd"
+    ],
+    "document_type": "Employment Document",
+    "summary": "EMPLOYMENT AGREEMENT  This Employment Agreement (\"Agreement\") is entered into on 1 June 2018, between MegaCorp Industries Ltd. , a company incorporated",
+    "key_clauses": [],
+    "confidence_scores": {
+      "dates": 0.7,
+      "parties": 0.85,
+      "document_type": 0.6,
+      "summary": 0.4,
+      "key_clauses": 0.2
+    },
+    "overall_confidence": 0.55,
+    "uncertainty_flags": [
+      "Low confidence in summary extraction",
+      "Low confidence in key_clauses extraction",
+      "Document content is very short"
+    ],
+    "risk_level": "low",
+    "potential_issues": null,
+    "compliance_status": "Under review",
+    "critical_deadlines": null,
+    "document_intent": "Agreement",
+    "complexity_score": 0.03
+  },
+  "doc-012": {
+    "document_id": "doc-012",
+    "analysis_timestamp": "2025-10-11T15:14:39.887312",
+    "key_dates": [],
+    "parties_involved": [
+      "Human Resources Department",
+      "Promotion Application Records",
+      "James Wilson  Employee",
+      "Consumer Produ"
+    ],
+    "document_type": "Employment Document",
+    "summary": "MEGACORP INDUSTRIES LTD. Human Resources Department Promotion Application Records - James Wilson  Employee ID: MC-2018-0542 Department: Consumer Produ",
+    "key_clauses": [],
+    "confidence_scores": {
+      "dates": 0.3,
+      "parties": 0.85,
+      "document_type": 0.6,
+      "summary": 0.4,
+      "key_clauses": 0.2
+    },
+    "overall_confidence": 0.47,
+    "uncertainty_flags": [
+      "Low confidence in dates extraction",
+      "Low confidence in summary extraction",
+      "Low confidence in key_clauses extraction",
+      "Document content is very short"
+    ],
+    "risk_level": null,
+    "potential_issues": null,
+    "compliance_status": "Under review",
+    "critical_deadlines": null,
+    "document_intent": "General correspondence",
+    "complexity_score": 0.03
+  },
+  "doc-013": {
+    "document_id": "doc-013",
+    "analysis_timestamp": "2025-10-11T15:14:39.895315",
+    "key_dates": [],
+    "parties_involved": [
+      "James Wilson  Employee",
+      "James Wilson Position",
+      "Senior Software Developer",
+      "Engineering Review Period"
+    ],
+    "document_type": "Employment Document",
+    "summary": "PERFORMANCE EVALUATIONS - James Wilson  Employee: James Wilson Position: Senior Software Developer Department: Engineering Review Period: 2021-2023  A",
+    "key_clauses": [],
+    "confidence_scores": {
+      "dates": 0.3,
+      "parties": 0.85,
+      "document_type": 0.6,
+      "summary": 0.4,
+      "key_clauses": 0.2
+    },
+    "overall_confidence": 0.47,
+    "uncertainty_flags": [
+      "Low confidence in dates extraction",
+      "Low confidence in summary extraction",
+      "Low confidence in key_clauses extraction",
+      "Document content is very short"
+    ],
+    "risk_level": null,
+    "potential_issues": null,
+    "compliance_status": "Under review",
+    "critical_deadlines": null,
+    "document_intent": "General correspondence",
+    "complexity_score": 0.03
+  },
+  "doc-014": {
+    "document_id": "doc-014",
+    "analysis_timestamp": "2025-10-11T15:14:39.904313",
+    "key_dates": [],
+    "parties_involved": [
+      "Employment Dispute Case",
+      "James Wilson",
+      "Solutions Ltd Date",
+      "Legal Department",
+      "James Wilson vs TechCorp Solutions Ltd"
+    ],
+    "document_type": "Employment Document",
+    "summary": "WITNESS STATEMENTS - Employment Dispute Case  Case: James Wilson vs TechCorp Solutions Ltd Date: March 2024 Collected by: Legal Department  WITNESS ST",
+    "key_clauses": [],
+    "confidence_scores": {
+      "dates": 0.3,
+      "parties": 0.85,
+      "document_type": 0.6,
+      "summary": 0.4,
+      "key_clauses": 0.2
+    },
+    "overall_confidence": 0.47,
+    "uncertainty_flags": [
+      "Low confidence in dates extraction",
+      "Low confidence in summary extraction",
+      "Low confidence in key_clauses extraction",
+      "Document content is very short"
+    ],
+    "risk_level": null,
+    "potential_issues": null,
+    "compliance_status": "Under review",
+    "critical_deadlines": null,
+    "document_intent": "Complaint",
+    "complexity_score": 0.03
+  },
+  "doc-015": {
+    "document_id": "doc-015",
+    "analysis_timestamp": "2025-10-11T15:14:39.920321",
+    "key_dates": [
+      "2022-01-15"
+    ],
+    "parties_involved": [
+      "Disclosure Agreement"
+    ],
+    "document_type": "Contract",
+    "summary": "NON-COMPETE AND NON-DISCLOSURE AGREEMENT  This Non-Compete and Non-Disclosure Agreement (\"Agreement\") is entered into on 15 January 2022, between Inno",
+    "key_clauses": [],
+    "confidence_scores": {
+      "dates": 0.7,
+      "parties": 0.6,
+      "document_type": 0.6,
+      "summary": 0.4,
+      "key_clauses": 0.2
+    },
+    "overall_confidence": 0.5,
+    "uncertainty_flags": [
+      "Low confidence in summary extraction",
+      "Low confidence in key_clauses extraction",
+      "Document content is very short"
+    ],
+    "risk_level": "low",
+    "potential_issues": null,
+    "compliance_status": "Under review",
+    "critical_deadlines": null,
+    "document_intent": "Agreement",
+    "complexity_score": 0.03
+  },
+  "doc-016": {
+    "document_id": "doc-016",
+    "analysis_timestamp": "2025-10-11T15:14:39.922321",
+    "key_dates": [
+      "2024-02-25"
+    ],
+    "parties_involved": [
+      "Technologies Ltd",
+      "Innovation House",
+      "Tech Park Manchester",
+      "United Kingdom  Date",
+      "EMPLOYMENT OFFER LETTER  CompetitorCorp Technologies Ltd"
+    ],
+    "document_type": "Employment Document",
+    "summary": "EMPLOYMENT OFFER LETTER  CompetitorCorp Technologies Ltd. Innovation House, Tech Park Manchester, M1 4BT United Kingdom  Date: February 25, 2024  Mr",
+    "key_clauses": [],
+    "confidence_scores": {
+      "dates": 0.7,
+      "parties": 0.85,
+      "document_type": 0.6,
+      "summary": 0.4,
+      "key_clauses": 0.2
+    },
+    "overall_confidence": 0.55,
+    "uncertainty_flags": [
+      "Low confidence in summary extraction",
+      "Low confidence in key_clauses extraction",
+      "Document content is very short"
+    ],
+    "risk_level": null,
+    "potential_issues": null,
+    "compliance_status": "Under review",
+    "critical_deadlines": null,
+    "document_intent": "General correspondence",
+    "complexity_score": 0.03
+  },
+  "doc-017": {
+    "document_id": "doc-017",
+    "analysis_timestamp": "2025-10-11T15:14:39.929872",
+    "key_dates": [],
+    "parties_involved": [
+      "Solutions Ltd",
+      "Confidential Information Classification",
+      "TRADE SECRETS DOCUMENTATION  InnovateTech Solutions Ltd"
+    ],
+    "document_type": "Confidentiality Agreement",
+    "summary": "CONFIDENTIAL - TRADE SECRETS DOCUMENTATION  InnovateTech Solutions Ltd. Proprietary and Confidential Information Classification: HIGHLY CONFIDENTIAL -",
+    "key_clauses": [],
+    "confidence_scores": {
+      "dates": 0.3,
+      "parties": 0.85,
+      "document_type": 0.6,
+      "summary": 0.4,
+      "key_clauses": 0.2
+    },
+    "overall_confidence": 0.47,
+    "uncertainty_flags": [
+      "Low confidence in dates extraction",
+      "Low confidence in summary extraction",
+      "Low confidence in key_clauses extraction",
+      "Document content is very short",
+      "No clear date references found"
+    ],
+    "risk_level": null,
+    "potential_issues": [
+      "Confidentiality concerns"
+    ],
+    "compliance_status": "Under review",
+    "critical_deadlines": null,
+    "document_intent": "Notice",
+    "complexity_score": 0.03
+  },
+  "doc-018": {
+    "document_id": "doc-018",
+    "analysis_timestamp": "2025-10-11T15:14:39.947871",
+    "key_dates": [
+      "2020-01-01"
+    ],
+    "parties_involved": [
+      "Medical Group Ltd",
+      "HealthFirst Medical Group Ltd"
+    ],
+    "document_type": "Contract",
+    "summary": "PROVIDER SERVICES AGREEMENT  This Provider Services Agreement (\"Agreement\") is entered into on 1 January 2020, between HealthFirst Medical Group Ltd. ,",
+    "key_clauses": [],
+    "confidence_scores": {
+      "dates": 0.7,
+      "parties": 0.85,
+      "document_type": 0.6,
+      "summary": 0.4,
+      "key_clauses": 0.2
+    },
+    "overall_confidence": 0.55,
+    "uncertainty_flags": [
+      "Low confidence in summary extraction",
+      "Low confidence in key_clauses extraction",
+      "Document content is very short"
+    ],
+    "risk_level": "low",
+    "potential_issues": null,
+    "compliance_status": "Under review",
+    "critical_deadlines": null,
+    "document_intent": "Agreement",
+    "complexity_score": 0.03
+  },
+  "doc-019": {
+    "document_id": "doc-019",
+    "analysis_timestamp": "2025-10-11T15:14:39.949867",
+    "key_dates": [
+      "2023-10-31",
+      "2023-01-01"
+    ],
+    "parties_involved": [
+      "Insurance Ltd",
+      "Claims Review Department",
+      "Analysis Period",
+      "COMPREHENSIVE CLAIMS DENIAL ANALYSIS  SecureHealth Insurance Ltd"
+    ],
+    "document_type": "Evidence",
+    "summary": "COMPREHENSIVE CLAIMS DENIAL ANALYSIS  SecureHealth Insurance Ltd. Claims Review Department Analysis Period: January 1, 2023 - October 31, 2023 Report",
+    "key_clauses": [],
+    "confidence_scores": {
+      "dates": 0.9,
+      "parties": 0.85,
+      "document_type": 0.6,
+      "summary": 0.4,
+      "key_clauses": 0.2
+    },
+    "overall_confidence": 0.59,
+    "uncertainty_flags": [
+      "Low confidence in summary extraction",
+      "Low confidence in key_clauses extraction",
+      "Document content is very short"
+    ],
+    "risk_level": null,
+    "potential_issues": null,
+    "compliance_status": "Under review",
+    "critical_deadlines": null,
+    "document_intent": "Report",
+    "complexity_score": 0.03
+  },
+  "doc-020": {
+    "document_id": "doc-020",
+    "analysis_timestamp": "2025-10-11T15:14:39.957869",
+    "key_dates": [],
+    "parties_involved": [
+      "Medical Group Ltd",
+      "Patient Care Documentation",
+      "Maria Gonzalez",
+      "MEDICAL RECORDS AND TREATMENT JUSTIFICATION  HealthFirst Medical Group Ltd"
+    ],
+    "document_type": "Legal Document",
+    "summary": "MEDICAL RECORDS AND TREATMENT JUSTIFICATION  HealthFirst Medical Group Ltd. Patient Care Documentation Prepared by: Dr. Maria Gonzalez, MD Date: Novem",
+    "key_clauses": [],
+    "confidence_scores": {
+      "dates": 0.3,
+      "parties": 0.85,
+      "document_type": 0.4,
+      "summary": 0.4,
+      "key_clauses": 0.2
+    },
+    "overall_confidence": 0.43,
+    "uncertainty_flags": [
+      "Low confidence in dates extraction",
+      "Low confidence in document_type extraction",
+      "Low confidence in summary extraction",
+      "Low confidence in key_clauses extraction",
+      "Document content is very short",
+      "No clear date references found"
+    ],
+    "risk_level": null,
+    "potential_issues": null,
+    "compliance_status": "Under review",
+    "critical_deadlines": null,
+    "document_intent": "General correspondence",
+    "complexity_score": 0.03
+  },
+  "doc-021": {
+    "document_id": "doc-021",
+    "analysis_timestamp": "2025-10-11T15:14:39.966885",
+    "key_dates": [],
+    "parties_involved": [
+      "Insurance Ltd",
+      "Policy Number",
+      "Policy Holder",
+      "Medical Group Ltd",
+      "INSURANCE POLICY TERMS AND CONDITIONS  SecureHealth Insurance Ltd"
+    ],
+    "document_type": "Contract",
+    "summary": "INSURANCE POLICY TERMS AND CONDITIONS  SecureHealth Insurance Ltd. Policy Number: SH-CORP-2023-4567 Policy Holder: HealthFirst Medical Group Ltd Polic",
+    "key_clauses": [],
+    "confidence_scores": {
+      "dates": 0.3,
+      "parties": 0.85,
+      "document_type": 0.6,
+      "summary": 0.4,
+      "key_clauses": 0.2
+    },
+    "overall_confidence": 0.47,
+    "uncertainty_flags": [
+      "Low confidence in dates extraction",
+      "Low confidence in summary extraction",
+      "Low confidence in key_clauses extraction",
+      "Document content is very short"
+    ],
+    "risk_level": null,
+    "potential_issues": null,
+    "compliance_status": "Under review",
+    "critical_deadlines": null,
+    "document_intent": "Agreement",
+    "complexity_score": 0.03
+  }
+}

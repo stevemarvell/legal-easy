@@ -24,7 +24,7 @@ import {
 } from '@mui/icons-material';
 import { apiClient } from '../services/api';
 
-interface RegenerationResult {
+interface CorpusRegenerationResult {
   success: boolean;
   message: string;
   total_documents: number;
@@ -33,24 +33,54 @@ interface RegenerationResult {
   last_updated: string;
 }
 
+interface DocumentAnalysisResult {
+  success: boolean;
+  message: string;
+  total_documents: number;
+  analyzed_documents: number;
+  failed_documents: number;
+  average_confidence: number;
+  processing_time_seconds: number;
+}
+
 const Admin: React.FC = () => {
-  const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<RegenerationResult | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [corpusLoading, setCorpusLoading] = useState(false);
+  const [corpusResult, setCorpusResult] = useState<CorpusRegenerationResult | null>(null);
+  const [corpusError, setCorpusError] = useState<string | null>(null);
+  
+  const [analysisLoading, setAnalysisLoading] = useState(false);
+  const [analysisResult, setAnalysisResult] = useState<DocumentAnalysisResult | null>(null);
+  const [analysisError, setAnalysisError] = useState<string | null>(null);
 
   const handleRegenerateIndex = async () => {
-    setLoading(true);
-    setError(null);
-    setResult(null);
+    setCorpusLoading(true);
+    setCorpusError(null);
+    setCorpusResult(null);
 
     try {
-      const response = await apiClient.post<RegenerationResult>('/api/corpus/regenerate-index');
-      setResult(response.data);
+      const response = await apiClient.post<CorpusRegenerationResult>('/api/corpus/regenerate-index');
+      setCorpusResult(response.data);
     } catch (err: any) {
       console.error('Failed to regenerate corpus index:', err);
-      setError(err.response?.data?.detail || 'Failed to regenerate corpus index');
+      setCorpusError(err.response?.data?.detail || 'Failed to regenerate corpus index');
     } finally {
-      setLoading(false);
+      setCorpusLoading(false);
+    }
+  };
+
+  const handleRegenerateAnalysis = async () => {
+    setAnalysisLoading(true);
+    setAnalysisError(null);
+    setAnalysisResult(null);
+
+    try {
+      const response = await apiClient.post<DocumentAnalysisResult>('/api/documents/regenerate-analysis');
+      setAnalysisResult(response.data);
+    } catch (err: any) {
+      console.error('Failed to regenerate document analysis:', err);
+      setAnalysisError(err.response?.data?.detail || 'Failed to regenerate document analysis');
+    } finally {
+      setAnalysisLoading(false);
     }
   };
 
@@ -132,14 +162,14 @@ const Admin: React.FC = () => {
                 variant="contained"
                 color="primary"
                 size="large"
-                startIcon={loading ? <CircularProgress size={20} /> : <RefreshIcon />}
+                startIcon={corpusLoading ? <CircularProgress size={20} /> : <RefreshIcon />}
                 onClick={handleRegenerateIndex}
-                disabled={loading}
+                disabled={corpusLoading}
               >
-                {loading ? 'Regenerating Index...' : 'Regenerate Corpus Index'}
+                {corpusLoading ? 'Regenerating Index...' : 'Regenerate Corpus Index'}
               </Button>
               
-              {loading && (
+              {corpusLoading && (
                 <Typography variant="body2" color="text.secondary">
                   This may take a few moments...
                 </Typography>
@@ -147,46 +177,46 @@ const Admin: React.FC = () => {
             </Box>
 
             {/* Error Display */}
-            {error && (
+            {corpusError && (
               <Alert severity="error" sx={{ mb: 3 }} icon={<ErrorIcon />}>
                 <Typography variant="body2">
-                  <strong>Error:</strong> {error}
+                  <strong>Error:</strong> {corpusError}
                 </Typography>
               </Alert>
             )}
 
             {/* Success Result */}
-            {result && result.success && (
+            {corpusResult && corpusResult.success && (
               <Alert severity="success" sx={{ mb: 3 }} icon={<CheckIcon />}>
                 <Typography variant="body2" gutterBottom>
-                  <strong>Success:</strong> {result.message}
+                  <strong>Success:</strong> {corpusResult.message}
                 </Typography>
                 
                 <Box sx={{ mt: 2, display: 'flex', flexWrap: 'wrap', gap: 1 }}>
                   <Chip 
-                    label={`${result.total_documents} Documents`} 
+                    label={`${corpusResult.total_documents} Documents`} 
                     color="success" 
                     size="small" 
                   />
                   <Chip 
-                    label={`${result.legal_concepts_count} Legal Concepts`} 
+                    label={`${corpusResult.legal_concepts_count} Legal Concepts`} 
                     color="success" 
                     size="small" 
                   />
                   <Chip 
-                    label={`${result.research_areas.length} Research Areas`} 
+                    label={`${corpusResult.research_areas.length} Research Areas`} 
                     color="success" 
                     size="small" 
                   />
                 </Box>
 
-                {result.research_areas.length > 0 && (
+                {corpusResult.research_areas.length > 0 && (
                   <Box sx={{ mt: 2 }}>
                     <Typography variant="caption" color="text.secondary" display="block">
                       Research Areas:
                     </Typography>
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5, mt: 0.5 }}>
-                      {result.research_areas.map((area) => (
+                      {corpusResult.research_areas.map((area) => (
                         <Chip
                           key={area}
                           label={area}
@@ -200,8 +230,139 @@ const Admin: React.FC = () => {
                 )}
 
                 <Typography variant="caption" color="text.secondary" display="block" sx={{ mt: 1 }}>
-                  Last updated: {new Date(result.last_updated).toLocaleString()}
+                  Last updated: {new Date(corpusResult.last_updated).toLocaleString()}
                 </Typography>
+              </Alert>
+            )}
+          </CardContent>
+        </Card>
+
+        {/* Document Analysis Management */}
+        <Card sx={{ mb: 4 }}>
+          <CardContent>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+              <StorageIcon color="primary" sx={{ mr: 1 }} />
+              <Typography variant="h5" component="h2">
+                Document Analysis
+              </Typography>
+            </Box>
+            
+            <Typography variant="body1" color="text.secondary" sx={{ mb: 3 }}>
+              AI-powered analysis of all case documents including key dates, parties, summaries, and legal concepts. 
+              Regenerate analysis after updating AI algorithms or to refresh existing analysis results.
+            </Typography>
+
+            <Box sx={{ mb: 3 }}>
+              <Typography variant="h6" gutterBottom>
+                What document analysis includes:
+              </Typography>
+              <List dense>
+                <ListItem>
+                  <ListItemIcon>
+                    <InfoIcon color="primary" />
+                  </ListItemIcon>
+                  <ListItemText 
+                    primary="Key Information Extraction" 
+                    secondary="Dates, parties, document types, and important clauses"
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemIcon>
+                    <InfoIcon color="primary" />
+                  </ListItemIcon>
+                  <ListItemText 
+                    primary="AI-Generated Summaries" 
+                    secondary="Concise summaries of document content and purpose"
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemIcon>
+                    <InfoIcon color="primary" />
+                  </ListItemIcon>
+                  <ListItemText 
+                    primary="Confidence Scoring" 
+                    secondary="Quality assessment and uncertainty flags for analysis results"
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemIcon>
+                    <InfoIcon color="primary" />
+                  </ListItemIcon>
+                  <ListItemText 
+                    primary="Risk Assessment" 
+                    secondary="Potential issues, compliance status, and critical deadlines"
+                  />
+                </ListItem>
+              </List>
+            </Box>
+
+            <Divider sx={{ my: 3 }} />
+
+            {/* Action Button */}
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 3 }}>
+              <Button
+                variant="contained"
+                color="secondary"
+                size="large"
+                startIcon={analysisLoading ? <CircularProgress size={20} /> : <RefreshIcon />}
+                onClick={handleRegenerateAnalysis}
+                disabled={analysisLoading}
+              >
+                {analysisLoading ? 'Regenerating Analysis...' : 'Regenerate Document Analysis'}
+              </Button>
+              
+              {analysisLoading && (
+                <Typography variant="body2" color="text.secondary">
+                  This may take several minutes for large document collections...
+                </Typography>
+              )}
+            </Box>
+
+            {/* Error Display */}
+            {analysisError && (
+              <Alert severity="error" sx={{ mb: 3 }} icon={<ErrorIcon />}>
+                <Typography variant="body2">
+                  <strong>Error:</strong> {analysisError}
+                </Typography>
+              </Alert>
+            )}
+
+            {/* Success Result */}
+            {analysisResult && analysisResult.success && (
+              <Alert severity="success" sx={{ mb: 3 }} icon={<CheckIcon />}>
+                <Typography variant="body2" gutterBottom>
+                  <strong>Success:</strong> {analysisResult.message}
+                </Typography>
+                
+                <Box sx={{ mt: 2, display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                  <Chip 
+                    label={`${analysisResult.total_documents} Total Documents`} 
+                    color="info" 
+                    size="small" 
+                  />
+                  <Chip 
+                    label={`${analysisResult.analyzed_documents} Analyzed`} 
+                    color="success" 
+                    size="small" 
+                  />
+                  {analysisResult.failed_documents > 0 && (
+                    <Chip 
+                      label={`${analysisResult.failed_documents} Failed`} 
+                      color="error" 
+                      size="small" 
+                    />
+                  )}
+                  <Chip 
+                    label={`${Math.round(analysisResult.average_confidence * 100)}% Avg Confidence`} 
+                    color="secondary" 
+                    size="small" 
+                  />
+                  <Chip 
+                    label={`${analysisResult.processing_time_seconds}s Processing Time`} 
+                    color="default" 
+                    size="small" 
+                  />
+                </Box>
               </Alert>
             )}
           </CardContent>
@@ -219,12 +380,6 @@ const Admin: React.FC = () => {
             <List dense sx={{ mt: 1 }}>
               <ListItem>
                 <ListItemText 
-                  primary="• Document Analysis Management" 
-                  secondary="Bulk reprocess AI analysis for case documents"
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText 
                   primary="• System Health Monitoring" 
                   secondary="View system status and performance metrics"
                 />
@@ -233,6 +388,12 @@ const Admin: React.FC = () => {
                 <ListItemText 
                   primary="• Data Export/Import" 
                   secondary="Backup and restore system data"
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemText 
+                  primary="• User Management" 
+                  secondary="Manage user accounts and permissions"
                 />
               </ListItem>
             </List>

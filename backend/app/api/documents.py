@@ -381,3 +381,78 @@ async def get_document_content(
         raise HTTPException(status_code=500, detail=f"Failed to retrieve document content: {str(e)}")
 
 
+@router.post(
+    "/regenerate-analysis",
+    summary="Regenerate all document analysis",
+    description="""
+    Regenerate AI analysis for all documents in the system.
+    
+    This endpoint will:
+    - Scan all case documents in the system
+    - Re-run AI analysis on each document
+    - Update the analysis storage with fresh results
+    - Return statistics about the regeneration process
+    
+    **Use cases:**
+    - After updating AI analysis algorithms
+    - Maintenance and data refresh operations
+    - Bulk re-analysis of documents
+    - System administration tasks
+    
+    **Note:** This operation may take significant time for large document collections.
+    """,
+    responses={
+        200: {
+            "description": "Analysis regeneration completed successfully",
+            "content": {
+                "application/json": {
+                    "example": {
+                        "success": True,
+                        "message": "Document analysis regenerated successfully",
+                        "total_documents": 25,
+                        "analyzed_documents": 23,
+                        "failed_documents": 2,
+                        "average_confidence": 0.87,
+                        "processing_time_seconds": 45.2
+                    }
+                }
+            }
+        },
+        500: {
+            "description": "Analysis regeneration failed",
+            "content": {
+                "application/json": {
+                    "example": {"detail": "Failed to regenerate document analysis"}
+                }
+            }
+        }
+    }
+)
+async def regenerate_document_analysis():
+    """Regenerate AI analysis for all documents in the system"""
+    try:
+        from time import time
+        start_time = time()
+        
+        success = DataService.regenerate_document_analysis()
+        
+        if not success:
+            raise HTTPException(status_code=500, detail="Failed to regenerate document analysis")
+        
+        processing_time = time() - start_time
+        
+        # Load statistics from the regeneration process
+        stats = DataService.get_document_analysis_stats()
+        
+        return {
+            "success": True,
+            "message": "Document analysis regenerated successfully",
+            "total_documents": stats.get("total_documents", 0),
+            "analyzed_documents": stats.get("analyzed_documents", 0),
+            "failed_documents": stats.get("failed_documents", 0),
+            "average_confidence": stats.get("average_confidence", 0.0),
+            "processing_time_seconds": round(processing_time, 2)
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to regenerate document analysis: {str(e)}")
+

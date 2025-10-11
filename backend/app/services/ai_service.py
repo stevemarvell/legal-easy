@@ -77,7 +77,10 @@ class AIService:
     
     @staticmethod
     def _extract_dates(content: str) -> List[str]:
-        """Extract key dates from document content."""
+        """Extract key dates from document content and format them as ISO dates."""
+        from datetime import datetime
+        import re
+        
         # Enhanced date pattern matching
         date_patterns = [
             r'\b\d{1,2}[/-]\d{1,2}[/-]\d{4}\b',  # MM/DD/YYYY or MM-DD-YYYY
@@ -87,13 +90,58 @@ class AIService:
             r'\b\d{1,2}(?:st|nd|rd|th)?\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{4}\b'  # DDth Month YYYY
         ]
         
-        dates = []
+        raw_dates = []
         for pattern in date_patterns:
             matches = re.findall(pattern, content, re.IGNORECASE)
-            dates.extend(matches)
+            raw_dates.extend(matches)
         
-        # Return unique dates, limited to first 5
-        return list(set(dates))[:5]
+        # Convert to ISO format dates
+        formatted_dates = []
+        for date_str in list(set(raw_dates))[:5]:
+            try:
+                # Try different parsing formats
+                iso_date = AIService._parse_date_to_iso(date_str)
+                if iso_date:
+                    formatted_dates.append(iso_date)
+            except:
+                # If parsing fails, skip this date
+                continue
+        
+        return formatted_dates
+    
+    @staticmethod
+    def _parse_date_to_iso(date_str: str) -> Optional[str]:
+        """Parse various date formats to ISO date string (YYYY-MM-DD)."""
+        from datetime import datetime
+        
+        # Clean up the date string
+        date_str = date_str.strip()
+        
+        # Common date formats to try
+        formats = [
+            "%d/%m/%Y", "%m/%d/%Y", "%Y/%m/%d",  # Slash formats
+            "%d-%m-%Y", "%m-%d-%Y", "%Y-%m-%d",  # Dash formats
+            "%d %B %Y", "%B %d, %Y", "%B %d %Y",  # Month name formats
+            "%dst %B %Y", "%dnd %B %Y", "%drd %B %Y", "%dth %B %Y"  # Ordinal formats
+        ]
+        
+        for fmt in formats:
+            try:
+                # Remove ordinal suffixes for parsing
+                clean_date = re.sub(r'(\d+)(?:st|nd|rd|th)', r'\1', date_str)
+                parsed_date = datetime.strptime(clean_date, fmt)
+                return parsed_date.strftime("%Y-%m-%d")
+            except ValueError:
+                continue
+        
+        # If no format works, try to extract year-month-day with regex
+        match = re.search(r'(\d{4})', date_str)
+        if match:
+            year = match.group(1)
+            # Default to January 1st if we can't parse the full date
+            return f"{year}-01-01"
+        
+        return None
     
     @staticmethod
     def _extract_parties(content: str) -> List[str]:
