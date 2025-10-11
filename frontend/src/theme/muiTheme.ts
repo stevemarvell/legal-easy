@@ -1,42 +1,30 @@
 import { createTheme } from '@mui/material/styles';
+import { designTokens } from './designTokens';
 
 export const theme = createTheme({
   palette: {
     mode: 'dark',
-    primary: {
-      main: '#744EFD',
-      dark: '#5a3bca',
-      light: '#8b6bfe',
-    },
-    secondary: {
-      main: '#9844DA',
-    },
-    background: {
-      default: '#0D0E14',
-      paper: '#161821',
-    },
-
-    text: {
-      primary: '#ffffff',
-      secondary: '#b8c5d6',
-    },
+    primary: designTokens.colors.primary,
+    secondary: designTokens.colors.secondary,
+    background: designTokens.colors.background,
+    text: designTokens.colors.text,
     success: {
-      main: '#4CAF50',
+      main: designTokens.colors.status.success,
       light: '#81C784',
       dark: '#388E3C',
     },
     warning: {
-      main: '#FF9800',
+      main: designTokens.colors.status.warning,
       light: '#FFB74D',
       dark: '#F57C00',
     },
     error: {
-      main: '#F44336',
+      main: designTokens.colors.status.error,
       light: '#EF5350',
       dark: '#D32F2F',
     },
     info: {
-      main: '#2196F3',
+      main: designTokens.colors.status.info,
       light: '#64B5F6',
       dark: '#1976D2',
     },
@@ -54,37 +42,38 @@ export const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    fontFamily: designTokens.typography.fontFamily.primary,
   },
   components: {
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: '35px',
+          borderRadius: designTokens.components.button.borderRadius,
           textTransform: 'none',
-          fontWeight: 500,
-          fontSize: '15.95px',
-          height: '42px',
-          fontFamily: '"TT Firs Neue", sans-serif',
+          fontWeight: designTokens.components.button.fontWeight,
+          fontSize: designTokens.components.button.fontSize,
+          height: designTokens.components.button.height,
+          fontFamily: designTokens.typography.fontFamily.secondary,
+          transition: designTokens.transitions.base,
         },
         contained: {
-          backgroundColor: '#161821',
-          color: '#ffffff',
-          border: '1px solid #744EFD',
+          backgroundColor: designTokens.colors.background.paper,
+          color: designTokens.colors.text.primary,
+          border: `1px solid ${designTokens.colors.primary.main}`,
           '&:hover': {
-            backgroundColor: '#744EFD',
-            borderColor: '#744EFD',
-            color: '#ffffff',
+            backgroundColor: designTokens.colors.primary.main,
+            borderColor: designTokens.colors.primary.main,
+            color: designTokens.colors.text.primary,
           },
         },
         outlined: {
           backgroundColor: 'transparent',
-          color: '#ffffff',
-          border: '1px solid #744EFD',
+          color: designTokens.colors.text.primary,
+          border: `1px solid ${designTokens.colors.primary.main}`,
           '&:hover': {
-            backgroundColor: '#744EFD',
-            borderColor: '#744EFD',
-            color: '#ffffff',
+            backgroundColor: designTokens.colors.primary.main,
+            borderColor: designTokens.colors.primary.main,
+            color: designTokens.colors.text.primary,
           },
         },
       },
@@ -92,8 +81,9 @@ export const theme = createTheme({
     MuiCard: {
       styleOverrides: {
         root: {
-          backgroundColor: '#161821',
-          border: '1px solid #2A2D3A',
+          backgroundColor: designTokens.colors.background.paper,
+          border: `1px solid ${designTokens.colors.border.default}`,
+          borderRadius: designTokens.borderRadius.lg,
           boxShadow: 'none',
         },
       },

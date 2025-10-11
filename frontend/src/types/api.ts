@@ -56,12 +56,19 @@ export interface TimelineEvent {
 // Document types
 export interface Document {
   id: string;
-  filename: string;
+  name: string; // Changed from filename to match backend
   case_id: string;
-  file_type: string;
-  file_size: number;
+  type: string; // Changed from file_type to match backend
+  size: number; // Changed from file_size to match backend
   upload_date: string;
-  analysis_status: 'pending' | 'processing' | 'completed' | 'failed';
+  content_preview: string; // Added to match backend
+  full_content_path?: string; // Added to match backend
+  analysis_completed: boolean; // Changed from analysis_status to match backend
+  // Legacy fields for backward compatibility
+  filename?: string;
+  file_type?: string;
+  file_size?: number;
+  analysis_status?: 'pending' | 'processing' | 'completed' | 'failed';
   content?: string;
 }
 

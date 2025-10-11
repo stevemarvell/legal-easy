@@ -26,7 +26,7 @@ import {
   Gavel as PrecedentIcon,
   CheckCircle as StrengthIcon,
   Warning as WeaknessIcon,
-  Evidence as EvidenceIcon,
+  Folder as EvidenceIcon,
   MenuBook as PlaybookIcon,
   Refresh as RefreshIcon
 } from '@mui/icons-material';
@@ -153,17 +153,17 @@ const ComprehensiveAnalysisComponent: React.FC<ComprehensiveAnalysisProps> = ({
               Refresh
             </Button>
           </Box>
-          
+
           {analysis.applied_playbook && (
             <Box display="flex" alignItems="center" gap={2} mb={2}>
               <PlaybookIcon color="primary" />
               <Typography variant="body1">
                 Applied Playbook: <strong>{analysis.applied_playbook.name}</strong>
               </Typography>
-              <Chip 
-                label={analysis.applied_playbook.case_type} 
-                variant="outlined" 
-                size="small" 
+              <Chip
+                label={analysis.applied_playbook.case_type}
+                variant="outlined"
+                size="small"
               />
             </Box>
           )}

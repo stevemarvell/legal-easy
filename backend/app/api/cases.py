@@ -185,7 +185,7 @@ async def get_case(
     try:
         # Load all cases and find the specific one
         cases = DataService.load_cases()
-        case = next((c for c in cases if c.id == case_id), None)
+        case = next((c for c in cases if c.get('id') == case_id), None)
         
         if case is None:
             raise HTTPException(status_code=404, detail=f"Case with ID {case_id} not found")

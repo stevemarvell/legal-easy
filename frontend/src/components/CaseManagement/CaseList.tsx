@@ -7,22 +7,21 @@ import {
   CardActions,
   Typography,
   Button,
-  Grid,
   Chip,
-  TextField,
-  InputAdornment,
   Alert,
-  CircularProgress,
-  Container
+  CircularProgress
 } from '@mui/material';
 import {
-  Search as SearchIcon,
   Person as PersonIcon,
   Gavel as GavelIcon,
-  Add as AddIcon
+  Description as DocumentIcon,
+  MenuBook as PlaybookIcon,
+  Schedule as ScheduleIcon,
+  Group as GroupIcon
 } from '@mui/icons-material';
 import { apiClient } from '../../services/api';
 import { Case } from '../../types/api';
+import SharedLayout from '../layout/SharedLayout';
 
 const CaseList: React.FC = () => {
   const navigate = useNavigate();
@@ -58,7 +57,9 @@ const CaseList: React.FC = () => {
       const filtered = cases.filter(case_ =>
         case_.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         case_.client_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        case_.case_type.toLowerCase().includes(searchQuery.toLowerCase())
+        case_.case_type.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        case_.summary.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        case_.key_parties.some(party => party.toLowerCase().includes(searchQuery.toLowerCase()))
       );
       setFilteredCases(filtered);
     }
@@ -73,136 +74,216 @@ const CaseList: React.FC = () => {
     }
   };
 
+  const getPlaybookName = (playbookId: string) => {
+    const playbookNames: Record<string, string> = {
+      'employment-dispute': 'Employment Law',
+      'contract-breach': 'Contract Breach',
+      'debt-claim': 'Debt Collection',
+      'personal-injury': 'Personal Injury',
+      'intellectual-property': 'IP Protection'
+    };
+    return playbookNames[playbookId] || 'General';
+  };
+
   const handleViewDetails = (caseId: string) => {
     navigate(`/cases/${caseId}`);
   };
 
-  const handleViewDocuments = (caseId: string) => {
+  const handleViewDocuments = (caseId: string, event?: React.MouseEvent) => {
+    if (event) {
+      event.stopPropagation(); // Prevent card click when button is clicked
+    }
     navigate(`/cases/${caseId}/documents`);
+  };
+
+  const handleCardClick = (caseId: string, event: React.MouseEvent) => {
+    // Prevent navigation if clicking on buttons or other interactive elements
+    const target = event.target as HTMLElement;
+    if (target.closest('button') || target.closest('.MuiCardActions-root')) {
+      return;
+    }
+    
+    console.log('Navigating to case:', caseId);
+    navigate(`/cases/${caseId}`);
+  };
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    });
+  };
+
+  const handleSearchChange = (value: string) => {
+    setSearchQuery(value);
   };
 
   if (loading) {
     return (
-      <Container maxWidth="xl">
+      <SharedLayout
+        title="Cases"
+        subtitle="Manage and track all legal cases"
+        showSearchBar={true}
+        searchPlaceholder="Search cases by title, client, case type, or parties..."
+        searchValue={searchQuery}
+        onSearchChange={handleSearchChange}
+      >
         <Box display="flex" justifyContent="center" alignItems="center" minHeight="400px">
-          <CircularProgress />
+          <CircularProgress data-testid="loading-spinner" />
         </Box>
-      </Container>
+      </SharedLayout>
     );
   }
 
   return (
-    <Container maxWidth="xl">
-      <Box>
-        {/* Header */}
-        <Box mb={4}>
-          <Box display="flex" justifyContent="space-between" alignItems="flex-start" mb={3}>
-            <Box>
-              <Typography variant="h3" component="h1" color="primary" gutterBottom>
-                Cases
-              </Typography>
-              <Typography variant="h6" color="text.secondary">
-                Manage and track all legal cases
-              </Typography>
+    <SharedLayout
+      title="Cases"
+      subtitle="Manage and track all legal cases"
+      showSearchBar={true}
+      searchPlaceholder="Search cases by title, client, case type, or parties..."
+      searchValue={searchQuery}
+      onSearchChange={handleSearchChange}
+    >
+      {/* Error State */}
+      {error && (
+        <Alert severity="error" sx={{ mb: 4 }} data-testid="error-message">
+          {error}
+        </Alert>
+      )}
+
+      {/* Cases Grid */}
+      {filteredCases.length === 0 && !loading ? (
+        <Alert severity="info">
+          {searchQuery ? 'No cases found matching your search.' : 'No cases found.'}
+        </Alert>
+      ) : (
+        <Box 
+          display="grid" 
+          gridTemplateColumns={{ xs: '1fr', md: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' }} 
+          gap={3}
+          data-testid="cases-grid"
+        >
+          {filteredCases.map((case_) => (
+            <Box key={case_.id}>
+              <Card 
+                sx={{ 
+                  height: '100%', 
+                  display: 'flex', 
+                  flexDirection: 'column',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease-in-out',
+                  border: '1px solid transparent',
+                  '&:hover': {
+                    transform: 'translateY(-2px)',
+                    boxShadow: (theme) => theme.shadows[8],
+                    borderColor: (theme) => theme.palette.primary.main,
+                  }
+                }}
+                onClick={(event) => handleCardClick(case_.id, event)}
+                title={`Click to view details for ${case_.title}`}
+                data-testid="case-card"
+                role="button"
+                tabIndex={0}
+              >
+                <CardContent sx={{ flexGrow: 1 }}>
+                  <Box display="flex" justifyContent="space-between" alignItems="flex-start" mb={2}>
+                    <Typography 
+                      variant="h6" 
+                      component="h3" 
+                      gutterBottom
+                      sx={{ 
+                        color: 'primary.main',
+                        '&:hover': {
+                          textDecoration: 'underline'
+                        }
+                      }}
+                      data-testid="case-title"
+                    >
+                      {case_.title}
+                    </Typography>
+                    <Chip
+                      label={case_.status}
+                      color={getStatusColor(case_.status) as any}
+                      size="small"
+                      data-testid="case-status"
+                      data-status={case_.status}
+                    />
+                  </Box>
+
+                  {/* Enhanced Metadata Display */}
+                  <Box display="flex" alignItems="center" mb={1}>
+                    <PersonIcon color="primary" sx={{ mr: 1, fontSize: 20 }} />
+                    <Typography variant="body2" color="text.secondary" data-testid="case-client">
+                      {case_.client_name}
+                    </Typography>
+                  </Box>
+
+                  <Box display="flex" alignItems="center" mb={1}>
+                    <GavelIcon color="primary" sx={{ mr: 1, fontSize: 20 }} />
+                    <Typography variant="body2" color="text.secondary" data-testid="case-type">
+                      {case_.case_type}
+                    </Typography>
+                  </Box>
+
+                  <Box display="flex" alignItems="center" mb={1}>
+                    <ScheduleIcon color="primary" sx={{ mr: 1, fontSize: 20 }} />
+                    <Typography variant="body2" color="text.secondary" data-testid="case-created-date">
+                      Created: {formatDate(case_.created_date)}
+                    </Typography>
+                  </Box>
+
+                  {/* Key Parties */}
+                  {case_.key_parties && case_.key_parties.length > 0 && (
+                    <Box display="flex" alignItems="flex-start" mb={1}>
+                      <GroupIcon color="primary" sx={{ mr: 1, fontSize: 20, mt: 0.2 }} />
+                      <Typography variant="body2" color="text.secondary" data-testid="case-parties">
+                        Parties: {case_.key_parties.slice(0, 2).join(', ')}
+                        {case_.key_parties.length > 2 && ` (+${case_.key_parties.length - 2} more)`}
+                      </Typography>
+                    </Box>
+                  )}
+
+                  {/* Document Count */}
+                  <Box display="flex" alignItems="center" mb={1}>
+                    <DocumentIcon color="primary" sx={{ mr: 1, fontSize: 20 }} />
+                    <Typography variant="body2" color="text.secondary" data-testid="case-document-count">
+                      {case_.documents?.length || 0} document{(case_.documents?.length || 0) !== 1 ? 's' : ''}
+                    </Typography>
+                  </Box>
+
+                  {/* Playbook Assignment Indicator */}
+                  <Box display="flex" alignItems="center" mb={2}>
+                    <PlaybookIcon color="primary" sx={{ mr: 1, fontSize: 20 }} />
+                    <Typography variant="body2" color="text.secondary" data-testid="case-playbook">
+                      Playbook: {getPlaybookName(case_.playbook_id)}
+                    </Typography>
+                  </Box>
+
+                  <Typography variant="body2" color="text.secondary" paragraph data-testid="case-summary">
+                    {case_.summary.length > 120
+                      ? `${case_.summary.substring(0, 120)}...`
+                      : case_.summary
+                    }
+                  </Typography>
+                </CardContent>
+
+                <CardActions>
+                  <Button
+                    size="small"
+                    variant="outlined"
+                    onClick={(event) => handleViewDocuments(case_.id, event)}
+                  >
+                    Documents
+                  </Button>
+                </CardActions>
+              </Card>
             </Box>
-          </Box>
-
-          {/* Search */}
-          <TextField
-            fullWidth
-            variant="outlined"
-            placeholder="Search cases by title, client, or case type..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon color="primary" />
-                </InputAdornment>
-              ),
-            }}
-            sx={{ mb: 3 }}
-          />
+          ))}
         </Box>
-
-        {/* Error State */}
-        {error && (
-          <Alert severity="error" sx={{ mb: 4 }}>
-            {error}
-          </Alert>
-        )}
-
-        {/* Cases Grid */}
-        {filteredCases.length === 0 && !loading ? (
-          <Alert severity="info">
-            {searchQuery ? 'No cases found matching your search.' : 'No cases found.'}
-          </Alert>
-        ) : (
-          <Grid container spacing={3}>
-            {filteredCases.map((case_) => (
-              <Grid item xs={12} md={6} lg={4} key={case_.id}>
-                <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-                  <CardContent sx={{ flexGrow: 1 }}>
-                    <Box display="flex" justifyContent="space-between" alignItems="flex-start" mb={2}>
-                      <Typography variant="h6" component="h3" gutterBottom>
-                        {case_.title}
-                      </Typography>
-                      <Chip
-                        label={case_.status}
-                        color={getStatusColor(case_.status) as any}
-                        size="small"
-                      />
-                    </Box>
-
-                    <Box display="flex" alignItems="center" mb={1}>
-                      <PersonIcon color="primary" sx={{ mr: 1, fontSize: 20 }} />
-                      <Typography variant="body2" color="text.secondary">
-                        {case_.client_name}
-                      </Typography>
-                    </Box>
-
-                    <Box display="flex" alignItems="center" mb={2}>
-                      <GavelIcon color="primary" sx={{ mr: 1, fontSize: 20 }} />
-                      <Typography variant="body2" color="text.secondary">
-                        {case_.case_type}
-                      </Typography>
-                    </Box>
-
-                    <Typography variant="body2" color="text.secondary" paragraph>
-                      {case_.summary.length > 150
-                        ? `${case_.summary.substring(0, 150)}...`
-                        : case_.summary
-                      }
-                    </Typography>
-
-                    <Typography variant="caption" color="text.secondary">
-                      Created: {new Date(case_.created_date).toLocaleDateString()}
-                    </Typography>
-                  </CardContent>
-
-                  <CardActions>
-                    <Button
-                      size="small"
-                      variant="contained"
-                      onClick={() => handleViewDetails(case_.id)}
-                    >
-                      View Details
-                    </Button>
-                    <Button
-                      size="small"
-                      variant="outlined"
-                      onClick={() => handleViewDocuments(case_.id)}
-                    >
-                      Documents
-                    </Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        )}
-      </Box>
-    </Container>
+      )}
+    </SharedLayout>
   );
 };
 

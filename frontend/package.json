@@ -16,7 +16,10 @@
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
     "e2e:local": "cypress run --config baseUrl=http://localhost:8080",
-    "e2e:staging": "cypress run --config baseUrl=https://legal-easy-frontend-production.up.railway.app"
+    "e2e:staging": "cypress run --config baseUrl=https://legal-easy-frontend-production.up.railway.app",
+    "test:e2e:cases": "node run-case-tests.js",
+    "test:cases": "cypress run --spec cypress/cucumber/features/case-management.feature",
+    "validate:test-ids": "node validate-test-ids.js"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

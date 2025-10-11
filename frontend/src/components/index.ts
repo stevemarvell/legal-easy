@@ -2,6 +2,10 @@
 export { default as LoadingSpinner } from './LoadingSpinner';
 export { default as ErrorBoundary } from './ErrorBoundary';
 
+// Layout Components
+export { default as SharedLayout } from './layout/SharedLayout';
+export { default as StyleProvider } from './layout/StyleProvider';
+
 // Case Management Components
 export { default as CaseList } from './CaseManagement/CaseList';
 export { default as CaseDetail } from './CaseManagement/CaseDetail';

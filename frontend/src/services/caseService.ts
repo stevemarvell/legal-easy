@@ -1,16 +1,19 @@
-import { apiRequest } from './api';
-import { Case, CaseStatistics } from '../types/case';
+import { apiClient } from './api';
+import { Case, CaseStatistics } from '../types/api';
 
 export const caseService = {
   async getAllCases(): Promise<Case[]> {
-    return apiRequest<Case[]>('/cases');
+    const response = await apiClient.get<Case[]>('/api/cases');
+    return response.data;
   },
 
   async getCaseById(caseId: string): Promise<Case> {
-    return apiRequest<Case>(`/cases/${caseId}`);
+    const response = await apiClient.get<Case>(`/api/cases/${caseId}`);
+    return response.data;
   },
 
   async getCaseStatistics(): Promise<CaseStatistics> {
-    return apiRequest<CaseStatistics>('/cases/statistics');
+    const response = await apiClient.get<CaseStatistics>('/api/cases/statistics');
+    return response.data;
   },
 };
