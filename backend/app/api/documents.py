@@ -119,8 +119,11 @@ async def get_document(
         # Search through all case documents to find the specific document
         cases = DataService.load_cases()
         for case in cases:
-            documents = DataService.load_case_documents(case.id)
-            document = next((d for d in documents if d.id == document_id), None)
+            # Fix: case is a dict, not an object, so use case['id'] instead of case.id
+            case_id = case.get('id') if isinstance(case, dict) else case.id
+            documents = DataService.load_case_documents(case_id)
+            # Fix: documents are also dicts, not objects, so use d['id'] instead of d.id
+            document = next((d for d in documents if (d.get('id') if isinstance(d, dict) else d.id) == document_id), None)
             if document:
                 return document
         
