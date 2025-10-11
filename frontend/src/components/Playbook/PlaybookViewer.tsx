@@ -22,6 +22,7 @@ import {
   Gavel as LegalIcon
 } from '@mui/icons-material';
 import { Playbook, PlaybookResult } from '../../types/api';
+import DecisionTreeViewer from './DecisionTreeViewer';
 
 
 interface PlaybookViewerProps {
@@ -191,14 +192,21 @@ const PlaybookViewer = ({ caseType, caseId, showAppliedRules = false, showHeader
         </Card>
       )}
 
+      {/* Decision Tree */}
+      {playbook.decision_tree && (
+        <Box sx={{ mb: 3 }}>
+          <DecisionTreeViewer decisionTree={playbook.decision_tree} />
+        </Box>
+      )}
+
       {/* Decision Rules */}
       <Card>
         <CardContent>
           <Typography variant="h5" gutterBottom>
-            Decision Rules
+            Individual Decision Rules
           </Typography>
           <Typography variant="body2" color="text.secondary" paragraph>
-            Rules and conditions that guide case assessment and recommendations
+            Detailed rules and conditions that are evaluated during the decision tree navigation
           </Typography>
           <Divider sx={{ mb: 2 }} />
 

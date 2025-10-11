@@ -24,6 +24,8 @@ import {
   Analytics as AnalyticsIcon
 } from '@mui/icons-material';
 import { apiClient } from '../services/api';
+import { APP_NAME } from '../constants/branding';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 interface CorpusRegenerationResult {
   success: boolean;
@@ -56,14 +58,16 @@ interface CaseAnalysisResult {
 }
 
 const Admin: React.FC = () => {
+  useDocumentTitle('System Administration');
+
   const [corpusLoading, setCorpusLoading] = useState(false);
   const [corpusResult, setCorpusResult] = useState<CorpusRegenerationResult | null>(null);
   const [corpusError, setCorpusError] = useState<string | null>(null);
-  
+
   const [analysisLoading, setAnalysisLoading] = useState(false);
   const [analysisResult, setAnalysisResult] = useState<DocumentAnalysisResult | null>(null);
   const [analysisError, setAnalysisError] = useState<string | null>(null);
-  
+
   const [caseAnalysisLoading, setCaseAnalysisLoading] = useState(false);
   const [caseAnalysisResult, setCaseAnalysisResult] = useState<CaseAnalysisResult | null>(null);
   const [caseAnalysisError, setCaseAnalysisError] = useState<string | null>(null);
@@ -124,7 +128,7 @@ const Admin: React.FC = () => {
           System Administration
         </Typography>
         <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
-          Administrative functions for managing the legal AI system
+          Administrative functions for managing the {APP_NAME} system
         </Typography>
 
         {/* Corpus Index Management */}
@@ -136,9 +140,9 @@ const Admin: React.FC = () => {
                 Research Corpus Index
               </Typography>
             </Box>
-            
+
             <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
-              The corpus index organizes all legal documents, templates, and precedents for search and analysis. 
+              The corpus index organizes all legal documents, templates, and precedents for search and analysis.
               Regenerate the index after adding new legal documents or updating existing ones.
             </Typography>
 
@@ -151,8 +155,8 @@ const Admin: React.FC = () => {
                   <ListItemIcon>
                     <InfoIcon color="primary" />
                   </ListItemIcon>
-                  <ListItemText 
-                    primary="Document Metadata" 
+                  <ListItemText
+                    primary="Document Metadata"
                     secondary="Titles, descriptions, categories, and research areas"
                   />
                 </ListItem>
@@ -160,8 +164,8 @@ const Admin: React.FC = () => {
                   <ListItemIcon>
                     <InfoIcon color="primary" />
                   </ListItemIcon>
-                  <ListItemText 
-                    primary="Legal Concept Mapping" 
+                  <ListItemText
+                    primary="Legal Concept Mapping"
                     secondary="Links documents to relevant legal concepts for intelligent search"
                   />
                 </ListItem>
@@ -169,8 +173,8 @@ const Admin: React.FC = () => {
                   <ListItemIcon>
                     <InfoIcon color="primary" />
                   </ListItemIcon>
-                  <ListItemText 
-                    primary="Document Relationships" 
+                  <ListItemText
+                    primary="Document Relationships"
                     secondary="Connections between related legal materials and precedents"
                   />
                 </ListItem>
@@ -178,8 +182,8 @@ const Admin: React.FC = () => {
                   <ListItemIcon>
                     <InfoIcon color="primary" />
                   </ListItemIcon>
-                  <ListItemText 
-                    primary="Search Optimization" 
+                  <ListItemText
+                    primary="Search Optimization"
                     secondary="Enables concept-based search and document discovery"
                   />
                 </ListItem>
@@ -200,7 +204,7 @@ const Admin: React.FC = () => {
               >
                 {corpusLoading ? 'Regenerating Index...' : 'Regenerate Corpus Index'}
               </Button>
-              
+
               {corpusLoading && (
                 <Typography variant="body2" color="text.secondary">
                   This may take a few moments...
@@ -223,22 +227,22 @@ const Admin: React.FC = () => {
                 <Typography variant="body2" gutterBottom>
                   <strong>Success:</strong> {corpusResult.message}
                 </Typography>
-                
+
                 <Box sx={{ mt: 2, display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-                  <Chip 
-                    label={`${corpusResult.total_documents} Documents`} 
-                    color="success" 
-                    size="small" 
+                  <Chip
+                    label={`${corpusResult.total_documents} Documents`}
+                    color="success"
+                    size="small"
                   />
-                  <Chip 
-                    label={`${corpusResult.legal_concepts_count} Legal Concepts`} 
-                    color="success" 
-                    size="small" 
+                  <Chip
+                    label={`${corpusResult.legal_concepts_count} Legal Concepts`}
+                    color="success"
+                    size="small"
                   />
-                  <Chip 
-                    label={`${corpusResult.research_areas.length} Research Areas`} 
-                    color="success" 
-                    size="small" 
+                  <Chip
+                    label={`${corpusResult.research_areas.length} Research Areas`}
+                    color="success"
+                    size="small"
                   />
                 </Box>
 
@@ -278,9 +282,9 @@ const Admin: React.FC = () => {
                 Document Analysis
               </Typography>
             </Box>
-            
+
             <Typography variant="body1" color="text.secondary" sx={{ mb: 3 }}>
-              AI-powered analysis of all case documents including key dates, parties, summaries, and legal concepts. 
+              AI-powered analysis of all case documents including key dates, parties, summaries, and legal concepts.
               Regenerate analysis after updating AI algorithms or to refresh existing analysis results.
             </Typography>
 
@@ -293,8 +297,8 @@ const Admin: React.FC = () => {
                   <ListItemIcon>
                     <InfoIcon color="primary" />
                   </ListItemIcon>
-                  <ListItemText 
-                    primary="Key Information Extraction" 
+                  <ListItemText
+                    primary="Key Information Extraction"
                     secondary="Dates, parties, document types, and important clauses"
                   />
                 </ListItem>
@@ -302,8 +306,8 @@ const Admin: React.FC = () => {
                   <ListItemIcon>
                     <InfoIcon color="primary" />
                   </ListItemIcon>
-                  <ListItemText 
-                    primary="AI-Generated Summaries" 
+                  <ListItemText
+                    primary="AI-Generated Summaries"
                     secondary="Concise summaries of document content and purpose"
                   />
                 </ListItem>
@@ -311,8 +315,8 @@ const Admin: React.FC = () => {
                   <ListItemIcon>
                     <InfoIcon color="primary" />
                   </ListItemIcon>
-                  <ListItemText 
-                    primary="Confidence Scoring" 
+                  <ListItemText
+                    primary="Confidence Scoring"
                     secondary="Quality assessment and uncertainty flags for analysis results"
                   />
                 </ListItem>
@@ -320,8 +324,8 @@ const Admin: React.FC = () => {
                   <ListItemIcon>
                     <InfoIcon color="primary" />
                   </ListItemIcon>
-                  <ListItemText 
-                    primary="Risk Assessment" 
+                  <ListItemText
+                    primary="Risk Assessment"
                     secondary="Potential issues, compliance status, and critical deadlines"
                   />
                 </ListItem>
@@ -342,7 +346,7 @@ const Admin: React.FC = () => {
               >
                 {analysisLoading ? 'Regenerating Analysis...' : 'Regenerate Document Analysis'}
               </Button>
-              
+
               {analysisLoading && (
                 <Typography variant="body2" color="text.secondary">
                   This may take several minutes for large document collections...
@@ -365,34 +369,34 @@ const Admin: React.FC = () => {
                 <Typography variant="body2" gutterBottom>
                   <strong>Success:</strong> {analysisResult.message}
                 </Typography>
-                
+
                 <Box sx={{ mt: 2, display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-                  <Chip 
-                    label={`${analysisResult.total_documents} Total Documents`} 
-                    color="info" 
-                    size="small" 
+                  <Chip
+                    label={`${analysisResult.total_documents} Total Documents`}
+                    color="info"
+                    size="small"
                   />
-                  <Chip 
-                    label={`${analysisResult.analyzed_documents} Analyzed`} 
-                    color="success" 
-                    size="small" 
+                  <Chip
+                    label={`${analysisResult.analyzed_documents} Analyzed`}
+                    color="success"
+                    size="small"
                   />
                   {analysisResult.failed_documents > 0 && (
-                    <Chip 
-                      label={`${analysisResult.failed_documents} Failed`} 
-                      color="error" 
-                      size="small" 
+                    <Chip
+                      label={`${analysisResult.failed_documents} Failed`}
+                      color="error"
+                      size="small"
                     />
                   )}
-                  <Chip 
-                    label={`${Math.round(analysisResult.average_confidence * 100)}% Avg Confidence`} 
-                    color="secondary" 
-                    size="small" 
+                  <Chip
+                    label={`${Math.round(analysisResult.average_confidence * 100)}% Avg Confidence`}
+                    color="secondary"
+                    size="small"
                   />
-                  <Chip 
-                    label={`${analysisResult.processing_time_seconds}s Processing Time`} 
-                    color="default" 
-                    size="small" 
+                  <Chip
+                    label={`${analysisResult.processing_time_seconds}s Processing Time`}
+                    color="default"
+                    size="small"
                   />
                 </Box>
               </Alert>
@@ -409,9 +413,9 @@ const Admin: React.FC = () => {
                 Integrated Case Analysis
               </Typography>
             </Box>
-            
+
             <Typography variant="body1" color="text.secondary" sx={{ mb: 3 }}>
-              Comprehensive AI-powered analysis that integrates document analysis, research corpus, and legal playbooks 
+              Comprehensive AI-powered analysis that integrates document analysis, research corpus, and legal playbooks
               to provide strategic insights and recommendations for all cases.
             </Typography>
 
@@ -424,8 +428,8 @@ const Admin: React.FC = () => {
                   <ListItemIcon>
                     <InfoIcon color="primary" />
                   </ListItemIcon>
-                  <ListItemText 
-                    primary="Document Integration" 
+                  <ListItemText
+                    primary="Document Integration"
                     secondary="Links case documents with extracted key information and themes"
                   />
                 </ListItem>
@@ -433,8 +437,8 @@ const Admin: React.FC = () => {
                   <ListItemIcon>
                     <InfoIcon color="primary" />
                   </ListItemIcon>
-                  <ListItemText 
-                    primary="Research Correlation" 
+                  <ListItemText
+                    primary="Research Correlation"
                     secondary="Matches cases with relevant precedents, statutes, and legal materials"
                   />
                 </ListItem>
@@ -442,8 +446,8 @@ const Admin: React.FC = () => {
                   <ListItemIcon>
                     <InfoIcon color="primary" />
                   </ListItemIcon>
-                  <ListItemText 
-                    primary="Strategic Recommendations" 
+                  <ListItemText
+                    primary="Strategic Recommendations"
                     secondary="AI-generated legal strategies based on playbook rules and case analysis"
                   />
                 </ListItem>
@@ -451,8 +455,8 @@ const Admin: React.FC = () => {
                   <ListItemIcon>
                     <InfoIcon color="primary" />
                   </ListItemIcon>
-                  <ListItemText 
-                    primary="Risk Assessment" 
+                  <ListItemText
+                    primary="Risk Assessment"
                     secondary="Comprehensive evaluation of case strengths, weaknesses, and potential outcomes"
                   />
                 </ListItem>
@@ -460,8 +464,8 @@ const Admin: React.FC = () => {
                   <ListItemIcon>
                     <InfoIcon color="primary" />
                   </ListItemIcon>
-                  <ListItemText 
-                    primary="Monetary Evaluation" 
+                  <ListItemText
+                    primary="Monetary Evaluation"
                     secondary="Estimated case values and settlement ranges based on similar cases"
                   />
                 </ListItem>
@@ -482,7 +486,7 @@ const Admin: React.FC = () => {
               >
                 {caseAnalysisLoading ? 'Regenerating Case Analysis...' : 'Regenerate Case Analysis'}
               </Button>
-              
+
               {caseAnalysisLoading && (
                 <Typography variant="body2" color="text.secondary">
                   This may take several minutes for comprehensive analysis...
@@ -505,34 +509,34 @@ const Admin: React.FC = () => {
                 <Typography variant="body2" gutterBottom>
                   <strong>Success:</strong> {caseAnalysisResult.message}
                 </Typography>
-                
+
                 <Box sx={{ mt: 2, display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-                  <Chip 
-                    label={`${caseAnalysisResult.total_cases} Total Cases`} 
-                    color="info" 
-                    size="small" 
+                  <Chip
+                    label={`${caseAnalysisResult.total_cases} Total Cases`}
+                    color="info"
+                    size="small"
                   />
-                  <Chip 
-                    label={`${caseAnalysisResult.analyzed_cases} Analyzed`} 
-                    color="success" 
-                    size="small" 
+                  <Chip
+                    label={`${caseAnalysisResult.analyzed_cases} Analyzed`}
+                    color="success"
+                    size="small"
                   />
                   {caseAnalysisResult.failed_cases > 0 && (
-                    <Chip 
-                      label={`${caseAnalysisResult.failed_cases} Failed`} 
-                      color="error" 
-                      size="small" 
+                    <Chip
+                      label={`${caseAnalysisResult.failed_cases} Failed`}
+                      color="error"
+                      size="small"
                     />
                   )}
-                  <Chip 
-                    label={`${Math.round(caseAnalysisResult.average_confidence * 100)}% Avg Confidence`} 
-                    color="secondary" 
-                    size="small" 
+                  <Chip
+                    label={`${Math.round(caseAnalysisResult.average_confidence * 100)}% Avg Confidence`}
+                    color="secondary"
+                    size="small"
                   />
-                  <Chip 
-                    label={`${caseAnalysisResult.processing_time_seconds}s Processing Time`} 
-                    color="default" 
-                    size="small" 
+                  <Chip
+                    label={`${caseAnalysisResult.processing_time_seconds}s Processing Time`}
+                    color="default"
+                    size="small"
                   />
                 </Box>
 
@@ -548,7 +552,7 @@ const Admin: React.FC = () => {
                           label={type}
                           size="small"
                           variant="outlined"
-                          color="warning"
+                          color="secondary"
                         />
                       ))}
                     </Box>

@@ -8,6 +8,7 @@ import {
   Chip,
   Button
 } from '@mui/material';
+import { APP_NAME, DEMO_LABEL, COLORS } from '../constants/branding';
 
 const Layout = () => {
   const location = useLocation();
@@ -19,20 +20,20 @@ const Layout = () => {
   };
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', backgroundColor: '#0D0E14' }}>
-      <AppBar position="sticky" sx={{ backgroundColor: '#0D0E14', borderBottom: '1px solid #2A2D3A' }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', backgroundColor: COLORS.BACKGROUND }}>
+      <AppBar position="sticky" sx={{ backgroundColor: COLORS.BACKGROUND, borderBottom: `1px solid ${COLORS.BORDER}` }}>
         <Toolbar>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, flexGrow: 1 }}>
             <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                <Typography variant="h5" component="h1" sx={{ color: '#744EFD', fontWeight: 700 }}>
-                  Shift AI Legal
+                <Typography variant="h5" component="h1" sx={{ color: COLORS.PRIMARY, fontWeight: 700 }}>
+                  {APP_NAME}
                 </Typography>
                 <Chip
-                  label="DEMO"
+                  label={DEMO_LABEL}
                   size="small"
                   sx={{
-                    backgroundColor: '#744EFD',
+                    backgroundColor: COLORS.PRIMARY,
                     color: 'white',
                     fontSize: '0.75rem',
                     fontWeight: 600
@@ -46,7 +47,7 @@ const Layout = () => {
               component={Link}
               to="/"
               color={isActive('/') ? 'secondary' : 'inherit'}
-              sx={{ color: isActive('/') ? '#9844DA' : 'white' }}
+              sx={{ color: isActive('/') ? COLORS.SECONDARY : 'white' }}
             >
               Dashboard
             </Button>
@@ -54,7 +55,7 @@ const Layout = () => {
               component={Link}
               to="/cases"
               color={isActive('/cases') ? 'secondary' : 'inherit'}
-              sx={{ color: isActive('/cases') ? '#9844DA' : 'white' }}
+              sx={{ color: isActive('/cases') ? COLORS.SECONDARY : 'white' }}
             >
               Cases
             </Button>
@@ -62,7 +63,7 @@ const Layout = () => {
               component={Link}
               to="/playbooks"
               color={isActive('/playbooks') ? 'secondary' : 'inherit'}
-              sx={{ color: isActive('/playbooks') ? '#9844DA' : 'white' }}
+              sx={{ color: isActive('/playbooks') ? COLORS.SECONDARY : 'white' }}
             >
               Playbooks
             </Button>
@@ -70,7 +71,7 @@ const Layout = () => {
               component={Link}
               to="/research"
               color={isActive('/research') ? 'secondary' : 'inherit'}
-              sx={{ color: isActive('/research') ? '#9844DA' : 'white' }}
+              sx={{ color: isActive('/research') ? COLORS.SECONDARY : 'white' }}
             >
               Research
             </Button>
@@ -78,7 +79,7 @@ const Layout = () => {
               component={Link}
               to="/analysis"
               color={isActive('/analysis') ? 'secondary' : 'inherit'}
-              sx={{ color: isActive('/analysis') ? '#9844DA' : 'white' }}
+              sx={{ color: isActive('/analysis') ? COLORS.SECONDARY : 'white' }}
             >
               Analysis
             </Button>
@@ -86,7 +87,7 @@ const Layout = () => {
               component={Link}
               to="/docs"
               color={isActive('/docs') ? 'secondary' : 'inherit'}
-              sx={{ color: isActive('/docs') ? '#9844DA' : 'white' }}
+              sx={{ color: isActive('/docs') ? COLORS.SECONDARY : 'white' }}
             >
               Docs
             </Button>
@@ -94,14 +95,14 @@ const Layout = () => {
               component={Link}
               to="/admin"
               color={isActive('/admin') ? 'secondary' : 'inherit'}
-              sx={{ color: isActive('/admin') ? '#9844DA' : 'white' }}
+              sx={{ color: isActive('/admin') ? COLORS.SECONDARY : 'white' }}
             >
               Admin
             </Button>
           </Box>
         </Toolbar>
       </AppBar>
-      <Container component="main" maxWidth="xl" sx={{ flex: 1, py: 3, backgroundColor: '#0D0E14' }}>
+      <Container component="main" maxWidth="xl" sx={{ flex: 1, py: 3, backgroundColor: COLORS.BACKGROUND }}>
         <Outlet />
       </Container>
     </Box>

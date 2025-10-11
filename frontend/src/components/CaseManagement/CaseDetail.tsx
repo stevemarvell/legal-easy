@@ -14,7 +14,6 @@ import {
   Alert,
   CircularProgress,
   ListItemIcon,
-  Paper,
   Stack,
   Tabs,
   Tab
@@ -28,7 +27,6 @@ import {
   MenuBook as PlaybookIcon,
   CheckCircle as CheckCircleIcon,
   HourglassEmpty as HourglassEmptyIcon,
-  Error as ErrorIcon,
   Folder as FolderIcon,
   Email as EmailIcon,
   Assignment as AssignmentIcon,
@@ -269,9 +267,9 @@ const CaseDetail: React.FC = () => {
           </Tabs>
         </Box>
 
-        <Box display="flex" flexDirection={{ xs: 'column', md: 'row' }} gap={4} sx={{ mt: 3 }}>
+        <Box sx={{ mt: 3 }}>
           {/* Main Content */}
-          <Box flex={2}>
+          <Box>
             {/* Overview Tab */}
             {activeTab === 0 && (
               <Box>
@@ -545,144 +543,6 @@ const CaseDetail: React.FC = () => {
                 </CardContent>
               </Card>
             )}
-          </Box>
-
-          {/* Sidebar */}
-          <Box flex={1}>
-            {/* Document and Analysis Status Indicators */}
-            <Paper sx={{ p: 3, mb: 4 }} data-testid="analysis-status-indicators">
-              <Typography variant="h6" gutterBottom>
-                Document Analysis Status
-              </Typography>
-              <Divider sx={{ mb: 2 }} />
-
-              <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
-                <Typography variant="body2">Total Documents:</Typography>
-                <Chip
-                  label={caseDocuments.length}
-                  size="small"
-                  color={caseDocuments.length > 0 ? 'primary' : 'default'}
-                  data-testid="total-document-count"
-                />
-              </Box>
-
-              <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
-                <Typography variant="body2">Analysis Complete:</Typography>
-                <Chip
-                  label={`${analysisStatus.completed}/${analysisStatus.total}`}
-                  size="small"
-                  color={analysisStatus.completed === analysisStatus.total && analysisStatus.total > 0 ? 'success' : 'warning'}
-                  data-testid="analysis-completion-status"
-                />
-              </Box>
-
-              <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
-                <Typography variant="body2">Pending Analysis:</Typography>
-                <Chip
-                  label={analysisStatus.total - analysisStatus.completed}
-                  size="small"
-                  color={analysisStatus.total - analysisStatus.completed > 0 ? 'warning' : 'success'}
-                />
-              </Box>
-
-              {analysisStatus.total > 0 && (
-                <Box mt={2}>
-                  <Typography variant="caption" color="text.secondary" display="block">
-                    Analysis Progress: {Math.round((analysisStatus.completed / analysisStatus.total) * 100)}%
-                  </Typography>
-                  <Box
-                    sx={{
-                      width: '100%',
-                      height: 8,
-                      backgroundColor: 'grey.300',
-                      borderRadius: 1,
-                      mt: 1,
-                      overflow: 'hidden'
-                    }}
-                  >
-                    <Box
-                      sx={{
-                        width: `${(analysisStatus.completed / analysisStatus.total) * 100}%`,
-                        height: '100%',
-                        backgroundColor: analysisStatus.completed === analysisStatus.total ? 'success.main' : 'warning.main',
-                        transition: 'width 0.3s ease'
-                      }}
-                      data-testid="analysis-progress-bar"
-                    />
-                  </Box>
-                </Box>
-              )}
-            </Paper>
-
-            {/* Quick Analysis Summary */}
-            {analysisStatus.completed > 0 && (
-              <Card sx={{ mb: 4 }}>
-                <CardContent>
-                  <Typography variant="h6" gutterBottom>
-                    Quick Analysis Summary
-                  </Typography>
-                  <Divider sx={{ mb: 2 }} />
-
-                  <Box mb={2}>
-                    <Typography variant="body2" color="text.secondary" gutterBottom>
-                      Analysis available for {analysisStatus.completed} document{analysisStatus.completed !== 1 ? 's' : ''}
-                    </Typography>
-                    <Button
-                      variant="outlined"
-                      size="small"
-                      fullWidth
-                      onClick={() => setActiveTab(2)}
-                    >
-                      View Integrated Analysis
-                    </Button>
-                  </Box>
-                </CardContent>
-              </Card>
-            )}
-
-            {/* Actions */}
-            <Card>
-              <CardContent>
-                <Typography variant="h6" gutterBottom>
-                  Case Actions
-                </Typography>
-                <Divider sx={{ mb: 2 }} />
-
-                <Stack spacing={2}>
-                  <Button
-                    variant="contained"
-                    fullWidth
-                    onClick={() => navigate(`/cases/${caseId}/analysis`)}
-                  >
-                    Run Comprehensive Analysis
-                  </Button>
-                  <Button
-                    variant="outlined"
-                    fullWidth
-                    onClick={() => navigate(`/cases/${caseId}/report`)}
-                  >
-                    Generate Case Report
-                  </Button>
-                  <Button
-                    variant="outlined"
-                    fullWidth
-                    onClick={() => {
-                      // TODO: Implement status update functionality
-                      console.log('Update case status');
-                    }}
-                  >
-                    Update Case Status
-                  </Button>
-                  <Button
-                    variant="outlined"
-                    fullWidth
-                    onClick={() => navigate(`/playbooks/${caseData.playbook_id}`)}
-                  >
-                    View Playbook
-                  </Button>
-                </Stack>
-              </CardContent>
-            </Card>
           </Box>
         </Box>
       </Box>

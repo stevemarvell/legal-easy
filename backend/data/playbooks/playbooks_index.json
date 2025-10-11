@@ -14,7 +14,11 @@
         "weight": 0.9,
         "description": "If dismissal occurred within 90 days of protected activity, investigate potential victimisation",
         "legal_basis": "Employment Rights Act 1996, Equality Act 2010 victimisation provisions",
-        "evidence_required": ["Timeline of protected activity", "Dismissal documentation", "Witness statements"]
+        "evidence_required": [
+          "Timeline of protected activity",
+          "Dismissal documentation",
+          "Witness statements"
+        ]
       },
       {
         "id": "rule-002",
@@ -23,7 +27,11 @@
         "weight": 0.8,
         "description": "If employee is over 40 and replaced by significantly younger person, assess age discrimination",
         "legal_basis": "Equality Act 2010 - Age discrimination provisions",
-        "evidence_required": ["Employee ages", "Replacement documentation", "Performance records"]
+        "evidence_required": [
+          "Employee ages",
+          "Replacement documentation",
+          "Performance records"
+        ]
       },
       {
         "id": "rule-003",
@@ -32,7 +40,11 @@
         "weight": 0.7,
         "description": "If performance issues are documented, evaluate whether they are pretextual",
         "legal_basis": "Employment Rights Act 1996 - Unfair dismissal provisions",
-        "evidence_required": ["Performance reviews", "Disciplinary records", "Comparative treatment evidence"]
+        "evidence_required": [
+          "Performance reviews",
+          "Disciplinary records",
+          "Comparative treatment evidence"
+        ]
       },
       {
         "id": "rule-004",
@@ -41,7 +53,11 @@
         "weight": 0.8,
         "description": "If pattern of hostile behavior exists, document all incidents and witnesses",
         "legal_basis": "Equality Act 2010 - Harassment provisions",
-        "evidence_required": ["Incident reports", "Witness testimony", "Email/text communications"]
+        "evidence_required": [
+          "Incident reports",
+          "Witness testimony",
+          "Email/text communications"
+        ]
       },
       {
         "id": "rule-005",
@@ -50,7 +66,11 @@
         "weight": 0.9,
         "description": "If employee engaged in whistleblowing, assess protection under relevant statutes",
         "legal_basis": "Public Interest Disclosure Act 1998, Employment Rights Act 1996",
-        "evidence_required": ["Protected disclosure documentation", "Adverse action timeline", "Causal connection evidence"]
+        "evidence_required": [
+          "Protected disclosure documentation",
+          "Adverse action timeline",
+          "Causal connection evidence"
+        ]
       },
       {
         "id": "rule-006",
@@ -59,7 +79,11 @@
         "weight": 0.85,
         "description": "If pregnancy or maternity leave is involved, assess pregnancy and maternity discrimination claims",
         "legal_basis": "Equality Act 2010 - Pregnancy and maternity discrimination, Maternity and Parental Leave Regulations",
-        "evidence_required": ["Medical documentation", "Leave requests", "Employer response records"]
+        "evidence_required": [
+          "Medical documentation",
+          "Leave requests",
+          "Employer response records"
+        ]
       },
       {
         "id": "rule-007",
@@ -68,7 +92,11 @@
         "weight": 0.8,
         "description": "If reasonable adjustments were requested and denied, evaluate disability discrimination",
         "legal_basis": "Equality Act 2010 - Disability discrimination and reasonable adjustments",
-        "evidence_required": ["Accommodation requests", "Medical documentation", "Interactive process records"]
+        "evidence_required": [
+          "Accommodation requests",
+          "Medical documentation",
+          "Interactive process records"
+        ]
       }
     ],
     "decision_tree": {
@@ -138,36 +166,70 @@
         },
         "strong_case_assessment": {
           "result": "Strong case with high likelihood of success",
-          "recommended_actions": ["File formal complaint", "Seek maximum damages", "Consider class action if applicable"],
+          "recommended_actions": [
+            "File formal complaint",
+            "Seek maximum damages",
+            "Consider class action if applicable"
+          ],
           "monetary_range": "high"
         },
         "moderate_case_assessment": {
           "result": "Moderate case with reasonable prospects",
-          "recommended_actions": ["Negotiate settlement", "Gather additional evidence", "Consider mediation"],
+          "recommended_actions": [
+            "Negotiate settlement",
+            "Gather additional evidence",
+            "Consider mediation"
+          ],
           "monetary_range": "medium"
         },
         "weak_case_assessment": {
           "result": "Weak case with limited prospects",
-          "recommended_actions": ["Advise client of risks", "Consider alternative remedies", "Explore settlement options"],
+          "recommended_actions": [
+            "Advise client of risks",
+            "Consider alternative remedies",
+            "Explore settlement options"
+          ],
           "monetary_range": "low"
         }
       }
     },
     "monetary_ranges": {
       "low": {
-        "range": [10000, 50000],
+        "range": [
+          10000,
+          50000
+        ],
         "description": "Limited damages for weak cases or minor violations",
-        "factors": ["Back pay only", "Limited emotional distress", "No punitive damages"]
+        "factors": [
+          "Back pay only",
+          "Limited emotional distress",
+          "No punitive damages"
+        ]
       },
       "medium": {
-        "range": [50000, 200000],
+        "range": [
+          50000,
+          200000
+        ],
         "description": "Moderate damages for cases with reasonable prospects",
-        "factors": ["Back pay and front pay", "Emotional distress damages", "Some attorney fees"]
+        "factors": [
+          "Back pay and front pay",
+          "Emotional distress damages",
+          "Some attorney fees"
+        ]
       },
       "high": {
-        "range": [200000, 1000000],
+        "range": [
+          200000,
+          1000000
+        ],
         "description": "Substantial damages for strong cases with clear violations",
-        "factors": ["Full compensatory damages", "Punitive damages", "Attorney fees and costs", "Injunctive relief"]
+        "factors": [
+          "Full compensatory damages",
+          "Punitive damages",
+          "Attorney fees and costs",
+          "Injunctive relief"
+        ]
       }
     },
     "escalation_paths": [
@@ -233,7 +295,11 @@
         "weight": 0.9,
         "description": "If contract terms are clear and violated, assess whether breach is material",
         "legal_basis": "Sale of Goods Act 1979, Contract law principles",
-        "evidence_required": ["Original contract", "Performance records", "Breach documentation"]
+        "evidence_required": [
+          "Original contract",
+          "Performance records",
+          "Breach documentation"
+        ]
       },
       {
         "id": "rule-102",
@@ -242,7 +308,11 @@
         "weight": 0.6,
         "description": "If contract language is ambiguous, apply standard interpretation rules",
         "legal_basis": "Parol evidence rule, contra proferentem doctrine",
-        "evidence_required": ["Contract drafts", "Negotiation history", "Course of dealing evidence"]
+        "evidence_required": [
+          "Contract drafts",
+          "Negotiation history",
+          "Course of dealing evidence"
+        ]
       },
       {
         "id": "rule-103",
@@ -251,7 +321,11 @@
         "weight": 0.8,
         "description": "If non-compete is violated, assess enforceability under UK employment law",
         "legal_basis": "Employment Rights Act 1996, Restraint of trade doctrine",
-        "evidence_required": ["Non-compete agreement", "Geographic scope analysis", "Competitive activity evidence"]
+        "evidence_required": [
+          "Non-compete agreement",
+          "Geographic scope analysis",
+          "Competitive activity evidence"
+        ]
       },
       {
         "id": "rule-104",
@@ -260,7 +334,11 @@
         "weight": 0.8,
         "description": "If damages are easily calculable, pursue monetary relief",
         "legal_basis": "Expectation damages under UCC/common law",
-        "evidence_required": ["Financial records", "Lost profit calculations", "Market value assessments"]
+        "evidence_required": [
+          "Financial records",
+          "Lost profit calculations",
+          "Market value assessments"
+        ]
       },
       {
         "id": "rule-105",
@@ -269,7 +347,11 @@
         "weight": 0.9,
         "description": "If ongoing harm is occurring, seek immediate injunctive relief",
         "legal_basis": "Irreparable harm doctrine",
-        "evidence_required": ["Harm documentation", "Inadequacy of legal remedies", "Balance of hardships analysis"]
+        "evidence_required": [
+          "Harm documentation",
+          "Inadequacy of legal remedies",
+          "Balance of hardships analysis"
+        ]
       },
       {
         "id": "rule-106",
@@ -278,7 +360,11 @@
         "weight": 0.7,
         "description": "If force majeure is claimed, evaluate impossibility or frustration of purpose defense",
         "legal_basis": "Impossibility and frustration doctrines",
-        "evidence_required": ["Force majeure clause", "Impossibility documentation", "Foreseeability analysis"]
+        "evidence_required": [
+          "Force majeure clause",
+          "Impossibility documentation",
+          "Foreseeability analysis"
+        ]
       },
       {
         "id": "rule-107",
@@ -287,7 +373,11 @@
         "weight": 0.8,
         "description": "If contract requires written form, assess compliance with UK writing requirements",
         "legal_basis": "Law of Property (Miscellaneous Provisions) Act 1989, Statute of Frauds 1677",
-        "evidence_required": ["Written agreement", "Partial performance evidence", "Estoppel factors"]
+        "evidence_required": [
+          "Written agreement",
+          "Partial performance evidence",
+          "Estoppel factors"
+        ]
       }
     ],
     "decision_tree": {
@@ -357,36 +447,70 @@
         },
         "strong_case_assessment": {
           "result": "Strong case with high likelihood of success",
-          "recommended_actions": ["Demand full performance", "Seek maximum damages", "Consider injunctive relief"],
+          "recommended_actions": [
+            "Demand full performance",
+            "Seek maximum damages",
+            "Consider injunctive relief"
+          ],
           "monetary_range": "high"
         },
         "moderate_case_assessment": {
           "result": "Moderate case with reasonable prospects",
-          "recommended_actions": ["Negotiate settlement", "Assess cure possibilities", "Consider alternative dispute resolution"],
+          "recommended_actions": [
+            "Negotiate settlement",
+            "Assess cure possibilities",
+            "Consider alternative dispute resolution"
+          ],
           "monetary_range": "medium"
         },
         "weak_case_assessment": {
           "result": "Weak case with limited prospects",
-          "recommended_actions": ["Advise client of risks", "Explore settlement", "Consider contract reformation"],
+          "recommended_actions": [
+            "Advise client of risks",
+            "Explore settlement",
+            "Consider contract reformation"
+          ],
           "monetary_range": "low"
         }
       }
     },
     "monetary_ranges": {
       "low": {
-        "range": [5000, 25000],
+        "range": [
+          5000,
+          25000
+        ],
         "description": "Limited damages for minor breaches or weak cases",
-        "factors": ["Incidental damages only", "Partial performance received", "Mitigation failures"]
+        "factors": [
+          "Incidental damages only",
+          "Partial performance received",
+          "Mitigation failures"
+        ]
       },
       "medium": {
-        "range": [25000, 150000],
+        "range": [
+          25000,
+          150000
+        ],
         "description": "Moderate damages for material breaches with some complications",
-        "factors": ["Expectation damages", "Some consequential damages", "Attorney fees if provided"]
+        "factors": [
+          "Expectation damages",
+          "Some consequential damages",
+          "Attorney fees if provided"
+        ]
       },
       "high": {
-        "range": [150000, 2000000],
+        "range": [
+          150000,
+          2000000
+        ],
         "description": "Substantial damages for clear material breaches",
-        "factors": ["Full expectation damages", "Consequential damages", "Lost profits", "Punitive damages if applicable"]
+        "factors": [
+          "Full expectation damages",
+          "Consequential damages",
+          "Lost profits",
+          "Punitive damages if applicable"
+        ]
       }
     },
     "escalation_paths": [
@@ -451,7 +575,12 @@
         "weight": 0.9,
         "description": "If debt is clearly documented with invoices/contracts, proceed with collection",
         "legal_basis": "Contract law, account stated doctrine",
-        "evidence_required": ["Original invoices", "Contracts", "Delivery receipts", "Payment history"]
+        "evidence_required": [
+          "Original invoices",
+          "Contracts",
+          "Delivery receipts",
+          "Payment history"
+        ]
       },
       {
         "id": "rule-202",
@@ -460,7 +589,11 @@
         "weight": 0.7,
         "description": "If debtor disputes amount, verify calculation accuracy and supporting documentation",
         "legal_basis": "Burden of proof requirements",
-        "evidence_required": ["Detailed accounting", "Interest calculations", "Fee documentation"]
+        "evidence_required": [
+          "Detailed accounting",
+          "Interest calculations",
+          "Fee documentation"
+        ]
       },
       {
         "id": "rule-203",
@@ -469,7 +602,11 @@
         "weight": 0.6,
         "description": "If debtor claims defective services, assess validity of quality-based defense",
         "legal_basis": "Breach of warranty, failure of consideration",
-        "evidence_required": ["Service specifications", "Quality standards", "Performance documentation"]
+        "evidence_required": [
+          "Service specifications",
+          "Quality standards",
+          "Performance documentation"
+        ]
       },
       {
         "id": "rule-204",
@@ -478,7 +615,11 @@
         "weight": 0.8,
         "description": "If debt may be time-barred, evaluate factors under UK limitation periods",
         "legal_basis": "Limitation Act 1980, Contract limitation periods",
-        "evidence_required": ["Last payment date", "Acknowledgment of debt", "Tolling events"]
+        "evidence_required": [
+          "Last payment date",
+          "Acknowledgment of debt",
+          "Tolling events"
+        ]
       },
       {
         "id": "rule-205",
@@ -487,7 +628,11 @@
         "weight": 0.7,
         "description": "If debtor has attachable assets, consider pre-judgment attachment",
         "legal_basis": "Attachment and garnishment statutes",
-        "evidence_required": ["Asset investigation", "Bank accounts", "Real property records"]
+        "evidence_required": [
+          "Asset investigation",
+          "Bank accounts",
+          "Real property records"
+        ]
       },
       {
         "id": "rule-206",
@@ -496,7 +641,11 @@
         "weight": 0.9,
         "description": "If consumer debt, ensure all collection activities comply with UK consumer credit regulations",
         "legal_basis": "Consumer Credit Act 1974, FCA Consumer Credit Rules",
-        "evidence_required": ["Consumer status verification", "FCA compliance notices", "Communication records"]
+        "evidence_required": [
+          "Consumer status verification",
+          "FCA compliance notices",
+          "Communication records"
+        ]
       },
       {
         "id": "rule-207",
@@ -505,7 +654,11 @@
         "weight": 1.0,
         "description": "If debtor filed bankruptcy, immediately assess automatic stay implications",
         "legal_basis": "11 U.S.C. § 362 (automatic stay)",
-        "evidence_required": ["Bankruptcy filing", "Stay relief motions", "Proof of claim"]
+        "evidence_required": [
+          "Bankruptcy filing",
+          "Stay relief motions",
+          "Proof of claim"
+        ]
       },
       {
         "id": "rule-208",
@@ -514,7 +667,11 @@
         "weight": 0.8,
         "description": "If personal guarantee exists, evaluate guarantor liability and collection options",
         "legal_basis": "Guaranty law, suretyship principles",
-        "evidence_required": ["Guarantee agreement", "Default notice", "Guarantor assets"]
+        "evidence_required": [
+          "Guarantee agreement",
+          "Default notice",
+          "Guarantor assets"
+        ]
       }
     ],
     "decision_tree": {
@@ -582,36 +739,70 @@
         },
         "strong_case_assessment": {
           "result": "Strong case with high collection prospects",
-          "recommended_actions": ["Demand full payment", "Initiate litigation", "Consider asset attachment"],
+          "recommended_actions": [
+            "Demand full payment",
+            "Initiate litigation",
+            "Consider asset attachment"
+          ],
           "monetary_range": "high"
         },
         "moderate_case_assessment": {
           "result": "Moderate case with reasonable collection prospects",
-          "recommended_actions": ["Negotiate payment plan", "Consider settlement", "Evaluate cost-benefit"],
+          "recommended_actions": [
+            "Negotiate payment plan",
+            "Consider settlement",
+            "Evaluate cost-benefit"
+          ],
           "monetary_range": "medium"
         },
         "weak_case_assessment": {
           "result": "Weak case with limited collection prospects",
-          "recommended_actions": ["Advise client of risks", "Consider write-off", "Explore alternative remedies"],
+          "recommended_actions": [
+            "Advise client of risks",
+            "Consider write-off",
+            "Explore alternative remedies"
+          ],
           "monetary_range": "low"
         }
       }
     },
     "monetary_ranges": {
       "low": {
-        "range": [1000, 10000],
+        "range": [
+          1000,
+          10000
+        ],
         "description": "Limited recovery potential due to defenses or collection issues",
-        "factors": ["Partial payment only", "High collection costs", "Debtor insolvency"]
+        "factors": [
+          "Partial payment only",
+          "High collection costs",
+          "Debtor insolvency"
+        ]
       },
       "medium": {
-        "range": [10000, 75000],
+        "range": [
+          10000,
+          75000
+        ],
         "description": "Moderate recovery potential with some complications",
-        "factors": ["Settlement likely", "Some collection costs", "Reasonable asset base"]
+        "factors": [
+          "Settlement likely",
+          "Some collection costs",
+          "Reasonable asset base"
+        ]
       },
       "high": {
-        "range": [75000, 500000],
+        "range": [
+          75000,
+          500000
+        ],
         "description": "Strong recovery potential for well-documented debts",
-        "factors": ["Full principal recovery", "Interest and fees", "Attorney costs", "Strong asset base"]
+        "factors": [
+          "Full principal recovery",
+          "Interest and fees",
+          "Attorney costs",
+          "Strong asset base"
+        ]
       }
     },
     "escalation_paths": [
@@ -676,7 +867,12 @@
         "weight": 0.9,
         "description": "If liability is clearly established, pursue full compensatory damages",
         "legal_basis": "Negligence law, strict liability",
-        "evidence_required": ["Accident reports", "Witness statements", "Expert testimony", "Physical evidence"]
+        "evidence_required": [
+          "Accident reports",
+          "Witness statements",
+          "Expert testimony",
+          "Physical evidence"
+        ]
       },
       {
         "id": "rule-302",
@@ -685,7 +881,12 @@
         "weight": 0.7,
         "description": "If comparative negligence is an issue, assess fault allocation impact on damages",
         "legal_basis": "Comparative negligence statutes",
-        "evidence_required": ["Accident reconstruction", "Traffic laws", "Witness testimony", "Video evidence"]
+        "evidence_required": [
+          "Accident reconstruction",
+          "Traffic laws",
+          "Witness testimony",
+          "Video evidence"
+        ]
       },
       {
         "id": "rule-303",
@@ -694,7 +895,12 @@
         "weight": 0.8,
         "description": "If serious permanent injury exists, maximize pain and suffering damages",
         "legal_basis": "Compensatory damages doctrine",
-        "evidence_required": ["Medical records", "Expert medical testimony", "Life care plans", "Vocational assessments"]
+        "evidence_required": [
+          "Medical records",
+          "Expert medical testimony",
+          "Life care plans",
+          "Vocational assessments"
+        ]
       },
       {
         "id": "rule-304",
@@ -703,7 +909,11 @@
         "weight": 0.8,
         "description": "If insurance coverage is adequate, pursue policy limits settlement",
         "legal_basis": "Insurance contract law",
-        "evidence_required": ["Insurance policies", "Coverage declarations", "Demand packages"]
+        "evidence_required": [
+          "Insurance policies",
+          "Coverage declarations",
+          "Demand packages"
+        ]
       },
       {
         "id": "rule-305",
@@ -712,7 +922,11 @@
         "weight": 1.0,
         "description": "If limitation period is approaching, commence proceedings immediately",
         "legal_basis": "Limitation Act 1980, Civil Procedure Rules",
-        "evidence_required": ["Incident date", "Discovery date", "Tolling factors"]
+        "evidence_required": [
+          "Incident date",
+          "Discovery date",
+          "Tolling factors"
+        ]
       },
       {
         "id": "rule-306",
@@ -721,7 +935,11 @@
         "weight": 0.6,
         "description": "If pre-existing condition present, distinguish aggravation from new injury causation",
         "legal_basis": "Eggshell skull doctrine, aggravation of pre-existing condition",
-        "evidence_required": ["Prior medical records", "Treating physician testimony", "Medical expert analysis"]
+        "evidence_required": [
+          "Prior medical records",
+          "Treating physician testimony",
+          "Medical expert analysis"
+        ]
       }
     ],
     "decision_tree": {
@@ -785,36 +1003,72 @@
         },
         "strong_case_assessment": {
           "result": "Strong case with high recovery potential",
-          "recommended_actions": ["Demand policy limits", "Prepare for trial", "Maximize damages presentation"],
+          "recommended_actions": [
+            "Demand policy limits",
+            "Prepare for trial",
+            "Maximize damages presentation"
+          ],
           "monetary_range": "high"
         },
         "moderate_case_assessment": {
           "result": "Moderate case with reasonable settlement prospects",
-          "recommended_actions": ["Negotiate settlement", "Consider mediation", "Evaluate trial risks"],
+          "recommended_actions": [
+            "Negotiate settlement",
+            "Consider mediation",
+            "Evaluate trial risks"
+          ],
           "monetary_range": "medium"
         },
         "weak_case_assessment": {
           "result": "Weak case with limited recovery prospects",
-          "recommended_actions": ["Advise client of risks", "Consider early settlement", "Evaluate case costs"],
+          "recommended_actions": [
+            "Advise client of risks",
+            "Consider early settlement",
+            "Evaluate case costs"
+          ],
           "monetary_range": "low"
         }
       }
     },
     "monetary_ranges": {
       "low": {
-        "range": [5000, 25000],
+        "range": [
+          5000,
+          25000
+        ],
         "description": "Limited damages for minor injuries or liability issues",
-        "factors": ["Minor soft tissue injuries", "Minimal medical treatment", "No lost wages", "Liability disputes"]
+        "factors": [
+          "Minor soft tissue injuries",
+          "Minimal medical treatment",
+          "No lost wages",
+          "Liability disputes"
+        ]
       },
       "medium": {
-        "range": [25000, 150000],
+        "range": [
+          25000,
+          150000
+        ],
         "description": "Moderate damages for significant injuries with some complications",
-        "factors": ["Moderate injuries", "Some permanent impairment", "Lost wages", "Shared fault"]
+        "factors": [
+          "Moderate injuries",
+          "Some permanent impairment",
+          "Lost wages",
+          "Shared fault"
+        ]
       },
       "high": {
-        "range": [150000, 5000000],
+        "range": [
+          150000,
+          5000000
+        ],
         "description": "Substantial damages for serious injuries with clear liability",
-        "factors": ["Catastrophic injuries", "Permanent disability", "Future medical costs", "Lost earning capacity"]
+        "factors": [
+          "Catastrophic injuries",
+          "Permanent disability",
+          "Future medical costs",
+          "Lost earning capacity"
+        ]
       }
     },
     "escalation_paths": [

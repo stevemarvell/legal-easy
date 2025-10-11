@@ -22,7 +22,7 @@
       ],
       "playbook_id": "employment-dispute"
     },
-    "analysis_timestamp": "2025-10-11T17:28:44.733172",
+    "analysis_timestamp": "2025-10-11T18:31:02.475305",
     "document_analysis": {
       "documents": [
         {
@@ -31,7 +31,7 @@
           "document_type": "Contract",
           "analysis": {
             "document_id": "doc-001",
-            "analysis_timestamp": "2025-10-11T15:20:44.626671",
+            "analysis_timestamp": "2025-10-11T18:30:56.472417",
             "key_dates": [
               "2022-03-15"
             ],
@@ -82,10 +82,10 @@
           "document_type": "Evidence",
           "analysis": {
             "document_id": "doc-002",
-            "analysis_timestamp": "2025-10-11T15:20:44.843316",
+            "analysis_timestamp": "2025-10-11T18:30:56.553999",
             "key_dates": [
-              "2023-12-10",
-              "2023-12-08"
+              "2023-12-08",
+              "2023-12-10"
             ],
             "parties_involved": [
               "Solutions Ltd",
@@ -123,14 +123,14 @@
             "compliance_status": "Non-compliant",
             "critical_deadlines": [
               {
-                "date": "2023-12-10",
-                "type": "due",
-                "description": "Due on 2023-12-10"
-              },
-              {
                 "date": "2023-12-08",
                 "type": "due",
                 "description": "Due on 2023-12-08"
+              },
+              {
+                "date": "2023-12-10",
+                "type": "due",
+                "description": "Due on 2023-12-10"
               }
             ],
             "document_intent": "Notice",
@@ -143,11 +143,11 @@
           "document_type": "Email",
           "analysis": {
             "document_id": "doc-003",
-            "analysis_timestamp": "2025-10-11T15:20:44.998766",
+            "analysis_timestamp": "2025-10-11T18:30:56.640985",
             "key_dates": [
-              "2024-01-12",
+              "2024-01-31",
               "2024-01-19",
-              "2024-01-31"
+              "2024-01-12"
             ],
             "parties_involved": [
               "Employment Termination",
@@ -185,9 +185,9 @@
             "compliance_status": "Under review",
             "critical_deadlines": [
               {
-                "date": "2024-01-12",
+                "date": "2024-01-31",
                 "type": "due",
-                "description": "Due on 2024-01-12"
+                "description": "Due on 2024-01-31"
               },
               {
                 "date": "2024-01-19",
@@ -195,9 +195,9 @@
                 "description": "Due on 2024-01-19"
               },
               {
-                "date": "2024-01-31",
+                "date": "2024-01-12",
                 "type": "due",
-                "description": "Due on 2024-01-31"
+                "description": "Due on 2024-01-12"
               }
             ],
             "document_intent": "Notice",
@@ -322,14 +322,14 @@
           ],
           "description": "This Contract of Employment is made between [COMPANY NAME], a company incorporated in England and Wales (\"Company\"), and [EMPLOYEE NAME] (\"Employee\").",
           "legal_concepts": [
-            "lc-003",
-            "lc-005",
-            "lc-006",
-            "lc-011",
-            "lc-012",
-            "lc-004",
             "lc-002",
-            "lc-001"
+            "lc-004",
+            "lc-012",
+            "lc-001",
+            "lc-011",
+            "lc-003",
+            "lc-006",
+            "lc-005"
           ],
           "related_items": [],
           "metadata": {
@@ -362,14 +362,14 @@
           ],
           "description": "\"Either party may terminate this Agreement at any time, with or without cause, by providing [30/60/90] days written notice to the other party.\"",
           "legal_concepts": [
-            "lc-003",
-            "lc-011",
-            "lc-005",
-            "lc-012",
-            "lc-004",
-            "lc-013",
             "lc-002",
-            "lc-001"
+            "lc-013",
+            "lc-004",
+            "lc-012",
+            "lc-001",
+            "lc-003",
+            "lc-005",
+            "lc-011"
           ],
           "related_items": [],
           "metadata": {
@@ -402,18 +402,18 @@
           ],
           "description": "Under Employment Rights Act 1996, employees with 2+ years' service are protected from unfair dismissal. Dismissal must be for a fair reason and follow a fair procedure.",
           "legal_concepts": [
-            "lc-003",
-            "lc-009",
-            "lc-010",
-            "lc-005",
-            "lc-006",
-            "lc-011",
-            "lc-012",
-            "lc-004",
-            "lc-008",
             "lc-002",
+            "lc-004",
+            "lc-012",
+            "lc-001",
+            "lc-008",
+            "lc-011",
+            "lc-009",
+            "lc-003",
+            "lc-010",
+            "lc-006",
             "lc-007",
-            "lc-001"
+            "lc-005"
           ],
           "related_items": [],
           "metadata": {
@@ -445,14 +445,14 @@
           ],
           "description": "Primary statute governing individual employment rights in the UK.",
           "legal_concepts": [
-            "lc-003",
+            "lc-002",
+            "lc-004",
             "lc-014",
-            "lc-005",
+            "lc-001",
+            "lc-003",
             "lc-006",
             "lc-015",
-            "lc-004",
-            "lc-002",
-            "lc-001"
+            "lc-005"
           ],
           "related_items": [],
           "metadata": {
@@ -485,15 +485,15 @@
           ],
           "description": "This Service Agreement is made between [CLIENT NAME] (\"Client\") and [SERVICE PROVIDER NAME] (\"Provider\").",
           "legal_concepts": [
+            "lc-002",
+            "lc-004",
+            "lc-013",
+            "lc-012",
+            "lc-001",
             "lc-003",
             "lc-005",
             "lc-006",
-            "lc-011",
-            "lc-012",
-            "lc-004",
-            "lc-013",
-            "lc-002",
-            "lc-001"
+            "lc-011"
           ],
           "related_items": [],
           "metadata": {
@@ -527,14 +527,14 @@
           ],
           "description": "Liability Clauses templates and examples",
           "legal_concepts": [
-            "lc-003",
-            "lc-011",
-            "lc-005",
-            "lc-012",
-            "lc-004",
-            "lc-013",
             "lc-002",
-            "lc-001"
+            "lc-013",
+            "lc-004",
+            "lc-012",
+            "lc-001",
+            "lc-003",
+            "lc-005",
+            "lc-011"
           ],
           "related_items": [],
           "metadata": {
@@ -567,15 +567,15 @@
           ],
           "description": "\"All work product, inventions, and intellectual property created by Contractor in connection with this Agreement shall be deemed work made for hire and shall be owned exclusively by Client.\"",
           "legal_concepts": [
-            "lc-003",
-            "lc-005",
-            "lc-006",
-            "lc-011",
-            "lc-012",
+            "lc-002",
             "lc-004",
             "lc-013",
-            "lc-002",
-            "lc-001"
+            "lc-012",
+            "lc-001",
+            "lc-011",
+            "lc-003",
+            "lc-006",
+            "lc-005"
           ],
           "related_items": [],
           "metadata": {
@@ -643,18 +643,18 @@
             ],
             "description": "Under Employment Rights Act 1996, employees with 2+ years' service are protected from unfair dismissal. Dismissal must be for a fair reason and follow a fair procedure.",
             "legal_concepts": [
-              "lc-003",
-              "lc-009",
-              "lc-010",
-              "lc-005",
-              "lc-006",
-              "lc-011",
-              "lc-012",
-              "lc-004",
-              "lc-008",
               "lc-002",
+              "lc-004",
+              "lc-012",
+              "lc-001",
+              "lc-008",
+              "lc-011",
+              "lc-009",
+              "lc-003",
+              "lc-010",
+              "lc-006",
               "lc-007",
-              "lc-001"
+              "lc-005"
             ],
             "related_items": [],
             "metadata": {
@@ -688,14 +688,14 @@
             ],
             "description": "Primary statute governing individual employment rights in the UK.",
             "legal_concepts": [
-              "lc-003",
+              "lc-002",
+              "lc-004",
               "lc-014",
-              "lc-005",
+              "lc-001",
+              "lc-003",
               "lc-006",
               "lc-015",
-              "lc-004",
-              "lc-002",
-              "lc-001"
+              "lc-005"
             ],
             "related_items": [],
             "metadata": {
@@ -729,14 +729,14 @@
             ],
             "description": "This Contract of Employment is made between [COMPANY NAME], a company incorporated in England and Wales (\"Company\"), and [EMPLOYEE NAME] (\"Employee\").",
             "legal_concepts": [
-              "lc-003",
-              "lc-005",
-              "lc-006",
-              "lc-011",
-              "lc-012",
-              "lc-004",
               "lc-002",
-              "lc-001"
+              "lc-004",
+              "lc-012",
+              "lc-001",
+              "lc-011",
+              "lc-003",
+              "lc-006",
+              "lc-005"
             ],
             "related_items": [],
             "metadata": {
@@ -769,15 +769,15 @@
             ],
             "description": "This Service Agreement is made between [CLIENT NAME] (\"Client\") and [SERVICE PROVIDER NAME] (\"Provider\").",
             "legal_concepts": [
+              "lc-002",
+              "lc-004",
+              "lc-013",
+              "lc-012",
+              "lc-001",
               "lc-003",
               "lc-005",
               "lc-006",
-              "lc-011",
-              "lc-012",
-              "lc-004",
-              "lc-013",
-              "lc-002",
-              "lc-001"
+              "lc-011"
             ],
             "related_items": [],
             "metadata": {
@@ -846,14 +846,14 @@
             ],
             "description": "\"Either party may terminate this Agreement at any time, with or without cause, by providing [30/60/90] days written notice to the other party.\"",
             "legal_concepts": [
-              "lc-003",
-              "lc-011",
-              "lc-005",
-              "lc-012",
-              "lc-004",
-              "lc-013",
               "lc-002",
-              "lc-001"
+              "lc-013",
+              "lc-004",
+              "lc-012",
+              "lc-001",
+              "lc-003",
+              "lc-005",
+              "lc-011"
             ],
             "related_items": [],
             "metadata": {
@@ -887,14 +887,14 @@
             ],
             "description": "Liability Clauses templates and examples",
             "legal_concepts": [
-              "lc-003",
-              "lc-011",
-              "lc-005",
-              "lc-012",
-              "lc-004",
-              "lc-013",
               "lc-002",
-              "lc-001"
+              "lc-013",
+              "lc-004",
+              "lc-012",
+              "lc-001",
+              "lc-003",
+              "lc-005",
+              "lc-011"
             ],
             "related_items": [],
             "metadata": {
@@ -927,15 +927,15 @@
             ],
             "description": "\"All work product, inventions, and intellectual property created by Contractor in connection with this Agreement shall be deemed work made for hire and shall be owned exclusively by Client.\"",
             "legal_concepts": [
-              "lc-003",
-              "lc-005",
-              "lc-006",
-              "lc-011",
-              "lc-012",
+              "lc-002",
               "lc-004",
               "lc-013",
-              "lc-002",
-              "lc-001"
+              "lc-012",
+              "lc-001",
+              "lc-011",
+              "lc-003",
+              "lc-006",
+              "lc-005"
             ],
             "related_items": [],
             "metadata": {
@@ -1139,7 +1139,7 @@
       ],
       "playbook_id": "contract-breach"
     },
-    "analysis_timestamp": "2025-10-11T17:28:44.745191",
+    "analysis_timestamp": "2025-10-11T18:31:02.492305",
     "document_analysis": {
       "documents": [
         {
@@ -1148,7 +1148,7 @@
           "document_type": "Contract",
           "analysis": {
             "document_id": "doc-004",
-            "analysis_timestamp": "2025-10-11T15:20:45.170400",
+            "analysis_timestamp": "2025-10-11T18:30:56.703512",
             "key_dates": [
               "2023-06-01"
             ],
@@ -1199,7 +1199,7 @@
           "document_type": "Evidence",
           "analysis": {
             "document_id": "doc-005",
-            "analysis_timestamp": "2025-10-11T15:20:45.381779",
+            "analysis_timestamp": "2025-10-11T18:30:56.799017",
             "key_dates": [
               "2025-06-01",
               "2024-01-15"
@@ -1241,7 +1241,7 @@
           "document_type": "Legal Brief",
           "analysis": {
             "document_id": "doc-006",
-            "analysis_timestamp": "2025-10-11T15:20:45.538980",
+            "analysis_timestamp": "2025-10-11T18:30:56.854602",
             "key_dates": [
               "2024-02-01",
               "2023-06-01",
@@ -1293,11 +1293,11 @@
           "document_type": "Email",
           "analysis": {
             "document_id": "doc-007",
-            "analysis_timestamp": "2025-10-11T15:20:45.710548",
+            "analysis_timestamp": "2025-10-11T18:30:56.954781",
             "key_dates": [
               "2024-02-03",
-              "2024-02-01",
               "2024-02-02",
+              "2024-02-01",
               "2024-02-05"
             ],
             "parties_involved": [
@@ -1476,14 +1476,14 @@
           ],
           "description": "\"Either party may terminate this Agreement at any time, with or without cause, by providing [30/60/90] days written notice to the other party.\"",
           "legal_concepts": [
-            "lc-003",
-            "lc-011",
-            "lc-005",
-            "lc-012",
-            "lc-004",
-            "lc-013",
             "lc-002",
-            "lc-001"
+            "lc-013",
+            "lc-004",
+            "lc-012",
+            "lc-001",
+            "lc-003",
+            "lc-005",
+            "lc-011"
           ],
           "related_items": [],
           "metadata": {
@@ -1523,14 +1523,14 @@
             ],
             "description": "\"Either party may terminate this Agreement at any time, with or without cause, by providing [30/60/90] days written notice to the other party.\"",
             "legal_concepts": [
-              "lc-003",
-              "lc-011",
-              "lc-005",
-              "lc-012",
-              "lc-004",
-              "lc-013",
               "lc-002",
-              "lc-001"
+              "lc-013",
+              "lc-004",
+              "lc-012",
+              "lc-001",
+              "lc-003",
+              "lc-005",
+              "lc-011"
             ],
             "related_items": [],
             "metadata": {
@@ -1712,7 +1712,7 @@
       ],
       "playbook_id": "contract-breach"
     },
-    "analysis_timestamp": "2025-10-11T17:28:44.762180",
+    "analysis_timestamp": "2025-10-11T18:31:02.515305",
     "document_analysis": {
       "documents": [
         {
@@ -1721,12 +1721,12 @@
           "document_type": "Contract",
           "analysis": {
             "document_id": "doc-008",
-            "analysis_timestamp": "2025-10-11T15:20:45.895280",
+            "analysis_timestamp": "2025-10-11T18:30:57.020792",
             "key_dates": [
-              "2023-09-15",
               "2023-10-15",
-              "2023-08-01",
-              "2023-11-15"
+              "2023-11-15",
+              "2023-09-15",
+              "2023-08-01"
             ],
             "parties_involved": [
               "Premier Consulting Ltd",
@@ -1766,24 +1766,24 @@
             "compliance_status": "Under review",
             "critical_deadlines": [
               {
-                "date": "2023-09-15",
-                "type": "due",
-                "description": "Due on 2023-09-15"
-              },
-              {
                 "date": "2023-10-15",
                 "type": "due",
                 "description": "Due on 2023-10-15"
               },
               {
-                "date": "2023-08-01",
-                "type": "due",
-                "description": "Due on 2023-08-01"
-              },
-              {
                 "date": "2023-11-15",
                 "type": "due",
                 "description": "Due on 2023-11-15"
+              },
+              {
+                "date": "2023-09-15",
+                "type": "due",
+                "description": "Due on 2023-09-15"
+              },
+              {
+                "date": "2023-08-01",
+                "type": "due",
+                "description": "Due on 2023-08-01"
               }
             ],
             "document_intent": "Agreement",
@@ -1796,11 +1796,11 @@
           "document_type": "Evidence",
           "analysis": {
             "document_id": "doc-009",
-            "analysis_timestamp": "2025-10-11T15:20:46.114701",
+            "analysis_timestamp": "2025-10-11T18:30:57.135339",
             "key_dates": [
-              "2024-01-28",
-              "2023-11-01",
-              "2023-11-14",
+              "2023-12-01",
+              "2023-12-31",
+              "2023-10-15",
               "2023-12-15",
               "2023-11-20"
             ],
@@ -1839,19 +1839,19 @@
             "compliance_status": "Under review",
             "critical_deadlines": [
               {
-                "date": "2024-01-28",
+                "date": "2023-12-01",
                 "type": "due",
-                "description": "Due on 2024-01-28"
+                "description": "Due on 2023-12-01"
               },
               {
-                "date": "2023-11-01",
+                "date": "2023-12-31",
                 "type": "due",
-                "description": "Due on 2023-11-01"
+                "description": "Due on 2023-12-31"
               },
               {
-                "date": "2023-11-14",
+                "date": "2023-10-15",
                 "type": "due",
-                "description": "Due on 2023-11-14"
+                "description": "Due on 2023-10-15"
               },
               {
                 "date": "2023-12-15",
@@ -1874,10 +1874,10 @@
           "document_type": "Email",
           "analysis": {
             "document_id": "doc-010",
-            "analysis_timestamp": "2025-10-11T15:20:46.359963",
+            "analysis_timestamp": "2025-10-11T18:30:57.325921",
             "key_dates": [
-              "2023-08-01",
-              "2024-01-29"
+              "2024-01-29",
+              "2023-08-01"
             ],
             "parties_involved": [
               "Concerns About Deliverable",
@@ -1916,14 +1916,14 @@
             "compliance_status": "Non-compliant",
             "critical_deadlines": [
               {
-                "date": "2023-08-01",
-                "type": "due",
-                "description": "Due on 2023-08-01"
-              },
-              {
                 "date": "2024-01-29",
                 "type": "due",
                 "description": "Due on 2024-01-29"
+              },
+              {
+                "date": "2023-08-01",
+                "type": "due",
+                "description": "Due on 2023-08-01"
               }
             ],
             "document_intent": "Agreement",
@@ -1941,12 +1941,11 @@
           "2023-08-01",
           "2023-09-15",
           "2023-10-15",
-          "2023-11-01",
-          "2023-11-14",
           "2023-11-15",
           "2023-11-20",
+          "2023-12-01",
           "2023-12-15",
-          "2024-01-28",
+          "2023-12-31",
           "2024-01-29"
         ],
         "parties_involved": [
@@ -2012,22 +2011,9 @@
           },
           {
             "date": "2023-10-15",
-            "description": "Key date referenced in: Consulting Services Agreement",
+            "description": "Key date referenced in: Consulting Services Agreement, Outstanding Invoices",
             "related_documents": [
-              "Consulting Services Agreement"
-            ]
-          },
-          {
-            "date": "2023-11-01",
-            "description": "Key date referenced in: Outstanding Invoices",
-            "related_documents": [
-              "Outstanding Invoices"
-            ]
-          },
-          {
-            "date": "2023-11-14",
-            "description": "Key date referenced in: Outstanding Invoices",
-            "related_documents": [
+              "Consulting Services Agreement",
               "Outstanding Invoices"
             ]
           },
@@ -2046,6 +2032,13 @@
             ]
           },
           {
+            "date": "2023-12-01",
+            "description": "Key date referenced in: Outstanding Invoices",
+            "related_documents": [
+              "Outstanding Invoices"
+            ]
+          },
+          {
             "date": "2023-12-15",
             "description": "Key date referenced in: Outstanding Invoices",
             "related_documents": [
@@ -2053,7 +2046,7 @@
             ]
           },
           {
-            "date": "2024-01-28",
+            "date": "2023-12-31",
             "description": "Key date referenced in: Outstanding Invoices",
             "related_documents": [
               "Outstanding Invoices"
@@ -2084,13 +2077,13 @@
           ],
           "description": "Key UK contract law precedents and principles",
           "legal_concepts": [
-            "lc-009",
-            "lc-010",
-            "lc-005",
-            "lc-006",
             "lc-004",
             "lc-008",
-            "lc-007"
+            "lc-009",
+            "lc-007",
+            "lc-010",
+            "lc-006",
+            "lc-005"
           ],
           "related_items": [],
           "metadata": {
@@ -2119,11 +2112,11 @@
           ],
           "description": "UK contract statutes and regulations",
           "legal_concepts": [
+            "lc-004",
             "lc-014",
-            "lc-005",
             "lc-006",
             "lc-015",
-            "lc-004"
+            "lc-005"
           ],
           "related_items": [],
           "metadata": {
@@ -2156,14 +2149,14 @@
           ],
           "description": "\"Either party may terminate this Agreement at any time, with or without cause, by providing [30/60/90] days written notice to the other party.\"",
           "legal_concepts": [
-            "lc-003",
-            "lc-011",
-            "lc-005",
-            "lc-012",
-            "lc-004",
-            "lc-013",
             "lc-002",
-            "lc-001"
+            "lc-013",
+            "lc-004",
+            "lc-012",
+            "lc-001",
+            "lc-003",
+            "lc-005",
+            "lc-011"
           ],
           "related_items": [],
           "metadata": {
@@ -2196,14 +2189,14 @@
           ],
           "description": "This Contract of Employment is made between [COMPANY NAME], a company incorporated in England and Wales (\"Company\"), and [EMPLOYEE NAME] (\"Employee\").",
           "legal_concepts": [
-            "lc-003",
-            "lc-005",
-            "lc-006",
-            "lc-011",
-            "lc-012",
-            "lc-004",
             "lc-002",
-            "lc-001"
+            "lc-004",
+            "lc-012",
+            "lc-001",
+            "lc-011",
+            "lc-003",
+            "lc-006",
+            "lc-005"
           ],
           "related_items": [],
           "metadata": {
@@ -2235,15 +2228,15 @@
           ],
           "description": "\"All work product, inventions, and intellectual property created by Contractor in connection with this Agreement shall be deemed work made for hire and shall be owned exclusively by Client.\"",
           "legal_concepts": [
-            "lc-003",
-            "lc-005",
-            "lc-006",
-            "lc-011",
-            "lc-012",
+            "lc-002",
             "lc-004",
             "lc-013",
-            "lc-002",
-            "lc-001"
+            "lc-012",
+            "lc-001",
+            "lc-011",
+            "lc-003",
+            "lc-006",
+            "lc-005"
           ],
           "related_items": [],
           "metadata": {
@@ -2309,15 +2302,15 @@
           ],
           "description": "This Service Agreement is made between [CLIENT NAME] (\"Client\") and [SERVICE PROVIDER NAME] (\"Provider\").",
           "legal_concepts": [
+            "lc-002",
+            "lc-004",
+            "lc-013",
+            "lc-012",
+            "lc-001",
             "lc-003",
             "lc-005",
             "lc-006",
-            "lc-011",
-            "lc-012",
-            "lc-004",
-            "lc-013",
-            "lc-002",
-            "lc-001"
+            "lc-011"
           ],
           "related_items": [],
           "metadata": {
@@ -2351,14 +2344,14 @@
           ],
           "description": "Liability Clauses templates and examples",
           "legal_concepts": [
-            "lc-003",
-            "lc-011",
-            "lc-005",
-            "lc-012",
-            "lc-004",
-            "lc-013",
             "lc-002",
-            "lc-001"
+            "lc-013",
+            "lc-004",
+            "lc-012",
+            "lc-001",
+            "lc-003",
+            "lc-005",
+            "lc-011"
           ],
           "related_items": [],
           "metadata": {
@@ -2391,18 +2384,18 @@
           ],
           "description": "Under Employment Rights Act 1996, employees with 2+ years' service are protected from unfair dismissal. Dismissal must be for a fair reason and follow a fair procedure.",
           "legal_concepts": [
-            "lc-003",
-            "lc-009",
-            "lc-010",
-            "lc-005",
-            "lc-006",
-            "lc-011",
-            "lc-012",
-            "lc-004",
-            "lc-008",
             "lc-002",
+            "lc-004",
+            "lc-012",
+            "lc-001",
+            "lc-008",
+            "lc-011",
+            "lc-009",
+            "lc-003",
+            "lc-010",
+            "lc-006",
             "lc-007",
-            "lc-001"
+            "lc-005"
           ],
           "related_items": [],
           "metadata": {
@@ -2434,14 +2427,14 @@
           ],
           "description": "Primary statute governing individual employment rights in the UK.",
           "legal_concepts": [
-            "lc-003",
+            "lc-002",
+            "lc-004",
             "lc-014",
-            "lc-005",
+            "lc-001",
+            "lc-003",
             "lc-006",
             "lc-015",
-            "lc-004",
-            "lc-002",
-            "lc-001"
+            "lc-005"
           ],
           "related_items": [],
           "metadata": {
@@ -2473,13 +2466,13 @@
             ],
             "description": "Key UK contract law precedents and principles",
             "legal_concepts": [
-              "lc-009",
-              "lc-010",
-              "lc-005",
-              "lc-006",
               "lc-004",
               "lc-008",
-              "lc-007"
+              "lc-009",
+              "lc-007",
+              "lc-010",
+              "lc-006",
+              "lc-005"
             ],
             "related_items": [],
             "metadata": {
@@ -2508,18 +2501,18 @@
             ],
             "description": "Under Employment Rights Act 1996, employees with 2+ years' service are protected from unfair dismissal. Dismissal must be for a fair reason and follow a fair procedure.",
             "legal_concepts": [
-              "lc-003",
-              "lc-009",
-              "lc-010",
-              "lc-005",
-              "lc-006",
-              "lc-011",
-              "lc-012",
-              "lc-004",
-              "lc-008",
               "lc-002",
+              "lc-004",
+              "lc-012",
+              "lc-001",
+              "lc-008",
+              "lc-011",
+              "lc-009",
+              "lc-003",
+              "lc-010",
+              "lc-006",
               "lc-007",
-              "lc-001"
+              "lc-005"
             ],
             "related_items": [],
             "metadata": {
@@ -2553,11 +2546,11 @@
             ],
             "description": "UK contract statutes and regulations",
             "legal_concepts": [
+              "lc-004",
               "lc-014",
-              "lc-005",
               "lc-006",
               "lc-015",
-              "lc-004"
+              "lc-005"
             ],
             "related_items": [],
             "metadata": {
@@ -2589,14 +2582,14 @@
             ],
             "description": "Primary statute governing individual employment rights in the UK.",
             "legal_concepts": [
-              "lc-003",
+              "lc-002",
+              "lc-004",
               "lc-014",
-              "lc-005",
+              "lc-001",
+              "lc-003",
               "lc-006",
               "lc-015",
-              "lc-004",
-              "lc-002",
-              "lc-001"
+              "lc-005"
             ],
             "related_items": [],
             "metadata": {
@@ -2630,14 +2623,14 @@
             ],
             "description": "This Contract of Employment is made between [COMPANY NAME], a company incorporated in England and Wales (\"Company\"), and [EMPLOYEE NAME] (\"Employee\").",
             "legal_concepts": [
-              "lc-003",
-              "lc-005",
-              "lc-006",
-              "lc-011",
-              "lc-012",
-              "lc-004",
               "lc-002",
-              "lc-001"
+              "lc-004",
+              "lc-012",
+              "lc-001",
+              "lc-011",
+              "lc-003",
+              "lc-006",
+              "lc-005"
             ],
             "related_items": [],
             "metadata": {
@@ -2703,15 +2696,15 @@
             ],
             "description": "This Service Agreement is made between [CLIENT NAME] (\"Client\") and [SERVICE PROVIDER NAME] (\"Provider\").",
             "legal_concepts": [
+              "lc-002",
+              "lc-004",
+              "lc-013",
+              "lc-012",
+              "lc-001",
               "lc-003",
               "lc-005",
               "lc-006",
-              "lc-011",
-              "lc-012",
-              "lc-004",
-              "lc-013",
-              "lc-002",
-              "lc-001"
+              "lc-011"
             ],
             "related_items": [],
             "metadata": {
@@ -2747,14 +2740,14 @@
             ],
             "description": "\"Either party may terminate this Agreement at any time, with or without cause, by providing [30/60/90] days written notice to the other party.\"",
             "legal_concepts": [
-              "lc-003",
-              "lc-011",
-              "lc-005",
-              "lc-012",
-              "lc-004",
-              "lc-013",
               "lc-002",
-              "lc-001"
+              "lc-013",
+              "lc-004",
+              "lc-012",
+              "lc-001",
+              "lc-003",
+              "lc-005",
+              "lc-011"
             ],
             "related_items": [],
             "metadata": {
@@ -2787,15 +2780,15 @@
             ],
             "description": "\"All work product, inventions, and intellectual property created by Contractor in connection with this Agreement shall be deemed work made for hire and shall be owned exclusively by Client.\"",
             "legal_concepts": [
-              "lc-003",
-              "lc-005",
-              "lc-006",
-              "lc-011",
-              "lc-012",
+              "lc-002",
               "lc-004",
               "lc-013",
-              "lc-002",
-              "lc-001"
+              "lc-012",
+              "lc-001",
+              "lc-011",
+              "lc-003",
+              "lc-006",
+              "lc-005"
             ],
             "related_items": [],
             "metadata": {
@@ -2828,14 +2821,14 @@
             ],
             "description": "Liability Clauses templates and examples",
             "legal_concepts": [
-              "lc-003",
-              "lc-011",
-              "lc-005",
-              "lc-012",
-              "lc-004",
-              "lc-013",
               "lc-002",
-              "lc-001"
+              "lc-013",
+              "lc-004",
+              "lc-012",
+              "lc-001",
+              "lc-003",
+              "lc-005",
+              "lc-011"
             ],
             "related_items": [],
             "metadata": {
@@ -3052,7 +3045,7 @@
       ],
       "playbook_id": "employment-dispute"
     },
-    "analysis_timestamp": "2025-10-11T17:28:44.779180",
+    "analysis_timestamp": "2025-10-11T18:31:02.539308",
     "document_analysis": {
       "documents": [
         {
@@ -3061,7 +3054,7 @@
           "document_type": "Contract",
           "analysis": {
             "document_id": "doc-011",
-            "analysis_timestamp": "2025-10-11T15:20:46.601072",
+            "analysis_timestamp": "2025-10-11T18:30:57.467239",
             "key_dates": [
               "2018-06-01",
               "1966-03-15"
@@ -3111,13 +3104,13 @@
           "document_type": "Evidence",
           "analysis": {
             "document_id": "doc-012",
-            "analysis_timestamp": "2025-10-11T15:20:46.944155",
+            "analysis_timestamp": "2025-10-11T18:30:57.705184",
             "key_dates": [
-              "2024-02-10",
-              "2022-06-15",
-              "2021-05-01",
               "2022-05-10",
-              "2023-05-10"
+              "2021-03-15",
+              "2021-04-02",
+              "2021-05-01",
+              "2022-06-15"
             ],
             "parties_involved": [
               "Human Resources Department",
@@ -3156,7 +3149,7 @@
           "document_type": "Evidence",
           "analysis": {
             "document_id": "doc-013",
-            "analysis_timestamp": "2025-10-11T15:20:47.166027",
+            "analysis_timestamp": "2025-10-11T18:30:57.831752",
             "key_dates": [
               "2023-12-15"
             ],
@@ -3203,13 +3196,13 @@
           "document_type": "Evidence",
           "analysis": {
             "document_id": "doc-014",
-            "analysis_timestamp": "2025-10-11T15:20:47.379918",
+            "analysis_timestamp": "2025-10-11T18:30:57.944106",
             "key_dates": [
-              "2024-03-14",
+              "2024-03-12",
               "2024-03-16",
-              "2024-03-18",
+              "2024-03-14",
               "2024-03-20",
-              "2024-03-12"
+              "2024-03-18"
             ],
             "parties_involved": [
               "Employment Dispute Case",
@@ -3247,9 +3240,9 @@
             "compliance_status": "Under review",
             "critical_deadlines": [
               {
-                "date": "2024-03-14",
+                "date": "2024-03-12",
                 "type": "due",
-                "description": "Due on 2024-03-14"
+                "description": "Due on 2024-03-12"
               },
               {
                 "date": "2024-03-16",
@@ -3257,9 +3250,9 @@
                 "description": "Due on 2024-03-16"
               },
               {
-                "date": "2024-03-18",
+                "date": "2024-03-14",
                 "type": "due",
-                "description": "Due on 2024-03-18"
+                "description": "Due on 2024-03-14"
               },
               {
                 "date": "2024-03-20",
@@ -3267,9 +3260,9 @@
                 "description": "Due on 2024-03-20"
               },
               {
-                "date": "2024-03-12",
+                "date": "2024-03-18",
                 "type": "due",
-                "description": "Due on 2024-03-12"
+                "description": "Due on 2024-03-18"
               }
             ],
             "document_intent": "Request",
@@ -3285,12 +3278,12 @@
         "key_dates": [
           "1966-03-15",
           "2018-06-01",
+          "2021-03-15",
+          "2021-04-02",
           "2021-05-01",
           "2022-05-10",
           "2022-06-15",
-          "2023-05-10",
           "2023-12-15",
-          "2024-02-10",
           "2024-03-12",
           "2024-03-14",
           "2024-03-16",
@@ -3359,6 +3352,20 @@
             ]
           },
           {
+            "date": "2021-03-15",
+            "description": "Key date referenced in: Promotion Records and Rejections",
+            "related_documents": [
+              "Promotion Records and Rejections"
+            ]
+          },
+          {
+            "date": "2021-04-02",
+            "description": "Key date referenced in: Promotion Records and Rejections",
+            "related_documents": [
+              "Promotion Records and Rejections"
+            ]
+          },
+          {
             "date": "2021-05-01",
             "description": "Key date referenced in: Promotion Records and Rejections",
             "related_documents": [
@@ -3380,24 +3387,10 @@
             ]
           },
           {
-            "date": "2023-05-10",
-            "description": "Key date referenced in: Promotion Records and Rejections",
-            "related_documents": [
-              "Promotion Records and Rejections"
-            ]
-          },
-          {
             "date": "2023-12-15",
             "description": "Key date referenced in: Performance Reviews",
             "related_documents": [
               "Performance Reviews"
-            ]
-          },
-          {
-            "date": "2024-02-10",
-            "description": "Key date referenced in: Promotion Records and Rejections",
-            "related_documents": [
-              "Promotion Records and Rejections"
             ]
           },
           {
@@ -3456,14 +3449,14 @@
           ],
           "description": "This Contract of Employment is made between [COMPANY NAME], a company incorporated in England and Wales (\"Company\"), and [EMPLOYEE NAME] (\"Employee\").",
           "legal_concepts": [
-            "lc-003",
-            "lc-005",
-            "lc-006",
-            "lc-011",
-            "lc-012",
-            "lc-004",
             "lc-002",
-            "lc-001"
+            "lc-004",
+            "lc-012",
+            "lc-001",
+            "lc-011",
+            "lc-003",
+            "lc-006",
+            "lc-005"
           ],
           "related_items": [],
           "metadata": {
@@ -3495,18 +3488,18 @@
           ],
           "description": "Under Employment Rights Act 1996, employees with 2+ years' service are protected from unfair dismissal. Dismissal must be for a fair reason and follow a fair procedure.",
           "legal_concepts": [
-            "lc-003",
-            "lc-009",
-            "lc-010",
-            "lc-005",
-            "lc-006",
-            "lc-011",
-            "lc-012",
-            "lc-004",
-            "lc-008",
             "lc-002",
+            "lc-004",
+            "lc-012",
+            "lc-001",
+            "lc-008",
+            "lc-011",
+            "lc-009",
+            "lc-003",
+            "lc-010",
+            "lc-006",
             "lc-007",
-            "lc-001"
+            "lc-005"
           ],
           "related_items": [],
           "metadata": {
@@ -3538,14 +3531,14 @@
           ],
           "description": "Primary statute governing individual employment rights in the UK.",
           "legal_concepts": [
-            "lc-003",
+            "lc-002",
+            "lc-004",
             "lc-014",
-            "lc-005",
+            "lc-001",
+            "lc-003",
             "lc-006",
             "lc-015",
-            "lc-004",
-            "lc-002",
-            "lc-001"
+            "lc-005"
           ],
           "related_items": [],
           "metadata": {
@@ -3578,14 +3571,14 @@
           ],
           "description": "\"Either party may terminate this Agreement at any time, with or without cause, by providing [30/60/90] days written notice to the other party.\"",
           "legal_concepts": [
-            "lc-003",
-            "lc-011",
-            "lc-005",
-            "lc-012",
-            "lc-004",
-            "lc-013",
             "lc-002",
-            "lc-001"
+            "lc-013",
+            "lc-004",
+            "lc-012",
+            "lc-001",
+            "lc-003",
+            "lc-005",
+            "lc-011"
           ],
           "related_items": [],
           "metadata": {
@@ -3619,15 +3612,15 @@
           ],
           "description": "This Service Agreement is made between [CLIENT NAME] (\"Client\") and [SERVICE PROVIDER NAME] (\"Provider\").",
           "legal_concepts": [
+            "lc-002",
+            "lc-004",
+            "lc-013",
+            "lc-012",
+            "lc-001",
             "lc-003",
             "lc-005",
             "lc-006",
-            "lc-011",
-            "lc-012",
-            "lc-004",
-            "lc-013",
-            "lc-002",
-            "lc-001"
+            "lc-011"
           ],
           "related_items": [],
           "metadata": {
@@ -3661,14 +3654,14 @@
           ],
           "description": "Liability Clauses templates and examples",
           "legal_concepts": [
-            "lc-003",
-            "lc-011",
-            "lc-005",
-            "lc-012",
-            "lc-004",
-            "lc-013",
             "lc-002",
-            "lc-001"
+            "lc-013",
+            "lc-004",
+            "lc-012",
+            "lc-001",
+            "lc-003",
+            "lc-005",
+            "lc-011"
           ],
           "related_items": [],
           "metadata": {
@@ -3701,15 +3694,15 @@
           ],
           "description": "\"All work product, inventions, and intellectual property created by Contractor in connection with this Agreement shall be deemed work made for hire and shall be owned exclusively by Client.\"",
           "legal_concepts": [
-            "lc-003",
-            "lc-005",
-            "lc-006",
-            "lc-011",
-            "lc-012",
+            "lc-002",
             "lc-004",
             "lc-013",
-            "lc-002",
-            "lc-001"
+            "lc-012",
+            "lc-001",
+            "lc-011",
+            "lc-003",
+            "lc-006",
+            "lc-005"
           ],
           "related_items": [],
           "metadata": {
@@ -3777,18 +3770,18 @@
             ],
             "description": "Under Employment Rights Act 1996, employees with 2+ years' service are protected from unfair dismissal. Dismissal must be for a fair reason and follow a fair procedure.",
             "legal_concepts": [
-              "lc-003",
-              "lc-009",
-              "lc-010",
-              "lc-005",
-              "lc-006",
-              "lc-011",
-              "lc-012",
-              "lc-004",
-              "lc-008",
               "lc-002",
+              "lc-004",
+              "lc-012",
+              "lc-001",
+              "lc-008",
+              "lc-011",
+              "lc-009",
+              "lc-003",
+              "lc-010",
+              "lc-006",
               "lc-007",
-              "lc-001"
+              "lc-005"
             ],
             "related_items": [],
             "metadata": {
@@ -3822,14 +3815,14 @@
             ],
             "description": "Primary statute governing individual employment rights in the UK.",
             "legal_concepts": [
-              "lc-003",
+              "lc-002",
+              "lc-004",
               "lc-014",
-              "lc-005",
+              "lc-001",
+              "lc-003",
               "lc-006",
               "lc-015",
-              "lc-004",
-              "lc-002",
-              "lc-001"
+              "lc-005"
             ],
             "related_items": [],
             "metadata": {
@@ -3863,14 +3856,14 @@
             ],
             "description": "This Contract of Employment is made between [COMPANY NAME], a company incorporated in England and Wales (\"Company\"), and [EMPLOYEE NAME] (\"Employee\").",
             "legal_concepts": [
-              "lc-003",
-              "lc-005",
-              "lc-006",
-              "lc-011",
-              "lc-012",
-              "lc-004",
               "lc-002",
-              "lc-001"
+              "lc-004",
+              "lc-012",
+              "lc-001",
+              "lc-011",
+              "lc-003",
+              "lc-006",
+              "lc-005"
             ],
             "related_items": [],
             "metadata": {
@@ -3903,15 +3896,15 @@
             ],
             "description": "This Service Agreement is made between [CLIENT NAME] (\"Client\") and [SERVICE PROVIDER NAME] (\"Provider\").",
             "legal_concepts": [
+              "lc-002",
+              "lc-004",
+              "lc-013",
+              "lc-012",
+              "lc-001",
               "lc-003",
               "lc-005",
               "lc-006",
-              "lc-011",
-              "lc-012",
-              "lc-004",
-              "lc-013",
-              "lc-002",
-              "lc-001"
+              "lc-011"
             ],
             "related_items": [],
             "metadata": {
@@ -3980,14 +3973,14 @@
             ],
             "description": "\"Either party may terminate this Agreement at any time, with or without cause, by providing [30/60/90] days written notice to the other party.\"",
             "legal_concepts": [
-              "lc-003",
-              "lc-011",
-              "lc-005",
-              "lc-012",
-              "lc-004",
-              "lc-013",
               "lc-002",
-              "lc-001"
+              "lc-013",
+              "lc-004",
+              "lc-012",
+              "lc-001",
+              "lc-003",
+              "lc-005",
+              "lc-011"
             ],
             "related_items": [],
             "metadata": {
@@ -4021,14 +4014,14 @@
             ],
             "description": "Liability Clauses templates and examples",
             "legal_concepts": [
-              "lc-003",
-              "lc-011",
-              "lc-005",
-              "lc-012",
-              "lc-004",
-              "lc-013",
               "lc-002",
-              "lc-001"
+              "lc-013",
+              "lc-004",
+              "lc-012",
+              "lc-001",
+              "lc-003",
+              "lc-005",
+              "lc-011"
             ],
             "related_items": [],
             "metadata": {
@@ -4061,15 +4054,15 @@
             ],
             "description": "\"All work product, inventions, and intellectual property created by Contractor in connection with this Agreement shall be deemed work made for hire and shall be owned exclusively by Client.\"",
             "legal_concepts": [
-              "lc-003",
-              "lc-005",
-              "lc-006",
-              "lc-011",
-              "lc-012",
+              "lc-002",
               "lc-004",
               "lc-013",
-              "lc-002",
-              "lc-001"
+              "lc-012",
+              "lc-001",
+              "lc-011",
+              "lc-003",
+              "lc-006",
+              "lc-005"
             ],
             "related_items": [],
             "metadata": {
@@ -4270,7 +4263,7 @@
       ],
       "playbook_id": "intellectual-property"
     },
-    "analysis_timestamp": "2025-10-11T17:28:44.798181",
+    "analysis_timestamp": "2025-10-11T18:31:02.561814",
     "document_analysis": {
       "documents": [
         {
@@ -4279,7 +4272,7 @@
           "document_type": "Contract",
           "analysis": {
             "document_id": "doc-015",
-            "analysis_timestamp": "2025-10-11T15:20:47.580435",
+            "analysis_timestamp": "2025-10-11T18:30:58.027109",
             "key_dates": [
               "2022-01-15"
             ],
@@ -4330,11 +4323,11 @@
           "document_type": "Evidence",
           "analysis": {
             "document_id": "doc-016",
-            "analysis_timestamp": "2025-10-11T15:20:47.827344",
+            "analysis_timestamp": "2025-10-11T18:30:58.217663",
             "key_dates": [
+              "2024-03-18",
               "2024-03-01",
               "2024-03-08",
-              "2024-03-18",
               "2024-02-25"
             ],
             "parties_involved": [
@@ -4372,6 +4365,11 @@
             "compliance_status": "Compliant",
             "critical_deadlines": [
               {
+                "date": "2024-03-18",
+                "type": "completion",
+                "description": "Completion on 2024-03-18"
+              },
+              {
                 "date": "2024-03-01",
                 "type": "completion",
                 "description": "Completion on 2024-03-01"
@@ -4380,11 +4378,6 @@
                 "date": "2024-03-08",
                 "type": "completion",
                 "description": "Completion on 2024-03-08"
-              },
-              {
-                "date": "2024-03-18",
-                "type": "completion",
-                "description": "Completion on 2024-03-18"
               },
               {
                 "date": "2024-02-25",
@@ -4402,7 +4395,7 @@
           "document_type": "Evidence",
           "analysis": {
             "document_id": "doc-017",
-            "analysis_timestamp": "2025-10-11T15:20:48.120724",
+            "analysis_timestamp": "2025-10-11T18:30:58.433712",
             "key_dates": [],
             "parties_involved": [
               "Solutions Ltd",
@@ -4559,15 +4552,15 @@
           ],
           "description": "\"All work product, inventions, and intellectual property created by Contractor in connection with this Agreement shall be deemed work made for hire and shall be owned exclusively by Client.\"",
           "legal_concepts": [
-            "lc-003",
-            "lc-005",
-            "lc-006",
-            "lc-011",
-            "lc-012",
+            "lc-002",
             "lc-004",
             "lc-013",
-            "lc-002",
-            "lc-001"
+            "lc-012",
+            "lc-001",
+            "lc-011",
+            "lc-003",
+            "lc-006",
+            "lc-005"
           ],
           "related_items": [],
           "metadata": {
@@ -4599,14 +4592,14 @@
           ],
           "description": "This Contract of Employment is made between [COMPANY NAME], a company incorporated in England and Wales (\"Company\"), and [EMPLOYEE NAME] (\"Employee\").",
           "legal_concepts": [
-            "lc-003",
-            "lc-005",
-            "lc-006",
-            "lc-011",
-            "lc-012",
-            "lc-004",
             "lc-002",
-            "lc-001"
+            "lc-004",
+            "lc-012",
+            "lc-001",
+            "lc-011",
+            "lc-003",
+            "lc-006",
+            "lc-005"
           ],
           "related_items": [],
           "metadata": {
@@ -4639,14 +4632,14 @@
           ],
           "description": "\"Either party may terminate this Agreement at any time, with or without cause, by providing [30/60/90] days written notice to the other party.\"",
           "legal_concepts": [
-            "lc-003",
-            "lc-011",
-            "lc-005",
-            "lc-012",
-            "lc-004",
-            "lc-013",
             "lc-002",
-            "lc-001"
+            "lc-013",
+            "lc-004",
+            "lc-012",
+            "lc-001",
+            "lc-003",
+            "lc-005",
+            "lc-011"
           ],
           "related_items": [],
           "metadata": {
@@ -4679,18 +4672,18 @@
           ],
           "description": "Under Employment Rights Act 1996, employees with 2+ years' service are protected from unfair dismissal. Dismissal must be for a fair reason and follow a fair procedure.",
           "legal_concepts": [
-            "lc-003",
-            "lc-009",
-            "lc-010",
-            "lc-005",
-            "lc-006",
-            "lc-011",
-            "lc-012",
-            "lc-004",
-            "lc-008",
             "lc-002",
+            "lc-004",
+            "lc-012",
+            "lc-001",
+            "lc-008",
+            "lc-011",
+            "lc-009",
+            "lc-003",
+            "lc-010",
+            "lc-006",
             "lc-007",
-            "lc-001"
+            "lc-005"
           ],
           "related_items": [],
           "metadata": {
@@ -4722,11 +4715,11 @@
           ],
           "description": "UK contract statutes and regulations",
           "legal_concepts": [
+            "lc-004",
             "lc-014",
-            "lc-005",
             "lc-006",
             "lc-015",
-            "lc-004"
+            "lc-005"
           ],
           "related_items": [],
           "metadata": {
@@ -4759,15 +4752,15 @@
           ],
           "description": "This Service Agreement is made between [CLIENT NAME] (\"Client\") and [SERVICE PROVIDER NAME] (\"Provider\").",
           "legal_concepts": [
+            "lc-002",
+            "lc-004",
+            "lc-013",
+            "lc-012",
+            "lc-001",
             "lc-003",
             "lc-005",
             "lc-006",
-            "lc-011",
-            "lc-012",
-            "lc-004",
-            "lc-013",
-            "lc-002",
-            "lc-001"
+            "lc-011"
           ],
           "related_items": [],
           "metadata": {
@@ -4834,14 +4827,14 @@
           ],
           "description": "Liability Clauses templates and examples",
           "legal_concepts": [
-            "lc-003",
-            "lc-011",
-            "lc-005",
-            "lc-012",
-            "lc-004",
-            "lc-013",
             "lc-002",
-            "lc-001"
+            "lc-013",
+            "lc-004",
+            "lc-012",
+            "lc-001",
+            "lc-003",
+            "lc-005",
+            "lc-011"
           ],
           "related_items": [],
           "metadata": {
@@ -4874,14 +4867,14 @@
           ],
           "description": "Primary statute governing individual employment rights in the UK.",
           "legal_concepts": [
-            "lc-003",
+            "lc-002",
+            "lc-004",
             "lc-014",
-            "lc-005",
+            "lc-001",
+            "lc-003",
             "lc-006",
             "lc-015",
-            "lc-004",
-            "lc-002",
-            "lc-001"
+            "lc-005"
           ],
           "related_items": [],
           "metadata": {
@@ -4910,13 +4903,13 @@
           ],
           "description": "Key UK contract law precedents and principles",
           "legal_concepts": [
-            "lc-009",
-            "lc-010",
-            "lc-005",
-            "lc-006",
             "lc-004",
             "lc-008",
-            "lc-007"
+            "lc-009",
+            "lc-007",
+            "lc-010",
+            "lc-006",
+            "lc-005"
           ],
           "related_items": [],
           "metadata": {
@@ -4948,18 +4941,18 @@
             ],
             "description": "Under Employment Rights Act 1996, employees with 2+ years' service are protected from unfair dismissal. Dismissal must be for a fair reason and follow a fair procedure.",
             "legal_concepts": [
-              "lc-003",
-              "lc-009",
-              "lc-010",
-              "lc-005",
-              "lc-006",
-              "lc-011",
-              "lc-012",
-              "lc-004",
-              "lc-008",
               "lc-002",
+              "lc-004",
+              "lc-012",
+              "lc-001",
+              "lc-008",
+              "lc-011",
+              "lc-009",
+              "lc-003",
+              "lc-010",
+              "lc-006",
               "lc-007",
-              "lc-001"
+              "lc-005"
             ],
             "related_items": [],
             "metadata": {
@@ -4988,13 +4981,13 @@
             ],
             "description": "Key UK contract law precedents and principles",
             "legal_concepts": [
-              "lc-009",
-              "lc-010",
-              "lc-005",
-              "lc-006",
               "lc-004",
               "lc-008",
-              "lc-007"
+              "lc-009",
+              "lc-007",
+              "lc-010",
+              "lc-006",
+              "lc-005"
             ],
             "related_items": [],
             "metadata": {
@@ -5025,11 +5018,11 @@
             ],
             "description": "UK contract statutes and regulations",
             "legal_concepts": [
+              "lc-004",
               "lc-014",
-              "lc-005",
               "lc-006",
               "lc-015",
-              "lc-004"
+              "lc-005"
             ],
             "related_items": [],
             "metadata": {
@@ -5061,14 +5054,14 @@
             ],
             "description": "Primary statute governing individual employment rights in the UK.",
             "legal_concepts": [
-              "lc-003",
+              "lc-002",
+              "lc-004",
               "lc-014",
-              "lc-005",
+              "lc-001",
+              "lc-003",
               "lc-006",
               "lc-015",
-              "lc-004",
-              "lc-002",
-              "lc-001"
+              "lc-005"
             ],
             "related_items": [],
             "metadata": {
@@ -5102,14 +5095,14 @@
             ],
             "description": "This Contract of Employment is made between [COMPANY NAME], a company incorporated in England and Wales (\"Company\"), and [EMPLOYEE NAME] (\"Employee\").",
             "legal_concepts": [
-              "lc-003",
-              "lc-005",
-              "lc-006",
-              "lc-011",
-              "lc-012",
-              "lc-004",
               "lc-002",
-              "lc-001"
+              "lc-004",
+              "lc-012",
+              "lc-001",
+              "lc-011",
+              "lc-003",
+              "lc-006",
+              "lc-005"
             ],
             "related_items": [],
             "metadata": {
@@ -5142,15 +5135,15 @@
             ],
             "description": "This Service Agreement is made between [CLIENT NAME] (\"Client\") and [SERVICE PROVIDER NAME] (\"Provider\").",
             "legal_concepts": [
+              "lc-002",
+              "lc-004",
+              "lc-013",
+              "lc-012",
+              "lc-001",
               "lc-003",
               "lc-005",
               "lc-006",
-              "lc-011",
-              "lc-012",
-              "lc-004",
-              "lc-013",
-              "lc-002",
-              "lc-001"
+              "lc-011"
             ],
             "related_items": [],
             "metadata": {
@@ -5218,15 +5211,15 @@
             ],
             "description": "\"All work product, inventions, and intellectual property created by Contractor in connection with this Agreement shall be deemed work made for hire and shall be owned exclusively by Client.\"",
             "legal_concepts": [
-              "lc-003",
-              "lc-005",
-              "lc-006",
-              "lc-011",
-              "lc-012",
+              "lc-002",
               "lc-004",
               "lc-013",
-              "lc-002",
-              "lc-001"
+              "lc-012",
+              "lc-001",
+              "lc-011",
+              "lc-003",
+              "lc-006",
+              "lc-005"
             ],
             "related_items": [],
             "metadata": {
@@ -5259,14 +5252,14 @@
             ],
             "description": "\"Either party may terminate this Agreement at any time, with or without cause, by providing [30/60/90] days written notice to the other party.\"",
             "legal_concepts": [
-              "lc-003",
-              "lc-011",
-              "lc-005",
-              "lc-012",
-              "lc-004",
-              "lc-013",
               "lc-002",
-              "lc-001"
+              "lc-013",
+              "lc-004",
+              "lc-012",
+              "lc-001",
+              "lc-003",
+              "lc-005",
+              "lc-011"
             ],
             "related_items": [],
             "metadata": {
@@ -5300,14 +5293,14 @@
             ],
             "description": "Liability Clauses templates and examples",
             "legal_concepts": [
-              "lc-003",
-              "lc-011",
-              "lc-005",
-              "lc-012",
-              "lc-004",
-              "lc-013",
               "lc-002",
-              "lc-001"
+              "lc-013",
+              "lc-004",
+              "lc-012",
+              "lc-001",
+              "lc-003",
+              "lc-005",
+              "lc-011"
             ],
             "related_items": [],
             "metadata": {
@@ -5415,7 +5408,7 @@
       ],
       "playbook_id": "contract-breach"
     },
-    "analysis_timestamp": "2025-10-11T17:28:44.819205",
+    "analysis_timestamp": "2025-10-11T18:31:02.579814",
     "document_analysis": {
       "documents": [
         {
@@ -5424,7 +5417,7 @@
           "document_type": "Contract",
           "analysis": {
             "document_id": "doc-018",
-            "analysis_timestamp": "2025-10-11T15:20:48.280914",
+            "analysis_timestamp": "2025-10-11T18:30:58.501221",
             "key_dates": [
               "2020-01-01"
             ],
@@ -5474,13 +5467,13 @@
           "document_type": "Evidence",
           "analysis": {
             "document_id": "doc-019",
-            "analysis_timestamp": "2025-10-11T15:20:48.498040",
+            "analysis_timestamp": "2025-10-11T18:30:58.609352",
             "key_dates": [
-              "2023-10-31",
-              "2023-04-05",
-              "2023-11-15",
+              "2023-07-12",
+              "2023-09-08",
               "2023-05-18",
-              "2023-02-22"
+              "2023-11-20",
+              "2023-11-15"
             ],
             "parties_involved": [
               "Insurance Ltd",
@@ -5524,7 +5517,7 @@
           "document_type": "Evidence",
           "analysis": {
             "document_id": "doc-020",
-            "analysis_timestamp": "2025-10-11T15:20:49.014500",
+            "analysis_timestamp": "2025-10-11T18:30:58.993095",
             "key_dates": [
               "2023-11-25",
               "2023-11-28"
@@ -5586,11 +5579,11 @@
           "document_type": "Contract",
           "analysis": {
             "document_id": "doc-021",
-            "analysis_timestamp": "2025-10-11T15:20:49.273252",
+            "analysis_timestamp": "2025-10-11T18:30:59.126611",
             "key_dates": [
+              "2022-12-15",
               "2023-12-31",
-              "2023-01-01",
-              "2022-12-15"
+              "2023-01-01"
             ],
             "parties_involved": [
               "Insurance Ltd",
@@ -5643,11 +5636,11 @@
           "2020-01-01",
           "2022-12-15",
           "2023-01-01",
-          "2023-02-22",
-          "2023-04-05",
           "2023-05-18",
-          "2023-10-31",
+          "2023-07-12",
+          "2023-09-08",
           "2023-11-15",
+          "2023-11-20",
           "2023-11-25",
           "2023-11-28",
           "2023-12-31"
@@ -5718,20 +5711,6 @@
             ]
           },
           {
-            "date": "2023-02-22",
-            "description": "Key date referenced in: Denied Claims Summary",
-            "related_documents": [
-              "Denied Claims Summary"
-            ]
-          },
-          {
-            "date": "2023-04-05",
-            "description": "Key date referenced in: Denied Claims Summary",
-            "related_documents": [
-              "Denied Claims Summary"
-            ]
-          },
-          {
             "date": "2023-05-18",
             "description": "Key date referenced in: Denied Claims Summary",
             "related_documents": [
@@ -5739,7 +5718,14 @@
             ]
           },
           {
-            "date": "2023-10-31",
+            "date": "2023-07-12",
+            "description": "Key date referenced in: Denied Claims Summary",
+            "related_documents": [
+              "Denied Claims Summary"
+            ]
+          },
+          {
+            "date": "2023-09-08",
             "description": "Key date referenced in: Denied Claims Summary",
             "related_documents": [
               "Denied Claims Summary"
@@ -5747,6 +5733,13 @@
           },
           {
             "date": "2023-11-15",
+            "description": "Key date referenced in: Denied Claims Summary",
+            "related_documents": [
+              "Denied Claims Summary"
+            ]
+          },
+          {
+            "date": "2023-11-20",
             "description": "Key date referenced in: Denied Claims Summary",
             "related_documents": [
               "Denied Claims Summary"
@@ -5791,13 +5784,13 @@
           ],
           "description": "Key UK contract law precedents and principles",
           "legal_concepts": [
-            "lc-009",
-            "lc-010",
-            "lc-005",
-            "lc-006",
             "lc-004",
             "lc-008",
-            "lc-007"
+            "lc-009",
+            "lc-007",
+            "lc-010",
+            "lc-006",
+            "lc-005"
           ],
           "related_items": [],
           "metadata": {
@@ -5826,11 +5819,11 @@
           ],
           "description": "UK contract statutes and regulations",
           "legal_concepts": [
+            "lc-004",
             "lc-014",
-            "lc-005",
             "lc-006",
             "lc-015",
-            "lc-004"
+            "lc-005"
           ],
           "related_items": [],
           "metadata": {
@@ -5863,14 +5856,14 @@
           ],
           "description": "\"Either party may terminate this Agreement at any time, with or without cause, by providing [30/60/90] days written notice to the other party.\"",
           "legal_concepts": [
-            "lc-003",
-            "lc-011",
-            "lc-005",
-            "lc-012",
-            "lc-004",
-            "lc-013",
             "lc-002",
-            "lc-001"
+            "lc-013",
+            "lc-004",
+            "lc-012",
+            "lc-001",
+            "lc-003",
+            "lc-005",
+            "lc-011"
           ],
           "related_items": [],
           "metadata": {
@@ -5936,14 +5929,14 @@
           ],
           "description": "This Contract of Employment is made between [COMPANY NAME], a company incorporated in England and Wales (\"Company\"), and [EMPLOYEE NAME] (\"Employee\").",
           "legal_concepts": [
-            "lc-003",
-            "lc-005",
-            "lc-006",
-            "lc-011",
-            "lc-012",
-            "lc-004",
             "lc-002",
-            "lc-001"
+            "lc-004",
+            "lc-012",
+            "lc-001",
+            "lc-011",
+            "lc-003",
+            "lc-006",
+            "lc-005"
           ],
           "related_items": [],
           "metadata": {
@@ -5975,15 +5968,15 @@
           ],
           "description": "\"All work product, inventions, and intellectual property created by Contractor in connection with this Agreement shall be deemed work made for hire and shall be owned exclusively by Client.\"",
           "legal_concepts": [
-            "lc-003",
-            "lc-005",
-            "lc-006",
-            "lc-011",
-            "lc-012",
+            "lc-002",
             "lc-004",
             "lc-013",
-            "lc-002",
-            "lc-001"
+            "lc-012",
+            "lc-001",
+            "lc-011",
+            "lc-003",
+            "lc-006",
+            "lc-005"
           ],
           "related_items": [],
           "metadata": {
@@ -6016,15 +6009,15 @@
           ],
           "description": "This Service Agreement is made between [CLIENT NAME] (\"Client\") and [SERVICE PROVIDER NAME] (\"Provider\").",
           "legal_concepts": [
+            "lc-002",
+            "lc-004",
+            "lc-013",
+            "lc-012",
+            "lc-001",
             "lc-003",
             "lc-005",
             "lc-006",
-            "lc-011",
-            "lc-012",
-            "lc-004",
-            "lc-013",
-            "lc-002",
-            "lc-001"
+            "lc-011"
           ],
           "related_items": [],
           "metadata": {
@@ -6058,14 +6051,14 @@
           ],
           "description": "Liability Clauses templates and examples",
           "legal_concepts": [
-            "lc-003",
-            "lc-011",
-            "lc-005",
-            "lc-012",
-            "lc-004",
-            "lc-013",
             "lc-002",
-            "lc-001"
+            "lc-013",
+            "lc-004",
+            "lc-012",
+            "lc-001",
+            "lc-003",
+            "lc-005",
+            "lc-011"
           ],
           "related_items": [],
           "metadata": {
@@ -6098,18 +6091,18 @@
           ],
           "description": "Under Employment Rights Act 1996, employees with 2+ years' service are protected from unfair dismissal. Dismissal must be for a fair reason and follow a fair procedure.",
           "legal_concepts": [
-            "lc-003",
-            "lc-009",
-            "lc-010",
-            "lc-005",
-            "lc-006",
-            "lc-011",
-            "lc-012",
-            "lc-004",
-            "lc-008",
             "lc-002",
+            "lc-004",
+            "lc-012",
+            "lc-001",
+            "lc-008",
+            "lc-011",
+            "lc-009",
+            "lc-003",
+            "lc-010",
+            "lc-006",
             "lc-007",
-            "lc-001"
+            "lc-005"
           ],
           "related_items": [],
           "metadata": {
@@ -6141,14 +6134,14 @@
           ],
           "description": "Primary statute governing individual employment rights in the UK.",
           "legal_concepts": [
-            "lc-003",
+            "lc-002",
+            "lc-004",
             "lc-014",
-            "lc-005",
+            "lc-001",
+            "lc-003",
             "lc-006",
             "lc-015",
-            "lc-004",
-            "lc-002",
-            "lc-001"
+            "lc-005"
           ],
           "related_items": [],
           "metadata": {
@@ -6180,13 +6173,13 @@
             ],
             "description": "Key UK contract law precedents and principles",
             "legal_concepts": [
-              "lc-009",
-              "lc-010",
-              "lc-005",
-              "lc-006",
               "lc-004",
               "lc-008",
-              "lc-007"
+              "lc-009",
+              "lc-007",
+              "lc-010",
+              "lc-006",
+              "lc-005"
             ],
             "related_items": [],
             "metadata": {
@@ -6215,18 +6208,18 @@
             ],
             "description": "Under Employment Rights Act 1996, employees with 2+ years' service are protected from unfair dismissal. Dismissal must be for a fair reason and follow a fair procedure.",
             "legal_concepts": [
-              "lc-003",
-              "lc-009",
-              "lc-010",
-              "lc-005",
-              "lc-006",
-              "lc-011",
-              "lc-012",
-              "lc-004",
-              "lc-008",
               "lc-002",
+              "lc-004",
+              "lc-012",
+              "lc-001",
+              "lc-008",
+              "lc-011",
+              "lc-009",
+              "lc-003",
+              "lc-010",
+              "lc-006",
               "lc-007",
-              "lc-001"
+              "lc-005"
             ],
             "related_items": [],
             "metadata": {
@@ -6260,11 +6253,11 @@
             ],
             "description": "UK contract statutes and regulations",
             "legal_concepts": [
+              "lc-004",
               "lc-014",
-              "lc-005",
               "lc-006",
               "lc-015",
-              "lc-004"
+              "lc-005"
             ],
             "related_items": [],
             "metadata": {
@@ -6296,14 +6289,14 @@
             ],
             "description": "Primary statute governing individual employment rights in the UK.",
             "legal_concepts": [
-              "lc-003",
+              "lc-002",
+              "lc-004",
               "lc-014",
-              "lc-005",
+              "lc-001",
+              "lc-003",
               "lc-006",
               "lc-015",
-              "lc-004",
-              "lc-002",
-              "lc-001"
+              "lc-005"
             ],
             "related_items": [],
             "metadata": {
@@ -6370,14 +6363,14 @@
             ],
             "description": "This Contract of Employment is made between [COMPANY NAME], a company incorporated in England and Wales (\"Company\"), and [EMPLOYEE NAME] (\"Employee\").",
             "legal_concepts": [
-              "lc-003",
-              "lc-005",
-              "lc-006",
-              "lc-011",
-              "lc-012",
-              "lc-004",
               "lc-002",
-              "lc-001"
+              "lc-004",
+              "lc-012",
+              "lc-001",
+              "lc-011",
+              "lc-003",
+              "lc-006",
+              "lc-005"
             ],
             "related_items": [],
             "metadata": {
@@ -6410,15 +6403,15 @@
             ],
             "description": "This Service Agreement is made between [CLIENT NAME] (\"Client\") and [SERVICE PROVIDER NAME] (\"Provider\").",
             "legal_concepts": [
+              "lc-002",
+              "lc-004",
+              "lc-013",
+              "lc-012",
+              "lc-001",
               "lc-003",
               "lc-005",
               "lc-006",
-              "lc-011",
-              "lc-012",
-              "lc-004",
-              "lc-013",
-              "lc-002",
-              "lc-001"
+              "lc-011"
             ],
             "related_items": [],
             "metadata": {
@@ -6454,14 +6447,14 @@
             ],
             "description": "\"Either party may terminate this Agreement at any time, with or without cause, by providing [30/60/90] days written notice to the other party.\"",
             "legal_concepts": [
-              "lc-003",
-              "lc-011",
-              "lc-005",
-              "lc-012",
-              "lc-004",
-              "lc-013",
               "lc-002",
-              "lc-001"
+              "lc-013",
+              "lc-004",
+              "lc-012",
+              "lc-001",
+              "lc-003",
+              "lc-005",
+              "lc-011"
             ],
             "related_items": [],
             "metadata": {
@@ -6494,15 +6487,15 @@
             ],
             "description": "\"All work product, inventions, and intellectual property created by Contractor in connection with this Agreement shall be deemed work made for hire and shall be owned exclusively by Client.\"",
             "legal_concepts": [
-              "lc-003",
-              "lc-005",
-              "lc-006",
-              "lc-011",
-              "lc-012",
+              "lc-002",
               "lc-004",
               "lc-013",
-              "lc-002",
-              "lc-001"
+              "lc-012",
+              "lc-001",
+              "lc-011",
+              "lc-003",
+              "lc-006",
+              "lc-005"
             ],
             "related_items": [],
             "metadata": {
@@ -6535,14 +6528,14 @@
             ],
             "description": "Liability Clauses templates and examples",
             "legal_concepts": [
-              "lc-003",
-              "lc-011",
-              "lc-005",
-              "lc-012",
-              "lc-004",
-              "lc-013",
               "lc-002",
-              "lc-001"
+              "lc-013",
+              "lc-004",
+              "lc-012",
+              "lc-001",
+              "lc-003",
+              "lc-005",
+              "lc-011"
             ],
             "related_items": [],
             "metadata": {
