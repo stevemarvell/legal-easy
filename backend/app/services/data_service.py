@@ -96,11 +96,21 @@ class DataService:
                 # Get content from file path
                 content_path = document.get('full_content_path', '')
                 if content_path:
-                    # Convert relative path to absolute from data root
-                    full_path = Path("data") / content_path.replace('data/', '')
-                    if full_path.exists():
-                        with open(full_path, 'r', encoding='utf-8') as content_file:
-                            return content_file.read()
+                    # Fix the path - replace 'data/case_documents' with 'data/cases/case_documents'
+                    if content_path.startswith('data/case_documents'):
+                        content_path = content_path.replace('data/case_documents', 'data/cases/case_documents')
+                    
+                    # Try different path constructions
+                    possible_paths = [
+                        Path(content_path),  # Direct path
+                        Path("data") / content_path,  # Prepend data/
+                        Path(content_path.replace('data/', '')),  # Remove data/ prefix
+                    ]
+                    
+                    for full_path in possible_paths:
+                        if full_path.exists():
+                            with open(full_path, 'r', encoding='utf-8') as content_file:
+                                return content_file.read()
                 
                 # Fallback to content preview
                 return document.get('content_preview', '')
