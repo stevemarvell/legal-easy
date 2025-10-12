@@ -12,7 +12,7 @@ import {
   Schedule as PendingIcon
 } from '@mui/icons-material';
 import DocumentCard from './DocumentCard';
-import { documentService } from '../../services/documentService';
+import { documentsService } from '../../services/documentsService'
 import { Document } from '../../types/document';
 import SharedLayout from '../layout/SharedLayout';
 
@@ -44,7 +44,7 @@ const DocumentGrid: React.FC<DocumentGridProps> = ({
         
         let fetchedDocuments: Document[];
         if (caseId) {
-          fetchedDocuments = await documentService.getCaseDocuments(caseId);
+          fetchedDocuments = await documentsService.getCaseDocuments(caseId);
         } else {
           // For now, we'll fetch all documents by getting all cases and their documents
           // In a real app, you'd have a dedicated endpoint for all documents
@@ -77,34 +77,6 @@ const DocumentGrid: React.FC<DocumentGridProps> = ({
     }
   }, [searchQuery, documents]);
 
-  const handleAnalyzeDocument = async (document: Document) => {
-    try {
-      await documentService.analyzeDocument(document.id);
-      
-      // Update the document in the list
-      setDocuments(prev => prev.map(doc => 
-        doc.id === document.id 
-          ? { ...doc, analysis_completed: true }
-          : doc
-      ));
-      
-      if (onDocumentAnalyze) {
-        onDocumentAnalyze(document);
-      }
-    } catch (err) {
-      console.error('Failed to analyze document:', err);
-      // You might want to show a toast notification here
-    }
-  };
-
-  const getAnalysisStats = () => {
-    const total = filteredDocuments.length;
-    const analyzed = filteredDocuments.filter(doc => doc.analysis_completed).length;
-    const pending = total - analyzed;
-    return { total, analyzed, pending };
-  };
-
-  const stats = getAnalysisStats();
 
   if (loading) {
     return (
@@ -139,30 +111,7 @@ const DocumentGrid: React.FC<DocumentGridProps> = ({
         </Alert>
       )}
 
-      {/* Analysis Statistics */}
-      {filteredDocuments.length > 0 && (
-        <Box display="flex" gap={2} mb={4}>
-          <Chip
-            icon={<DocumentIcon />}
-            label={`${stats.total} Total`}
-            color="primary"
-            variant="outlined"
-          />
-          <Chip
-            icon={<AnalyzedIcon />}
-            label={`${stats.analyzed} Analyzed`}
-            color="success"
-            variant="outlined"
-          />
-          <Chip
-            icon={<PendingIcon />}
-            label={`${stats.pending} Pending`}
-            color="warning"
-            variant="outlined"
-          />
-        </Box>
-      )}
-
+     
       {/* Documents Grid */}
       {filteredDocuments.length === 0 && !loading ? (
         <Alert severity="info">
@@ -175,15 +124,6 @@ const DocumentGrid: React.FC<DocumentGridProps> = ({
           gap={3}
           data-testid="documents-grid"
         >
-          {filteredDocuments.map((document) => (
-            <DocumentCard
-              key={document.id}
-              document={document}
-              caseId={caseId}
-              onAnalyze={handleAnalyzeDocument}
-              showCaseInfo={showCaseInfo}
-            />
-          ))}
         </Box>
       )}
     </SharedLayout>

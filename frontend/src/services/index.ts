@@ -4,6 +4,6 @@ export type { ApiResponse, ApiError } from './api';
 
 // Export service modules
 export { corpusService } from './corpusService';
-export { caseService } from './caseService';
-export { documentService } from './documentService';
-export { playbookService } from './playbookService';
+export { casesService } from './casesService';
+export { documentsService } from './documentsService';
+export { playbooksService } from './playbookService';

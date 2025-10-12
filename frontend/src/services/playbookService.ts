@@ -1,7 +1,7 @@
 import { apiClient } from './api';
 import { Playbook, CaseAssessment, ComprehensiveAnalysis } from '../types/playbook';
 
-export const playbookService = {
+export const playbooksService = {
   /**
    * Get all available playbooks
    */

@@ -1,7 +1,7 @@
 import { apiClient } from './api';
 import { Case, CaseStatistics } from '../types/api';
 
-export const caseService = {
+export const casesService = {
   async getAllCases(): Promise<Case[]> {
     const response = await apiClient.get<Case[]>('/api/cases');
     return response.data;

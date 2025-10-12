@@ -19,7 +19,7 @@ import {
   Schedule as ScheduleIcon,
   Group as GroupIcon
 } from '@mui/icons-material';
-import { apiClient } from '../../services/api';
+import { casesService } from '../../services/casesService';
 import { Case } from '../../types/api';
 import SharedLayout from '../layout/SharedLayout';
 
@@ -36,9 +36,9 @@ const CaseList: React.FC = () => {
       try {
         setLoading(true);
         setError(null);
-        const response = await apiClient.get<Case[]>('/api/cases');
-        setCases(response.data);
-        setFilteredCases(response.data);
+        const cases = await casesService.getAllCases();
+        setCases(cases);
+        setFilteredCases(cases);
       } catch (err) {
         console.error('Failed to fetch cases:', err);
         setError('Failed to load cases. Please try again.');

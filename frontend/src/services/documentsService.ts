@@ -1,7 +1,7 @@
 import { apiClient } from './api';
-import { Document, DocumentAnalysis } from '../types/document';
+import { Document } from '../types/document';
 
-export const documentService = {
+export const documentsService = {
   async getCaseDocuments(caseId: string): Promise<Document[]> {
     const response = await apiClient.get<Document[]>(`/api/documents/cases/${caseId}/documents`);
     return response.data;
@@ -12,21 +12,13 @@ export const documentService = {
     return response.data;
   },
 
-  async getDocumentAnalysis(documentId: string): Promise<DocumentAnalysis> {
-    const response = await apiClient.get<DocumentAnalysis>(`/api/documents/${documentId}/analysis`);
-    return response.data;
-  },
 
-  async analyzeDocument(documentId: string): Promise<DocumentAnalysis> {
-    const response = await apiClient.post<DocumentAnalysis>(`/api/documents/${documentId}/analyze`);
-    return response.data;
-  },
 
   async getAllDocuments(): Promise<Document[]> {
     // Get all documents across all cases
     const cases = ['case-001', 'case-002', 'case-003', 'case-004', 'case-005', 'case-006'];
     const allDocuments: Document[] = [];
-    
+
     for (const caseId of cases) {
       try {
         const caseDocuments = await this.getCaseDocuments(caseId);
@@ -35,14 +27,11 @@ export const documentService = {
         console.warn(`Failed to fetch documents for ${caseId}:`, error);
       }
     }
-    
+
     return allDocuments;
   },
 
-  async clearAllAnalyses(): Promise<void> {
-    const response = await apiClient.delete('/api/documents/analysis/all');
-    return response.data;
-  },
+
 
   async getDocumentContent(documentId: string): Promise<{ document_id: string; content: string; content_length: number }> {
     const response = await apiClient.get<{ document_id: string; content: string; content_length: number }>(`/api/documents/${documentId}/content`);

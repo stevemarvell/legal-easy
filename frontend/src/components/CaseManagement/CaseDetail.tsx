@@ -1,20 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import ReactMarkdown from 'react-markdown';
 import {
   Box,
-  Card,
-  CardContent,
   Typography,
   Chip,
-  Button,
-  Divider,
-  List,
-  ListItem,
-  ListItemText,
   Alert,
   CircularProgress,
-  ListItemIcon,
   Stack,
   Tabs,
   Tab,
@@ -25,32 +16,32 @@ import {
   DialogTitle,
   DialogContent,
   DialogActions,
-  TextField
+  TextField,
+  Button,
+  Card,
+  CardContent,
+  Divider,
+  List,
+  ListItem,
+  ListItemText
 } from '@mui/material';
 import {
-  Person as PersonIcon,
-  Description as DocumentIcon,
-  Gavel as GavelIcon,
-  Schedule as ScheduleIcon,
-  Group as GroupIcon,
-  MenuBook as PlaybookIcon,
-  CheckCircle as CheckCircleIcon,
-  HourglassEmpty as HourglassEmptyIcon,
-  Folder as FolderIcon,
-  Email as EmailIcon,
-  Assignment as AssignmentIcon,
-  Gavel as EvidenceIcon,
-  Analytics as AnalyticsIcon,
   Search as ResearchIcon,
   Info as InfoIcon,
   AccountTree as PlaybookTreeIcon,
   ExpandMore as ExpandMoreIcon,
   Psychology as ClaudeIcon,
-  Lightbulb as RecommendationIcon
+  Lightbulb as RecommendationIcon,
+  Assignment as AssignmentIcon,
+  Description as DocumentIcon
 } from '@mui/icons-material';
-import { apiClient } from '../../services/api';
+import { casesService } from '../../services/casesService';
+import { documentsService } from '../../services/documentsService';
 import { Case, Document } from '../../types/api';
 import SharedLayout from '../layout/SharedLayout';
+import CaseOverviewTab from './CaseDetailTabs/CaseOverviewTab';
+import CaseDetailsTab from './CaseDetailTabs/CaseDetailsTab';
+import DocumentsAnalysisTab from './CaseDetailTabs/DocumentsAnalysisTab';
 // Playbook Decision Interface Component
 interface PlaybookDecisionInterfaceProps {
   caseId: string;
@@ -83,8 +74,8 @@ interface DecisionSession {
 }
 
 const PlaybookDecisionInterface: React.FC<PlaybookDecisionInterfaceProps> = ({ 
-  caseId, 
-  playbookId, 
+  caseId: _caseId, 
+  playbookId: _playbookId, 
   playbookName 
 }) => {
   const [session, setSession] = useState<DecisionSession | null>(null);
@@ -353,11 +344,11 @@ const PlaybookDecisionInterface: React.FC<PlaybookDecisionInterfaceProps> = ({
               <Typography variant="h6" gutterBottom>
                 Decision History
               </Typography>
-              {session.decisionHistory.map((decision, index) => (
+              {session.decisionHistory.map((decision, _index) => (
                 <Accordion key={decision.id} sx={{ mb: 1 }}>
                   <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                     <Box display="flex" alignItems="center" width="100%">
-                      <CheckCircleIcon color="success" sx={{ mr: 2 }} />
+                      <PlaybookTreeIcon color="success" sx={{ mr: 2 }} />
                       <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
                         {decision.question}
                       </Typography>
@@ -420,7 +411,7 @@ const PlaybookDecisionInterface: React.FC<PlaybookDecisionInterfaceProps> = ({
               Available Options:
             </Typography>
             <Stack spacing={2}>
-              {Object.entries(currentDecision.options).map(([option, nextNode]) => (
+              {Object.entries(currentDecision.options).map(([option, _nextNode]) => (
                 <Button
                   key={option}
                   variant="outlined"
@@ -497,9 +488,8 @@ const CaseDetail: React.FC = () => {
       try {
         setLoading(true);
         setError(null);
-        const response = await apiClient.get<Case>(`/api/cases/${caseId}`);
-
-        setCaseData(response.data);
+        const caseData = await casesService.getCaseById(caseId);
+        setCaseData(caseData);
       } catch (err) {
         console.error('Failed to fetch case details:', err);
         setError('Failed to load case details. Please try again.');
@@ -515,9 +505,8 @@ const CaseDetail: React.FC = () => {
 
       try {
         setDocumentsLoading(true);
-        const response = await apiClient.get<Document[]>(`/api/documents/cases/${caseId}/documents`);
-
-        setCaseDocuments(response.data);
+        const documents = await documentsService.getCaseDocuments(caseId);
+        setCaseDocuments(documents);
       } catch (err) {
         console.error('Failed to fetch case documents:', err);
         // Don't set error for documents, just log it
@@ -548,32 +537,6 @@ const CaseDetail: React.FC = () => {
       'intellectual-property': 'IP Protection Playbook'
     };
     return playbookNames[playbookId] || 'General Playbook';
-  };
-
-  const getDocumentTypeIcon = (type: string) => {
-    switch (type.toLowerCase()) {
-      case 'contract': return <AssignmentIcon />;
-      case 'email': return <EmailIcon />;
-      case 'evidence': return <EvidenceIcon />;
-      case 'legal brief': return <DocumentIcon />;
-      default: return <FolderIcon />;
-    }
-  };
-
-  const getAnalysisStatusIcon = (completed: boolean) => {
-    return completed ? <CheckCircleIcon color="success" /> : <HourglassEmptyIcon color="disabled" />;
-  };
-
-  const getAnalysisStatusText = (completed: boolean) => {
-    return completed ? 'completed' : 'pending';
-  };
-
-  const formatFileSize = (bytes: number) => {
-    if (bytes === 0) return '0 Bytes';
-    const k = 1024;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
   };
 
   const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
@@ -686,11 +649,11 @@ const CaseDetail: React.FC = () => {
               data-testid="details-tab"
             />
             <Tab
-              icon={<AnalyticsIcon />}
-              label="Documents with Analysis"
+              icon={<DocumentIcon />}
+              label="Documents"
               iconPosition="start"
               sx={{ minHeight: 48 }}
-              data-testid="documents-analysis-tab"
+              data-testid="documents-tab"
             />
             <Tab
               icon={<ResearchIcon />}
@@ -713,302 +676,27 @@ const CaseDetail: React.FC = () => {
           {/* Overview Tab */}
           {activeTab === 0 && (
             <Box data-testid="overview-tab-content">
-              {/* Essential Case Information */}
-              <Card sx={{ mb: 4 }} data-testid="case-overview">
-                <CardContent>
-                  <Typography variant="h5" component="h2" gutterBottom>
-                    Case Overview
-                  </Typography>
-                  <Divider sx={{ mb: 3 }} />
-
-                  <Box display="flex" flexDirection="column" gap={3}>
-                    <Box display="flex" flexDirection={{ xs: 'column', sm: 'row' }} gap={3}>
-                      <Box flex={1}>
-                        <Box display="flex" alignItems="center" mb={2}>
-                          <PersonIcon color="primary" sx={{ mr: 1 }} />
-                          <Typography variant="h6">Client</Typography>
-                        </Box>
-                        <Typography variant="body1" color="text.secondary" data-testid="case-client">
-                          {caseData.client_name}
-                        </Typography>
-                      </Box>
-
-                      <Box flex={1}>
-                        <Box display="flex" alignItems="center" mb={2}>
-                          <GavelIcon color="primary" sx={{ mr: 1 }} />
-                          <Typography variant="h6">Case Type</Typography>
-                        </Box>
-                        <Typography variant="body1" color="text.secondary" data-testid="case-type">
-                          {caseData.case_type}
-                        </Typography>
-                      </Box>
-                    </Box>
-
-                    <Box display="flex" flexDirection={{ xs: 'column', sm: 'row' }} gap={3}>
-                      <Box flex={1}>
-                        <Box display="flex" alignItems="center" mb={2}>
-                          <ScheduleIcon color="primary" sx={{ mr: 1 }} />
-                          <Typography variant="h6">Created Date</Typography>
-                        </Box>
-                        <Typography variant="body1" color="text.secondary" data-testid="case-created-date">
-                          {new Date(caseData.created_date).toLocaleDateString('en-GB')}
-                        </Typography>
-                      </Box>
-
-                      <Box flex={1}>
-                        <Box display="flex" alignItems="center" mb={2}>
-                          <PlaybookIcon color="primary" sx={{ mr: 1 }} />
-                          <Typography variant="h6">Assigned Playbook</Typography>
-                        </Box>
-                        <Typography variant="body1" color="text.secondary" data-testid="case-playbook">
-                          {getPlaybookName(caseData.playbook_id)}
-                        </Typography>
-                      </Box>
-                    </Box>
-
-                    <Box>
-                      <Typography variant="h6" gutterBottom>
-                        Summary
-                      </Typography>
-                      <Typography variant="body1" color="text.secondary" data-testid="case-summary">
-                        {caseData.summary}
-                      </Typography>
-                    </Box>
-                  </Box>
-                </CardContent>
-              </Card>
-
-              {/* Key Parties */}
-              {caseData.key_parties && caseData.key_parties.length > 0 && (
-                <Card sx={{ mb: 4 }} data-testid="key-parties-section">
-                  <CardContent>
-                    <Box display="flex" alignItems="center" mb={2}>
-                      <GroupIcon color="primary" sx={{ mr: 1 }} />
-                      <Typography variant="h5" component="h2">
-                        Key Parties
-                      </Typography>
-                    </Box>
-                    <Divider sx={{ mb: 3 }} />
-                    <List>
-                      {caseData.key_parties.map((party, index) => (
-                        <ListItem key={index} divider={index < caseData.key_parties.length - 1}>
-                          <ListItemIcon>
-                            <PersonIcon color="primary" />
-                          </ListItemIcon>
-                          <ListItemText primary={party} />
-                        </ListItem>
-                      ))}
-                    </List>
-                  </CardContent>
-                </Card>
-              )}
+              <CaseOverviewTab caseData={caseData} />
             </Box>
           )}
           
           {/* Details Tab */}
           {activeTab === 1 && (
-            <Card sx={{ mb: 4 }} data-testid="details-tab-content">
-              <CardContent>
-                <Typography variant="h5" component="h2" gutterBottom>
-                  Comprehensive Case Details
-                </Typography>
-                <Divider sx={{ mb: 3 }} />
-
-                {caseData.description ? (
-                  <Box
-                    data-testid="case-full-description"
-                    sx={{
-                      '& h2': {
-                        color: 'primary.main',
-                        fontSize: '1.5rem',
-                        fontWeight: 600,
-                        mt: 3,
-                        mb: 2,
-                        '&:first-of-type': { mt: 0 }
-                      },
-                      '& h3': {
-                        color: 'primary.dark',
-                        fontSize: '1.25rem',
-                        fontWeight: 500,
-                        mt: 2.5,
-                        mb: 1.5
-                      },
-                      '& p': {
-                        lineHeight: 1.8,
-                        textAlign: 'justify',
-                        mb: 2,
-                        fontSize: '1rem'
-                      },
-                      '& ul, & ol': {
-                        mb: 2,
-                        pl: 3
-                      },
-                      '& li': {
-                        mb: 0.5,
-                        lineHeight: 1.6
-                      },
-                      '& strong': {
-                        color: 'text.primary',
-                        fontWeight: 600
-                      },
-                      '& em': {
-                        fontStyle: 'italic',
-                        color: 'text.secondary'
-                      }
-                    }}
-                  >
-                    <ReactMarkdown>{caseData.description}</ReactMarkdown>
-                  </Box>
-                ) : (
-                  <Box textAlign="center" py={4}>
-                    <AssignmentIcon sx={{ fontSize: 48, color: 'text.disabled', mb: 2 }} />
-                    <Typography variant="body2" color="text.secondary" gutterBottom>
-                      No detailed description available for this case
-                    </Typography>
-                    <Typography variant="caption" color="text.secondary">
-                      The case summary is available in the Overview tab
-                    </Typography>
-                  </Box>
-                )}
-              </CardContent>
-            </Card>
+            <Box data-testid="details-tab-content">
+              <CaseDetailsTab caseData={caseData} />
+            </Box>
           )}
           
-          {/* Documents with Analysis Tab */}
+          {/* Documents Tab */}
           {activeTab === 2 && (
-            <Card sx={{ mb: 4 }} data-testid="documents-analysis-tab-content">
-              <CardContent>
-                <Box display="flex" alignItems="center" justifyContent="space-between" mb={2}>
-                  <Box display="flex" alignItems="center">
-                    <DocumentIcon color="primary" sx={{ mr: 1 }} />
-                    <Typography variant="h5" component="h2">
-                      Documents with Analysis
-                    </Typography>
-                  </Box>
-                  <Stack direction="row" spacing={1}>
-                    <Chip
-                      label={`${caseDocuments.length} document${caseDocuments.length !== 1 ? 's' : ''}`}
-                      variant="outlined"
-                      size="small"
-                    />
-                    <Chip
-                      label={`${caseDocuments.filter(doc => doc.analysis_completed).length}/${caseDocuments.length} analyzed`}
-                      color={caseDocuments.every(doc => doc.analysis_completed) ? 'success' : 'warning'}
-                      size="small"
-                    />
-                  </Stack>
-                </Box>
-                <Divider sx={{ mb: 3 }} />
-
-                {documentsLoading ? (
-                  <Box display="flex" justifyContent="center" p={2}>
-                    <CircularProgress size={24} />
-                  </Box>
-                ) : caseDocuments.length > 0 ? (
-                  <List>
-                    {caseDocuments.map((doc, index) => (
-                      <ListItem key={doc.id} divider={index < caseDocuments.length - 1} sx={{ flexDirection: 'column', alignItems: 'stretch' }}>
-                        {/* Document Header */}
-                        <Box display="flex" alignItems="center" width="100%" mb={1}>
-                          <ListItemIcon>
-                            {getDocumentTypeIcon(doc.type)}
-                          </ListItemIcon>
-                          <ListItemText
-                            primary={
-                              <Button
-                                variant="text"
-                                sx={{
-                                  justifyContent: 'flex-start',
-                                  textTransform: 'none',
-                                  p: 0,
-                                  minWidth: 'auto',
-                                  '&:hover': { backgroundColor: 'transparent', textDecoration: 'underline' }
-                                }}
-                                onClick={() => navigate(`/cases/${caseId}/documents/${doc.id}`)}
-                                data-testid="document-link"
-                              >
-                                {doc.name}
-                              </Button>
-                            }
-                            secondary={
-                              <Box>
-                                <Typography variant="caption" color="text.secondary" display="block">
-                                  Type: {doc.type} • Size: {formatFileSize(doc.size)}
-                                </Typography>
-                                <Typography variant="caption" color="text.secondary" display="block">
-                                  Uploaded: {new Date(doc.upload_date).toLocaleDateString('en-GB')}
-                                </Typography>
-                                {doc.content_preview && (
-                                  <Typography variant="caption" color="text.secondary" display="block" sx={{ mt: 0.5, fontStyle: 'italic' }}>
-                                    {doc.content_preview.substring(0, 100)}...
-                                  </Typography>
-                                )}
-                              </Box>
-                            }
-                          />
-                          <Box display="flex" alignItems="center" ml={2} data-testid="document-analysis-status">
-                            {getAnalysisStatusIcon(doc.analysis_completed)}
-                            <Typography variant="caption" color="text.secondary" ml={1}>
-                              {getAnalysisStatusText(doc.analysis_completed)}
-                            </Typography>
-                          </Box>
-                        </Box>
-
-                        {/* Analysis Results Placeholder */}
-                        {doc.analysis_completed && (
-                          <Box sx={{ ml: 6, mt: 1, p: 2, bgcolor: 'grey.50', borderRadius: 1 }} data-testid="analysis-results">
-                            <Typography variant="subtitle2" color="primary" gutterBottom>
-                              Analysis Results
-                            </Typography>
-                            <Typography variant="body2" sx={{ mb: 1 }}>
-                              <strong>Summary:</strong> Document analysis completed. Key information extracted and processed.
-                            </Typography>
-                            <Chip
-                              label="85% confidence"
-                              color="success"
-                              size="small"
-                            />
-                          </Box>
-                        )}
-                      </ListItem>
-                    ))}
-                  </List>
-                ) : (
-                  <Box textAlign="center" py={4}>
-                    <DocumentIcon sx={{ fontSize: 48, color: 'text.disabled', mb: 2 }} />
-                    <Typography variant="body2" color="text.secondary" gutterBottom>
-                      No documents uploaded yet
-                    </Typography>
-                    <Typography variant="caption" color="text.secondary">
-                      Upload documents to begin case analysis
-                    </Typography>
-                  </Box>
-                )}
-
-                {caseDocuments.length > 0 && (
-                  <Stack direction="row" spacing={2} sx={{ mt: 3 }}>
-                    <Button
-                      variant="outlined"
-                      fullWidth
-                      onClick={() => window.open(`/cases/${caseId}/documents`, '_blank')}
-                    >
-                      View All Documents
-                    </Button>
-                    {caseDocuments.some(doc => !doc.analysis_completed) && (
-                      <Button
-                        variant="contained"
-                        fullWidth
-                        onClick={() => {
-                          console.log('Analyzing all pending documents...');
-                        }}
-                      >
-                        Analyze All Pending
-                      </Button>
-                    )}
-                  </Stack>
-                )}
-              </CardContent>
-            </Card>
+            <Box data-testid="documents-tab-content">
+              <DocumentsAnalysisTab 
+                caseId={caseId!}
+                caseDocuments={caseDocuments}
+                documentsLoading={documentsLoading}
+                onNavigateToDocument={(docId) => navigate(`/cases/${caseId}/documents/${docId}`)}
+              />
+            </Box>
           )}
           
           {/* Research with Details Tab */}

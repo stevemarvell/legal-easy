@@ -1,12 +1,12 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, waitFor, fireEvent } from '../../test-utils';
 import DocumentViewer from '../DocumentManagement/DocumentViewer';
-import { documentService } from '../../services/documentService';
+import { documentsService } from '../../services/documentsService';
 import { Document } from '../../types/document';
 
 // Mock the document service
 vi.mock('../../services/documentService', () => ({
-  documentService: {
+  documentsService: {
     getDocumentById: vi.fn(),
   },
 }));
@@ -35,7 +35,7 @@ describe('DocumentViewer Component', () => {
   });
 
   it('renders loading state initially', () => {
-    vi.mocked(documentService.getDocumentById).mockImplementation(
+    vi.mocked(documentsService.getDocumentById).mockImplementation(
       () => new Promise(() => {}) // Never resolves to keep loading state
     );
 
@@ -45,7 +45,7 @@ describe('DocumentViewer Component', () => {
   });
 
   it('renders document information when loaded', async () => {
-    vi.mocked(documentService.getDocumentById).mockResolvedValue(mockDocument);
+    vi.mocked(documentsService.getDocumentById).mockResolvedValue(mockDocument);
 
     render(<DocumentViewer documentId="doc-001" />);
 
@@ -56,7 +56,7 @@ describe('DocumentViewer Component', () => {
   });
 
   it('displays document metadata correctly', async () => {
-    vi.mocked(documentService.getDocumentById).mockResolvedValue(mockDocument);
+    vi.mocked(documentsService.getDocumentById).mockResolvedValue(mockDocument);
 
     render(<DocumentViewer documentId="doc-001" />);
 
@@ -68,7 +68,7 @@ describe('DocumentViewer Component', () => {
   });
 
   it('shows analysis complete status for analyzed documents', async () => {
-    vi.mocked(documentService.getDocumentById).mockResolvedValue(mockDocument);
+    vi.mocked(documentsService.getDocumentById).mockResolvedValue(mockDocument);
 
     render(<DocumentViewer documentId="doc-001" />);
 
@@ -79,7 +79,7 @@ describe('DocumentViewer Component', () => {
   });
 
   it('shows analysis pending status for unanalyzed documents', async () => {
-    vi.mocked(documentService.getDocumentById).mockResolvedValue(mockDocumentPending);
+    vi.mocked(documentsService.getDocumentById).mockResolvedValue(mockDocumentPending);
 
     render(<DocumentViewer documentId="doc-002" />);
 
@@ -90,7 +90,7 @@ describe('DocumentViewer Component', () => {
   });
 
   it('displays document preview content', async () => {
-    vi.mocked(documentService.getDocumentById).mockResolvedValue(mockDocument);
+    vi.mocked(documentsService.getDocumentById).mockResolvedValue(mockDocument);
 
     render(<DocumentViewer documentId="doc-001" />);
 
@@ -101,7 +101,7 @@ describe('DocumentViewer Component', () => {
   });
 
   it('renders tabs correctly', async () => {
-    vi.mocked(documentService.getDocumentById).mockResolvedValue(mockDocument);
+    vi.mocked(documentsService.getDocumentById).mockResolvedValue(mockDocument);
 
     render(<DocumentViewer documentId="doc-001" />);
 
@@ -112,7 +112,7 @@ describe('DocumentViewer Component', () => {
   });
 
   it('enables AI Analysis tab only for analyzed documents', async () => {
-    vi.mocked(documentService.getDocumentById).mockResolvedValue(mockDocument);
+    vi.mocked(documentsService.getDocumentById).mockResolvedValue(mockDocument);
 
     render(<DocumentViewer documentId="doc-001" />);
 
@@ -123,7 +123,7 @@ describe('DocumentViewer Component', () => {
   });
 
   it('disables AI Analysis tab for pending documents', async () => {
-    vi.mocked(documentService.getDocumentById).mockResolvedValue(mockDocumentPending);
+    vi.mocked(documentsService.getDocumentById).mockResolvedValue(mockDocumentPending);
 
     render(<DocumentViewer documentId="doc-002" />);
 
@@ -134,7 +134,7 @@ describe('DocumentViewer Component', () => {
   });
 
   it('switches between tabs correctly', async () => {
-    vi.mocked(documentService.getDocumentById).mockResolvedValue(mockDocument);
+    vi.mocked(documentsService.getDocumentById).mockResolvedValue(mockDocument);
 
     render(<DocumentViewer documentId="doc-001" />);
 
@@ -159,14 +159,14 @@ describe('DocumentViewer Component', () => {
     render(<DocumentViewer documentId="doc-001" document={mockDocument} />);
 
     // Should not call the service when document is preloaded
-    expect(documentService.getDocumentById).not.toHaveBeenCalled();
+    expect(documentsService.getDocumentById).not.toHaveBeenCalled();
     
     // Should immediately show the document
     expect(screen.getByText('Employment Contract - Sarah Chen')).toBeInTheDocument();
   });
 
   it('displays error state when document fetch fails', async () => {
-    vi.mocked(documentService.getDocumentById).mockRejectedValue(new Error('API Error'));
+    vi.mocked(documentsService.getDocumentById).mockRejectedValue(new Error('API Error'));
 
     render(<DocumentViewer documentId="doc-001" />);
 
@@ -176,7 +176,7 @@ describe('DocumentViewer Component', () => {
   });
 
   it('displays not found state when document is null', async () => {
-    vi.mocked(documentService.getDocumentById).mockResolvedValue(null as any);
+    vi.mocked(documentsService.getDocumentById).mockResolvedValue(null as any);
 
     render(<DocumentViewer documentId="doc-001" />);
 
@@ -187,7 +187,7 @@ describe('DocumentViewer Component', () => {
 
   it('handles missing content preview gracefully', async () => {
     const documentWithoutPreview = { ...mockDocument, content_preview: '' };
-    vi.mocked(documentService.getDocumentById).mockResolvedValue(documentWithoutPreview);
+    vi.mocked(documentsService.getDocumentById).mockResolvedValue(documentWithoutPreview);
 
     render(<DocumentViewer documentId="doc-001" />);
 

@@ -1,12 +1,12 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, waitFor, fireEvent } from '../../test-utils';
 import DocumentList from '../DocumentManagement/DocumentList';
-import { documentService } from '../../services/documentService';
+import { documentsService } from '../../services/documentsService';
 import { Document } from '../../types/document';
 
 // Mock the document service
 vi.mock('../../services/documentService', () => ({
-  documentService: {
+  documentsService: {
     getCaseDocuments: vi.fn(),
   },
 }));

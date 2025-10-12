@@ -29,8 +29,8 @@ import {
   Assessment as AssessmentIcon,
   CalendarToday as CalendarIcon
 } from '@mui/icons-material';
-import { documentService } from '../../services/documentService';
-import { caseService } from '../../services/caseService';
+import { documentsService } from '../../services/documentsService';
+import { casesService } from '../../services/casesService';
 import { Document } from '../../types/document';
 import { Case } from '../../types/case';
 
@@ -61,13 +61,13 @@ const DocumentList: React.FC<DocumentListProps> = ({
         setError(null);
         
         // Fetch documents first
-        const fetchedDocuments = await documentService.getCaseDocuments(caseId);
+        const fetchedDocuments = await documentsService.getCaseDocuments(caseId);
         setDocuments(fetchedDocuments);
         onDocumentsLoaded?.(fetchedDocuments);
         
         // Try to fetch case info, but don't fail if it doesn't work
         try {
-          const fetchedCase = await caseService.getCaseById(caseId);
+          const fetchedCase = await casesService.getCaseById(caseId);
           setCaseInfo(fetchedCase);
         } catch (caseErr) {
           console.warn('Failed to fetch case info:', caseErr);
@@ -232,10 +232,10 @@ const DocumentList: React.FC<DocumentListProps> = ({
               
               <Paper variant="outlined" sx={{ p: 1.5, textAlign: 'center', flex: 1 }} data-testid="analyzed-count">
                 <Typography variant="h4" color="success.main" fontWeight="bold">
-                  {documents.filter(doc => doc.analysis_completed).length}
+                  {documents.length}
                 </Typography>
                 <Typography variant="caption" color="text.secondary">
-                  Analyzed
+                  Total Documents
                 </Typography>
               </Paper>
             </Box>

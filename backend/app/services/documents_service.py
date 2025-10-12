@@ -27,7 +27,13 @@ class DocumentsService:
                 return []
             
             with open(case_docs_path, 'r', encoding='utf-8') as f:
-                all_docs = json.load(f)
+                data = json.load(f)
+                
+                # Handle both flat array and nested structure
+                if isinstance(data, dict) and 'case_documents' in data:
+                    all_docs = data['case_documents']
+                else:
+                    all_docs = data
                 
                 # Filter documents for the specific case
                 case_docs = [doc for doc in all_docs if doc.get('case_id') == case_id]
@@ -49,7 +55,13 @@ class DocumentsService:
                 return None
             
             with open(case_docs_path, 'r', encoding='utf-8') as f:
-                all_docs = json.load(f)
+                data = json.load(f)
+            
+            # Handle both flat array and nested structure
+            if isinstance(data, dict) and 'case_documents' in data:
+                all_docs = data['case_documents']
+            else:
+                all_docs = data
             
             # Find the document
             document = next((doc for doc in all_docs if doc.get('id') == document_id), None)
@@ -81,7 +93,13 @@ class DocumentsService:
                 return None
             
             with open(case_docs_path, 'r', encoding='utf-8') as f:
-                all_docs = json.load(f)
+                data = json.load(f)
+            
+            # Handle both flat array and nested structure
+            if isinstance(data, dict) and 'case_documents' in data:
+                all_docs = data['case_documents']
+            else:
+                all_docs = data
             
             # Find the document
             document = next((doc for doc in all_docs if doc.get('id') == document_id), None)
@@ -90,3 +108,6 @@ class DocumentsService:
         except Exception as e:
             print(f"Error finding document: {e}")
             return None
+# 
+Export the service class
+__all__ = ['DocumentsService']

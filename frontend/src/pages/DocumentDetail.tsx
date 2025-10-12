@@ -17,7 +17,7 @@ import {
   Description as DocumentIcon
 } from '@mui/icons-material';
 import DocumentViewer from '../components/DocumentManagement/DocumentViewer';
-import { documentService } from '../services/documentService';
+import { documentsService } from '../services/documentsService';
 import { Document } from '../types/document';
 
 const DocumentDetail: React.FC = () => {
@@ -34,7 +34,7 @@ const DocumentDetail: React.FC = () => {
       try {
         setLoading(true);
         setError(null);
-        const fetchedDocument = await documentService.getDocumentById(documentId);
+        const fetchedDocument = await documentsService.getDocumentById(documentId);
         setDocument(fetchedDocument);
       } catch (err) {
         console.error('Failed to fetch document:', err);

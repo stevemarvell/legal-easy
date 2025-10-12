@@ -12,12 +12,10 @@ import {
   ListItemText,
   CircularProgress,
   ListItemIcon,
-  Stack,
-  Alert
+  Stack
 } from '@mui/material';
 import {
   Description as DocumentIcon,
-  CheckCircle as CheckCircleIcon,
   HourglassEmpty as HourglassEmptyIcon,
   Folder as FolderIcon,
   Email as EmailIcon,
@@ -25,7 +23,6 @@ import {
   Gavel as EvidenceIcon
 } from '@mui/icons-material';
 import { Document } from '../../../types/api';
-import { apiClient } from '../../../services/api';
 
 interface DocumentsAnalysisTabProps {
   caseId: string;
@@ -59,21 +56,8 @@ const DocumentsAnalysisTab: React.FC<DocumentsAnalysisTabProps> = ({
 
   useEffect(() => {
     // TODO: Load analysis results when AI is implemented
-    // For now, just show placeholder analysis for completed documents
-    const completedDocs = caseDocuments.filter(doc => doc.analysis_completed);
-    
-    const placeholderResults: Record<string, DocumentAnalysisResult> = {};
-    completedDocs.forEach(doc => {
-      placeholderResults[doc.id] = {
-        document_id: doc.id,
-        summary: "AI analysis not yet implemented",
-        key_points: [],
-        confidence_score: 0.0,
-        analysis_timestamp: new Date().toISOString()
-      };
-    });
-    
-    setAnalysisResults(placeholderResults);
+    // For now, analysis functionality is disabled
+    setAnalysisResults({});
   }, [caseDocuments]);
 
   const getDocumentTypeIcon = (type: string) => {
@@ -86,13 +70,7 @@ const DocumentsAnalysisTab: React.FC<DocumentsAnalysisTabProps> = ({
     }
   };
 
-  const getAnalysisStatusIcon = (completed: boolean) => {
-    return completed ? <CheckCircleIcon color="success" /> : <HourglassEmptyIcon color="disabled" />;
-  };
 
-  const getAnalysisStatusText = (completed: boolean) => {
-    return completed ? 'completed' : 'pending';
-  };
 
   const formatFileSize = (bytes: number) => {
     if (bytes === 0) return '0 Bytes';
@@ -136,7 +114,7 @@ const DocumentsAnalysisTab: React.FC<DocumentsAnalysisTabProps> = ({
   };
 
   const analysisStatus = {
-    completed: caseDocuments.filter(doc => doc.analysis_completed).length,
+    completed: 0, // Analysis functionality disabled
     total: caseDocuments.length
   };
 
@@ -219,21 +197,11 @@ const DocumentsAnalysisTab: React.FC<DocumentsAnalysisTabProps> = ({
                       {isAnalyzing ? (
                         <CircularProgress size={20} />
                       ) : (
-                        getAnalysisStatusIcon(doc.analysis_completed)
+                        <HourglassEmptyIcon color="disabled" />
                       )}
                       <Typography variant="caption" color="text.secondary" ml={1}>
-                        {isAnalyzing ? 'analyzing...' : getAnalysisStatusText(doc.analysis_completed)}
+                        {isAnalyzing ? 'analyzing...' : 'analysis disabled'}
                       </Typography>
-                      {!doc.analysis_completed && !isAnalyzing && (
-                        <Button
-                          size="small"
-                          variant="outlined"
-                          onClick={() => triggerDocumentAnalysis(doc.id)}
-                          sx={{ ml: 2 }}
-                        >
-                          Analyze
-                        </Button>
-                      )}
                     </Box>
                   </Box>
 
@@ -321,20 +289,6 @@ const DocumentsAnalysisTab: React.FC<DocumentsAnalysisTabProps> = ({
             >
               View All Documents
             </Button>
-            {caseDocuments.some(doc => !doc.analysis_completed) && (
-              <Button
-                variant="contained"
-                fullWidth
-                onClick={() => {
-                  // Trigger analysis for all pending documents
-                  caseDocuments
-                    .filter(doc => !doc.analysis_completed)
-                    .forEach(doc => triggerDocumentAnalysis(doc.id));
-                }}
-              >
-                Analyze All Pending
-              </Button>
-            )}
           </Stack>
         )}
       </CardContent>
