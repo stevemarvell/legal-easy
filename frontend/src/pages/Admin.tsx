@@ -36,15 +36,7 @@ interface CorpusRegenerationResult {
   last_updated: string;
 }
 
-interface DocumentAnalysisResult {
-  success: boolean;
-  message: string;
-  total_documents: number;
-  analyzed_documents: number;
-  failed_documents: number;
-  average_confidence: number;
-  processing_time_seconds: number;
-}
+
 
 interface CaseAnalysisResult {
   success: boolean;
@@ -64,17 +56,13 @@ const Admin: React.FC = () => {
   const [corpusResult, setCorpusResult] = useState<CorpusRegenerationResult | null>(null);
   const [corpusError, setCorpusError] = useState<string | null>(null);
 
-  const [analysisLoading, setAnalysisLoading] = useState(false);
-  const [analysisResult, setAnalysisResult] = useState<DocumentAnalysisResult | null>(null);
-  const [analysisError, setAnalysisError] = useState<string | null>(null);
+
 
   const [caseAnalysisLoading, setCaseAnalysisLoading] = useState(false);
   const [caseAnalysisResult, setCaseAnalysisResult] = useState<CaseAnalysisResult | null>(null);
   const [caseAnalysisError, setCaseAnalysisError] = useState<string | null>(null);
 
-  const [caseDetailsLoading, setCaseDetailsLoading] = useState(false);
-  const [caseDetailsResult, setCaseDetailsResult] = useState<any | null>(null);
-  const [caseDetailsError, setCaseDetailsError] = useState<string | null>(null);
+
 
   const handleRegenerateIndex = async () => {
     setCorpusLoading(true);
@@ -92,21 +80,7 @@ const Admin: React.FC = () => {
     }
   };
 
-  const handleRegenerateAnalysis = async () => {
-    setAnalysisLoading(true);
-    setAnalysisError(null);
-    setAnalysisResult(null);
 
-    try {
-      const response = await apiClient.post<DocumentAnalysisResult>('/api/documents/regenerate-analysis');
-      setAnalysisResult(response.data);
-    } catch (err: any) {
-      console.error('Failed to regenerate document analysis:', err);
-      setAnalysisError(err.response?.data?.detail || 'Failed to regenerate document analysis');
-    } finally {
-      setAnalysisLoading(false);
-    }
-  };
 
   const handleRegenerateCaseAnalysis = async () => {
     setCaseAnalysisLoading(true);
@@ -114,32 +88,18 @@ const Admin: React.FC = () => {
     setCaseAnalysisResult(null);
 
     try {
-      const response = await apiClient.post<CaseAnalysisResult>('/api/cases/regenerate-analysis');
+      // Comprehensive analysis that includes case overview, documents, and research
+      const response = await apiClient.post<CaseAnalysisResult>('/api/cases/comprehensive-analysis');
       setCaseAnalysisResult(response.data);
     } catch (err: any) {
-      console.error('Failed to regenerate case analysis:', err);
-      setCaseAnalysisError(err.response?.data?.detail || 'Failed to regenerate case analysis');
+      console.error('Failed to run comprehensive case analysis:', err);
+      setCaseAnalysisError(err.response?.data?.detail || 'Failed to run comprehensive case analysis');
     } finally {
       setCaseAnalysisLoading(false);
     }
   };
 
-  const handleTestCaseDetailsAnalysis = async () => {
-    setCaseDetailsLoading(true);
-    setCaseDetailsError(null);
-    setCaseDetailsResult(null);
 
-    try {
-      // Test with case-001 which has detailed description
-      const response = await apiClient.get('/api/cases/case-001/details-analysis');
-      setCaseDetailsResult(response.data);
-    } catch (err: any) {
-      console.error('Failed to analyze case details:', err);
-      setCaseDetailsError(err.response?.data?.detail || 'Failed to analyze case details');
-    } finally {
-      setCaseDetailsLoading(false);
-    }
-  };
 
   return (
     <Container maxWidth="lg">
@@ -287,31 +247,31 @@ const Admin: React.FC = () => {
                 )}
 
                 <Typography variant="caption" color="text.secondary" display="block" sx={{ mt: 1 }}>
-                  Last updated: {new Date(corpusResult.last_updated).toLocaleString()}
+                  Last updated: {new Date(corpusResult.last_updated).toLocaleString('en-GB')}
                 </Typography>
               </Alert>
             )}
           </CardContent>
         </Card>
 
-        {/* Document Analysis Management */}
+        {/* Comprehensive Case Analysis */}
         <Card sx={{ mb: 4 }}>
           <CardContent>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-              <StorageIcon color="primary" sx={{ mr: 1 }} />
+              <AnalyticsIcon color="primary" sx={{ mr: 1 }} />
               <Typography variant="h5" component="h2">
-                Document Analysis
+                Comprehensive Case Analysis
               </Typography>
             </Box>
 
             <Typography variant="body1" color="text.secondary" sx={{ mb: 3 }}>
-              AI-powered analysis of all case documents including key dates, parties, summaries, and legal concepts.
-              Regenerate analysis after updating AI algorithms or to refresh existing analysis results.
+              Comprehensive AI-powered analysis that integrates case overview and details, document analysis, 
+              and research corpus to provide strategic insights and recommendations for all cases.
             </Typography>
 
             <Box sx={{ mb: 3 }}>
               <Typography variant="h6" gutterBottom>
-                What document analysis includes:
+                What comprehensive case analysis includes:
               </Typography>
               <List dense>
                 <ListItem>
@@ -319,8 +279,8 @@ const Admin: React.FC = () => {
                     <InfoIcon color="primary" />
                   </ListItemIcon>
                   <ListItemText
-                    primary="Key Information Extraction"
-                    secondary="Dates, parties, document types, and important clauses"
+                    primary="Case Overview & Details Analysis"
+                    secondary="Extracts legal elements, timeline, parties, issues, and evidence from case descriptions"
                   />
                 </ListItem>
                 <ListItem>
@@ -328,8 +288,8 @@ const Admin: React.FC = () => {
                     <InfoIcon color="primary" />
                   </ListItemIcon>
                   <ListItemText
-                    primary="AI-Generated Summaries"
-                    secondary="Concise summaries of document content and purpose"
+                    primary="Document Integration"
+                    secondary="Links case documents with extracted key information, summaries, and legal concepts"
                   />
                 </ListItem>
                 <ListItem>
@@ -337,8 +297,8 @@ const Admin: React.FC = () => {
                     <InfoIcon color="primary" />
                   </ListItemIcon>
                   <ListItemText
-                    primary="Confidence Scoring"
-                    secondary="Quality assessment and uncertainty flags for analysis results"
+                    primary="Research Correlation"
+                    secondary="Matches cases with relevant precedents, statutes, and legal materials from corpus"
                   />
                 </ListItem>
                 <ListItem>
@@ -346,8 +306,17 @@ const Admin: React.FC = () => {
                     <InfoIcon color="primary" />
                   </ListItemIcon>
                   <ListItemText
-                    primary="Risk Assessment"
-                    secondary="Potential issues, compliance status, and critical deadlines"
+                    primary="Strategic Recommendations"
+                    secondary="AI-generated legal strategies based on playbook rules and comprehensive case analysis"
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemIcon>
+                    <InfoIcon color="primary" />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary="Risk & Strength Assessment"
+                    secondary="Comprehensive evaluation of case strengths, weaknesses, and potential outcomes"
                   />
                 </ListItem>
               </List>
@@ -361,151 +330,11 @@ const Admin: React.FC = () => {
                 variant="contained"
                 color="secondary"
                 size="large"
-                startIcon={analysisLoading ? <CircularProgress size={20} /> : <RefreshIcon />}
-                onClick={handleRegenerateAnalysis}
-                disabled={analysisLoading}
-              >
-                {analysisLoading ? 'Regenerating Analysis...' : 'Regenerate Document Analysis'}
-              </Button>
-
-              {analysisLoading && (
-                <Typography variant="body2" color="text.secondary">
-                  This may take several minutes for large document collections...
-                </Typography>
-              )}
-            </Box>
-
-            {/* Error Display */}
-            {analysisError && (
-              <Alert severity="error" sx={{ mb: 3 }} icon={<ErrorIcon />}>
-                <Typography variant="body2">
-                  <strong>Error:</strong> {analysisError}
-                </Typography>
-              </Alert>
-            )}
-
-            {/* Success Result */}
-            {analysisResult && analysisResult.success && (
-              <Alert severity="success" sx={{ mb: 3 }} icon={<CheckIcon />}>
-                <Typography variant="body2" gutterBottom>
-                  <strong>Success:</strong> {analysisResult.message}
-                </Typography>
-
-                <Box sx={{ mt: 2, display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-                  <Chip
-                    label={`${analysisResult.total_documents} Total Documents`}
-                    color="info"
-                    size="small"
-                  />
-                  <Chip
-                    label={`${analysisResult.analyzed_documents} Analyzed`}
-                    color="success"
-                    size="small"
-                  />
-                  {analysisResult.failed_documents > 0 && (
-                    <Chip
-                      label={`${analysisResult.failed_documents} Failed`}
-                      color="error"
-                      size="small"
-                    />
-                  )}
-                  <Chip
-                    label={`${Math.round(analysisResult.average_confidence * 100)}% Avg Confidence`}
-                    color="secondary"
-                    size="small"
-                  />
-                  <Chip
-                    label={`${analysisResult.processing_time_seconds}s Processing Time`}
-                    color="default"
-                    size="small"
-                  />
-                </Box>
-              </Alert>
-            )}
-          </CardContent>
-        </Card>
-
-        {/* Case Analysis Management */}
-        <Card sx={{ mb: 4 }}>
-          <CardContent>
-            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-              <AnalyticsIcon color="primary" sx={{ mr: 1 }} />
-              <Typography variant="h5" component="h2">
-                Integrated Case Analysis
-              </Typography>
-            </Box>
-
-            <Typography variant="body1" color="text.secondary" sx={{ mb: 3 }}>
-              Comprehensive AI-powered analysis that integrates document analysis, research corpus, and legal playbooks
-              to provide strategic insights and recommendations for all cases.
-            </Typography>
-
-            <Box sx={{ mb: 3 }}>
-              <Typography variant="h6" gutterBottom>
-                What integrated case analysis includes:
-              </Typography>
-              <List dense>
-                <ListItem>
-                  <ListItemIcon>
-                    <InfoIcon color="primary" />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary="Document Integration"
-                    secondary="Links case documents with extracted key information and themes"
-                  />
-                </ListItem>
-                <ListItem>
-                  <ListItemIcon>
-                    <InfoIcon color="primary" />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary="Research Correlation"
-                    secondary="Matches cases with relevant precedents, statutes, and legal materials"
-                  />
-                </ListItem>
-                <ListItem>
-                  <ListItemIcon>
-                    <InfoIcon color="primary" />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary="Strategic Recommendations"
-                    secondary="AI-generated legal strategies based on playbook rules and case analysis"
-                  />
-                </ListItem>
-                <ListItem>
-                  <ListItemIcon>
-                    <InfoIcon color="primary" />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary="Risk Assessment"
-                    secondary="Comprehensive evaluation of case strengths, weaknesses, and potential outcomes"
-                  />
-                </ListItem>
-                <ListItem>
-                  <ListItemIcon>
-                    <InfoIcon color="primary" />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary="Monetary Evaluation"
-                    secondary="Estimated case values and settlement ranges based on similar cases"
-                  />
-                </ListItem>
-              </List>
-            </Box>
-
-            <Divider sx={{ my: 3 }} />
-
-            {/* Action Button */}
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 3 }}>
-              <Button
-                variant="contained"
-                color="warning"
-                size="large"
                 startIcon={caseAnalysisLoading ? <CircularProgress size={20} /> : <AnalyticsIcon />}
                 onClick={handleRegenerateCaseAnalysis}
                 disabled={caseAnalysisLoading}
               >
-                {caseAnalysisLoading ? 'Regenerating Case Analysis...' : 'Regenerate Case Analysis'}
+                {caseAnalysisLoading ? 'Analyzing Cases...' : 'Analyze Case Overview, Documents & Research'}
               </Button>
 
               {caseAnalysisLoading && (
@@ -579,122 +408,6 @@ const Admin: React.FC = () => {
                     </Box>
                   </Box>
                 )}
-              </Alert>
-            )}
-          </CardContent>
-        </Card>
-
-        {/* Case Details Analysis Testing */}
-        <Card sx={{ mb: 4 }}>
-          <CardContent>
-            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-              <AnalyticsIcon color="primary" sx={{ mr: 1 }} />
-              <Typography variant="h5" component="h2">
-                Case Details Analysis
-              </Typography>
-            </Box>
-
-            <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
-              Test the new case details analysis feature that extracts legal elements, timeline, 
-              parties, issues, evidence, and strategic insights from case descriptions.
-            </Typography>
-
-            <Box sx={{ mb: 3 }}>
-              <Typography variant="h6" gutterBottom>
-                Test Analysis
-              </Typography>
-              <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                This will analyze case-001 (Sarah Chen vs TechCorp) to demonstrate the detailed 
-                analysis capabilities including legal element extraction, timeline analysis, 
-                and case strength assessment.
-              </Typography>
-
-              <Button
-                variant="contained"
-                color="secondary"
-                size="large"
-                startIcon={caseDetailsLoading ? <CircularProgress size={20} /> : <AnalyticsIcon />}
-                onClick={handleTestCaseDetailsAnalysis}
-                disabled={caseDetailsLoading}
-              >
-                {caseDetailsLoading ? 'Analyzing Case Details...' : 'Test Case Details Analysis'}
-              </Button>
-            </Box>
-
-            {/* Error Display */}
-            {caseDetailsError && (
-              <Alert severity="error" sx={{ mb: 3 }} icon={<ErrorIcon />}>
-                <Typography variant="body2">
-                  <strong>Error:</strong> {caseDetailsError}
-                </Typography>
-              </Alert>
-            )}
-
-            {/* Success Result */}
-            {caseDetailsResult && (
-              <Alert severity="success" sx={{ mb: 3 }} icon={<CheckIcon />}>
-                <Typography variant="body2" gutterBottom>
-                  <strong>Analysis Complete:</strong> {caseDetailsResult.case_title}
-                </Typography>
-
-                <Box sx={{ mt: 2 }}>
-                  <Typography variant="caption" color="text.secondary" display="block">
-                    Analysis Results:
-                  </Typography>
-                  
-                  <List dense>
-                    <ListItem>
-                      <ListItemIcon><InfoIcon color="primary" /></ListItemIcon>
-                      <ListItemText 
-                        primary="Legal Elements" 
-                        secondary={`${caseDetailsResult.legal_elements?.contracts?.length || 0} contracts, ${caseDetailsResult.legal_elements?.statutes?.length || 0} statutes, ${caseDetailsResult.legal_elements?.monetary_amounts?.length || 0} monetary amounts`}
-                      />
-                    </ListItem>
-                    
-                    <ListItem>
-                      <ListItemIcon><InfoIcon color="primary" /></ListItemIcon>
-                      <ListItemText 
-                        primary="Timeline Analysis" 
-                        secondary={`${caseDetailsResult.timeline_analysis?.total_events_found || 0} events found, span: ${caseDetailsResult.timeline_analysis?.timeline_span || 'N/A'}`}
-                      />
-                    </ListItem>
-                    
-                    <ListItem>
-                      <ListItemIcon><InfoIcon color="primary" /></ListItemIcon>
-                      <ListItemText 
-                        primary="Case Strength" 
-                        secondary={`${caseDetailsResult.case_strength?.strength_level || 'N/A'} (${caseDetailsResult.case_strength?.overall_score || 0}% confidence: ${Math.round((caseDetailsResult.case_strength?.confidence_level || 0) * 100)}%)`}
-                      />
-                    </ListItem>
-                    
-                    <ListItem>
-                      <ListItemIcon><InfoIcon color="primary" /></ListItemIcon>
-                      <ListItemText 
-                        primary="Risk Assessment" 
-                        secondary={`Overall risk: ${caseDetailsResult.risk_assessment?.overall_risk_level || 'N/A'}`}
-                      />
-                    </ListItem>
-                  </List>
-
-                  {caseDetailsResult.strategic_insights?.key_strengths?.length > 0 && (
-                    <Box sx={{ mt: 2 }}>
-                      <Typography variant="caption" color="text.secondary" display="block">
-                        Key Strengths:
-                      </Typography>
-                      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5, mt: 0.5 }}>
-                        {caseDetailsResult.strategic_insights.key_strengths.map((strength: string, index: number) => (
-                          <Chip
-                            key={index}
-                            label={strength}
-                            size="small"
-                            color="success"
-                            variant="outlined"
-                          />
-                        ))}
-                      </Box>
-                    </Box>
-                  )}
-                </Box>
               </Alert>
             )}
           </CardContent>

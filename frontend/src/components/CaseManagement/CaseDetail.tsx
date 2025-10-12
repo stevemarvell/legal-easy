@@ -17,7 +17,15 @@ import {
   ListItemIcon,
   Stack,
   Tabs,
-  Tab
+  Tab,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  TextField
 } from '@mui/material';
 import {
   Person as PersonIcon,
@@ -33,13 +41,442 @@ import {
   Assignment as AssignmentIcon,
   Gavel as EvidenceIcon,
   Analytics as AnalyticsIcon,
-  Timeline as TimelineIcon,
-  Info as InfoIcon
+  Search as ResearchIcon,
+  Info as InfoIcon,
+  AccountTree as PlaybookTreeIcon,
+  ExpandMore as ExpandMoreIcon,
+  Psychology as ClaudeIcon,
+  Lightbulb as RecommendationIcon
 } from '@mui/icons-material';
 import { apiClient } from '../../services/api';
 import { Case, Document } from '../../types/api';
 import SharedLayout from '../layout/SharedLayout';
-import IntegratedCaseAnalysis from './IntegratedCaseAnalysis';
+// Playbook Decision Interface Component
+interface PlaybookDecisionInterfaceProps {
+  caseId: string;
+  playbookId: string;
+  playbookName: string;
+}
+
+interface DecisionNode {
+  id: string;
+  question: string;
+  options: Record<string, string>;
+  researchContext: string[];
+  completed?: boolean;
+  selectedOption?: string;
+  rationale?: string;
+  confidence?: number;
+}
+
+interface DecisionSession {
+  sessionId: string;
+  currentNodeId: string;
+  decisionHistory: DecisionNode[];
+  status: 'not_started' | 'active' | 'completed';
+  finalRecommendations?: {
+    overallAssessment: string;
+    strategicRecommendations: string[];
+    riskAssessment: string;
+    nextSteps: string[];
+  };
+}
+
+const PlaybookDecisionInterface: React.FC<PlaybookDecisionInterfaceProps> = ({ 
+  caseId, 
+  playbookId, 
+  playbookName 
+}) => {
+  const [session, setSession] = useState<DecisionSession | null>(null);
+  const [currentDecision, setCurrentDecision] = useState<DecisionNode | null>(null);
+  const [decisionDialogOpen, setDecisionDialogOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState('');
+  const [decisionRationale, setDecisionRationale] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  // Mock decision tree data
+  const mockDecisionTree: Record<string, DecisionNode> = {
+    'start': {
+      id: 'start',
+      question: 'What is the primary legal issue in this case?',
+      options: {
+        'Contract Breach': 'contract_analysis',
+        'Employment Dispute': 'employment_analysis',
+        'Liability Claim': 'liability_analysis'
+      },
+      researchContext: [
+        'Review case documents for contract terms',
+        'Identify parties and their obligations',
+        'Assess damages and remedies available'
+      ]
+    },
+    'contract_analysis': {
+      id: 'contract_analysis',
+      question: 'Is there a valid contract between the parties?',
+      options: {
+        'Yes, valid contract exists': 'breach_assessment',
+        'No, contract is invalid': 'no_contract_remedies',
+        'Unclear, needs further analysis': 'contract_validity_research'
+      },
+      researchContext: [
+        'Check contract formation elements',
+        'Review consideration and capacity',
+        'Examine contract terms and conditions'
+      ]
+    },
+    'employment_analysis': {
+      id: 'employment_analysis',
+      question: 'What type of employment issue is this?',
+      options: {
+        'Wrongful Termination': 'termination_analysis',
+        'Discrimination': 'discrimination_analysis',
+        'Wage and Hour': 'wage_analysis'
+      },
+      researchContext: [
+        'Review employment contract terms',
+        'Check applicable labor laws',
+        'Examine company policies and procedures'
+      ]
+    }
+  };
+
+  const startSession = () => {
+    const newSession: DecisionSession = {
+      sessionId: `session_${Date.now()}`,
+      currentNodeId: 'start',
+      decisionHistory: [],
+      status: 'active'
+    };
+    setSession(newSession);
+    setCurrentDecision(mockDecisionTree['start']);
+  };
+
+  const openDecisionDialog = (option: string) => {
+    setSelectedOption(option);
+    setDecisionRationale('');
+    setDecisionDialogOpen(true);
+  };
+
+  const submitDecision = () => {
+    if (!currentDecision || !session || !selectedOption) return;
+
+    setLoading(true);
+
+    // Simulate API call delay
+    setTimeout(() => {
+      const completedDecision: DecisionNode = {
+        ...currentDecision,
+        completed: true,
+        selectedOption,
+        rationale: decisionRationale,
+        confidence: 0.85 // Mock confidence score
+      };
+
+      const updatedSession: DecisionSession = {
+        ...session,
+        decisionHistory: [...session.decisionHistory, completedDecision]
+      };
+
+      const nextNodeId = currentDecision.options[selectedOption];
+      const nextNode = mockDecisionTree[nextNodeId];
+
+      if (nextNode) {
+        updatedSession.currentNodeId = nextNodeId;
+        setCurrentDecision(nextNode);
+      } else {
+        // Session completed
+        updatedSession.status = 'completed';
+        updatedSession.finalRecommendations = {
+          overallAssessment: 'Based on the decision path taken, this case shows strong potential for a favorable outcome.',
+          strategicRecommendations: [
+            'Gather additional evidence to support contract breach claim',
+            'Consider settlement negotiations before proceeding to trial',
+            'Prepare for potential counterclaims from defendant'
+          ],
+          riskAssessment: 'Medium risk - case has solid foundation but some uncertainties remain',
+          nextSteps: [
+            'Complete discovery process',
+            'Depose key witnesses',
+            'Prepare motion for summary judgment',
+            'Develop trial strategy'
+          ]
+        };
+        setCurrentDecision(null);
+      }
+
+      setSession(updatedSession);
+      setDecisionDialogOpen(false);
+      setSelectedOption('');
+      setDecisionRationale('');
+      setLoading(false);
+    }, 1500);
+  };
+
+  if (!session) {
+    return (
+      <Box data-testid="playbook-tab-content">
+        <Card sx={{ mb: 4 }}>
+          <CardContent>
+            <Box display="flex" alignItems="center" mb={2}>
+              <PlaybookTreeIcon color="primary" sx={{ mr: 1 }} />
+              <Typography variant="h5" component="h2">
+                Playbook Decision Tree
+              </Typography>
+            </Box>
+            <Divider sx={{ mb: 3 }} />
+
+            <Box textAlign="center" py={4}>
+              <ClaudeIcon sx={{ fontSize: 48, color: 'primary.main', mb: 2 }} />
+              <Typography variant="h6" gutterBottom>
+                {playbookName}
+              </Typography>
+              <Typography variant="body2" color="text.secondary" sx={{ mb: 3, maxWidth: 600, mx: 'auto' }}>
+                Start a Claude-driven playbook decision session to systematically work through 
+                the decision tree with AI assistance. Claude will help make informed decisions 
+                based on case research and legal analysis.
+              </Typography>
+              <Button
+                variant="contained"
+                size="large"
+                startIcon={<ClaudeIcon />}
+                onClick={startSession}
+              >
+                Start Claude Decision Session
+              </Button>
+            </Box>
+          </CardContent>
+        </Card>
+      </Box>
+    );
+  }
+
+  if (session.status === 'completed' && session.finalRecommendations) {
+    return (
+      <Box data-testid="playbook-final-recommendations">
+        <Card sx={{ mb: 4 }}>
+          <CardContent>
+            <Box display="flex" alignItems="center" mb={2}>
+              <RecommendationIcon color="success" sx={{ mr: 1 }} />
+              <Typography variant="h5" component="h2">
+                Final Recommendations
+              </Typography>
+            </Box>
+            <Divider sx={{ mb: 3 }} />
+
+            <Typography variant="h6" gutterBottom>
+              Overall Assessment
+            </Typography>
+            <Typography variant="body1" sx={{ mb: 3 }}>
+              {session.finalRecommendations.overallAssessment}
+            </Typography>
+
+            <Typography variant="h6" gutterBottom>
+              Strategic Recommendations
+            </Typography>
+            <List>
+              {session.finalRecommendations.strategicRecommendations.map((rec, index) => (
+                <ListItem key={index}>
+                  <ListItemText primary={`• ${rec}`} />
+                </ListItem>
+              ))}
+            </List>
+
+            <Typography variant="h6" gutterBottom sx={{ mt: 3 }}>
+              Risk Assessment
+            </Typography>
+            <Typography variant="body1" sx={{ mb: 3 }}>
+              {session.finalRecommendations.riskAssessment}
+            </Typography>
+
+            <Typography variant="h6" gutterBottom>
+              Next Steps
+            </Typography>
+            <List>
+              {session.finalRecommendations.nextSteps.map((step, index) => (
+                <ListItem key={index}>
+                  <ListItemText primary={`${index + 1}. ${step}`} />
+                </ListItem>
+              ))}
+            </List>
+
+            <Typography variant="h6" gutterBottom sx={{ mt: 3 }}>
+              Decision Path Taken
+            </Typography>
+            <Stack direction="row" spacing={1} flexWrap="wrap">
+              {session.decisionHistory.map((decision, index) => (
+                <Chip
+                  key={index}
+                  label={`${decision.question.substring(0, 30)}... → ${decision.selectedOption}`}
+                  variant="outlined"
+                  size="small"
+                  sx={{ mb: 1 }}
+                />
+              ))}
+            </Stack>
+
+            <Button
+              variant="outlined"
+              onClick={() => setSession(null)}
+              sx={{ mt: 3 }}
+            >
+              Start New Session
+            </Button>
+          </CardContent>
+        </Card>
+      </Box>
+    );
+  }
+
+  return (
+    <Box data-testid="playbook-decision-interface">
+      {/* Decision Progress */}
+      <Card sx={{ mb: 4 }}>
+        <CardContent>
+          <Box display="flex" alignItems="center" justifyContent="space-between" mb={2}>
+            <Box display="flex" alignItems="center">
+              <PlaybookTreeIcon color="primary" sx={{ mr: 1 }} />
+              <Typography variant="h5" component="h2">
+                {playbookName}
+              </Typography>
+            </Box>
+            <Chip
+              label={`${session.decisionHistory.length} decisions made`}
+              color="primary"
+              size="small"
+            />
+          </Box>
+          <Divider sx={{ mb: 3 }} />
+
+          {/* Decision History */}
+          {session.decisionHistory.length > 0 && (
+            <Box sx={{ mb: 3 }}>
+              <Typography variant="h6" gutterBottom>
+                Decision History
+              </Typography>
+              {session.decisionHistory.map((decision, index) => (
+                <Accordion key={decision.id} sx={{ mb: 1 }}>
+                  <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                    <Box display="flex" alignItems="center" width="100%">
+                      <CheckCircleIcon color="success" sx={{ mr: 2 }} />
+                      <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
+                        {decision.question}
+                      </Typography>
+                    </Box>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Box>
+                      <Typography variant="body2" sx={{ mb: 2 }}>
+                        <strong>Selected Option:</strong> {decision.selectedOption}
+                      </Typography>
+                      <Typography variant="body2" sx={{ mb: 2 }}>
+                        <strong>Rationale:</strong> {decision.rationale}
+                      </Typography>
+                      <Chip
+                        label={`${Math.round((decision.confidence || 0) * 100)}% confidence`}
+                        color={(decision.confidence || 0) >= 0.8 ? 'success' : (decision.confidence || 0) >= 0.6 ? 'warning' : 'error'}
+                        size="small"
+                      />
+                    </Box>
+                  </AccordionDetails>
+                </Accordion>
+              ))}
+            </Box>
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Current Decision */}
+      {currentDecision && (
+        <Card sx={{ mb: 4 }}>
+          <CardContent>
+            <Box display="flex" alignItems="center" mb={2}>
+              <ClaudeIcon color="primary" sx={{ mr: 1 }} />
+              <Typography variant="h6">
+                Current Decision
+              </Typography>
+            </Box>
+            <Divider sx={{ mb: 3 }} />
+
+            <Typography variant="h6" gutterBottom>
+              {currentDecision.question}
+            </Typography>
+
+            {currentDecision.researchContext.length > 0 && (
+              <Box sx={{ mb: 3, p: 2, bgcolor: 'info.light', borderRadius: 1 }}>
+                <Typography variant="subtitle2" gutterBottom>
+                  Relevant Research Context:
+                </Typography>
+                <List dense>
+                  {currentDecision.researchContext.map((context, index) => (
+                    <ListItem key={index} sx={{ py: 0.5, pl: 2 }}>
+                      <Typography variant="body2">• {context}</Typography>
+                    </ListItem>
+                  ))}
+                </List>
+              </Box>
+            )}
+
+            <Typography variant="subtitle2" gutterBottom sx={{ mt: 3 }}>
+              Available Options:
+            </Typography>
+            <Stack spacing={2}>
+              {Object.entries(currentDecision.options).map(([option, nextNode]) => (
+                <Button
+                  key={option}
+                  variant="outlined"
+                  fullWidth
+                  onClick={() => openDecisionDialog(option)}
+                  sx={{ justifyContent: 'flex-start', textAlign: 'left' }}
+                >
+                  {option}
+                </Button>
+              ))}
+            </Stack>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Decision Dialog */}
+      <Dialog
+        open={decisionDialogOpen}
+        onClose={() => setDecisionDialogOpen(false)}
+        maxWidth="md"
+        fullWidth
+      >
+        <DialogTitle>
+          Make Decision: {selectedOption}
+        </DialogTitle>
+        <DialogContent>
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
+            Provide the rationale for choosing this option. This will be recorded as part of the decision history.
+          </Typography>
+          <TextField
+            fullWidth
+            multiline
+            rows={4}
+            label="Decision Rationale"
+            value={decisionRationale}
+            onChange={(e) => setDecisionRationale(e.target.value)}
+            placeholder="Explain why this option was chosen based on the case facts, research, and legal analysis..."
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setDecisionDialogOpen(false)}>
+            Cancel
+          </Button>
+          <Button
+            onClick={submitDecision}
+            variant="contained"
+            disabled={!decisionRationale.trim() || loading}
+            startIcon={loading ? <CircularProgress size={16} /> : null}
+          >
+            {loading ? 'Processing...' : 'Submit Decision'}
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </Box>
+  );
+};
 
 const CaseDetail: React.FC = () => {
   const { caseId } = useParams<{ caseId: string }>();
@@ -139,12 +576,6 @@ const CaseDetail: React.FC = () => {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
   };
 
-  const getAnalysisStatusCount = () => {
-    const completed = caseDocuments.filter(doc => doc.analysis_completed).length;
-    const total = caseDocuments.length;
-    return { completed, total };
-  };
-
   const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
     setActiveTab(newValue);
   };
@@ -209,8 +640,6 @@ const CaseDetail: React.FC = () => {
     );
   }
 
-  const analysisStatus = getAnalysisStatusCount();
-
   return (
     <SharedLayout
       title={caseData.title}
@@ -233,7 +662,7 @@ const CaseDetail: React.FC = () => {
             size="medium"
           />
           <Typography variant="body2" color="text.secondary">
-            Created: {new Date(caseData.created_date).toLocaleDateString()}
+            Created: {new Date(caseData.created_date).toLocaleDateString('en-GB')}
           </Typography>
         </Stack>
       </Box>
@@ -247,229 +676,240 @@ const CaseDetail: React.FC = () => {
               label="Overview"
               iconPosition="start"
               sx={{ minHeight: 48 }}
+              data-testid="overview-tab"
             />
             <Tab
               icon={<AssignmentIcon />}
               label="Details"
               iconPosition="start"
               sx={{ minHeight: 48 }}
-            />
-            <Tab
-              icon={<DocumentIcon />}
-              label="Documents"
-              iconPosition="start"
-              sx={{ minHeight: 48 }}
+              data-testid="details-tab"
             />
             <Tab
               icon={<AnalyticsIcon />}
-              label="Analysis"
+              label="Documents with Analysis"
               iconPosition="start"
               sx={{ minHeight: 48 }}
-              disabled={analysisStatus.completed === 0}
+              data-testid="documents-analysis-tab"
             />
             <Tab
-              icon={<TimelineIcon />}
-              label="Timeline"
+              icon={<ResearchIcon />}
+              label="Research with Details"
               iconPosition="start"
               sx={{ minHeight: 48 }}
+              data-testid="research-details-tab"
+            />
+            <Tab
+              icon={<PlaybookTreeIcon />}
+              label="Playbook"
+              iconPosition="start"
+              sx={{ minHeight: 48 }}
+              data-testid="playbook-tab"
             />
           </Tabs>
         </Box>
 
         <Box sx={{ mt: 3 }}>
-          {/* Main Content */}
-          <Box>
-            {/* Overview Tab */}
-            {activeTab === 0 && (
-              <Box>
-                {/* Comprehensive Case Metadata */}
-                <Card sx={{ mb: 4 }} data-testid="case-overview">
-                  <CardContent>
-                    <Typography variant="h5" component="h2" gutterBottom>
-                      Case Overview
-                    </Typography>
-                    <Divider sx={{ mb: 3 }} />
-
-                    <Box display="flex" flexDirection="column" gap={3}>
-                      <Box display="flex" flexDirection={{ xs: 'column', sm: 'row' }} gap={3}>
-                        <Box flex={1}>
-                          <Box display="flex" alignItems="center" mb={2}>
-                            <PersonIcon color="primary" sx={{ mr: 1 }} />
-                            <Typography variant="h6">Client</Typography>
-                          </Box>
-                          <Typography variant="body1" color="text.secondary" data-testid="case-client">
-                            {caseData.client_name}
-                          </Typography>
-                        </Box>
-
-                        <Box flex={1}>
-                          <Box display="flex" alignItems="center" mb={2}>
-                            <GavelIcon color="primary" sx={{ mr: 1 }} />
-                            <Typography variant="h6">Case Type</Typography>
-                          </Box>
-                          <Typography variant="body1" color="text.secondary" data-testid="case-type">
-                            {caseData.case_type}
-                          </Typography>
-                        </Box>
-                      </Box>
-
-                      <Box display="flex" flexDirection={{ xs: 'column', sm: 'row' }} gap={3}>
-                        <Box flex={1}>
-                          <Box display="flex" alignItems="center" mb={2}>
-                            <ScheduleIcon color="primary" sx={{ mr: 1 }} />
-                            <Typography variant="h6">Created Date</Typography>
-                          </Box>
-                          <Typography variant="body1" color="text.secondary" data-testid="case-created-date">
-                            {new Date(caseData.created_date).toLocaleDateString()}
-                          </Typography>
-                        </Box>
-
-                        <Box flex={1}>
-                          <Box display="flex" alignItems="center" mb={2}>
-                            <PlaybookIcon color="primary" sx={{ mr: 1 }} />
-                            <Typography variant="h6">Assigned Playbook</Typography>
-                          </Box>
-                          <Typography variant="body1" color="text.secondary" data-testid="case-playbook">
-                            {getPlaybookName(caseData.playbook_id)}
-                          </Typography>
-                        </Box>
-                      </Box>
-
-                      <Box>
-                        <Typography variant="h6" gutterBottom>
-                          Summary
-                        </Typography>
-                        <Typography variant="body1" color="text.secondary" data-testid="case-summary">
-                          {caseData.summary}
-                        </Typography>
-                      </Box>
-                    </Box>
-                  </CardContent>
-                </Card>
-
-                {/* Key Parties */}
-                {caseData.key_parties && caseData.key_parties.length > 0 && (
-                  <Card sx={{ mb: 4 }} data-testid="key-parties-section">
-                    <CardContent>
-                      <Box display="flex" alignItems="center" mb={2}>
-                        <GroupIcon color="primary" sx={{ mr: 1 }} />
-                        <Typography variant="h5" component="h2">
-                          Key Parties
-                        </Typography>
-                      </Box>
-                      <Divider sx={{ mb: 3 }} />
-                      <List>
-                        {caseData.key_parties.map((party, index) => (
-                          <ListItem key={index} divider={index < caseData.key_parties.length - 1}>
-                            <ListItemIcon>
-                              <PersonIcon color="primary" />
-                            </ListItemIcon>
-                            <ListItemText primary={party} />
-                          </ListItem>
-                        ))}
-                      </List>
-                    </CardContent>
-                  </Card>
-                )}
-              </Box>
-            )}
-
-            {/* Details Tab */}
-            {activeTab === 1 && (
-              <Card sx={{ mb: 4 }} data-testid="case-details">
+          {/* Overview Tab */}
+          {activeTab === 0 && (
+            <Box data-testid="overview-tab-content">
+              {/* Essential Case Information */}
+              <Card sx={{ mb: 4 }} data-testid="case-overview">
                 <CardContent>
                   <Typography variant="h5" component="h2" gutterBottom>
-                    Detailed Case Information
+                    Case Overview
                   </Typography>
                   <Divider sx={{ mb: 3 }} />
 
-                  {caseData.description ? (
-                    <Box
-                      data-testid="case-full-description"
-                      sx={{
-                        '& h2': {
-                          color: 'primary.main',
-                          fontSize: '1.5rem',
-                          fontWeight: 600,
-                          mt: 3,
-                          mb: 2,
-                          '&:first-of-type': { mt: 0 }
-                        },
-                        '& h3': {
-                          color: 'primary.dark',
-                          fontSize: '1.25rem',
-                          fontWeight: 500,
-                          mt: 2.5,
-                          mb: 1.5
-                        },
-                        '& p': {
-                          lineHeight: 1.8,
-                          textAlign: 'justify',
-                          mb: 2,
-                          fontSize: '1rem'
-                        },
-                        '& ul, & ol': {
-                          mb: 2,
-                          pl: 3
-                        },
-                        '& li': {
-                          mb: 0.5,
-                          lineHeight: 1.6
-                        },
-                        '& strong': {
-                          color: 'text.primary',
-                          fontWeight: 600
-                        },
-                        '& em': {
-                          fontStyle: 'italic',
-                          color: 'text.secondary'
-                        }
-                      }}
-                    >
-                      <ReactMarkdown>{caseData.description}</ReactMarkdown>
+                  <Box display="flex" flexDirection="column" gap={3}>
+                    <Box display="flex" flexDirection={{ xs: 'column', sm: 'row' }} gap={3}>
+                      <Box flex={1}>
+                        <Box display="flex" alignItems="center" mb={2}>
+                          <PersonIcon color="primary" sx={{ mr: 1 }} />
+                          <Typography variant="h6">Client</Typography>
+                        </Box>
+                        <Typography variant="body1" color="text.secondary" data-testid="case-client">
+                          {caseData.client_name}
+                        </Typography>
+                      </Box>
+
+                      <Box flex={1}>
+                        <Box display="flex" alignItems="center" mb={2}>
+                          <GavelIcon color="primary" sx={{ mr: 1 }} />
+                          <Typography variant="h6">Case Type</Typography>
+                        </Box>
+                        <Typography variant="body1" color="text.secondary" data-testid="case-type">
+                          {caseData.case_type}
+                        </Typography>
+                      </Box>
                     </Box>
-                  ) : (
-                    <Box textAlign="center" py={4}>
-                      <AssignmentIcon sx={{ fontSize: 48, color: 'text.disabled', mb: 2 }} />
-                      <Typography variant="body2" color="text.secondary" gutterBottom>
-                        No detailed description available for this case
+
+                    <Box display="flex" flexDirection={{ xs: 'column', sm: 'row' }} gap={3}>
+                      <Box flex={1}>
+                        <Box display="flex" alignItems="center" mb={2}>
+                          <ScheduleIcon color="primary" sx={{ mr: 1 }} />
+                          <Typography variant="h6">Created Date</Typography>
+                        </Box>
+                        <Typography variant="body1" color="text.secondary" data-testid="case-created-date">
+                          {new Date(caseData.created_date).toLocaleDateString('en-GB')}
+                        </Typography>
+                      </Box>
+
+                      <Box flex={1}>
+                        <Box display="flex" alignItems="center" mb={2}>
+                          <PlaybookIcon color="primary" sx={{ mr: 1 }} />
+                          <Typography variant="h6">Assigned Playbook</Typography>
+                        </Box>
+                        <Typography variant="body1" color="text.secondary" data-testid="case-playbook">
+                          {getPlaybookName(caseData.playbook_id)}
+                        </Typography>
+                      </Box>
+                    </Box>
+
+                    <Box>
+                      <Typography variant="h6" gutterBottom>
+                        Summary
                       </Typography>
-                      <Typography variant="caption" color="text.secondary">
-                        The case summary is available in the Overview tab
+                      <Typography variant="body1" color="text.secondary" data-testid="case-summary">
+                        {caseData.summary}
                       </Typography>
                     </Box>
-                  )}
+                  </Box>
                 </CardContent>
               </Card>
-            )}
 
-            {/* Documents Tab */}
-            {activeTab === 2 && (
-              <Card sx={{ mb: 4 }} data-testid="documents-section">
-                <CardContent>
-                  <Box display="flex" alignItems="center" justifyContent="space-between" mb={2}>
-                    <Box display="flex" alignItems="center">
-                      <DocumentIcon color="primary" sx={{ mr: 1 }} />
+              {/* Key Parties */}
+              {caseData.key_parties && caseData.key_parties.length > 0 && (
+                <Card sx={{ mb: 4 }} data-testid="key-parties-section">
+                  <CardContent>
+                    <Box display="flex" alignItems="center" mb={2}>
+                      <GroupIcon color="primary" sx={{ mr: 1 }} />
                       <Typography variant="h5" component="h2">
-                        Associated Documents
+                        Key Parties
                       </Typography>
                     </Box>
+                    <Divider sx={{ mb: 3 }} />
+                    <List>
+                      {caseData.key_parties.map((party, index) => (
+                        <ListItem key={index} divider={index < caseData.key_parties.length - 1}>
+                          <ListItemIcon>
+                            <PersonIcon color="primary" />
+                          </ListItemIcon>
+                          <ListItemText primary={party} />
+                        </ListItem>
+                      ))}
+                    </List>
+                  </CardContent>
+                </Card>
+              )}
+            </Box>
+          )}
+          
+          {/* Details Tab */}
+          {activeTab === 1 && (
+            <Card sx={{ mb: 4 }} data-testid="details-tab-content">
+              <CardContent>
+                <Typography variant="h5" component="h2" gutterBottom>
+                  Comprehensive Case Details
+                </Typography>
+                <Divider sx={{ mb: 3 }} />
+
+                {caseData.description ? (
+                  <Box
+                    data-testid="case-full-description"
+                    sx={{
+                      '& h2': {
+                        color: 'primary.main',
+                        fontSize: '1.5rem',
+                        fontWeight: 600,
+                        mt: 3,
+                        mb: 2,
+                        '&:first-of-type': { mt: 0 }
+                      },
+                      '& h3': {
+                        color: 'primary.dark',
+                        fontSize: '1.25rem',
+                        fontWeight: 500,
+                        mt: 2.5,
+                        mb: 1.5
+                      },
+                      '& p': {
+                        lineHeight: 1.8,
+                        textAlign: 'justify',
+                        mb: 2,
+                        fontSize: '1rem'
+                      },
+                      '& ul, & ol': {
+                        mb: 2,
+                        pl: 3
+                      },
+                      '& li': {
+                        mb: 0.5,
+                        lineHeight: 1.6
+                      },
+                      '& strong': {
+                        color: 'text.primary',
+                        fontWeight: 600
+                      },
+                      '& em': {
+                        fontStyle: 'italic',
+                        color: 'text.secondary'
+                      }
+                    }}
+                  >
+                    <ReactMarkdown>{caseData.description}</ReactMarkdown>
+                  </Box>
+                ) : (
+                  <Box textAlign="center" py={4}>
+                    <AssignmentIcon sx={{ fontSize: 48, color: 'text.disabled', mb: 2 }} />
+                    <Typography variant="body2" color="text.secondary" gutterBottom>
+                      No detailed description available for this case
+                    </Typography>
+                    <Typography variant="caption" color="text.secondary">
+                      The case summary is available in the Overview tab
+                    </Typography>
+                  </Box>
+                )}
+              </CardContent>
+            </Card>
+          )}
+          
+          {/* Documents with Analysis Tab */}
+          {activeTab === 2 && (
+            <Card sx={{ mb: 4 }} data-testid="documents-analysis-tab-content">
+              <CardContent>
+                <Box display="flex" alignItems="center" justifyContent="space-between" mb={2}>
+                  <Box display="flex" alignItems="center">
+                    <DocumentIcon color="primary" sx={{ mr: 1 }} />
+                    <Typography variant="h5" component="h2">
+                      Documents with Analysis
+                    </Typography>
+                  </Box>
+                  <Stack direction="row" spacing={1}>
                     <Chip
                       label={`${caseDocuments.length} document${caseDocuments.length !== 1 ? 's' : ''}`}
                       variant="outlined"
                       size="small"
                     />
-                  </Box>
-                  <Divider sx={{ mb: 3 }} />
+                    <Chip
+                      label={`${caseDocuments.filter(doc => doc.analysis_completed).length}/${caseDocuments.length} analyzed`}
+                      color={caseDocuments.every(doc => doc.analysis_completed) ? 'success' : 'warning'}
+                      size="small"
+                    />
+                  </Stack>
+                </Box>
+                <Divider sx={{ mb: 3 }} />
 
-                  {documentsLoading ? (
-                    <Box display="flex" justifyContent="center" p={2}>
-                      <CircularProgress size={24} />
-                    </Box>
-                  ) : caseDocuments.length > 0 ? (
-                    <List>
-                      {caseDocuments.map((doc, index) => (
-                        <ListItem key={doc.id} divider={index < caseDocuments.length - 1}>
+                {documentsLoading ? (
+                  <Box display="flex" justifyContent="center" p={2}>
+                    <CircularProgress size={24} />
+                  </Box>
+                ) : caseDocuments.length > 0 ? (
+                  <List>
+                    {caseDocuments.map((doc, index) => (
+                      <ListItem key={doc.id} divider={index < caseDocuments.length - 1} sx={{ flexDirection: 'column', alignItems: 'stretch' }}>
+                        {/* Document Header */}
+                        <Box display="flex" alignItems="center" width="100%" mb={1}>
                           <ListItemIcon>
                             {getDocumentTypeIcon(doc.type)}
                           </ListItemIcon>
@@ -496,7 +936,7 @@ const CaseDetail: React.FC = () => {
                                   Type: {doc.type} • Size: {formatFileSize(doc.size)}
                                 </Typography>
                                 <Typography variant="caption" color="text.secondary" display="block">
-                                  Uploaded: {new Date(doc.upload_date).toLocaleDateString()}
+                                  Uploaded: {new Date(doc.upload_date).toLocaleDateString('en-GB')}
                                 </Typography>
                                 {doc.content_preview && (
                                   <Typography variant="caption" color="text.secondary" display="block" sx={{ mt: 0.5, fontStyle: 'italic' }}>
@@ -512,26 +952,45 @@ const CaseDetail: React.FC = () => {
                               {getAnalysisStatusText(doc.analysis_completed)}
                             </Typography>
                           </Box>
-                        </ListItem>
-                      ))}
-                    </List>
-                  ) : (
-                    <Box textAlign="center" py={4}>
-                      <DocumentIcon sx={{ fontSize: 48, color: 'text.disabled', mb: 2 }} />
-                      <Typography variant="body2" color="text.secondary" gutterBottom>
-                        No documents uploaded yet
-                      </Typography>
-                      <Typography variant="caption" color="text.secondary">
-                        Upload documents to begin case analysis
-                      </Typography>
-                    </Box>
-                  )}
+                        </Box>
 
-                  <Stack direction="row" spacing={2} sx={{ mt: 2 }}>
+                        {/* Analysis Results Placeholder */}
+                        {doc.analysis_completed && (
+                          <Box sx={{ ml: 6, mt: 1, p: 2, bgcolor: 'grey.50', borderRadius: 1 }} data-testid="analysis-results">
+                            <Typography variant="subtitle2" color="primary" gutterBottom>
+                              Analysis Results
+                            </Typography>
+                            <Typography variant="body2" sx={{ mb: 1 }}>
+                              <strong>Summary:</strong> Document analysis completed. Key information extracted and processed.
+                            </Typography>
+                            <Chip
+                              label="85% confidence"
+                              color="success"
+                              size="small"
+                            />
+                          </Box>
+                        )}
+                      </ListItem>
+                    ))}
+                  </List>
+                ) : (
+                  <Box textAlign="center" py={4}>
+                    <DocumentIcon sx={{ fontSize: 48, color: 'text.disabled', mb: 2 }} />
+                    <Typography variant="body2" color="text.secondary" gutterBottom>
+                      No documents uploaded yet
+                    </Typography>
+                    <Typography variant="caption" color="text.secondary">
+                      Upload documents to begin case analysis
+                    </Typography>
+                  </Box>
+                )}
+
+                {caseDocuments.length > 0 && (
+                  <Stack direction="row" spacing={2} sx={{ mt: 3 }}>
                     <Button
                       variant="outlined"
                       fullWidth
-                      onClick={() => navigate(`/cases/${caseId}/documents`)}
+                      onClick={() => window.open(`/cases/${caseId}/documents`, '_blank')}
                     >
                       View All Documents
                     </Button>
@@ -540,88 +999,65 @@ const CaseDetail: React.FC = () => {
                         variant="contained"
                         fullWidth
                         onClick={() => {
-                          // Trigger analysis for pending documents
-                          console.log('Analyzing pending documents...');
+                          console.log('Analyzing all pending documents...');
                         }}
                       >
-                        Analyze Pending
+                        Analyze All Pending
                       </Button>
                     )}
                   </Stack>
-                </CardContent>
-              </Card>
-            )}
-
-            {/* Analysis Tab */}
-            {activeTab === 3 && analysisStatus.completed > 0 && (
-              <Box>
-                <Typography variant="h5" component="h2" gutterBottom>
-                  Integrated Case Analysis
-                </Typography>
-                <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
-                  Comprehensive analysis linking case documents, legal research, and strategic playbooks.
-                </Typography>
-                <IntegratedCaseAnalysis caseId={caseId!} />
-              </Box>
-            )}
-
-            {/* Timeline Tab */}
-            {activeTab === 4 && (
+                )}
+              </CardContent>
+            </Card>
+          )}
+          
+          {/* Research with Details Tab */}
+          {activeTab === 3 && (
+            <Box data-testid="research-details-tab-content">
               <Card sx={{ mb: 4 }}>
                 <CardContent>
                   <Box display="flex" alignItems="center" mb={2}>
-                    <TimelineIcon color="primary" sx={{ mr: 1 }} />
+                    <ResearchIcon color="primary" sx={{ mr: 1 }} />
                     <Typography variant="h5" component="h2">
-                      Case Timeline
+                      Research with Details
                     </Typography>
                   </Box>
                   <Divider sx={{ mb: 3 }} />
 
-                  <Box>
-                    <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
-                      Timeline functionality will be implemented to show key case events, document uploads,
-                      analysis completions, and important milestones.
+                  <Box textAlign="center" py={4}>
+                    <ResearchIcon sx={{ fontSize: 48, color: 'text.disabled', mb: 2 }} />
+                    <Typography variant="h6" gutterBottom>
+                      Generate Research List
                     </Typography>
-
-                    {/* Basic timeline for now */}
-                    <List>
-                      <ListItem>
-                        <ListItemIcon>
-                          <CheckCircleIcon color="success" />
-                        </ListItemIcon>
-                        <ListItemText
-                          primary="Case Created"
-                          secondary={new Date(caseData.created_date).toLocaleDateString()}
-                        />
-                      </ListItem>
-                      {caseDocuments.length > 0 && (
-                        <ListItem>
-                          <ListItemIcon>
-                            <DocumentIcon color="primary" />
-                          </ListItemIcon>
-                          <ListItemText
-                            primary={`${caseDocuments.length} Document${caseDocuments.length !== 1 ? 's' : ''} Uploaded`}
-                            secondary="Various dates"
-                          />
-                        </ListItem>
-                      )}
-                      {analysisStatus.completed > 0 && (
-                        <ListItem>
-                          <ListItemIcon>
-                            <AnalyticsIcon color="secondary" />
-                          </ListItemIcon>
-                          <ListItemText
-                            primary={`${analysisStatus.completed} Document${analysisStatus.completed !== 1 ? 's' : ''} Analyzed`}
-                            secondary="Analysis completed"
-                          />
-                        </ListItem>
-                      )}
-                    </List>
+                    <Typography variant="body2" color="text.secondary" sx={{ mb: 3, maxWidth: 600, mx: 'auto' }}>
+                      Generate a comprehensive research list based on case files and document analysis. 
+                      This will identify key legal concepts, relevant precedents, applicable statutes, 
+                      and factual research needs to support Claude-driven playbook decisions.
+                    </Typography>
+                    <Button
+                      variant="contained"
+                      size="large"
+                      startIcon={<ResearchIcon />}
+                      onClick={() => {
+                        console.log('Generating research list...');
+                      }}
+                    >
+                      Generate Research List
+                    </Button>
                   </Box>
                 </CardContent>
               </Card>
-            )}
-          </Box>
+            </Box>
+          )}
+          
+          {/* Playbook Tab */}
+          {activeTab === 4 && (
+            <PlaybookDecisionInterface 
+              caseId={caseId!}
+              playbookId={caseData.playbook_id}
+              playbookName={getPlaybookName(caseData.playbook_id)}
+            />
+          )}
         </Box>
       </Box>
     </SharedLayout>

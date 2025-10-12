@@ -119,6 +119,40 @@ export interface LegalSearchResponse {
   processing_time: number;
 }
 
+// Research types
+export interface ResearchItem {
+  id: string;
+  research_question: string;
+  legal_concept: string;
+  priority: 'High' | 'Medium' | 'Low';
+  research_type: 'Legal Precedent' | 'Statute' | 'Factual' | 'Procedural';
+  relevant_corpus_items: string[];
+  case_relevance_score: number;
+  playbook_decision_nodes: string[];
+}
+
+export interface LegalConceptIdentification {
+  concept_name: string;
+  concept_definition: string;
+  case_relevance: string;
+  research_questions: string[];
+  related_precedents: string[];
+  applicable_statutes: string[];
+}
+
+export interface ResearchList {
+  case_id: string;
+  case_type: string;
+  generation_timestamp: string;
+  legal_concepts_identified: LegalConceptIdentification[];
+  research_items: ResearchItem[];
+  precedent_research: string[];
+  statute_research: string[];
+  factual_research: string[];
+  playbook_context: Record<string, any>;
+  claude_processing_format: Record<string, any>;
+}
+
 // Playbook types
 export interface Playbook {
   id: string;
@@ -162,6 +196,55 @@ export interface PlaybookExecution {
   results: PlaybookResult[];
   execution_time: string;
   status: 'success' | 'partial' | 'failed';
+}
+
+// Claude Playbook Decision Types
+export interface PlaybookDecisionTracking {
+  decision_node_id: string;
+  decision_question: string;
+  research_items_consulted: string[];
+  supporting_evidence: string[];
+  decision_rationale: string;
+  confidence_level: number;
+  next_decision_node?: string;
+}
+
+export interface ClaudePlaybookSession {
+  session_id: string;
+  case_id: string;
+  playbook_id: string;
+  research_list: ResearchList;
+  decision_history: PlaybookDecisionTracking[];
+  current_decision_node: string;
+  session_status: 'Active' | 'Completed' | 'Paused';
+  final_recommendations?: FinalRecommendations;
+}
+
+export interface DecisionNode {
+  id: string;
+  question: string;
+  options: Record<string, string>;
+  research_context: string[];
+  claude_prompt: string;
+}
+
+export interface PlaybookDecisionTree {
+  root_node: string;
+  nodes: Record<string, DecisionNode>;
+  current_path: string[];
+  completed_decisions: PlaybookDecisionTracking[];
+}
+
+export interface FinalRecommendations {
+  overall_assessment: string;
+  strategic_recommendations: string[];
+  risk_assessment: {
+    overall_risk_level: string;
+    risk_factors: string[];
+  };
+  next_steps: string[];
+  supporting_evidence: string[];
+  decision_path: string[];
 }
 
 // API Response wrappers

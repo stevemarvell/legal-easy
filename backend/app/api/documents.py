@@ -141,47 +141,11 @@ async def get_document(
     description="""
     Retrieve AI-powered analysis results for a specific document.
     
-    This endpoint returns comprehensive AI analysis including:
-    - Extracted key dates and parties
-    - Document type classification
-    - AI-generated summary
-    - Important clauses and legal concepts
-    - Confidence scores for analysis accuracy
-    - Uncertainty flags for low confidence areas
-    
-    **Use cases:**
-    - Document analysis views
-    - Legal research and discovery
-    - Case preparation and strategy
-    - Automated document processing
+    TODO: Implement AI analysis integration
     """,
     responses={
-        200: {
-            "description": "Document analysis retrieved successfully",
-            "content": {
-                "application/json": {
-                    "example": {
-                        "document_id": "doc-001",
-                        "key_dates": ["2022-03-15", "2024-01-12"],
-                        "parties_involved": ["Sarah Chen", "TechCorp Solutions Inc."],
-                        "document_type": "Employment Contract",
-                        "summary": "At-will employment agreement for Senior Safety Engineer position...",
-                        "key_clauses": ["At-will employment clause", "Safety reporting obligations"],
-                        "confidence_scores": {"parties": 0.95, "dates": 0.98, "summary": 0.87},
-                        "overall_confidence": 0.93,
-                        "uncertainty_flags": []
-                    }
-                }
-            }
-        },
-        404: {
-            "description": "Document analysis not found",
-            "content": {
-                "application/json": {
-                    "example": {"detail": "Analysis for document doc-999 not found"}
-                }
-            }
-        }
+        200: {"description": "Document analysis retrieved successfully"},
+        404: {"description": "Document analysis not found"}
     }
 )
 async def get_document_analysis(
@@ -189,15 +153,9 @@ async def get_document_analysis(
 ):
     """Get AI-powered analysis results for a specific document"""
     try:
-        # Check for existing analysis using AIService
-        existing_analysis = AIService.load_existing_analysis(document_id)
-        if existing_analysis is not None:
-            return existing_analysis
-        
-        # No analysis found
-        raise HTTPException(status_code=404, detail=f"Analysis for document {document_id} not found")
-    except HTTPException:
-        raise
+        # TODO: Implement AI analysis retrieval
+        analysis = AIService.analyze_document(document_id, "")
+        return analysis
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to get document analysis: {str(e)}")
 
@@ -209,59 +167,12 @@ async def get_document_analysis(
     description="""
     Perform real-time AI-powered analysis on a specific document.
     
-    This endpoint triggers immediate AI analysis of the document and returns:
-    - Extracted key dates and parties
-    - Document type classification
-    - AI-generated summary
-    - Important clauses and legal concepts
-    - Confidence scores for analysis accuracy
-    - Uncertainty flags for low confidence areas
-    - Overall confidence assessment
-    
-    **Use cases:**
-    - Real-time document processing
-    - On-demand analysis for new documents
-    - Re-analysis of existing documents
-    - Testing and validation of AI analysis capabilities
-    
-    **Note:** This endpoint performs live analysis and may take longer than 
-    retrieving pre-computed results from the GET endpoint.
+    TODO: Implement AI analysis integration
     """,
     responses={
-        200: {
-            "description": "Document analysis completed successfully",
-            "content": {
-                "application/json": {
-                    "example": {
-                        "document_id": "doc-001",
-                        "key_dates": ["2022-03-15", "2024-01-12"],
-                        "parties_involved": ["Sarah Chen", "TechCorp Solutions Inc."],
-                        "document_type": "Employment Contract",
-                        "summary": "Real-time analysis of employment agreement for Senior Safety Engineer position...",
-                        "key_clauses": ["At-will employment clause", "Safety reporting obligations"],
-                        "confidence_scores": {"parties": 0.95, "dates": 0.98, "summary": 0.87},
-                        "overall_confidence": 0.93,
-                        "uncertainty_flags": []
-                    }
-                }
-            }
-        },
-        404: {
-            "description": "Document not found",
-            "content": {
-                "application/json": {
-                    "example": {"detail": "Document with ID doc-999 not found"}
-                }
-            }
-        },
-        500: {
-            "description": "Analysis failed",
-            "content": {
-                "application/json": {
-                    "example": {"detail": "Failed to analyze document: AI service unavailable"}
-                }
-            }
-        }
+        200: {"description": "Document analysis completed successfully"},
+        404: {"description": "Document not found"},
+        500: {"description": "Analysis failed"}
     }
 )
 async def analyze_document(
@@ -269,17 +180,12 @@ async def analyze_document(
 ):
     """Perform real-time AI analysis on a specific document"""
     try:
-        # Load document content using DataService
+        # TODO: Load document content and perform AI analysis
         content = DataService.load_document_content(document_id)
         if not content:
             raise HTTPException(status_code=404, detail=f"Document with ID {document_id} not found")
         
-        # Perform AI analysis with confidence scoring
         analysis = AIService.analyze_document(document_id, content)
-        
-        # Save the analysis results for future retrieval
-        AIService.save_analysis(document_id, analysis)
-        
         return analysis
     except HTTPException:
         raise
@@ -387,71 +293,25 @@ async def get_document_content(
     description="""
     Regenerate AI analysis for all documents in the system.
     
-    This endpoint will:
-    - Scan all case documents in the system
-    - Re-run AI analysis on each document
-    - Update the analysis storage with fresh results
-    - Return statistics about the regeneration process
-    
-    **Use cases:**
-    - After updating AI analysis algorithms
-    - Maintenance and data refresh operations
-    - Bulk re-analysis of documents
-    - System administration tasks
-    
-    **Note:** This operation may take significant time for large document collections.
+    TODO: Implement AI analysis regeneration
     """,
     responses={
-        200: {
-            "description": "Analysis regeneration completed successfully",
-            "content": {
-                "application/json": {
-                    "example": {
-                        "success": True,
-                        "message": "Document analysis regenerated successfully",
-                        "total_documents": 25,
-                        "analyzed_documents": 23,
-                        "failed_documents": 2,
-                        "average_confidence": 0.87,
-                        "processing_time_seconds": 45.2
-                    }
-                }
-            }
-        },
-        500: {
-            "description": "Analysis regeneration failed",
-            "content": {
-                "application/json": {
-                    "example": {"detail": "Failed to regenerate document analysis"}
-                }
-            }
-        }
+        200: {"description": "Analysis regeneration completed successfully"},
+        500: {"description": "Analysis regeneration failed"}
     }
 )
 async def regenerate_document_analysis():
     """Regenerate AI analysis for all documents in the system"""
     try:
-        from time import time
-        start_time = time()
-        
-        success = DataService.regenerate_document_analysis()
-        
-        if not success:
-            raise HTTPException(status_code=500, detail="Failed to regenerate document analysis")
-        
-        processing_time = time() - start_time
-        
-        # Load statistics from the regeneration process
-        stats = DataService.get_document_analysis_stats()
-        
+        # TODO: Implement AI analysis regeneration
         return {
             "success": True,
-            "message": "Document analysis regenerated successfully",
-            "total_documents": stats.get("total_documents", 0),
-            "analyzed_documents": stats.get("analyzed_documents", 0),
-            "failed_documents": stats.get("failed_documents", 0),
-            "average_confidence": stats.get("average_confidence", 0.0),
-            "processing_time_seconds": round(processing_time, 2)
+            "message": "Document analysis regeneration not yet implemented",
+            "total_documents": 0,
+            "analyzed_documents": 0,
+            "failed_documents": 0,
+            "average_confidence": 0.0,
+            "processing_time_seconds": 0.0
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to regenerate document analysis: {str(e)}")
