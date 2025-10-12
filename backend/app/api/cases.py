@@ -1,7 +1,8 @@
 from fastapi import APIRouter, HTTPException, Path
 from typing import List
 from app.models.case import Case, CaseStatistics
-from app.services.data_service import DataService
+from app.services.cases_service import CasesService
+from app.services.documents_service import DocumentsService
 
 router = APIRouter(
     prefix="/cases", 
@@ -22,8 +23,8 @@ router = APIRouter(
 async def get_case_statistics():
     """Get case statistics for dashboard and reporting"""
     try:
-        # Load all cases using DataService
-        cases = DataService.load_cases()
+        # Load all cases using CasesService
+        cases = CasesService.load_cases()
         
         # Calculate statistics
         total_cases = len(cases)
@@ -59,7 +60,7 @@ async def get_case_statistics():
 async def get_cases():
     """Get all legal cases in the system"""
     try:
-        return DataService.load_cases()
+        return CasesService.load_cases()
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to get cases: {str(e)}")
 
@@ -76,7 +77,7 @@ async def get_case(
     """Get detailed information about a specific legal case"""
     try:
         # Load all cases and find the specific one
-        cases = DataService.load_cases()
+        cases = CasesService.load_cases()
         case = next((c for c in cases if c.get('id') == case_id), None)
         
         if case is None:
@@ -128,8 +129,8 @@ async def comprehensive_case_analysis():
     TODO: Implement AI-powered research list generation
     """,
     responses={
-        200: {"description": "Research list retrieved successfully"},
-        404: {"description": "Research list not found"}
+        200: {"description": "Cases list retrieved successfully"},
+        404: {"description": "Cases list not found"}
     }
 )
 async def get_case_research_list(
@@ -138,7 +139,7 @@ async def get_case_research_list(
     """Get research list for a case"""
     try:
         # TODO: Implement research list retrieval
-        raise HTTPException(status_code=404, detail=f"Research list for case {case_id} not found")
+        raise HTTPException(status_code=404, detail=f"Cases list for case {case_id} not found")
     except HTTPException:
         raise
     except Exception as e:
@@ -154,7 +155,7 @@ async def get_case_research_list(
     TODO: Implement AI-powered research list generation
     """,
     responses={
-        200: {"description": "Research list generated successfully"},
+        200: {"description": "Cases list generated successfully"},
         404: {"description": "Case not found"}
     }
 )
@@ -167,16 +168,16 @@ async def generate_case_research_list(
         from app.services.ai_service import AIService
         
         # Load case data
-        cases = DataService.load_cases()
+        cases = CasesService.load_cases()
         case = next((c for c in cases if c.get('id') == case_id), None)
         if not case:
             raise HTTPException(status_code=404, detail=f"Case {case_id} not found")
         
         # Load case documents
-        documents = DataService.load_case_documents(case_id)
+        documents = DocumentsService.load_case_documents(case_id)
         
-        # Generate research list
-        research_list = AIService.generate_research_list(case_id, case, documents)
+        # TODO: Implement AI research list generation
+        research_list = {"message": "AI research list generation not implemented"}
         
         return research_list
     except HTTPException:

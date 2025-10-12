@@ -2,10 +2,8 @@ import { createBrowserRouter } from 'react-router-dom';
 import Layout from './pages/Layout';
 import Dashboard from './pages/Dashboard';
 import Cases from './pages/Cases';
-import CaseAnalysis from './pages/CaseAnalysis';
 import Documents from './pages/Documents';
 import DocumentDetail from './pages/DocumentDetail';
-import DocumentAnalysisManagement from './pages/DocumentAnalysisManagement';
 import Playbooks from './pages/Playbooks';
 import Documentation from './pages/Documentation';
 import Research from './pages/Research';
@@ -30,10 +28,7 @@ export const router = createBrowserRouter([
         path: 'cases/:caseId',
         element: <Cases />, // Cases component should handle individual case view
       },
-      {
-        path: 'cases/:caseId/analysis',
-        element: <CaseAnalysis />, // Comprehensive case analysis page
-      },
+
       {
         path: 'cases/:caseId/documents',
         element: <Documents />, // Dedicated Documents page
@@ -50,10 +45,7 @@ export const router = createBrowserRouter([
         path: 'documents/:documentId',
         element: <DocumentDetail />, // Individual document detail page (no case context)
       },
-      {
-        path: 'analysis',
-        element: <DocumentAnalysisManagement />, // Document Analysis Management page
-      },
+
       {
         path: 'playbooks',
         element: <Playbooks />,

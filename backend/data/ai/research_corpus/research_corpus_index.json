@@ -1,0 +1,124 @@
+{
+  "corpus_items": [
+    {
+      "id": "rc-001_employment_template",
+      "name": "Rc 001 Employment Template",
+      "category": "contracts",
+      "file_path": "research_corpus\\contracts\\rc-001_employment_template.txt",
+      "research_areas": [
+        "Contracts"
+      ],
+      "description": "Contracts document: Rc 001 Employment Template",
+      "last_updated": "2025-10-12T12:38:41.734340"
+    },
+    {
+      "id": "rc-002_service_agreement_template",
+      "name": "Rc 002 Service Agreement Template",
+      "category": "contracts",
+      "file_path": "research_corpus\\contracts\\rc-002_service_agreement_template.txt",
+      "research_areas": [
+        "Contracts"
+      ],
+      "description": "Contracts document: Rc 002 Service Agreement Template",
+      "last_updated": "2025-10-12T12:38:41.734340"
+    },
+    {
+      "id": "rc-003_non_disclosure_agreement",
+      "name": "Rc 003 Non Disclosure Agreement",
+      "category": "contracts",
+      "file_path": "research_corpus\\contracts\\rc-003_non_disclosure_agreement.txt",
+      "research_areas": [
+        "Contracts"
+      ],
+      "description": "Contracts document: Rc 003 Non Disclosure Agreement",
+      "last_updated": "2025-10-12T12:38:41.734340"
+    },
+    {
+      "id": "rc-004_termination_clauses",
+      "name": "Rc 004 Termination Clauses",
+      "category": "clauses",
+      "file_path": "research_corpus\\clauses\\rc-004_termination_clauses.txt",
+      "research_areas": [
+        "Clauses"
+      ],
+      "description": "Clauses document: Rc 004 Termination Clauses",
+      "last_updated": "2025-10-12T12:38:41.734340"
+    },
+    {
+      "id": "rc-005_liability_clauses",
+      "name": "Rc 005 Liability Clauses",
+      "category": "clauses",
+      "file_path": "research_corpus\\clauses\\rc-005_liability_clauses.txt",
+      "research_areas": [
+        "Clauses"
+      ],
+      "description": "Clauses document: Rc 005 Liability Clauses",
+      "last_updated": "2025-10-12T12:38:41.734340"
+    },
+    {
+      "id": "rc-006_intellectual_property_clauses",
+      "name": "Rc 006 Intellectual Property Clauses",
+      "category": "clauses",
+      "file_path": "research_corpus\\clauses\\rc-006_intellectual_property_clauses.txt",
+      "research_areas": [
+        "Clauses"
+      ],
+      "description": "Clauses document: Rc 006 Intellectual Property Clauses",
+      "last_updated": "2025-10-12T12:38:41.734340"
+    },
+    {
+      "id": "rc-007_employment_law_precedents",
+      "name": "Rc 007 Employment Law Precedents",
+      "category": "precedents",
+      "file_path": "research_corpus\\precedents\\rc-007_employment_law_precedents.txt",
+      "research_areas": [
+        "Precedents"
+      ],
+      "description": "Precedents document: Rc 007 Employment Law Precedents",
+      "last_updated": "2025-10-12T12:38:41.734340"
+    },
+    {
+      "id": "rc-008_contract_law_precedents",
+      "name": "Rc 008 Contract Law Precedents",
+      "category": "precedents",
+      "file_path": "research_corpus\\precedents\\rc-008_contract_law_precedents.txt",
+      "research_areas": [
+        "Precedents"
+      ],
+      "description": "Precedents document: Rc 008 Contract Law Precedents",
+      "last_updated": "2025-10-12T12:38:41.734340"
+    },
+    {
+      "id": "rc-009_employment_statutes",
+      "name": "Rc 009 Employment Statutes",
+      "category": "statutes",
+      "file_path": "research_corpus\\statutes\\rc-009_employment_statutes.txt",
+      "research_areas": [
+        "Statutes"
+      ],
+      "description": "Statutes document: Rc 009 Employment Statutes",
+      "last_updated": "2025-10-12T12:38:41.734340"
+    },
+    {
+      "id": "rc-010_contract_statutes",
+      "name": "Rc 010 Contract Statutes",
+      "category": "statutes",
+      "file_path": "research_corpus\\statutes\\rc-010_contract_statutes.txt",
+      "research_areas": [
+        "Statutes"
+      ],
+      "description": "Statutes document: Rc 010 Contract Statutes",
+      "last_updated": "2025-10-12T12:38:41.734340"
+    }
+  ],
+  "metadata": {
+    "total_items": 10,
+    "research_areas": [
+      "Clauses",
+      "Precedents",
+      "Contracts",
+      "Statutes"
+    ],
+    "last_regenerated": "2025-10-12T12:38:41.734340"
+  }
+}

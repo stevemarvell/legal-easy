@@ -13,7 +13,7 @@ export { default as CaseDetail } from './CaseManagement/CaseDetail';
 // Document Management Components
 export { default as DocumentList } from './DocumentManagement/DocumentList';
 export { default as DocumentViewer } from './DocumentManagement/DocumentViewer';
-export { default as DocumentAnalysis } from './DocumentManagement/DocumentAnalysis';
+
 
 // Playbook Components
 export { default as PlaybookViewer } from './Playbook/PlaybookViewer';
@@ -22,5 +22,5 @@ export { default as PlaybookViewer } from './Playbook/PlaybookViewer';
 export { default as CorpusList } from './CorpusManagement/CorpusList';
 export { default as CorpusViewer } from './CorpusManagement/CorpusViewer';
 export { default as CorpusSearch } from './CorpusManagement/CorpusSearch';
-export { default as ConceptAnalysis } from './CorpusManagement/ConceptAnalysis';
+
 export { default as RelatedMaterials } from './CorpusManagement/RelatedMaterials';

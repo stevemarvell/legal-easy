@@ -1,8 +1,9 @@
 from fastapi import APIRouter, HTTPException, Path
 from typing import List
 from app.models.document import Document, DocumentAnalysis
-from app.services.data_service import DataService
-from app.services.ai_service import AIService
+from app.services.documents_service import DocumentsService
+from app.services.cases_service import CasesService
+
 
 router = APIRouter(
     prefix="/documents", 
@@ -59,7 +60,7 @@ async def get_case_documents(
 ):
     """Get all documents associated with a specific legal case"""
     try:
-        documents = DataService.load_case_documents(case_id)
+        documents = DocumentsService.load_case_documents(case_id)
         return documents
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to get case documents: {str(e)}")
@@ -116,16 +117,10 @@ async def get_document(
 ):
     """Get detailed information about a specific document"""
     try:
-        # Search through all case documents to find the specific document
-        cases = DataService.load_cases()
-        for case in cases:
-            # Fix: case is a dict, not an object, so use case['id'] instead of case.id
-            case_id = case.get('id') if isinstance(case, dict) else case.id
-            documents = DataService.load_case_documents(case_id)
-            # Fix: documents are also dicts, not objects, so use d['id'] instead of d.id
-            document = next((d for d in documents if (d.get('id') if isinstance(d, dict) else d.id) == document_id), None)
-            if document:
-                return document
+        # Find the document using DocumentsService
+        document = DocumentsService.find_document_by_id(document_id)
+        if document:
+            return document
         
         raise HTTPException(status_code=404, detail=f"Document with ID {document_id} not found")
     except HTTPException:
@@ -154,8 +149,7 @@ async def get_document_analysis(
     """Get AI-powered analysis results for a specific document"""
     try:
         # TODO: Implement AI analysis retrieval
-        analysis = AIService.analyze_document(document_id, "")
-        return analysis
+        raise HTTPException(status_code=501, detail="AI analysis not implemented")
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to get document analysis: {str(e)}")
 
@@ -181,12 +175,12 @@ async def analyze_document(
     """Perform real-time AI analysis on a specific document"""
     try:
         # TODO: Load document content and perform AI analysis
-        content = DataService.load_document_content(document_id)
+        content = DocumentsService.load_document_content(document_id)
         if not content:
             raise HTTPException(status_code=404, detail=f"Document with ID {document_id} not found")
         
-        analysis = AIService.analyze_document(document_id, content)
-        return analysis
+        # TODO: Implement AI analysis
+        raise HTTPException(status_code=501, detail="AI analysis not implemented")
     except HTTPException:
         raise
     except Exception as e:
@@ -208,15 +202,8 @@ async def delete_document_analysis(
 ):
     """Delete stored analysis results for a specific document"""
     try:
-        # Check if analysis exists first
-        existing_analysis = AIService.load_existing_analysis(document_id)
-        if existing_analysis is None:
-            raise HTTPException(status_code=404, detail=f"No analysis found for document {document_id}")
-        
-        # Delete the analysis (this would need to be implemented in AIService)
-        # For now, we'll just return success since the simplified architecture
-        # may not need explicit deletion
-        return {"message": f"Analysis for document {document_id} deleted successfully"}
+        # TODO: Implement analysis deletion
+        raise HTTPException(status_code=501, detail="AI analysis deletion not implemented")
     except HTTPException:
         raise
     except Exception as e:
@@ -271,8 +258,8 @@ async def get_document_content(
 ):
     """Get the full text content of a specific document"""
     try:
-        # Load document content using DataService
-        content = DataService.load_document_content(document_id)
+        # Load document content using DocumentsService
+        content = DocumentsService.load_document_content(document_id)
         if not content:
             raise HTTPException(status_code=404, detail=f"Document with ID {document_id} not found")
         

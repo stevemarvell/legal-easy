@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-PlaybookService - Simple playbook service for the Legal AI System
+PlaybooksService - Playbooks service for the Legal AI System
 
 This service handles playbook-related operations including:
-- Playbook matching for case type matching
+- Loading playbooks from JSON files
+- Playbook matching for case types
 - Comprehensive case analysis using playbooks
-- Fallback to general analysis when no playbook matches
 """
 
 import json
@@ -14,26 +14,31 @@ from typing import Dict, List, Any, Optional
 from datetime import datetime
 
 
-class PlaybookService:
-    """Simple playbook matching and case analysis."""
-    
-    # === PLAYBOOK MATCHING ===
+class PlaybooksService:
+    """Service for playbook operations."""
     
     @staticmethod
-    def match_playbook(case_type: str) -> Optional[Dict[str, Any]]:
-        """Match playbook for case type matching."""
+    def load_playbooks() -> List[Dict[str, Any]]:
+        """Load all playbooks from the playbooks index."""
         try:
-            playbooks_index_path = Path("data/playbooks/playbooks_index.json")
+            backend_dir = Path(__file__).parent.parent.parent
+            playbooks_index_path = backend_dir / "data" / "playbooks" / "playbooks_index.json"
+            
             if not playbooks_index_path.exists():
-                return None
+                return []
             
             with open(playbooks_index_path, 'r', encoding='utf-8') as f:
                 playbooks_data = json.load(f)
-                # Handle both array format and object with 'playbooks' key
-                if isinstance(playbooks_data, list):
-                    playbooks = playbooks_data
-                else:
-                    playbooks = playbooks_data.get('playbooks', [])
+                return playbooks_data.get('playbooks', [])
+        except Exception as e:
+            print(f"Error loading playbooks: {e}")
+            return []
+    
+    @staticmethod
+    def match_playbook(case_type: str) -> Optional[Dict[str, Any]]:
+        """Match playbook for case type."""
+        try:
+            playbooks = PlaybooksService.load_playbooks()
             
             # Find matching playbook by case type
             for playbook in playbooks:
@@ -45,35 +50,38 @@ class PlaybookService:
             print(f"Error matching playbook: {e}")
             return None
     
-    # === COMPREHENSIVE CASE ANALYSIS ===
+    @staticmethod
+    def get_playbook_by_id(playbook_id: str) -> Optional[Dict[str, Any]]:
+        """Get a specific playbook by ID."""
+        try:
+            playbooks = PlaybooksService.load_playbooks()
+            return next((p for p in playbooks if p.get('id') == playbook_id), None)
+        except Exception as e:
+            print(f"Error getting playbook: {e}")
+            return None
     
     @staticmethod
     def analyze_case_with_playbook(case_id: str) -> Dict[str, Any]:
         """Analyze case with playbook for comprehensive case analysis."""
         try:
             # Load case data
-            from .data_service import ResearchService
-            cases = ResearchService.load_cases()
-            case = None
-            for c in cases:
-                if c.get('id') == case_id:
-                    case = c
-                    break
+            from .cases_service import CasesService
+            case = CasesService.find_case_by_id(case_id)
             
             if not case:
-                return PlaybookService._generate_fallback_analysis(case_id, "Case not found")
+                return PlaybooksService._generate_fallback_analysis(case_id, "Case not found")
             
             case_type = case.get('case_type')
             if not case_type:
-                return PlaybookService._generate_fallback_analysis(case_id, "No case type specified")
+                return PlaybooksService._generate_fallback_analysis(case_id, "No case type specified")
             
             # Try to match playbook
-            playbook = PlaybookService.match_playbook(case_type)
+            playbook = PlaybooksService.match_playbook(case_type)
             if not playbook:
-                return PlaybookService._generate_fallback_analysis(case_id, f"No playbook found for case type: {case_type}")
+                return PlaybooksService._generate_fallback_analysis(case_id, f"No playbook found for case type: {case_type}")
             
             # Apply playbook rules to generate comprehensive analysis
-            playbook_result = PlaybookService._apply_playbook_rules(case, playbook)
+            playbook_result = PlaybooksService._apply_playbook_rules(case, playbook)
             
             # Generate comprehensive case analysis
             analysis = {
@@ -85,8 +93,8 @@ class PlaybookService:
                     "potential_weaknesses": playbook_result.get('potential_weaknesses', []),
                     "supporting_evidence": playbook_result.get('supporting_evidence', [])
                 },
-                "strategic_recommendations": PlaybookService._generate_strategic_recommendations(playbook_result),
-                "relevant_precedents": PlaybookService._get_relevant_precedents(case_type),
+                "strategic_recommendations": PlaybooksService._generate_strategic_recommendations(playbook_result),
+                "relevant_precedents": PlaybooksService._get_relevant_precedents(case_type),
                 "applied_playbook": {
                     "id": playbook.get('id'),
                     "name": playbook.get('name'),
@@ -99,7 +107,7 @@ class PlaybookService:
             
         except Exception as e:
             print(f"Error analyzing case with playbook: {e}")
-            return PlaybookService._generate_fallback_analysis(case_id, f"Analysis error: {str(e)}")
+            return PlaybooksService._generate_fallback_analysis(case_id, f"Analysis error: {str(e)}")
     
     @staticmethod
     def _apply_playbook_rules(case: Dict[str, Any], playbook: Dict[str, Any]) -> Dict[str, Any]:
@@ -132,7 +140,7 @@ class PlaybookService:
         total_weight = 0.0
         
         for rule in rules:
-            if PlaybookService._evaluate_rule_condition(case, rule):
+            if PlaybooksService._evaluate_rule_condition(case, rule):
                 applied_rules.append(rule.get('id', ''))
                 
                 # Add rule's action as recommendation
@@ -157,12 +165,12 @@ class PlaybookService:
                     potential_weaknesses.append(f"Does not meet: {rule.get('description', 'Important criteria')}")
         
         # Calculate case strength and confidence
-        case_strength, confidence_level = PlaybookService._calculate_case_strength_and_confidence(
+        case_strength, confidence_level = PlaybooksService._calculate_case_strength_and_confidence(
             total_weight, len(applied_rules), len(rules)
         )
         
         # Generate reasoning
-        reasoning = PlaybookService._generate_reasoning(applied_rules, case_strength, len(rules))
+        reasoning = PlaybooksService._generate_reasoning(applied_rules, case_strength, len(rules))
         
         return {
             "case_id": case_id,

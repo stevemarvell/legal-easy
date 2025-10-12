@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.api import cases, documents, playbooks, corpus, docs
+from app.api import cases, documents, playbooks, corpus
 import random
 
 app = FastAPI(
@@ -58,7 +58,7 @@ app.include_router(cases.router, prefix="/api")
 app.include_router(documents.router, prefix="/api")
 app.include_router(playbooks.router, prefix="/api")
 app.include_router(corpus.router, prefix="/api")
-app.include_router(docs.router, prefix="/api")
+
 
 # Legacy endpoint for backward compatibility
 @app.get("/random")
@@ -81,7 +81,7 @@ def root():
             "documents": "/api/documents", 
             "playbooks": "/api/playbooks",
             "corpus": "/api/corpus",
-            "docs": "/api/docs",
+
             "health": "/health"
         }
     }

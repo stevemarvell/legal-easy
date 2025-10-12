@@ -1,7 +1,6 @@
 from fastapi import APIRouter, HTTPException, Path
 from typing import List, Dict, Any
-from app.services.playbook_service import PlaybookService
-from app.services.data_service import DataService
+from app.services.playbooks_service import PlaybooksService
 
 router = APIRouter(
     prefix="/playbooks", 
@@ -56,7 +55,7 @@ router = APIRouter(
 async def get_all_playbooks():
     """Get all available playbooks in the system"""
     try:
-        return DataService.load_playbooks()
+        return PlaybooksService.load_playbooks()
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to get playbooks: {str(e)}")
 
@@ -123,7 +122,7 @@ async def get_playbook(
 ):
     """Get playbook for a specific case type"""
     try:
-        playbook = PlaybookService.match_playbook(case_type)
+        playbook = PlaybooksService.match_playbook(case_type)
         if playbook is None:
             raise HTTPException(status_code=404, detail=f"No playbook found for case type: {case_type}")
         return playbook
@@ -180,7 +179,7 @@ async def match_playbook(
 ):
     """Match playbook for a specific case type"""
     try:
-        playbook = PlaybookService.match_playbook(case_type)
+        playbook = PlaybooksService.match_playbook(case_type)
         if playbook is None:
             raise HTTPException(status_code=404, detail=f"No playbook found for case type: {case_type}")
         return playbook
@@ -270,8 +269,8 @@ async def generate_comprehensive_analysis(
 ):
     """Generate comprehensive case analysis using playbook"""
     try:
-        # Perform comprehensive analysis using PlaybookService
-        analysis = PlaybookService.analyze_case_with_playbook(case_id)
+        # Perform comprehensive analysis using PlaybooksService
+        analysis = PlaybooksService.analyze_case_with_playbook(case_id)
         return analysis
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to perform comprehensive analysis: {str(e)}")

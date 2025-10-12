@@ -1,7 +1,9 @@
 # Services for the AI Legal Platform
 
-from .data_service import ResearchService
-from .ai_service import AIService
-from .playbook_service import PlaybookService
+from .cases_service import CasesService
+from .documents_service import DocumentsService
+from .corpus_service import CorpusService
+from .playbooks_service import PlaybooksService
 
-__all__ = ['ResearchService', 'AIService', 'PlaybookService']
+
+__all__ = ['CasesService', 'DocumentsService', 'CorpusService', 'PlaybooksService']

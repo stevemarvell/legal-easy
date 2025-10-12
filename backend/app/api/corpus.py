@@ -8,7 +8,7 @@ from app.models.corpus import (
     ConceptAnalysisResult,
     ResearchConcept
 )
-from app.services.data_service import DataService
+from app.services.corpus_service import CorpusService
 
 router = APIRouter(
     prefix="/corpus", 
@@ -70,11 +70,11 @@ async def browse_corpus(
     try:
         if category:
             # Load items for specific category
-            items = DataService.load_corpus_by_category(category)
+            items = CorpusService.load_corpus_by_category(category)
             return [CorpusItem(**item) for item in items]
         else:
             # Load all corpus items
-            items = DataService.search_corpus("")  # Empty query returns all
+            items = CorpusService.search_corpus("")  # Empty query returns all
             return [CorpusItem(**item) for item in items]
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to browse corpus: {str(e)}")
@@ -122,7 +122,7 @@ async def browse_corpus(
 async def get_categories():
     """Get all corpus categories with metadata"""
     try:
-        categories = DataService.load_corpus_categories()
+        categories = CorpusService.load_corpus_categories()
         return {
             category_id: CorpusCategory(**category_data) 
             for category_id, category_data in categories.items()
@@ -190,7 +190,7 @@ async def search_corpus(
     """Search corpus items using concept-based search"""
     try:
         # Get search results
-        items = DataService.search_corpus(q)
+        items = CorpusService.search_corpus(q)
         
         # Apply category filter if specified
         if category:
@@ -267,7 +267,7 @@ async def get_research_concepts():
     """Get research concept analysis from corpus"""
     try:
         # Get research areas from corpus
-        research_areas = DataService.get_corpus_research_areas()
+        research_areas = CorpusService.get_corpus_research_areas()
         
         # Create research concepts based on research areas
         # In a real implementation, this would use NLP to extract concepts
@@ -286,7 +286,7 @@ async def get_research_concepts():
             related_concepts = [other for other in research_areas if other != area][:2]
             
             # Find corpus references for this research area
-            all_items = DataService.search_corpus("")
+            all_items = CorpusService.search_corpus("")
             corpus_refs = [
                 item['id'] for item in all_items 
                 if area in item.get('research_areas', [])
@@ -302,7 +302,7 @@ async def get_research_concepts():
             concepts.append(concept)
         
         # Get categories for analysis metadata
-        categories = DataService.load_corpus_categories()
+        categories = CorpusService.load_corpus_categories()
         
         return ConceptAnalysisResult(
             concepts=concepts,
@@ -365,7 +365,7 @@ async def get_corpus_item(
 ):
     """Get detailed information and content for a specific corpus item"""
     try:
-        item = DataService.load_corpus_item_by_id(item_id)
+        item = CorpusService.load_corpus_item_by_id(item_id)
         if item is None:
             raise HTTPException(status_code=404, detail=f"Corpus item with ID {item_id} not found")
         
@@ -428,12 +428,12 @@ async def get_related_materials(
     """Get related research materials for a specific corpus item"""
     try:
         # First verify the item exists
-        item = DataService.load_corpus_item_by_id(item_id)
+        item = CorpusService.load_corpus_item_by_id(item_id)
         if item is None:
             raise HTTPException(status_code=404, detail=f"Corpus item with ID {item_id} not found")
         
         # Get related items
-        related_items = DataService.get_related_corpus_items(item_id)
+        related_items = CorpusService.get_related_corpus_items(item_id)
         
         return [CorpusItem(**item) for item in related_items]
     except HTTPException:
@@ -489,14 +489,14 @@ async def get_related_materials(
 async def regenerate_corpus_index():
     """Regenerate the corpus index by scanning the directory structure"""
     try:
-        success = DataService.regenerate_corpus_index()
+        success = CorpusService.regenerate_corpus_index()
         
         if not success:
             raise HTTPException(status_code=500, detail="Failed to regenerate corpus index")
         
         # Load the new index to get statistics
-        corpus_metadata = DataService.load_corpus_metadata()
-        research_areas = DataService.get_corpus_research_areas()
+        corpus_metadata = CorpusService.load_corpus_metadata()
+        research_areas = CorpusService.get_corpus_research_areas()
         
         return {
             "success": True,
