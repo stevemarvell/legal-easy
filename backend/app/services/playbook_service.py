@@ -52,8 +52,8 @@ class PlaybookService:
         """Analyze case with playbook for comprehensive case analysis."""
         try:
             # Load case data
-            from .data_service import DataService
-            cases = DataService.load_cases()
+            from .data_service import ResearchService
+            cases = ResearchService.load_cases()
             case = None
             for c in cases:
                 if c.get('id') == case_id:

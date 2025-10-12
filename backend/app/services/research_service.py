@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-DataService - Simplified data service for the Legal AI System
+ResearchService - Simplified data service for the Legal AI System
 
 This service handles all JSON data loading operations including:
 - Loading cases, documents, research corpus, and playbooks from JSON files
@@ -15,7 +15,7 @@ from typing import Dict, List, Any, Optional
 from datetime import datetime
 
 
-class DataService:
+class ResearchService:
     """Single service for all JSON data loading and searching."""
     
     def __init__(self, data_root: str = "data"):
@@ -125,7 +125,7 @@ class DataService:
     def search_research_corpus(query: str, filters: Optional[Dict[str, Any]] = None) -> List[Dict[str, Any]]:
         """Search research corpus items."""
         try:
-            corpus_items = DataService.load_research_corpus()
+            corpus_items = ResearchService.load_research_corpus()
             
             if not query:
                 return corpus_items
@@ -172,7 +172,7 @@ class DataService:
     def get_playbook_by_id(playbook_id: str) -> Optional[Dict[str, Any]]:
         """Get a specific playbook by ID."""
         try:
-            playbooks = DataService.load_playbooks()
+            playbooks = ResearchService.load_playbooks()
             return next((p for p in playbooks if p.get('id') == playbook_id), None)
         except Exception as e:
             print(f"Error getting playbook: {e}")
