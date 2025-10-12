@@ -1,0 +1,1912 @@
+{
+  "clauses": [
+    {
+      "id": "rc-001_employment_template_clause_001",
+      "document_source": "rc-001_employment_template",
+      "clause_number": "0",
+      "category": "policy",
+      "title": "DOCUMENT HEADER: EMPLOYMENT CONTRACT TEMPLATE (UK)",
+      "content": "EMPLOYMENT CONTRACT TEMPLATE (UK)\n\nThis Contract of Employment is made between [COMPANY NAME], a company incorporated in England and Wales (\"Company\"), and [EMPLOYEE NAME] (\"Employee\").",
+      "tags": [
+        "employment",
+        "contract"
+      ],
+      "relevance_keywords": [
+        "(uk)",
+        "contract",
+        "employment",
+        "header:",
+        "template"
+      ]
+    },
+    {
+      "id": "rc-001_employment_template_clause_002",
+      "document_source": "rc-001_employment_template",
+      "clause_number": "1",
+      "category": "policy",
+      "title": "POSITION AND DUTIES",
+      "content": "1. POSITION AND DUTIES\nThe Employee shall be employed as [POSITION TITLE] and shall perform such duties as are reasonably required, including but not limited to:\n- [DUTY 1]\n- [DUTY 2]\n- [DUTY 3]",
+      "tags": [
+        "employment",
+        "performance"
+      ],
+      "relevance_keywords": [
+        "duties",
+        "employment",
+        "performance",
+        "position"
+      ]
+    },
+    {
+      "id": "rc-001_employment_template_clause_003",
+      "document_source": "rc-001_employment_template",
+      "clause_number": "2",
+      "category": "policy",
+      "title": "SALARY AND BENEFITS",
+      "content": "2. SALARY AND BENEFITS\nThe Company shall pay the Employee a gross annual salary of £[AMOUNT], payable monthly in arrears by BACS transfer. The Employee shall be entitled to participate in the Company's pension scheme and other benefits as detailed in the Employee Handbook.",
+      "tags": [
+        "employment",
+        "payment",
+        "assignment"
+      ],
+      "relevance_keywords": [
+        "assignment",
+        "benefits",
+        "employment",
+        "pay",
+        "payment",
+        "salary"
+      ]
+    },
+    {
+      "id": "rc-001_employment_template_clause_004",
+      "document_source": "rc-001_employment_template",
+      "clause_number": "3",
+      "category": "policy",
+      "title": "WORKING TIME",
+      "content": "3. WORKING TIME\nNormal working hours are [HOURS] per week, Monday to Friday. The Employee may be required to work reasonable additional hours as necessary for the proper performance of duties.",
+      "tags": [
+        "employment",
+        "performance"
+      ],
+      "relevance_keywords": [
+        "employment",
+        "performance",
+        "time",
+        "working"
+      ]
+    },
+    {
+      "id": "rc-001_employment_template_clause_005",
+      "document_source": "rc-001_employment_template",
+      "clause_number": "4",
+      "category": "policy",
+      "title": "HOLIDAY ENTITLEMENT",
+      "content": "4. HOLIDAY ENTITLEMENT\nThe Employee is entitled to [NUMBER] days' paid annual leave plus bank holidays, pro-rated for part-time employees.",
+      "tags": [
+        "employment"
+      ],
+      "relevance_keywords": [
+        "employment",
+        "entitlement",
+        "holiday"
+      ]
+    },
+    {
+      "id": "rc-001_employment_template_clause_006",
+      "document_source": "rc-001_employment_template",
+      "clause_number": "5",
+      "category": "policy",
+      "title": "CONFIDENTIALITY",
+      "content": "5. CONFIDENTIALITY\nThe Employee acknowledges that they will have access to confidential information and agrees to maintain strict confidentiality during and after employment in accordance with the Data Protection Act 2018 and UK GDPR.",
+      "tags": [
+        "confidentiality",
+        "employment",
+        "notice",
+        "data_protection",
+        "indemnity"
+      ],
+      "relevance_keywords": [
+        "confidentiality",
+        "data_protection",
+        "employment",
+        "indemnity",
+        "notice"
+      ]
+    },
+    {
+      "id": "rc-001_employment_template_clause_007",
+      "document_source": "rc-001_employment_template",
+      "clause_number": "6",
+      "category": "policy",
+      "title": "RESTRICTIVE COVENANTS",
+      "content": "6. RESTRICTIVE COVENANTS\nFor a period of [TIME PERIOD] months after termination, the Employee agrees not to:\n- Compete with the Company within [GEOGRAPHIC AREA]\n- Solicit Company clients or customers\n- Solicit Company employees",
+      "tags": [
+        "termination",
+        "employment",
+        "non_compete"
+      ],
+      "relevance_keywords": [
+        "client",
+        "covenants",
+        "employment",
+        "non_compete",
+        "restrictive",
+        "termination"
+      ]
+    },
+    {
+      "id": "rc-001_employment_template_clause_008",
+      "document_source": "rc-001_employment_template",
+      "clause_number": "7",
+      "category": "policy",
+      "title": "TERMINATION",
+      "content": "7. TERMINATION\nEither party may terminate this contract by giving [NOTICE PERIOD] written notice. The Company may terminate without notice for gross misconduct, including but not limited to:\n- Serious breach of contract\n- Criminal conviction affecting employment\n- Gross negligence or misconduct",
+      "tags": [
+        "termination",
+        "employment",
+        "contract",
+        "notice",
+        "breach"
+      ],
+      "relevance_keywords": [
+        "breach",
+        "contract",
+        "employment",
+        "notice",
+        "termination"
+      ]
+    },
+    {
+      "id": "rc-001_employment_template_clause_009",
+      "document_source": "rc-001_employment_template",
+      "clause_number": "8",
+      "category": "policy",
+      "title": "GOVERNING LAW",
+      "content": "8. GOVERNING LAW\nThis contract shall be governed by English law and subject to the exclusive jurisdiction of the English courts.\n\nIN WITNESS WHEREOF the parties have executed this Contract on the date first written below.\n\nSIGNED: _____________________    SIGNED: _____________________\n[COMPANY NAME]                   [EMPLOYEE NAME]\nDate: _______________           Date: _______________",
+      "tags": [
+        "employment",
+        "contract",
+        "dispute_resolution",
+        "governing_law",
+        "performance",
+        "evidence",
+        "regulation"
+      ],
+      "relevance_keywords": [
+        "contract",
+        "dispute_resolution",
+        "employment",
+        "evidence",
+        "governing",
+        "governing_law",
+        "law",
+        "performance",
+        "regulation",
+        "witness"
+      ]
+    },
+    {
+      "id": "rc-002_service_agreement_template_clause_001",
+      "document_source": "rc-002_service_agreement_template",
+      "clause_number": "0",
+      "category": "policy",
+      "title": "DOCUMENT HEADER: SERVICE AGREEMENT TEMPLATE (UK)",
+      "content": "SERVICE AGREEMENT TEMPLATE (UK)\n\nThis Service Agreement is made between [CLIENT NAME] (\"Client\") and [SERVICE PROVIDER NAME] (\"Provider\").",
+      "tags": [
+        "contract"
+      ],
+      "relevance_keywords": [
+        "(uk)",
+        "agreement",
+        "client",
+        "contract",
+        "header:",
+        "provider",
+        "service",
+        "template"
+      ]
+    },
+    {
+      "id": "rc-002_service_agreement_template_clause_002",
+      "document_source": "rc-002_service_agreement_template",
+      "clause_number": "1",
+      "category": "policy",
+      "title": "SERVICES",
+      "content": "1. SERVICES\nThe Provider agrees to provide the following services:\n- [SERVICE 1]\n- [SERVICE 2]\n- [SERVICE 3]",
+      "tags": [
+        "compliance"
+      ],
+      "relevance_keywords": [
+        "compliance",
+        "provider",
+        "services"
+      ]
+    },
+    {
+      "id": "rc-002_service_agreement_template_clause_003",
+      "document_source": "rc-002_service_agreement_template",
+      "clause_number": "2",
+      "category": "policy",
+      "title": "PAYMENT TERMS",
+      "content": "2. PAYMENT TERMS\nThe Client agrees to pay the Provider according to the following schedule:\n- Total contract value: £[AMOUNT] (inclusive/exclusive of VAT)\n- Payment schedule: [SCHEDULE]\n- Late payment interest: 8% per annum above Bank of England base rate (Late Payment of Commercial Debts (Interest) Act 1998)",
+      "tags": [
+        "contract",
+        "payment",
+        "compliance"
+      ],
+      "relevance_keywords": [
+        "client",
+        "compliance",
+        "contract",
+        "pay",
+        "payment",
+        "provider",
+        "terms",
+        "value"
+      ]
+    },
+    {
+      "id": "rc-002_service_agreement_template_clause_004",
+      "document_source": "rc-002_service_agreement_template",
+      "clause_number": "3",
+      "category": "policy",
+      "title": "PERFORMANCE STANDARDS",
+      "content": "3. PERFORMANCE STANDARDS\nThe Provider shall perform all services with reasonable care and skill in accordance with good industry practice and any applicable British Standards.",
+      "tags": [
+        "performance",
+        "standards"
+      ],
+      "relevance_keywords": [
+        "car",
+        "performance",
+        "provider",
+        "services",
+        "standards"
+      ]
+    },
+    {
+      "id": "rc-002_service_agreement_template_clause_005",
+      "document_source": "rc-002_service_agreement_template",
+      "clause_number": "4",
+      "category": "policy",
+      "title": "INTELLECTUAL PROPERTY",
+      "content": "4. INTELLECTUAL PROPERTY\nAll intellectual property rights in work product created by the Provider shall vest in [CLIENT/PROVIDER] upon full payment, subject to the Copyright, Designs and Patents Act 1988.",
+      "tags": [
+        "employment",
+        "payment",
+        "intellectual_property"
+      ],
+      "relevance_keywords": [
+        "client",
+        "design",
+        "employment",
+        "intellectual",
+        "intellectual_property",
+        "pay",
+        "payment",
+        "property",
+        "provider",
+        "signs"
+      ]
+    },
+    {
+      "id": "rc-002_service_agreement_template_clause_006",
+      "document_source": "rc-002_service_agreement_template",
+      "clause_number": "5",
+      "category": "policy",
+      "title": "LIMITATION OF LIABILITY",
+      "content": "5. LIMITATION OF LIABILITY\nThe Provider's total liability under this Agreement shall not exceed the total fees paid or payable hereunder. Nothing in this Agreement excludes liability for death or personal injury caused by negligence or fraudulent misrepresentation.",
+      "tags": [
+        "liability",
+        "contract",
+        "payment"
+      ],
+      "relevance_keywords": [
+        "agreement",
+        "contract",
+        "liability",
+        "limitation",
+        "pay",
+        "payment",
+        "provider"
+      ]
+    },
+    {
+      "id": "rc-002_service_agreement_template_clause_007",
+      "document_source": "rc-002_service_agreement_template",
+      "clause_number": "6",
+      "category": "policy",
+      "title": "INDEMNIFICATION",
+      "content": "6. INDEMNIFICATION\nEach party agrees to indemnify the other against claims arising from breach of this Agreement or negligent acts, subject to the provisions of the Unfair Contract Terms Act 1977.",
+      "tags": [
+        "contract",
+        "breach",
+        "insurance",
+        "indemnity"
+      ],
+      "relevance_keywords": [
+        "agreement",
+        "breach",
+        "contract",
+        "fair",
+        "indemnification",
+        "indemnity",
+        "insurance",
+        "terms"
+      ]
+    },
+    {
+      "id": "rc-002_service_agreement_template_clause_008",
+      "document_source": "rc-002_service_agreement_template",
+      "clause_number": "7",
+      "category": "policy",
+      "title": "TERMINATION",
+      "content": "7. TERMINATION\nEither party may terminate this Agreement by giving [NOTICE PERIOD] written notice. The Client may terminate immediately for material breach that remains unremedied after 14 days' written notice.",
+      "tags": [
+        "termination",
+        "contract",
+        "notice",
+        "breach"
+      ],
+      "relevance_keywords": [
+        "agreement",
+        "breach",
+        "client",
+        "contract",
+        "notice",
+        "termination"
+      ]
+    },
+    {
+      "id": "rc-002_service_agreement_template_clause_009",
+      "document_source": "rc-002_service_agreement_template",
+      "clause_number": "8",
+      "category": "policy",
+      "title": "DISPUTE RESOLUTION",
+      "content": "8. DISPUTE RESOLUTION\nAny disputes shall be resolved through mediation and, if unsuccessful, by the courts of England and Wales.",
+      "tags": [
+        "dispute_resolution"
+      ],
+      "relevance_keywords": [
+        "dispute",
+        "dispute_resolution",
+        "resolution"
+      ]
+    },
+    {
+      "id": "rc-002_service_agreement_template_clause_010",
+      "document_source": "rc-002_service_agreement_template",
+      "clause_number": "9",
+      "category": "policy",
+      "title": "FORCE MAJEURE",
+      "content": "9. FORCE MAJEURE\nNeither party shall be liable for delays caused by circumstances beyond their reasonable control, including acts of God, government action, or industrial disputes.",
+      "tags": [
+        "dispute_resolution",
+        "force_majeure"
+      ],
+      "relevance_keywords": [
+        "dispute",
+        "dispute_resolution",
+        "force",
+        "force_majeure",
+        "majeure"
+      ]
+    },
+    {
+      "id": "rc-002_service_agreement_template_clause_011",
+      "document_source": "rc-002_service_agreement_template",
+      "clause_number": "10",
+      "category": "policy",
+      "title": "ENTIRE AGREEMENT",
+      "content": "10. ENTIRE AGREEMENT\nThis Agreement constitutes the entire agreement between the parties and supersedes all prior negotiations, representations, and agreements.",
+      "tags": [
+        "contract",
+        "entire_agreement"
+      ],
+      "relevance_keywords": [
+        "agreement",
+        "contract",
+        "entire",
+        "entire_agreement"
+      ]
+    },
+    {
+      "id": "rc-002_service_agreement_template_clause_012",
+      "document_source": "rc-002_service_agreement_template",
+      "clause_number": "11",
+      "category": "policy",
+      "title": "GOVERNING LAW",
+      "content": "11. GOVERNING LAW\nThis Agreement shall be governed by English law and subject to the exclusive jurisdiction of the English courts.",
+      "tags": [
+        "contract",
+        "dispute_resolution",
+        "governing_law",
+        "regulation"
+      ],
+      "relevance_keywords": [
+        "agreement",
+        "contract",
+        "dispute_resolution",
+        "governing",
+        "governing_law",
+        "law",
+        "regulation"
+      ]
+    },
+    {
+      "id": "rc-003_non_disclosure_agreement_clause_001",
+      "document_source": "rc-003_non_disclosure_agreement",
+      "clause_number": "0",
+      "category": "policy",
+      "title": "DOCUMENT HEADER: CONFIDENTIALITY AGREEMENT (UK)",
+      "content": "CONFIDENTIALITY AGREEMENT (UK)\n\nThis Confidentiality Agreement is entered into between [DISCLOSING PARTY] (\"Disclosing Party\") and [RECEIVING PARTY] (\"Receiving Party\").",
+      "tags": [
+        "confidentiality",
+        "contract"
+      ],
+      "relevance_keywords": [
+        "(uk)",
+        "agreement",
+        "confidentiality",
+        "contract",
+        "header:"
+      ]
+    },
+    {
+      "id": "rc-003_non_disclosure_agreement_clause_002",
+      "document_source": "rc-003_non_disclosure_agreement",
+      "clause_number": "1",
+      "category": "policy",
+      "title": "DEFINITION OF CONFIDENTIAL INFORMATION",
+      "content": "1. DEFINITION OF CONFIDENTIAL INFORMATION\n\"Confidential Information\" means any and all non-public, confidential or proprietary information disclosed by the Disclosing Party, including but not limited to:\n- Technical data, trade secrets, know-how\n- Business plans, financial information\n- Customer lists, supplier information\n- Marketing strategies and plans\n- Software, algorithms, and source code\n- Personal data as defined by UK GDPR and Data Protection Act 2018",
+      "tags": [
+        "confidentiality",
+        "notice",
+        "data_protection",
+        "indemnity"
+      ],
+      "relevance_keywords": [
+        "confidential",
+        "confidentiality",
+        "data_protection",
+        "definition",
+        "indemnity",
+        "information",
+        "notice"
+      ]
+    },
+    {
+      "id": "rc-003_non_disclosure_agreement_clause_003",
+      "document_source": "rc-003_non_disclosure_agreement",
+      "clause_number": "2",
+      "category": "policy",
+      "title": "OBLIGATIONS OF RECEIVING PARTY",
+      "content": "2. OBLIGATIONS OF RECEIVING PARTY\nThe Receiving Party agrees to:\n- Hold all Confidential Information in strict confidence\n- Not disclose Confidential Information to third parties without written consent\n- Use Confidential Information solely for the agreed evaluation purposes\n- Take reasonable security measures to protect confidentiality\n- Comply with UK GDPR and Data Protection Act 2018 regarding personal data",
+      "tags": [
+        "confidentiality",
+        "notice",
+        "health_safety",
+        "data_protection",
+        "indemnity",
+        "approval",
+        "compliance"
+      ],
+      "relevance_keywords": [
+        "approval",
+        "compliance",
+        "confidentiality",
+        "data_protection",
+        "health_safety",
+        "indemnity",
+        "notice",
+        "obligations",
+        "party",
+        "receiving"
+      ]
+    },
+    {
+      "id": "rc-003_non_disclosure_agreement_clause_004",
+      "document_source": "rc-003_non_disclosure_agreement",
+      "clause_number": "3",
+      "category": "policy",
+      "title": "EXCEPTIONS",
+      "content": "3. EXCEPTIONS\nThis Agreement does not apply to information that:\n- Is publicly available through no breach of this Agreement\n- Was lawfully known to the Receiving Party prior to disclosure\n- Is independently developed without use of Confidential Information\n- Is required to be disclosed by law, court order, or regulatory authority",
+      "tags": [
+        "termination",
+        "confidentiality",
+        "contract",
+        "notice",
+        "breach",
+        "data_protection",
+        "dispute_resolution",
+        "regulation"
+      ],
+      "relevance_keywords": [
+        "agreement",
+        "breach",
+        "confidentiality",
+        "contract",
+        "data_protection",
+        "dispute_resolution",
+        "exceptions",
+        "law",
+        "notice",
+        "regulation",
+        "termination"
+      ]
+    },
+    {
+      "id": "rc-003_non_disclosure_agreement_clause_005",
+      "document_source": "rc-003_non_disclosure_agreement",
+      "clause_number": "4",
+      "category": "policy",
+      "title": "RETURN OF MATERIALS",
+      "content": "4. RETURN OF MATERIALS\nUpon written request, the Receiving Party shall promptly return or securely destroy all materials containing Confidential Information and provide written certification of such destruction.",
+      "tags": [
+        "confidentiality",
+        "notice",
+        "data_protection"
+      ],
+      "relevance_keywords": [
+        "confidentiality",
+        "data_protection",
+        "materials",
+        "notice",
+        "prompt",
+        "return"
+      ]
+    },
+    {
+      "id": "rc-003_non_disclosure_agreement_clause_006",
+      "document_source": "rc-003_non_disclosure_agreement",
+      "clause_number": "5",
+      "category": "policy",
+      "title": "TERM",
+      "content": "5. TERM\nThis Agreement shall remain in effect for [TIME PERIOD] years from the date of execution, or indefinitely for trade secrets that qualify for protection under the Trade Secrets (Enforcement, etc.) Regulations 2018.",
+      "tags": [
+        "confidentiality",
+        "contract",
+        "indemnity",
+        "regulation"
+      ],
+      "relevance_keywords": [
+        "agreement",
+        "confidentiality",
+        "contract",
+        "force",
+        "indemnity",
+        "regulation",
+        "term"
+      ]
+    },
+    {
+      "id": "rc-003_non_disclosure_agreement_clause_007",
+      "document_source": "rc-003_non_disclosure_agreement",
+      "clause_number": "6",
+      "category": "policy",
+      "title": "REMEDIES",
+      "content": "6. REMEDIES\nThe Receiving Party acknowledges that breach may cause irreparable harm for which damages would be an inadequate remedy, and the Disclosing Party shall be entitled to seek injunctive relief and other equitable remedies.",
+      "tags": [
+        "liability",
+        "confidentiality",
+        "breach"
+      ],
+      "relevance_keywords": [
+        "breach",
+        "confidentiality",
+        "liability",
+        "remedies"
+      ]
+    },
+    {
+      "id": "rc-003_non_disclosure_agreement_clause_008",
+      "document_source": "rc-003_non_disclosure_agreement",
+      "clause_number": "7",
+      "category": "policy",
+      "title": "DATA PROTECTION",
+      "content": "7. DATA PROTECTION\nBoth parties acknowledge their obligations under UK GDPR and the Data Protection Act 2018. Where personal data is disclosed, the parties shall enter into appropriate data processing agreements.",
+      "tags": [
+        "confidentiality",
+        "contract",
+        "data_protection",
+        "indemnity"
+      ],
+      "relevance_keywords": [
+        "confidentiality",
+        "contract",
+        "data",
+        "data_protection",
+        "indemnity",
+        "protection"
+      ]
+    },
+    {
+      "id": "rc-003_non_disclosure_agreement_clause_009",
+      "document_source": "rc-003_non_disclosure_agreement",
+      "clause_number": "8",
+      "category": "policy",
+      "title": "GOVERNING LAW",
+      "content": "8. GOVERNING LAW\nThis Agreement shall be governed by English law and subject to the exclusive jurisdiction of the English courts.",
+      "tags": [
+        "contract",
+        "dispute_resolution",
+        "governing_law",
+        "regulation"
+      ],
+      "relevance_keywords": [
+        "agreement",
+        "contract",
+        "dispute_resolution",
+        "governing",
+        "governing_law",
+        "law",
+        "regulation"
+      ]
+    },
+    {
+      "id": "rc-004_termination_clauses_clause_001",
+      "document_source": "rc-004_termination_clauses",
+      "clause_number": "0",
+      "category": "regulation",
+      "title": "DOCUMENT HEADER: TERMINATION CLAUSES LIBRARY",
+      "content": "TERMINATION CLAUSES LIBRARY",
+      "tags": [
+        "termination"
+      ],
+      "relevance_keywords": [
+        "clauses",
+        "header:",
+        "library",
+        "termination"
+      ]
+    },
+    {
+      "id": "rc-004_termination_clauses_clause_002",
+      "document_source": "rc-004_termination_clauses",
+      "clause_number": "1",
+      "category": "regulation",
+      "title": "TERMINATION FOR CONVENIENCE",
+      "content": "1. TERMINATION FOR CONVENIENCE\n\"Either party may terminate this Agreement at any time, with or without cause, by providing [30/60/90] days written notice to the other party.\"",
+      "tags": [
+        "termination",
+        "contract",
+        "notice"
+      ],
+      "relevance_keywords": [
+        "agreement",
+        "contract",
+        "convenience",
+        "notice",
+        "termination"
+      ]
+    },
+    {
+      "id": "rc-004_termination_clauses_clause_003",
+      "document_source": "rc-004_termination_clauses",
+      "clause_number": "2",
+      "category": "regulation",
+      "title": "TERMINATION FOR CAUSE",
+      "content": "2. TERMINATION FOR CAUSE\n\"Either party may terminate this Agreement immediately upon written notice if the other party: (a) materially breaches this Agreement and fails to cure such breach within [30] days after written notice; (b) becomes insolvent or files for bankruptcy; or (c) ceases to conduct business in the ordinary course.\"",
+      "tags": [
+        "termination",
+        "contract",
+        "notice",
+        "breach"
+      ],
+      "relevance_keywords": [
+        "agreement",
+        "breach",
+        "cause",
+        "contract",
+        "notice",
+        "termination"
+      ]
+    },
+    {
+      "id": "rc-004_termination_clauses_clause_004",
+      "document_source": "rc-004_termination_clauses",
+      "clause_number": "3",
+      "category": "regulation",
+      "title": "TERMINATION FOR NON-PAYMENT",
+      "content": "3. TERMINATION FOR NON-PAYMENT\n\"Company may terminate this Agreement immediately if Client fails to make any payment when due and such failure continues for [15] days after written notice.\"",
+      "tags": [
+        "termination",
+        "contract",
+        "payment",
+        "notice",
+        "breach"
+      ],
+      "relevance_keywords": [
+        "agreement",
+        "breach",
+        "client",
+        "contract",
+        "notice",
+        "pay",
+        "payment",
+        "termination"
+      ]
+    },
+    {
+      "id": "rc-004_termination_clauses_clause_005",
+      "document_source": "rc-004_termination_clauses",
+      "clause_number": "4",
+      "category": "regulation",
+      "title": "TERMINATION OF EMPLOYMENT - AT WILL",
+      "content": "4. TERMINATION OF EMPLOYMENT - AT WILL\n\"Employment is at-will and may be terminated by either party at any time, with or without cause or notice, except as otherwise provided by law.\"",
+      "tags": [
+        "termination",
+        "employment",
+        "notice",
+        "regulation"
+      ],
+      "relevance_keywords": [
+        "employment",
+        "law",
+        "notice",
+        "regulation",
+        "termination",
+        "will"
+      ]
+    },
+    {
+      "id": "rc-004_termination_clauses_clause_006",
+      "document_source": "rc-004_termination_clauses",
+      "clause_number": "5",
+      "category": "regulation",
+      "title": "TERMINATION OF EMPLOYMENT - FOR CAUSE",
+      "content": "5. TERMINATION OF EMPLOYMENT - FOR CAUSE\n\"Company may terminate Employee's employment immediately for cause, including but not limited to: (a) willful misconduct; (b) breach of fiduciary duty; (c) conviction of a felony; (d) violation of company policies; or (e) failure to perform duties after written warning.\"",
+      "tags": [
+        "termination",
+        "employment",
+        "breach",
+        "performance"
+      ],
+      "relevance_keywords": [
+        "breach",
+        "cause",
+        "employment",
+        "performance",
+        "termination"
+      ]
+    },
+    {
+      "id": "rc-004_termination_clauses_clause_007",
+      "document_source": "rc-004_termination_clauses",
+      "clause_number": "6",
+      "category": "regulation",
+      "title": "TERMINATION - SURVIVAL OF PROVISIONS",
+      "content": "6. TERMINATION - SURVIVAL OF PROVISIONS\n\"The following provisions shall survive termination of this Agreement: confidentiality, intellectual property, limitation of liability, and dispute resolution.\"",
+      "tags": [
+        "termination",
+        "liability",
+        "confidentiality",
+        "contract",
+        "intellectual_property",
+        "dispute_resolution",
+        "compliance"
+      ],
+      "relevance_keywords": [
+        "agreement",
+        "compliance",
+        "confidentiality",
+        "contract",
+        "dispute",
+        "dispute_resolution",
+        "intellectual",
+        "intellectual_property",
+        "liability",
+        "limitation",
+        "property",
+        "provisions",
+        "resolution",
+        "survival",
+        "termination"
+      ]
+    },
+    {
+      "id": "rc-004_termination_clauses_clause_008",
+      "document_source": "rc-004_termination_clauses",
+      "clause_number": "7",
+      "category": "regulation",
+      "title": "TERMINATION - EFFECT ON PAYMENT",
+      "content": "7. TERMINATION - EFFECT ON PAYMENT\n\"Upon termination, all unpaid amounts shall become immediately due and payable, except for amounts disputed in good faith.\"",
+      "tags": [
+        "termination",
+        "payment",
+        "dispute_resolution"
+      ],
+      "relevance_keywords": [
+        "dispute",
+        "dispute_resolution",
+        "disputed",
+        "effect",
+        "pay",
+        "payment",
+        "termination"
+      ]
+    },
+    {
+      "id": "rc-004_termination_clauses_clause_009",
+      "document_source": "rc-004_termination_clauses",
+      "clause_number": "8",
+      "category": "regulation",
+      "title": "TERMINATION - RETURN OF PROPERTY",
+      "content": "8. TERMINATION - RETURN OF PROPERTY\n\"Upon termination, each party shall promptly return all confidential information and property belonging to the other party.\"",
+      "tags": [
+        "termination",
+        "confidentiality",
+        "notice",
+        "data_protection"
+      ],
+      "relevance_keywords": [
+        "confidentiality",
+        "data_protection",
+        "notice",
+        "prompt",
+        "property",
+        "return",
+        "termination"
+      ]
+    },
+    {
+      "id": "rc-004_termination_clauses_clause_010",
+      "document_source": "rc-004_termination_clauses",
+      "clause_number": "9",
+      "category": "regulation",
+      "title": "TERMINATION - NON-SOLICITATION SURVIVAL",
+      "content": "9. TERMINATION - NON-SOLICITATION SURVIVAL\n\"The non-solicitation provisions contained herein shall survive termination for a period of [12/24] months.\"",
+      "tags": [
+        "termination"
+      ],
+      "relevance_keywords": [
+        "solicitation",
+        "survival",
+        "termination"
+      ]
+    },
+    {
+      "id": "rc-004_termination_clauses_clause_011",
+      "document_source": "rc-004_termination_clauses",
+      "clause_number": "10",
+      "category": "regulation",
+      "title": "TERMINATION - WIND-DOWN PERIOD",
+      "content": "10. TERMINATION - WIND-DOWN PERIOD\n\"Upon notice of termination, the parties shall cooperate in good faith to ensure an orderly wind-down of services over a period not to exceed [30] days.\"",
+      "tags": [
+        "termination",
+        "notice"
+      ],
+      "relevance_keywords": [
+        "down",
+        "notice",
+        "period",
+        "services",
+        "termination",
+        "wind"
+      ]
+    },
+    {
+      "id": "rc-005_liability_clauses_clause_001",
+      "document_source": "rc-005_liability_clauses",
+      "clause_number": "0",
+      "category": "regulation",
+      "title": "DOCUMENT HEADER: LIABILITY AND INDEMNIFICATION CLAUSES LIBRARY",
+      "content": "LIABILITY AND INDEMNIFICATION CLAUSES LIBRARY",
+      "tags": [
+        "liability",
+        "indemnity"
+      ],
+      "relevance_keywords": [
+        "clauses",
+        "header:",
+        "indemnification",
+        "indemnity",
+        "liability",
+        "library"
+      ]
+    },
+    {
+      "id": "rc-005_liability_clauses_clause_002",
+      "document_source": "rc-005_liability_clauses",
+      "clause_number": "1",
+      "category": "regulation",
+      "title": "LIMITATION OF LIABILITY - GENERAL",
+      "content": "1. LIMITATION OF LIABILITY - GENERAL\n\"IN NO EVENT SHALL EITHER PARTY BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO LOSS OF PROFITS, DATA, OR USE, REGARDLESS OF THE THEORY OF LIABILITY.\"",
+      "tags": [
+        "liability"
+      ],
+      "relevance_keywords": [
+        "general",
+        "liability",
+        "limitation"
+      ]
+    },
+    {
+      "id": "rc-005_liability_clauses_clause_003",
+      "document_source": "rc-005_liability_clauses",
+      "clause_number": "2",
+      "category": "regulation",
+      "title": "LIMITATION OF LIABILITY - CAP",
+      "content": "2. LIMITATION OF LIABILITY - CAP\n\"EACH PARTY'S TOTAL LIABILITY ARISING OUT OF OR RELATED TO THIS AGREEMENT SHALL NOT EXCEED THE TOTAL AMOUNT PAID OR PAYABLE UNDER THIS AGREEMENT IN THE TWELVE (12) MONTHS PRECEDING THE EVENT GIVING RISE TO LIABILITY.\"",
+      "tags": [
+        "liability",
+        "contract",
+        "payment"
+      ],
+      "relevance_keywords": [
+        "agreement",
+        "contract",
+        "liability",
+        "limitation",
+        "pay",
+        "payment"
+      ]
+    },
+    {
+      "id": "rc-005_liability_clauses_clause_004",
+      "document_source": "rc-005_liability_clauses",
+      "clause_number": "3",
+      "category": "regulation",
+      "title": "MUTUAL INDEMNIFICATION",
+      "content": "3. MUTUAL INDEMNIFICATION\n\"Each party shall indemnify, defend, and hold harmless the other party from and against any claims, damages, losses, and expenses arising from: (a) breach of this Agreement; (b) negligent acts or omissions; or (c) violation of applicable laws.\"",
+      "tags": [
+        "termination",
+        "liability",
+        "contract",
+        "breach",
+        "insurance",
+        "indemnity",
+        "governing_law",
+        "regulation"
+      ],
+      "relevance_keywords": [
+        "agreement",
+        "breach",
+        "contract",
+        "governing_law",
+        "indemnification",
+        "indemnity",
+        "insurance",
+        "liability",
+        "mutual",
+        "regulation",
+        "termination"
+      ]
+    },
+    {
+      "id": "rc-005_liability_clauses_clause_005",
+      "document_source": "rc-005_liability_clauses",
+      "clause_number": "4",
+      "category": "regulation",
+      "title": "THIRD-PARTY INDEMNIFICATION",
+      "content": "4. THIRD-PARTY INDEMNIFICATION\n\"Provider shall indemnify and hold harmless Client from any third-party claims alleging that the services infringe any patent, copyright, or trademark, provided Client promptly notifies Provider of such claim.\"",
+      "tags": [
+        "liability",
+        "intellectual_property",
+        "insurance",
+        "indemnity"
+      ],
+      "relevance_keywords": [
+        "client",
+        "indemnification",
+        "indemnity",
+        "insurance",
+        "intellectual_property",
+        "liability",
+        "party",
+        "provider",
+        "services",
+        "third"
+      ]
+    },
+    {
+      "id": "rc-005_liability_clauses_clause_006",
+      "document_source": "rc-005_liability_clauses",
+      "clause_number": "5",
+      "category": "regulation",
+      "title": "INTELLECTUAL PROPERTY INDEMNIFICATION",
+      "content": "5. INTELLECTUAL PROPERTY INDEMNIFICATION\n\"Provider warrants that the services do not infringe any third-party intellectual property rights and shall defend and indemnify Client against any such claims.\"",
+      "tags": [
+        "termination",
+        "intellectual_property",
+        "insurance",
+        "indemnity"
+      ],
+      "relevance_keywords": [
+        "client",
+        "indemnification",
+        "indemnity",
+        "insurance",
+        "intellectual",
+        "intellectual_property",
+        "property",
+        "provider",
+        "services",
+        "termination"
+      ]
+    },
+    {
+      "id": "rc-005_liability_clauses_clause_007",
+      "document_source": "rc-005_liability_clauses",
+      "clause_number": "6",
+      "category": "regulation",
+      "title": "DATA BREACH INDEMNIFICATION",
+      "content": "6. DATA BREACH INDEMNIFICATION\n\"Provider shall indemnify Client for any losses resulting from Provider's breach of data security obligations, including notification costs, credit monitoring, and regulatory fines.\"",
+      "tags": [
+        "liability",
+        "payment",
+        "notice",
+        "breach",
+        "health_safety",
+        "indemnity"
+      ],
+      "relevance_keywords": [
+        "breach",
+        "client",
+        "data",
+        "health_safety",
+        "indemnification",
+        "indemnity",
+        "liability",
+        "notice",
+        "payment",
+        "provider"
+      ]
+    },
+    {
+      "id": "rc-005_liability_clauses_clause_008",
+      "document_source": "rc-005_liability_clauses",
+      "clause_number": "7",
+      "category": "regulation",
+      "title": "EMPLOYEE INDEMNIFICATION",
+      "content": "7. EMPLOYEE INDEMNIFICATION\n\"Company shall indemnify Employee for actions taken in good faith within the scope of employment, except for willful misconduct or criminal acts.\"",
+      "tags": [
+        "employment",
+        "indemnity"
+      ],
+      "relevance_keywords": [
+        "employee",
+        "employment",
+        "indemnification",
+        "indemnity"
+      ]
+    },
+    {
+      "id": "rc-005_liability_clauses_clause_009",
+      "document_source": "rc-005_liability_clauses",
+      "clause_number": "8",
+      "category": "regulation",
+      "title": "DIRECTOR AND OFFICER INDEMNIFICATION",
+      "content": "8. DIRECTOR AND OFFICER INDEMNIFICATION\n\"Corporation shall indemnify directors and officers to the fullest extent permitted by law for actions taken in their official capacity.\"",
+      "tags": [
+        "indemnity",
+        "approval",
+        "regulation"
+      ],
+      "relevance_keywords": [
+        "approval",
+        "director",
+        "indemnification",
+        "indemnity",
+        "law",
+        "officer",
+        "regulation"
+      ]
+    },
+    {
+      "id": "rc-005_liability_clauses_clause_010",
+      "document_source": "rc-005_liability_clauses",
+      "clause_number": "9",
+      "category": "regulation",
+      "title": "EXCLUSIONS FROM INDEMNIFICATION",
+      "content": "9. EXCLUSIONS FROM INDEMNIFICATION\n\"Indemnification obligations shall not apply to claims arising from: (a) willful misconduct; (b) criminal acts; (c) breach of confidentiality; or (d) violation of law.\"",
+      "tags": [
+        "confidentiality",
+        "breach",
+        "insurance",
+        "indemnity",
+        "regulation"
+      ],
+      "relevance_keywords": [
+        "breach",
+        "confidentiality",
+        "exclusions",
+        "from",
+        "indemnification",
+        "indemnity",
+        "insurance",
+        "regulation"
+      ]
+    },
+    {
+      "id": "rc-005_liability_clauses_clause_011",
+      "document_source": "rc-005_liability_clauses",
+      "clause_number": "10",
+      "category": "regulation",
+      "title": "INSURANCE REQUIREMENTS",
+      "content": "10. INSURANCE REQUIREMENTS\n\"Each party shall maintain comprehensive general liability insurance with minimum coverage of $[AMOUNT] and shall name the other party as an additional insured.\"",
+      "tags": [
+        "liability",
+        "insurance",
+        "standards",
+        "regulation"
+      ],
+      "relevance_keywords": [
+        "insurance",
+        "liability",
+        "regulation",
+        "requirements",
+        "standards"
+      ]
+    },
+    {
+      "id": "rc-006_intellectual_property_clauses_clause_001",
+      "document_source": "rc-006_intellectual_property_clauses",
+      "clause_number": "0",
+      "category": "regulation",
+      "title": "DOCUMENT HEADER: INTELLECTUAL PROPERTY CLAUSES LIBRARY",
+      "content": "INTELLECTUAL PROPERTY CLAUSES LIBRARY",
+      "tags": [
+        "intellectual_property"
+      ],
+      "relevance_keywords": [
+        "clauses",
+        "header:",
+        "intellectual",
+        "intellectual_property",
+        "library",
+        "property"
+      ]
+    },
+    {
+      "id": "rc-006_intellectual_property_clauses_clause_002",
+      "document_source": "rc-006_intellectual_property_clauses",
+      "clause_number": "1",
+      "category": "regulation",
+      "title": "WORK FOR HIRE - GENERAL",
+      "content": "1. WORK FOR HIRE - GENERAL\n\"All work product, inventions, and intellectual property created by Contractor in connection with this Agreement shall be deemed work made for hire and shall be owned exclusively by Client.\"",
+      "tags": [
+        "employment",
+        "contract",
+        "intellectual_property"
+      ],
+      "relevance_keywords": [
+        "agreement",
+        "contract",
+        "employment",
+        "general",
+        "hire",
+        "intellectual",
+        "intellectual_property",
+        "property",
+        "work"
+      ]
+    },
+    {
+      "id": "rc-006_intellectual_property_clauses_clause_003",
+      "document_source": "rc-006_intellectual_property_clauses",
+      "clause_number": "2",
+      "category": "regulation",
+      "title": "ASSIGNMENT OF INVENTIONS - EMPLOYEE",
+      "content": "2. ASSIGNMENT OF INVENTIONS - EMPLOYEE\n\"Employee hereby assigns to Company all right, title, and interest in any inventions, discoveries, or improvements made during employment that relate to Company's business or use Company resources.\"",
+      "tags": [
+        "employment",
+        "insurance",
+        "assignment"
+      ],
+      "relevance_keywords": [
+        "assignment",
+        "employee",
+        "employment",
+        "insurance",
+        "inventions",
+        "signs"
+      ]
+    },
+    {
+      "id": "rc-006_intellectual_property_clauses_clause_004",
+      "document_source": "rc-006_intellectual_property_clauses",
+      "clause_number": "3",
+      "category": "regulation",
+      "title": "RETAINED RIGHTS",
+      "content": "3. RETAINED RIGHTS\n\"Each party retains all right, title, and interest in its pre-existing intellectual property. Nothing in this Agreement grants any license or ownership rights in such pre-existing IP.\"",
+      "tags": [
+        "contract",
+        "intellectual_property"
+      ],
+      "relevance_keywords": [
+        "agreement",
+        "contract",
+        "intellectual",
+        "intellectual_property",
+        "property",
+        "retained",
+        "rights"
+      ]
+    },
+    {
+      "id": "rc-006_intellectual_property_clauses_clause_005",
+      "document_source": "rc-006_intellectual_property_clauses",
+      "clause_number": "4",
+      "category": "regulation",
+      "title": "LICENSE GRANT - LIMITED",
+      "content": "4. LICENSE GRANT - LIMITED\n\"Provider grants Client a non-exclusive, non-transferable license to use the deliverables solely for Client's internal business purposes during the term of this Agreement.\"",
+      "tags": [
+        "contract",
+        "assignment"
+      ],
+      "relevance_keywords": [
+        "agreement",
+        "assignment",
+        "client",
+        "contract",
+        "grant",
+        "license",
+        "limited",
+        "provider"
+      ]
+    },
+    {
+      "id": "rc-006_intellectual_property_clauses_clause_006",
+      "document_source": "rc-006_intellectual_property_clauses",
+      "clause_number": "5",
+      "category": "regulation",
+      "title": "LICENSE GRANT - PERPETUAL",
+      "content": "5. LICENSE GRANT - PERPETUAL\n\"Upon full payment, Provider grants Client a perpetual, irrevocable, worldwide license to use, modify, and distribute the work product for any purpose.\"",
+      "tags": [
+        "employment",
+        "payment",
+        "amendment"
+      ],
+      "relevance_keywords": [
+        "amendment",
+        "client",
+        "employment",
+        "grant",
+        "license",
+        "pay",
+        "payment",
+        "perpetual",
+        "provider"
+      ]
+    },
+    {
+      "id": "rc-006_intellectual_property_clauses_clause_007",
+      "document_source": "rc-006_intellectual_property_clauses",
+      "clause_number": "6",
+      "category": "regulation",
+      "title": "JOINT OWNERSHIP",
+      "content": "6. JOINT OWNERSHIP\n\"Any intellectual property jointly developed by the parties shall be jointly owned, with each party having the right to use and license such IP without accounting to the other party.\"",
+      "tags": [
+        "intellectual_property"
+      ],
+      "relevance_keywords": [
+        "intellectual",
+        "intellectual_property",
+        "joint",
+        "ownership",
+        "property"
+      ]
+    },
+    {
+      "id": "rc-006_intellectual_property_clauses_clause_008",
+      "document_source": "rc-006_intellectual_property_clauses",
+      "clause_number": "7",
+      "category": "regulation",
+      "title": "MORAL RIGHTS WAIVER",
+      "content": "7. MORAL RIGHTS WAIVER\n\"To the extent permitted by law, Creator waives all moral rights in the work product, including rights of attribution and integrity.\"",
+      "tags": [
+        "employment",
+        "waiver",
+        "approval",
+        "regulation"
+      ],
+      "relevance_keywords": [
+        "approval",
+        "employment",
+        "law",
+        "moral",
+        "regulation",
+        "rights",
+        "waiver"
+      ]
+    },
+    {
+      "id": "rc-006_intellectual_property_clauses_clause_009",
+      "document_source": "rc-006_intellectual_property_clauses",
+      "clause_number": "8",
+      "category": "regulation",
+      "title": "PATENT WARRANTY",
+      "content": "8. PATENT WARRANTY\n\"Provider warrants that the deliverables do not infringe any valid patent and shall defend Client against any patent infringement claims.\"",
+      "tags": [
+        "termination",
+        "intellectual_property",
+        "insurance"
+      ],
+      "relevance_keywords": [
+        "client",
+        "insurance",
+        "intellectual_property",
+        "patent",
+        "provider",
+        "termination",
+        "warranty"
+      ]
+    },
+    {
+      "id": "rc-006_intellectual_property_clauses_clause_010",
+      "document_source": "rc-006_intellectual_property_clauses",
+      "clause_number": "9",
+      "category": "regulation",
+      "title": "COPYRIGHT NOTICE",
+      "content": "9. COPYRIGHT NOTICE\n\"All work product shall include the following copyright notice: '© [YEAR] [OWNER NAME]. All rights reserved.'\"",
+      "tags": [
+        "employment",
+        "notice",
+        "intellectual_property",
+        "compliance"
+      ],
+      "relevance_keywords": [
+        "compliance",
+        "copyright",
+        "employment",
+        "intellectual_property",
+        "notice"
+      ]
+    },
+    {
+      "id": "rc-006_intellectual_property_clauses_clause_011",
+      "document_source": "rc-006_intellectual_property_clauses",
+      "clause_number": "10",
+      "category": "regulation",
+      "title": "TRADE SECRET PROTECTION",
+      "content": "10. TRADE SECRET PROTECTION\n\"The parties acknowledge that certain information may constitute trade secrets and agree to maintain such information in confidence and not use it except as authorized.\"",
+      "tags": [
+        "confidentiality",
+        "notice",
+        "data_protection",
+        "indemnity",
+        "approval"
+      ],
+      "relevance_keywords": [
+        "approval",
+        "confidentiality",
+        "data_protection",
+        "indemnity",
+        "notice",
+        "protection",
+        "secret",
+        "trade"
+      ]
+    },
+    {
+      "id": "rc-006_intellectual_property_clauses_clause_012",
+      "document_source": "rc-006_intellectual_property_clauses",
+      "clause_number": "11",
+      "category": "regulation",
+      "title": "TRADEMARK LICENSE",
+      "content": "11. TRADEMARK LICENSE\n\"Client grants Provider a limited license to use Client's trademarks solely for the purpose of performing services under this Agreement.\"",
+      "tags": [
+        "contract",
+        "intellectual_property",
+        "performance"
+      ],
+      "relevance_keywords": [
+        "agreement",
+        "client",
+        "contract",
+        "intellectual_property",
+        "license",
+        "performance",
+        "provider",
+        "services",
+        "trademark"
+      ]
+    },
+    {
+      "id": "rc-006_intellectual_property_clauses_clause_013",
+      "document_source": "rc-006_intellectual_property_clauses",
+      "clause_number": "12",
+      "category": "regulation",
+      "title": "OPEN SOURCE COMPLIANCE",
+      "content": "12. OPEN SOURCE COMPLIANCE\n\"Provider warrants that no open source software is included in the deliverables without Client's prior written consent and compliance with applicable licenses.\"",
+      "tags": [
+        "approval",
+        "compliance"
+      ],
+      "relevance_keywords": [
+        "approval",
+        "client",
+        "compliance",
+        "open",
+        "provider",
+        "source"
+      ]
+    },
+    {
+      "id": "rc-007_employment_law_precedents_clause_001",
+      "document_source": "rc-007_employment_law_precedents",
+      "clause_number": "0",
+      "category": "precedent",
+      "title": "DOCUMENT HEADER: UK EMPLOYMENT LAW PRECEDENTS AND PRINCIPLES",
+      "content": "UK EMPLOYMENT LAW PRECEDENTS AND PRINCIPLES",
+      "tags": [
+        "employment",
+        "precedent",
+        "regulation"
+      ],
+      "relevance_keywords": [
+        "employment",
+        "header:",
+        "law",
+        "precedent",
+        "precedents",
+        "principles",
+        "regulation"
+      ]
+    },
+    {
+      "id": "rc-007_employment_law_precedents_clause_002",
+      "document_source": "rc-007_employment_law_precedents",
+      "clause_number": "1",
+      "category": "precedent",
+      "title": "UNFAIR DISMISSAL PROTECTION",
+      "content": "1. UNFAIR DISMISSAL PROTECTION\nUnder Employment Rights Act 1996, employees with 2+ years' service are protected from unfair dismissal. Dismissal must be for a fair reason and follow a fair procedure.\n\nKey Case: British Home Stores Ltd v. Burchell [1980] ICR 303 - Established the test for dismissal for misconduct: genuine belief based on reasonable investigation.",
+      "tags": [
+        "termination",
+        "employment",
+        "indemnity",
+        "investigation",
+        "compliance"
+      ],
+      "relevance_keywords": [
+        "compliance",
+        "dismissal",
+        "employment",
+        "fair",
+        "indemnity",
+        "investigation",
+        "protection",
+        "termination",
+        "unfair"
+      ]
+    },
+    {
+      "id": "rc-007_employment_law_precedents_clause_003",
+      "document_source": "rc-007_employment_law_precedents",
+      "clause_number": "2",
+      "category": "precedent",
+      "title": "CONSTRUCTIVE DISMISSAL",
+      "content": "2. CONSTRUCTIVE DISMISSAL\n\"Constructive dismissal occurs when an employer's conduct makes continued employment impossible, entitling the employee to resign and claim unfair dismissal.\"\n\nKey Case: Western Excavating (ECC) Ltd v. Sharp [1978] ICR 221 - Established that employer must breach a fundamental term of the contract.",
+      "tags": [
+        "termination",
+        "employment",
+        "contract",
+        "breach",
+        "insurance"
+      ],
+      "relevance_keywords": [
+        "breach",
+        "constructive",
+        "contract",
+        "dismissal",
+        "employment",
+        "fair",
+        "insurance",
+        "termination"
+      ]
+    },
+    {
+      "id": "rc-007_employment_law_precedents_clause_004",
+      "document_source": "rc-007_employment_law_precedents",
+      "clause_number": "3",
+      "category": "precedent",
+      "title": "DISCRIMINATION PROTECTIONS",
+      "content": "3. DISCRIMINATION PROTECTIONS\nEquality Act 2010 protects against discrimination based on:\n- Age, disability, gender reassignment, marriage/civil partnership\n- Pregnancy/maternity, race, religion/belief, sex, sexual orientation\n\nKey Case: Shamoon v. Chief Constable of the Royal Ulster Constabulary [2003] UKHL 11 - Established comparative approach to direct discrimination.",
+      "tags": [
+        "termination",
+        "discrimination",
+        "indemnity",
+        "assignment",
+        "standards"
+      ],
+      "relevance_keywords": [
+        "assignment",
+        "discrimination",
+        "indemnity",
+        "protections",
+        "standards",
+        "termination"
+      ]
+    },
+    {
+      "id": "rc-007_employment_law_precedents_clause_005",
+      "document_source": "rc-007_employment_law_precedents",
+      "clause_number": "4",
+      "category": "precedent",
+      "title": "REASONABLE ADJUSTMENTS - DISABILITY",
+      "content": "4. REASONABLE ADJUSTMENTS - DISABILITY\nEmployers have a duty to make reasonable adjustments for disabled employees under Equality Act 2010.\n\nExamples of Reasonable Adjustments:\n- Flexible working arrangements\n- Accessible premises modifications\n- Providing assistive equipment\n- Reallocating duties\n\nKey Case: Archibald v. Fife Council [2004] UKHL 32 - Duty may require transferring disabled employee to higher grade position.",
+      "tags": [
+        "employment",
+        "contract",
+        "discrimination",
+        "assignment",
+        "standards"
+      ],
+      "relevance_keywords": [
+        "adjustments",
+        "assignment",
+        "contract",
+        "disability",
+        "discrimination",
+        "employment",
+        "reasonable",
+        "standards"
+      ]
+    },
+    {
+      "id": "rc-007_employment_law_precedents_clause_006",
+      "document_source": "rc-007_employment_law_precedents",
+      "clause_number": "5",
+      "category": "precedent",
+      "title": "WORKING TIME REGULATIONS",
+      "content": "5. WORKING TIME REGULATIONS\nWorking Time Regulations 1998 implement EU Working Time Directive:\n- Maximum 48-hour working week (can opt out)\n- Minimum 20 days' paid annual leave plus bank holidays\n- Rest breaks and daily/weekly rest periods\n\nKey Case: Barber v. RJB Mining (UK) Ltd [1999] ICR 679 - Employees cannot be required to work more than 48 hours without opt-out.",
+      "tags": [
+        "employment",
+        "regulation"
+      ],
+      "relevance_keywords": [
+        "employment",
+        "regulation",
+        "regulations",
+        "time",
+        "working"
+      ]
+    },
+    {
+      "id": "rc-007_employment_law_precedents_clause_007",
+      "document_source": "rc-007_employment_law_precedents",
+      "clause_number": "6",
+      "category": "precedent",
+      "title": "WHISTLEBLOWING PROTECTION",
+      "content": "6. WHISTLEBLOWING PROTECTION\nPublic Interest Disclosure Act 1998 protects workers who make protected disclosures about wrongdoing.\n\nProtected Disclosures:\n- Criminal offences\n- Health and safety dangers\n- Environmental damage\n- Miscarriages of justice\n\nKey Case: Chesterton Global Ltd v. Nurmohamed [2017] EWCA Civ 979 - Clarified \"public interest\" test for protected disclosures.",
+      "tags": [
+        "liability",
+        "confidentiality",
+        "employment",
+        "health_safety",
+        "indemnity"
+      ],
+      "relevance_keywords": [
+        "confidentiality",
+        "employment",
+        "health",
+        "health_safety",
+        "indemnity",
+        "liability",
+        "protection",
+        "whistleblowing"
+      ]
+    },
+    {
+      "id": "rc-007_employment_law_precedents_clause_008",
+      "document_source": "rc-007_employment_law_precedents",
+      "clause_number": "7",
+      "category": "precedent",
+      "title": "RESTRICTIVE COVENANTS",
+      "content": "7. RESTRICTIVE COVENANTS\nPost-employment restraints must protect legitimate business interests and be reasonable in scope and duration.\n\nKey Case: Faccenda Chicken Ltd v. Fowler [1987] Ch 117 - Established categories of confidential information and enforceability of restraints.",
+      "tags": [
+        "termination",
+        "confidentiality",
+        "employment",
+        "notice",
+        "non_compete",
+        "data_protection",
+        "indemnity"
+      ],
+      "relevance_keywords": [
+        "confidentiality",
+        "covenants",
+        "data_protection",
+        "employment",
+        "indemnity",
+        "non_compete",
+        "notice",
+        "restrictive",
+        "termination"
+      ]
+    },
+    {
+      "id": "rc-007_employment_law_precedents_clause_009",
+      "document_source": "rc-007_employment_law_precedents",
+      "clause_number": "8",
+      "category": "precedent",
+      "title": "TUPE TRANSFERS",
+      "content": "8. TUPE TRANSFERS\nTransfer of Undertakings (Protection of Employment) Regulations 2006 protect employees when businesses transfer.\n\nKey Case: Spijkers v. Gebroeders Benedik Abattoir CV [1986] ECR 1119 - Established multi-factor test for identifying relevant transfers.",
+      "tags": [
+        "employment",
+        "indemnity",
+        "assignment",
+        "regulation"
+      ],
+      "relevance_keywords": [
+        "assignment",
+        "employment",
+        "indemnity",
+        "regulation",
+        "transfers",
+        "tupe"
+      ]
+    },
+    {
+      "id": "rc-007_employment_law_precedents_clause_010",
+      "document_source": "rc-007_employment_law_precedents",
+      "clause_number": "9",
+      "category": "precedent",
+      "title": "COLLECTIVE REDUNDANCIES",
+      "content": "9. COLLECTIVE REDUNDANCIES\nTrade Union and Labour Relations (Consolidation) Act 1992 requires consultation when making 20+ redundancies within 90 days.\n\nKey Case: UK Coal Mining Ltd v. NUM [2008] ICR 163 - Established that consultation must begin \"in good time\" before dismissals.",
+      "tags": [
+        "termination"
+      ],
+      "relevance_keywords": [
+        "collective",
+        "redundancies",
+        "termination"
+      ]
+    },
+    {
+      "id": "rc-007_employment_law_precedents_clause_011",
+      "document_source": "rc-007_employment_law_precedents",
+      "clause_number": "10",
+      "category": "precedent",
+      "title": "EQUAL PAY",
+      "content": "10. EQUAL PAY\nEquality Act 2010 provides right to equal pay for equal work, work rated as equivalent, or work of equal value.\n\nKey Case: Hayward v. Cammell Laird Shipbuilders Ltd [1988] AC 894 - Established term-by-term comparison approach to equal pay claims.",
+      "tags": [
+        "employment",
+        "payment",
+        "discrimination",
+        "insurance",
+        "standards"
+      ],
+      "relevance_keywords": [
+        "discrimination",
+        "employment",
+        "equal",
+        "insurance",
+        "pay",
+        "payment",
+        "standards",
+        "value"
+      ]
+    },
+    {
+      "id": "rc-008_contract_law_precedents_clause_001",
+      "document_source": "rc-008_contract_law_precedents",
+      "clause_number": "0",
+      "category": "precedent",
+      "title": "DOCUMENT HEADER: UK CONTRACT LAW PRECEDENTS AND PRINCIPLES",
+      "content": "UK CONTRACT LAW PRECEDENTS AND PRINCIPLES",
+      "tags": [
+        "contract",
+        "precedent",
+        "regulation"
+      ],
+      "relevance_keywords": [
+        "contract",
+        "header:",
+        "law",
+        "precedent",
+        "precedents",
+        "principles",
+        "regulation"
+      ]
+    },
+    {
+      "id": "rc-008_contract_law_precedents_clause_002",
+      "document_source": "rc-008_contract_law_precedents",
+      "clause_number": "1",
+      "category": "precedent",
+      "title": "FORMATION OF CONTRACTS",
+      "content": "1. FORMATION OF CONTRACTS\nEssential Elements:\n- Offer: Clear, definite proposal\n- Acceptance: Unqualified agreement to terms\n- Consideration: Exchange of value or promise\n- Intention to create legal relations\n- Certainty of terms\n\nKey Case: Carlill v. Carbolic Smoke Ball Co [1893] 1 QB 256 - Established principles of unilateral contracts and consideration.",
+      "tags": [
+        "contract",
+        "amendment"
+      ],
+      "relevance_keywords": [
+        "agreement",
+        "amendment",
+        "contract",
+        "contracts",
+        "formation",
+        "legal",
+        "terms",
+        "value"
+      ]
+    },
+    {
+      "id": "rc-008_contract_law_precedents_clause_003",
+      "document_source": "rc-008_contract_law_precedents",
+      "clause_number": "2",
+      "category": "precedent",
+      "title": "OFFER AND ACCEPTANCE",
+      "content": "2. OFFER AND ACCEPTANCE\nOffer must be distinguished from invitation to treat. Acceptance must be communicated and match the terms of the offer.\n\nKey Cases:\n- Fisher v. Bell [1961] 1 QB 394 - Goods in shop window are invitation to treat, not offer\n- Entores Ltd v. Miles Far East Corporation [1955] 2 QB 327 - Postal rule does not apply to instantaneous communications",
+      "tags": [
+        "notice",
+        "regulation"
+      ],
+      "relevance_keywords": [
+        "acceptance",
+        "notice",
+        "offer",
+        "regulation",
+        "terms"
+      ]
+    },
+    {
+      "id": "rc-008_contract_law_precedents_clause_004",
+      "document_source": "rc-008_contract_law_precedents",
+      "clause_number": "3",
+      "category": "precedent",
+      "title": "CONSIDERATION",
+      "content": "3. CONSIDERATION\n\"Consideration must be sufficient but need not be adequate.\" Past consideration is generally not valid consideration.\n\nKey Cases:\n- Chappell & Co Ltd v. Nestlé Co Ltd [1960] AC 87 - Chocolate bar wrappers constituted valid consideration\n- Williams v. Roffey Bros [1991] 1 QB 1 - Practical benefit can constitute consideration",
+      "tags": [],
+      "relevance_keywords": [
+        "consideration"
+      ]
+    },
+    {
+      "id": "rc-008_contract_law_precedents_clause_005",
+      "document_source": "rc-008_contract_law_precedents",
+      "clause_number": "4",
+      "category": "precedent",
+      "title": "BREACH OF CONTRACT REMEDIES",
+      "content": "4. BREACH OF CONTRACT REMEDIES\nExpectation Damages: Put claimant in position they would have been in if contract performed\nReliance Damages: Reimburse expenses incurred in reliance on contract\nRestitution: Prevent unjust enrichment\n\nKey Case: Hadley v. Baxendale (1854) 9 Exch 341 - Established remoteness test for consequential damages (still good law).",
+      "tags": [
+        "termination",
+        "liability",
+        "employment",
+        "contract",
+        "breach",
+        "insurance",
+        "indemnity",
+        "performance",
+        "regulation"
+      ],
+      "relevance_keywords": [
+        "breach",
+        "contract",
+        "employment",
+        "indemnity",
+        "insurance",
+        "liability",
+        "performance",
+        "regulation",
+        "remedies",
+        "termination"
+      ]
+    },
+    {
+      "id": "rc-008_contract_law_precedents_clause_006",
+      "document_source": "rc-008_contract_law_precedents",
+      "clause_number": "5",
+      "category": "precedent",
+      "title": "FRUSTRATION OF CONTRACT",
+      "content": "5. FRUSTRATION OF CONTRACT\nPerformance excused when supervening event makes performance impossible, illegal, or radically different.\n\nKey Cases:\n- Taylor v. Caldwell (1863) 3 B&S 826 - Contract frustrated when music hall burned down\n- Davis Contractors Ltd v. Fareham UDC [1956] AC 696 - Established modern frustration doctrine",
+      "tags": [
+        "contract",
+        "performance"
+      ],
+      "relevance_keywords": [
+        "contract",
+        "frustration",
+        "legal",
+        "performance"
+      ]
+    },
+    {
+      "id": "rc-008_contract_law_precedents_clause_007",
+      "document_source": "rc-008_contract_law_precedents",
+      "clause_number": "6",
+      "category": "precedent",
+      "title": "UNFAIR CONTRACT TERMS",
+      "content": "6. UNFAIR CONTRACT TERMS\nUnfair Contract Terms Act 1977 and Consumer Rights Act 2015 regulate exclusion clauses and unfair terms.\n\nKey Cases:\n- Photo Production Ltd v. Securicor Transport Ltd [1980] AC 827 - Fundamental breach doctrine rejected\n- Director General of Fair Trading v. First National Bank [2001] UKHL 52 - Test for unfair terms in consumer contracts",
+      "tags": [
+        "contract",
+        "breach"
+      ],
+      "relevance_keywords": [
+        "breach",
+        "contract",
+        "fair",
+        "terms",
+        "unfair"
+      ]
+    },
+    {
+      "id": "rc-008_contract_law_precedents_clause_008",
+      "document_source": "rc-008_contract_law_precedents",
+      "clause_number": "7",
+      "category": "precedent",
+      "title": "THIRD-PARTY RIGHTS",
+      "content": "7. THIRD-PARTY RIGHTS\nContracts (Rights of Third Parties) Act 1999 allows third parties to enforce contracts in certain circumstances.\n\nKey Case: Beswick v. Beswick [1968] AC 58 - Established privity doctrine and its limitations (pre-1999 Act).",
+      "tags": [
+        "contract"
+      ],
+      "relevance_keywords": [
+        "contract",
+        "force",
+        "party",
+        "rights",
+        "third"
+      ]
+    },
+    {
+      "id": "rc-008_contract_law_precedents_clause_009",
+      "document_source": "rc-008_contract_law_precedents",
+      "clause_number": "8",
+      "category": "precedent",
+      "title": "MISREPRESENTATION",
+      "content": "8. MISREPRESENTATION\nFalse statements of fact that induce contract formation may give rise to remedies.\n\nKey Cases:\n- Hedley Byrne & Co Ltd v. Heller & Partners Ltd [1964] AC 465 - Established negligent misrepresentation\n- Royscot Trust Ltd v. Rogerson [1991] 2 QB 297 - Damages under s.2(1) Misrepresentation Act 1967",
+      "tags": [
+        "liability",
+        "contract"
+      ],
+      "relevance_keywords": [
+        "contract",
+        "false",
+        "liability",
+        "misrepresentation"
+      ]
+    },
+    {
+      "id": "rc-008_contract_law_precedents_clause_010",
+      "document_source": "rc-008_contract_law_precedents",
+      "clause_number": "9",
+      "category": "precedent",
+      "title": "DURESS AND UNDUE INFLUENCE",
+      "content": "9. DURESS AND UNDUE INFLUENCE\nContracts may be voidable if entered into under duress or undue influence.\n\nKey Cases:\n- Universe Tankships Inc v. International Transport Workers Federation [1983] 1 AC 366 - Economic duress\n- Royal Bank of Scotland v. Etridge (No 2) [2001] UKHL 44 - Undue influence in surety cases",
+      "tags": [
+        "employment",
+        "contract"
+      ],
+      "relevance_keywords": [
+        "contract",
+        "duress",
+        "employment",
+        "influence",
+        "undue"
+      ]
+    },
+    {
+      "id": "rc-008_contract_law_precedents_clause_011",
+      "document_source": "rc-008_contract_law_precedents",
+      "clause_number": "10",
+      "category": "precedent",
+      "title": "PENALTY CLAUSES",
+      "content": "10. PENALTY CLAUSES\nContractual provisions for breach are unenforceable if they constitute penalties rather than genuine pre-estimates of loss.\n\nKey Case: Makdessi v. Cavendish Square Holdings [2015] UKSC 67 - Modern approach to penalty clauses, focusing on whether clause is extravagant or unconscionable.",
+      "tags": [
+        "termination",
+        "liability",
+        "contract",
+        "breach",
+        "severability"
+      ],
+      "relevance_keywords": [
+        "breach",
+        "clauses",
+        "contract",
+        "force",
+        "liability",
+        "penalty",
+        "severability",
+        "termination"
+      ]
+    }
+  ],
+  "metadata": {
+    "total_clauses": 87,
+    "last_updated": "2025-10-12T15:54:50.553514",
+    "version": "1.0"
+  }
+}
