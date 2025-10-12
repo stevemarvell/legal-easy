@@ -1,8 +1,15 @@
 from fastapi import APIRouter, HTTPException, Path
-from typing import List
+from typing import List, Optional, Dict, Any
 from app.models.case import Case, CaseStatistics
+from app.models.ai_analysis import (
+    AIAnalysisResponse, 
+    AIAnalysisGetResponse, 
+    AIConversationsResponse, 
+    ErrorResponse
+)
 from app.services.cases_service import CasesService
 from app.services.documents_service import DocumentsService
+from app.services.ai_analysis_service import AIAnalysisService
 
 router = APIRouter(
     prefix="/cases", 
@@ -184,3 +191,150 @@ async def generate_case_research_list(
         raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to generate research list: {str(e)}")
+
+
+@router.post(
+    "/{case_id}/ai-analysis",
+    response_model=AIAnalysisResponse,
+    summary="Trigger AI analysis for case",
+    description="""
+    Trigger AI-powered analysis of case documents using Claude API.
+    Extracts structured information including claim details, timeline, and key facts.
+    
+    This endpoint will:
+    - Analyze all documents associated with the case
+    - Extract key facts, dates, and legal issues
+    - Generate structured analysis results
+    - Log the conversation for audit purposes
+    """,
+    responses={
+        200: {"model": AIAnalysisResponse, "description": "AI analysis completed successfully"},
+        404: {"model": ErrorResponse, "description": "Case not found"},
+        422: {"model": ErrorResponse, "description": "Analysis failed due to validation errors"},
+        500: {"model": ErrorResponse, "description": "Internal server error during analysis"}
+    }
+)
+async def trigger_ai_analysis(
+    case_id: str = Path(..., description="Unique identifier of the case", example="case-001")
+):
+    """Trigger AI analysis for a specific case"""
+    try:
+        # Verify case exists
+        cases = CasesService.load_cases()
+        case = next((c for c in cases if c.get('id') == case_id), None)
+        if not case:
+            raise HTTPException(status_code=404, detail=f"Case {case_id} not found")
+        
+        # Trigger AI analysis
+        ai_service = AIAnalysisService()
+        analysis_result = ai_service.analyze_case(case_id)
+        
+        return AIAnalysisResponse(
+            success=True,
+            message="AI analysis completed successfully",
+            case_id=case_id,
+            analysis=analysis_result
+        )
+    except HTTPException:
+        raise
+    except ValueError as e:
+        raise HTTPException(status_code=422, detail=f"Analysis validation error: {str(e)}")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to perform AI analysis: {str(e)}")
+
+
+@router.get(
+    "/{case_id}/ai-analysis",
+    response_model=AIAnalysisGetResponse,
+    summary="Get AI analysis results for case",
+    description="""
+    Retrieve existing AI analysis results for a case.
+    Returns structured analysis data including claim details, timeline, and key facts.
+    
+    This endpoint returns:
+    - Previously generated analysis results
+    - Confidence scores and metadata
+    - Extracted key facts and legal issues
+    - Analysis timestamp and type information
+    """,
+    responses={
+        200: {"model": AIAnalysisGetResponse, "description": "AI analysis data retrieved successfully"},
+        404: {"model": ErrorResponse, "description": "Case or analysis not found"},
+        500: {"model": ErrorResponse, "description": "Internal server error"}
+    }
+)
+async def get_ai_analysis(
+    case_id: str = Path(..., description="Unique identifier of the case", example="case-001")
+):
+    """Get existing AI analysis results for a case"""
+    try:
+        # Verify case exists
+        cases = CasesService.load_cases()
+        case = next((c for c in cases if c.get('id') == case_id), None)
+        if not case:
+            raise HTTPException(status_code=404, detail=f"Case {case_id} not found")
+        
+        # Get analysis results
+        ai_service = AIAnalysisService()
+        analysis_result = ai_service.get_case_analysis(case_id)
+        
+        if analysis_result is None:
+            raise HTTPException(status_code=404, detail=f"No AI analysis found for case {case_id}")
+        
+        return AIAnalysisGetResponse(
+            success=True,
+            case_id=case_id,
+            analysis=analysis_result
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to retrieve AI analysis: {str(e)}")
+
+
+@router.get(
+    "/{case_id}/ai-conversations",
+    response_model=AIConversationsResponse,
+    summary="Get AI conversation log for case",
+    description="""
+    Retrieve the conversation log of all AI interactions for a case.
+    Includes timestamps, prompts, responses, and metadata for audit trail.
+    
+    This endpoint provides:
+    - Complete audit trail of AI interactions
+    - Timestamps and conversation IDs
+    - Full prompts and responses
+    - Processing metadata and performance metrics
+    - Token usage and API version information
+    """,
+    responses={
+        200: {"model": AIConversationsResponse, "description": "Conversation log retrieved successfully"},
+        404: {"model": ErrorResponse, "description": "Case not found"},
+        500: {"model": ErrorResponse, "description": "Internal server error"}
+    }
+)
+async def get_ai_conversations(
+    case_id: str = Path(..., description="Unique identifier of the case", example="case-001")
+):
+    """Get AI conversation log for a case"""
+    try:
+        # Verify case exists
+        cases = CasesService.load_cases()
+        case = next((c for c in cases if c.get('id') == case_id), None)
+        if not case:
+            raise HTTPException(status_code=404, detail=f"Case {case_id} not found")
+        
+        # Get conversation log
+        ai_service = AIAnalysisService()
+        conversations = ai_service.get_conversation_log(case_id)
+        
+        return AIConversationsResponse(
+            success=True,
+            case_id=case_id,
+            conversations=conversations,
+            total_conversations=len(conversations)
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to retrieve conversation log: {str(e)}")

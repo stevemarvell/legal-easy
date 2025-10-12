@@ -1,0 +1,62 @@
+{
+  "case_id": "case-001",
+  "timestamp": "2025-10-12T14:19:04.028499+00:00",
+  "claim_reference": null,
+  "claimant_name": "Sarah Chen",
+  "incident_date": "2024-01-12",
+  "claim_amount": null,
+  "summary_paragraph_1": "This case involves Sarah Chen, a Senior Safety Engineer employed by TechCorp Solutions Ltd. since March 15, 2022, who was terminated on January 12, 2024, approximately 33 days after submitting a comprehensive safety violation report. Ms. Chen discovered critical safety violations in Building C's chemical storage area on December 8, 2023, including inadequate ventilation (only 2 air changes per hour vs. required 6), inoperative ventilation equipment, improper chemical storage with incompatible substances in dangerous proximity, and blocked emergency equipment access.",
+  "summary_paragraph_2": "The termination email cited 'ongoing budget constraints and organisational restructuring' as the reason for dismissal, despite Ms. Chen's excellent employment record with consistently positive performance reviews. The temporal proximity between her safety report submission (December 10, 2023) and termination (January 12, 2024) raises significant concerns about potential retaliation for whistleblowing activities, particularly given her contractual protections against retaliation for good faith safety reporting and the company's explicit anti-retaliation policies outlined in her employment agreement.",
+  "case_key_facts": [
+    "Sarah Chen employed as Senior Safety Engineer since March 15, 2022",
+    "Discovered critical safety violations in Building C on December 8, 2023",
+    "Submitted comprehensive safety report on December 10, 2023",
+    "Terminated exactly 33 days later on January 12, 2024",
+    "Employment contract included explicit anti-retaliation protections",
+    "Termination cited budget constraints and restructuring",
+    "No prior performance issues documented",
+    "Safety violations posed serious health risks to employees"
+  ],
+  "document_facts": {
+    "doc-001": {
+      "document_name": "Employment Contract - Sarah Chen",
+      "key_facts": [
+        "Employment commenced March 15, 2022 as Senior Safety Engineer",
+        "Contract includes 30-day notice provision for termination",
+        "Explicit anti-retaliation clause for safety reporting",
+        "Role includes conducting safety assessments and reporting violations",
+        "Company prohibited retaliation against good faith safety reports",
+        "At-will employment with notice requirements"
+      ]
+    },
+    "doc-002": {
+      "document_name": "Safety Violation Report",
+      "key_facts": [
+        "Report submitted December 10, 2023 by Sarah Chen",
+        "Critical violations found in Building C, Room 105 chemical storage",
+        "Ventilation system providing only 2 air changes/hour (required: 6)",
+        "Fan #3 completely inoperative",
+        "Incompatible chemicals stored in dangerous proximity",
+        "Emergency eyewash stations blocked by storage boxes",
+        "Estimated remediation cost £35,000-£50,000",
+        "Potential HSE fines up to £20,000 per violation identified"
+      ]
+    },
+    "doc-003": {
+      "document_name": "Termination Notice Email",
+      "key_facts": [
+        "Termination effective January 12, 2024 at 9:15 AM GMT",
+        "Sent from hr@techcorp.co.uk to sarah.chen@techcorp.co.uk",
+        "Reason cited: budget constraints and organisational restructuring",
+        "Described as part of broader cost-reduction initiative",
+        "80 hours accrued holiday to be processed by January 19, 2024",
+        "Health insurance continuation through January 31, 2024",
+        "Required return of company property including laptop, badge, phone"
+      ]
+    }
+  },
+  "confidence": 0.92,
+  "analysis_type": "case_analysis",
+  "caseId": "case-001",
+  "keyFacts": []
+}

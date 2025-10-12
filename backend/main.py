@@ -2,6 +2,13 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.api import cases, documents, playbooks, corpus
 import random
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+from pathlib import Path
+backend_dir = Path(__file__).parent
+env_path = backend_dir / '.env'
+load_dotenv(env_path)
 
 app = FastAPI(
     title="Shift Legal AI API",
