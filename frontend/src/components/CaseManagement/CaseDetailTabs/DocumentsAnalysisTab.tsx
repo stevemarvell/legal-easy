@@ -287,7 +287,7 @@ const DocumentsAnalysisTab: React.FC<DocumentsAnalysisTabProps> = ({
               fullWidth
               onClick={() => window.open(`/cases/${caseId}/documents`, '_blank')}
             >
-              View All Documents
+              View Documents
             </Button>
           </Stack>
         )}

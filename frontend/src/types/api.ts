@@ -63,7 +63,7 @@ export interface Document {
   upload_date: string;
   content_preview: string; // Added to match backend
   full_content_path?: string; // Added to match backend
-  analysis_completed: boolean; // Changed from analysis_status to match backend
+
   // Legacy fields for backward compatibility
   filename?: string;
   file_type?: string;

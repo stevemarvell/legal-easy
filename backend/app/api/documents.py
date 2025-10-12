@@ -1,15 +1,14 @@
 from fastapi import APIRouter, HTTPException, Path
 from typing import List
-from app.models.document import Document, DocumentAnalysis
+from app.models.document import Document
 from app.services.documents_service import DocumentsService
-from app.services.cases_service import CasesService
 
 
 router = APIRouter(
     prefix="/documents", 
     tags=["Documents"],
     responses={
-        404: {"description": "Document or analysis not found"},
+        404: {"description": "Document not found"},
         500: {"description": "Internal server error"}
     }
 )
@@ -26,7 +25,6 @@ router = APIRouter(
     including:
     - Document metadata (name, type, size, upload date)
     - Content preview
-    - Analysis completion status
     
     **Use cases:**
     - Case document listing
@@ -46,8 +44,7 @@ router = APIRouter(
                             "type": "Contract",
                             "size": 245760,
                             "upload_date": "2024-01-15T09:30:00Z",
-                            "content_preview": "EMPLOYMENT AGREEMENT between TechCorp Solutions Ltd. and Sarah Chen...",
-                            "analysis_completed": True
+                            "content_preview": "EMPLOYMENT AGREEMENT between TechCorp Solutions Ltd. and Sarah Chen..."
                         }
                     ]
                 }
@@ -76,7 +73,6 @@ async def get_case_documents(
     This endpoint returns complete document information including:
     - Document metadata and properties
     - Content preview
-    - Analysis status
     - Associated case information
     
     **Use cases:**
@@ -96,8 +92,7 @@ async def get_case_documents(
                         "type": "Contract",
                         "size": 245760,
                         "upload_date": "2024-01-15T09:30:00Z",
-                        "content_preview": "EMPLOYMENT AGREEMENT between TechCorp Solutions Ltd. and Sarah Chen...",
-                        "analysis_completed": True
+                        "content_preview": "EMPLOYMENT AGREEMENT between TechCorp Solutions Ltd. and Sarah Chen..."
                     }
                 }
             }
@@ -130,87 +125,6 @@ async def get_document(
 
 
 @router.get(
-    "/{document_id}/analysis", 
-    response_model=DocumentAnalysis,
-    summary="Get AI analysis for document",
-    description="""
-    Retrieve AI-powered analysis results for a specific document.
-    
-    TODO: Implement AI analysis integration
-    """,
-    responses={
-        200: {"description": "Document analysis retrieved successfully"},
-        404: {"description": "Document analysis not found"}
-    }
-)
-async def get_document_analysis(
-    document_id: str = Path(..., description="Unique identifier of the document to analyze", example="doc-001")
-):
-    """Get AI-powered analysis results for a specific document"""
-    try:
-        # TODO: Implement AI analysis retrieval
-        raise HTTPException(status_code=501, detail="AI analysis not implemented")
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to get document analysis: {str(e)}")
-
-
-@router.post(
-    "/{document_id}/analyze",
-    response_model=DocumentAnalysis,
-    summary="Perform real-time AI analysis on document",
-    description="""
-    Perform real-time AI-powered analysis on a specific document.
-    
-    TODO: Implement AI analysis integration
-    """,
-    responses={
-        200: {"description": "Document analysis completed successfully"},
-        404: {"description": "Document not found"},
-        500: {"description": "Analysis failed"}
-    }
-)
-async def analyze_document(
-    document_id: str = Path(..., description="Unique identifier of the document to analyze", example="doc-001")
-):
-    """Perform real-time AI analysis on a specific document"""
-    try:
-        # TODO: Load document content and perform AI analysis
-        content = DocumentsService.load_document_content(document_id)
-        if not content:
-            raise HTTPException(status_code=404, detail=f"Document with ID {document_id} not found")
-        
-        # TODO: Implement AI analysis
-        raise HTTPException(status_code=501, detail="AI analysis not implemented")
-    except HTTPException:
-        raise
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to analyze document: {str(e)}")
-
-
-@router.delete(
-    "/{document_id}/analysis",
-    summary="Delete analysis results for document",
-    description="Delete stored analysis results for a specific document",
-    responses={
-        200: {"description": "Analysis deleted successfully"},
-        404: {"description": "Analysis not found"},
-        500: {"description": "Failed to delete analysis"}
-    }
-)
-async def delete_document_analysis(
-    document_id: str = Path(..., description="Unique identifier of the document", example="doc-001")
-):
-    """Delete stored analysis results for a specific document"""
-    try:
-        # TODO: Implement analysis deletion
-        raise HTTPException(status_code=501, detail="AI analysis deletion not implemented")
-    except HTTPException:
-        raise
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to delete analysis: {str(e)}")
-
-
-@router.get(
     "/{document_id}/content",
     summary="Get full document content",
     description="""
@@ -220,7 +134,6 @@ async def delete_document_analysis(
     Useful for:
     - Document review and reading
     - Content verification
-    - Manual analysis
     """,
     responses={
         200: {
@@ -272,34 +185,4 @@ async def get_document_content(
         raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to retrieve document content: {str(e)}")
-
-
-@router.post(
-    "/regenerate-analysis",
-    summary="Regenerate all document analysis",
-    description="""
-    Regenerate AI analysis for all documents in the system.
-    
-    TODO: Implement AI analysis regeneration
-    """,
-    responses={
-        200: {"description": "Analysis regeneration completed successfully"},
-        500: {"description": "Analysis regeneration failed"}
-    }
-)
-async def regenerate_document_analysis():
-    """Regenerate AI analysis for all documents in the system"""
-    try:
-        # TODO: Implement AI analysis regeneration
-        return {
-            "success": True,
-            "message": "Document analysis regeneration not yet implemented",
-            "total_documents": 0,
-            "analyzed_documents": 0,
-            "failed_documents": 0,
-            "average_confidence": 0.0,
-            "processing_time_seconds": 0.0
-        }
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to regenerate document analysis: {str(e)}")
 

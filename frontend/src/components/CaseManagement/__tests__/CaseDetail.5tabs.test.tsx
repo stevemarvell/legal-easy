@@ -267,7 +267,7 @@ describe('CaseDetail 5-Tab Interface', () => {
       fireEvent.click(screen.getByTestId('documents-analysis-tab'));
 
       await waitFor(() => {
-        expect(screen.getByText('View All Documents')).toBeInTheDocument();
+        expect(screen.getByText('View Documents')).toBeInTheDocument();
         expect(screen.getByText('Analyze All Pending')).toBeInTheDocument();
       });
     });

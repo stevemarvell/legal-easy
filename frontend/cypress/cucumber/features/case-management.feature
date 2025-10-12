@@ -148,5 +148,5 @@ Feature: Case Management - View Cases
     When I am on the case detail page
     And I click on a document name
     Then I should navigate to the document detail page
-    When I click "View All Documents"
+    When I click "View Documents"
     Then I should navigate to the documents page for this case

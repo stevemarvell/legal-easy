@@ -21,7 +21,7 @@ const CaseDetailsTab: React.FC<CaseDetailsTabProps> = ({ caseData }) => {
     <Card sx={{ mb: 4 }} data-testid="case-details">
       <CardContent>
         <Typography variant="h5" component="h2" gutterBottom>
-          Comprehensive Case Details
+         Case Details
         </Typography>
         <Divider sx={{ mb: 3 }} />
 
