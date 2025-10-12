@@ -1420,3 +1420,129 @@ class TestDataService:
             assert DataService.load_document_risks("doc-999") is None
             assert DataService.load_document_compliance("doc-999") is None
             assert DataService.load_document_deadlines("doc-999") is None
+
+
+class TestCaseAnalysisService:
+    """Test cases for CaseAnalysisService case details analysis"""
+
+    def test_analyze_case_details_success(self):
+        """Test successful case details analysis"""
+        from app.services.case_analysis_service import CaseAnalysisService
+        
+        # Mock case data with description
+        mock_cases = [{
+            "id": "case-001",
+            "title": "Test Employment Case",
+            "case_type": "Employment Dispute",
+            "description": "Sarah Chen commenced employment with TechCorp Solutions Ltd. on 15 March 2022 as a Senior Safety Engineer under a comprehensive employment agreement. On 8 December 2023, she discovered critical safety violations. Exactly 33 days later, on 12 January 2024 at 9:15 AM GMT, she received termination email citing budget constraints. The estimated remediation cost was £35,000-£50,000. She alleges wrongful dismissal and seeks reinstatement.",
+            "key_parties": ["Sarah Chen (Claimant)", "TechCorp Solutions Ltd. (Respondent)"]
+        }]
+        
+        with patch.object(DataService, 'load_cases', return_value=mock_cases):
+            result = CaseAnalysisService.analyze_case_details("case-001")
+            
+            # Verify basic structure
+            assert result["case_id"] == "case-001"
+            assert result["case_title"] == "Test Employment Case"
+            assert result["case_type"] == "Employment Dispute"
+            assert "analysis_timestamp" in result
+            
+            # Verify legal elements extraction
+            legal_elements = result["legal_elements"]
+            assert "contracts" in legal_elements
+            assert "monetary_amounts" in legal_elements
+            assert "dates" in legal_elements
+            
+            # Verify timeline analysis
+            timeline = result["timeline_analysis"]
+            assert "events" in timeline
+            assert "timeline_span" in timeline
+            
+            # Verify case strength assessment
+            case_strength = result["case_strength"]
+            assert "overall_score" in case_strength
+            assert "strength_level" in case_strength
+            assert "confidence_level" in case_strength
+
+    def test_analyze_case_details_case_not_found(self):
+        """Test case details analysis when case not found"""
+        from app.services.case_analysis_service import CaseAnalysisService
+        
+        with patch.object(DataService, 'load_cases', return_value=[]):
+            result = CaseAnalysisService.analyze_case_details("nonexistent")
+            
+            assert "error" in result
+            assert "not found" in result["error"].lower()
+
+    def test_analyze_case_details_no_description(self):
+        """Test case details analysis when case has no description"""
+        from app.services.case_analysis_service import CaseAnalysisService
+        
+        mock_cases = [{
+            "id": "case-001",
+            "title": "Test Case",
+            "case_type": "Employment Dispute"
+            # No description field
+        }]
+        
+        with patch.object(DataService, 'load_cases', return_value=mock_cases):
+            result = CaseAnalysisService.analyze_case_details("case-001")
+            
+            assert "error" in result
+            assert "no description" in result["error"].lower()
+
+    def test_extract_legal_elements(self):
+        """Test legal elements extraction"""
+        from app.services.case_analysis_service import CaseAnalysisService
+        
+        description = """
+        Sarah Chen signed an Employment Agreement on 15 March 2022.
+        The case involves Public Interest Disclosure Act 1998 and Employment Rights Act 1996.
+        The estimated cost was £35,000-£50,000 with potential fines of £20,000 per violation.
+        """
+        
+        elements = CaseAnalysisService._extract_legal_elements(description)
+        
+        assert "Employment Agreement" in elements["contracts"]
+        assert any("Public Interest Disclosure Act" in statute for statute in elements["statutes"])
+        assert any("£35,000" in amount for amount in elements["monetary_amounts"])
+        assert any("15 March 2022" in date for date in elements["dates"])
+
+    def test_extract_timeline(self):
+        """Test timeline extraction"""
+        from app.services.case_analysis_service import CaseAnalysisService
+        
+        description = """
+        On 15 March 2022, Sarah Chen commenced employment.
+        On 8 December 2023, she discovered safety violations.
+        Exactly 33 days later, on 12 January 2024, she was terminated.
+        """
+        
+        timeline = CaseAnalysisService._extract_timeline(description)
+        
+        assert len(timeline["events"]) >= 2
+        assert timeline["total_events_found"] >= 2
+        
+        # Check for key events
+        events = timeline["events"]
+        dates = [event["date"] for event in events]
+        assert any("15 March 2022" in date for date in dates)
+        assert any("8 December 2023" in date for date in dates)
+
+    def test_assess_case_strength(self):
+        """Test case strength assessment"""
+        from app.services.case_analysis_service import CaseAnalysisService
+        
+        strong_description = """
+        Comprehensive report submitted on 10 December 2023 with detailed documentation.
+        Clear timeline established with witness statements available.
+        On 15 March 2022 at 9:00 AM, employment commenced.
+        Exactly 33 days later, termination occurred.
+        """
+        
+        strength = CaseAnalysisService._assess_case_strength(strong_description, "Employment Dispute")
+        
+        assert strength["overall_score"] > 0
+        assert strength["strength_level"] in ["Strong", "Moderate", "Weak"]
+        assert 0 <= strength["confidence_level"] <= 1
+        assert "factor_scores" in strength

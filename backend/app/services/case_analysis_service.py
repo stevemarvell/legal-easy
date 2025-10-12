@@ -23,6 +23,45 @@ class CaseAnalysisService:
     """Service for comprehensive case analysis integrating documents, research, and playbooks."""
     
     @staticmethod
+    def analyze_case_details(case_id: str) -> Dict[str, Any]:
+        """
+        Analyze case details from the case description to extract key legal elements,
+        timeline, parties, issues, and strategic insights.
+        """
+        try:
+            # Load case data
+            cases = DataService.load_cases()
+            case = next((c for c in cases if c.get('id') == case_id), None)
+            
+            if not case:
+                return {"error": f"Case {case_id} not found"}
+            
+            description = case.get('description', '')
+            if not description:
+                return {"error": f"No description available for case {case_id}"}
+            
+            # Extract key elements from case description
+            analysis = {
+                "case_id": case_id,
+                "case_title": case.get('title', ''),
+                "case_type": case.get('case_type', ''),
+                "analysis_timestamp": datetime.now().isoformat(),
+                "legal_elements": CaseAnalysisService._extract_legal_elements(description),
+                "timeline_analysis": CaseAnalysisService._extract_timeline(description),
+                "parties_analysis": CaseAnalysisService._analyze_parties(description, case.get('key_parties', [])),
+                "issues_analysis": CaseAnalysisService._identify_legal_issues(description, case.get('case_type', '')),
+                "evidence_analysis": CaseAnalysisService._analyze_evidence(description),
+                "risk_assessment": CaseAnalysisService._assess_risks(description, case.get('case_type', '')),
+                "strategic_insights": CaseAnalysisService._generate_strategic_insights(description, case.get('case_type', '')),
+                "case_strength": CaseAnalysisService._assess_case_strength(description, case.get('case_type', ''))
+            }
+            
+            return analysis
+            
+        except Exception as e:
+            return {"error": f"Failed to analyze case details: {str(e)}"}
+
+    @staticmethod
     def analyze_case_comprehensive(case_id: str, force_regenerate: bool = False) -> Dict[str, Any]:
         """
         Perform comprehensive analysis of a case by integrating:
@@ -816,3 +855,396 @@ class CaseAnalysisService:
         except Exception as e:
             print(f"Error getting analysis statistics: {e}")
             return {"error": str(e)}
+
+    @staticmethod
+    def _extract_legal_elements(description: str) -> Dict[str, Any]:
+        """Extract key legal elements from case description"""
+        elements = {
+            "contracts": [],
+            "statutes": [],
+            "regulations": [],
+            "legal_concepts": [],
+            "monetary_amounts": [],
+            "dates": [],
+            "locations": []
+        }
+        
+        # Extract contracts and agreements
+        contract_patterns = [
+            r'([A-Z][a-zA-Z\s]+Agreement)',
+            r'([A-Z][a-zA-Z\s]+Contract)',
+            r'employment agreement',
+            r'licence agreement',
+            r'consulting agreement'
+        ]
+        
+        for pattern in contract_patterns:
+            matches = re.findall(pattern, description, re.IGNORECASE)
+            elements["contracts"].extend([match.strip() for match in matches if match.strip()])
+        
+        # Extract statutes and acts
+        statute_patterns = [
+            r'([A-Z][a-zA-Z\s]+Act \d{4})',
+            r'([A-Z][a-zA-Z\s]+Regulations \d{4})',
+            r'(Public Interest Disclosure Act)',
+            r'(Employment Rights Act)',
+            r'(Health and Safety at Work Act)'
+        ]
+        
+        for pattern in statute_patterns:
+            matches = re.findall(pattern, description)
+            elements["statutes"].extend([match.strip() for match in matches if match.strip()])
+        
+        # Extract monetary amounts
+        money_patterns = [
+            r'£([\d,]+(?:\.\d{2})?)',
+            r'(\d+(?:,\d{3})*)\s*(?:pounds?|GBP)',
+        ]
+        
+        for pattern in money_patterns:
+            matches = re.findall(pattern, description)
+            elements["monetary_amounts"].extend([f"£{match}" if not match.startswith('£') else match for match in matches])
+        
+        # Extract dates
+        date_patterns = [
+            r'(\d{1,2}\s+[A-Z][a-z]+\s+\d{4})',
+            r'(\d{4}-\d{2}-\d{2})',
+            r'([A-Z][a-z]+\s+\d{4})'
+        ]
+        
+        for pattern in date_patterns:
+            matches = re.findall(pattern, description)
+            elements["dates"].extend([match.strip() for match in matches if match.strip()])
+        
+        # Remove duplicates
+        for key in elements:
+            elements[key] = list(set(elements[key]))
+        
+        return elements
+
+    @staticmethod
+    def _extract_timeline(description: str) -> Dict[str, Any]:
+        """Extract and analyze timeline from case description"""
+        timeline_events = []
+        
+        # Pattern to find date-based events
+        event_patterns = [
+            r'On (\d{1,2}\s+[A-Z][a-z]+\s+\d{4}),?\s*([^.]+\.)',
+            r'(\d{1,2}\s+[A-Z][a-z]+\s+\d{4})[,:]?\s*([^.]+\.)',
+            r'Exactly (\d+\s+days?\s+later),?\s*on\s*(\d{1,2}\s+[A-Z][a-z]+\s+\d{4})[,:]?\s*([^.]+\.)'
+        ]
+        
+        for pattern in event_patterns:
+            matches = re.findall(pattern, description)
+            for match in matches:
+                if len(match) == 2:  # date, event
+                    timeline_events.append({
+                        "date": match[0].strip(),
+                        "event": match[1].strip(),
+                        "type": "key_event"
+                    })
+                elif len(match) == 3:  # relative time, date, event
+                    timeline_events.append({
+                        "date": match[1].strip(),
+                        "event": match[2].strip(),
+                        "relative_timing": match[0].strip(),
+                        "type": "consequential_event"
+                    })
+        
+        return {
+            "events": timeline_events[:10],  # Limit to top 10 events
+            "total_events_found": len(timeline_events),
+            "timeline_span": CaseAnalysisService._calculate_timeline_span(timeline_events)
+        }
+
+    @staticmethod
+    def _calculate_timeline_span(events: List[Dict]) -> str:
+        """Calculate the span of the timeline"""
+        if not events:
+            return "No timeline data"
+        
+        dates = []
+        for event in events:
+            date_str = event.get('date', '')
+            try:
+                # Try to parse common date formats
+                for fmt in ['%d %B %Y', '%B %Y', '%Y-%m-%d']:
+                    try:
+                        date_obj = datetime.strptime(date_str, fmt)
+                        dates.append(date_obj)
+                        break
+                    except ValueError:
+                        continue
+            except:
+                continue
+        
+        if len(dates) >= 2:
+            span = max(dates) - min(dates)
+            return f"{span.days} days ({span.days // 30} months)"
+        
+        return "Timeline span could not be calculated"
+
+    @staticmethod
+    def _analyze_parties(description: str, key_parties: List[str]) -> Dict[str, Any]:
+        """Analyze parties involved in the case"""
+        parties_analysis = {
+            "primary_parties": key_parties,
+            "additional_parties": [],
+            "party_roles": {},
+            "relationships": []
+        }
+        
+        # Extract additional parties mentioned in description
+        party_patterns = [
+            r'([A-Z][a-z]+\s+[A-Z][a-z]+)\s*\([^)]+\)',
+            r'(Mr\.\s+[A-Z][a-z]+)',
+            r'(Ms\.\s+[A-Z][a-z]+)',
+            r'(Dr\.\s+[A-Z][a-z]+)'
+        ]
+        
+        for pattern in party_patterns:
+            matches = re.findall(pattern, description)
+            parties_analysis["additional_parties"].extend([match.strip() for match in matches])
+        
+        # Identify party roles
+        role_patterns = [
+            (r'([A-Z][a-z]+\s+[A-Z][a-z]+)\s*\(([^)]+)\)', 'role_in_parentheses'),
+            (r'([A-Z][a-z]+\s+[A-Z][a-z]+),?\s+(HR Director|CTO|CEO|Legal Counsel)', 'title_after_name'),
+        ]
+        
+        for pattern, role_type in role_patterns:
+            matches = re.findall(pattern, description)
+            for match in matches:
+                if len(match) == 2:
+                    parties_analysis["party_roles"][match[0]] = match[1]
+        
+        return parties_analysis
+
+    @staticmethod
+    def _identify_legal_issues(description: str, case_type: str) -> Dict[str, Any]:
+        """Identify legal issues from the case description"""
+        issues = {
+            "primary_issues": [],
+            "secondary_issues": [],
+            "legal_theories": [],
+            "potential_defenses": []
+        }
+        
+        # Common legal issue patterns
+        issue_patterns = {
+            "employment": [
+                r'(wrongful\s+(?:dismissal|termination))',
+                r'(unfair\s+dismissal)',
+                r'(victimisation)',
+                r'(whistleblowing)',
+                r'(age\s+discrimination)',
+                r'(retaliation)',
+                r'(breach\s+of\s+contract)'
+            ],
+            "contract": [
+                r'(breach\s+of\s+(?:contract|agreement))',
+                r'(licence\s+violation)',
+                r'(intellectual\s+property\s+infringement)',
+                r'(trade\s+secrets?\s+violation)',
+                r'(non-compete\s+violation)'
+            ]
+        }
+        
+        case_type_lower = case_type.lower()
+        relevant_patterns = []
+        
+        if 'employment' in case_type_lower:
+            relevant_patterns.extend(issue_patterns.get('employment', []))
+        if 'contract' in case_type_lower or 'intellectual' in case_type_lower:
+            relevant_patterns.extend(issue_patterns.get('contract', []))
+        
+        for pattern in relevant_patterns:
+            matches = re.findall(pattern, description, re.IGNORECASE)
+            issues["primary_issues"].extend([match.strip() for match in matches])
+        
+        # Remove duplicates
+        issues["primary_issues"] = list(set(issues["primary_issues"]))
+        
+        return issues
+
+    @staticmethod
+    def _analyze_evidence(description: str) -> Dict[str, Any]:
+        """Analyze evidence mentioned in the case"""
+        evidence = {
+            "documentary_evidence": [],
+            "witness_evidence": [],
+            "expert_evidence": [],
+            "physical_evidence": []
+        }
+        
+        # Documentary evidence patterns
+        doc_patterns = [
+            r'(employment\s+(?:contract|agreement))',
+            r'(termination\s+email)',
+            r'(safety\s+report)',
+            r'(server\s+logs)',
+            r'(email\s+communications)',
+            r'(performance\s+review)',
+            r'(licence\s+agreement)'
+        ]
+        
+        for pattern in doc_patterns:
+            matches = re.findall(pattern, description, re.IGNORECASE)
+            evidence["documentary_evidence"].extend([match.strip() for match in matches])
+        
+        # Witness evidence
+        witness_patterns = [
+            r'([A-Z][a-z]+\s+[A-Z][a-z]+).*(?:reported|testified|stated|witnessed)',
+            r'colleagues.*(?:reported|heard|witnessed)'
+        ]
+        
+        for pattern in witness_patterns:
+            matches = re.findall(pattern, description, re.IGNORECASE)
+            evidence["witness_evidence"].extend([match.strip() for match in matches])
+        
+        return evidence
+
+    @staticmethod
+    def _assess_risks(description: str, case_type: str) -> Dict[str, Any]:
+        """Assess risks based on case details"""
+        risks = {
+            "high_risk_factors": [],
+            "medium_risk_factors": [],
+            "low_risk_factors": [],
+            "overall_risk_level": "medium"
+        }
+        
+        # Risk indicators
+        high_risk_indicators = [
+            r'criminal\s+liability',
+            r'regulatory\s+(?:fines?|penalties)',
+            r'HSE\s+enforcement',
+            r'£\d{2,}[,\d]*\s*(?:fine|penalty|damages)'
+        ]
+        
+        medium_risk_indicators = [
+            r'breach\s+of\s+contract',
+            r'unfair\s+dismissal',
+            r'discrimination',
+            r'reputational\s+harm'
+        ]
+        
+        for pattern in high_risk_indicators:
+            if re.search(pattern, description, re.IGNORECASE):
+                risks["high_risk_factors"].append(pattern.replace('\\s+', ' ').replace('\\d+', 'amount'))
+        
+        for pattern in medium_risk_indicators:
+            if re.search(pattern, description, re.IGNORECASE):
+                risks["medium_risk_factors"].append(pattern.replace('\\s+', ' '))
+        
+        # Determine overall risk level
+        if risks["high_risk_factors"]:
+            risks["overall_risk_level"] = "high"
+        elif len(risks["medium_risk_factors"]) > 2:
+            risks["overall_risk_level"] = "medium-high"
+        elif risks["medium_risk_factors"]:
+            risks["overall_risk_level"] = "medium"
+        else:
+            risks["overall_risk_level"] = "low"
+        
+        return risks
+
+    @staticmethod
+    def _generate_strategic_insights(description: str, case_type: str) -> Dict[str, Any]:
+        """Generate strategic insights based on case analysis"""
+        insights = {
+            "key_strengths": [],
+            "potential_weaknesses": [],
+            "recommended_actions": [],
+            "settlement_considerations": []
+        }
+        
+        # Analyze for strengths
+        strength_indicators = [
+            (r'comprehensive\s+(?:report|documentation)', "Strong documentation"),
+            (r'clear\s+(?:timeline|evidence)', "Clear evidence trail"),
+            (r'regulatory\s+(?:breach|violation)', "Regulatory support"),
+            (r'written\s+(?:contract|agreement)', "Written contractual terms")
+        ]
+        
+        for pattern, strength in strength_indicators:
+            if re.search(pattern, description, re.IGNORECASE):
+                insights["key_strengths"].append(strength)
+        
+        # Analyze for weaknesses
+        weakness_indicators = [
+            (r'ambiguous\s+(?:terms|language)', "Ambiguous contract terms"),
+            (r'good[- ]faith\s+interpretation', "Defendant claims good faith"),
+            (r'coincidental\s+timing', "Timing may be disputed"),
+            (r'limited\s+(?:evidence|documentation)', "Limited evidence")
+        ]
+        
+        for pattern, weakness in weakness_indicators:
+            if re.search(pattern, description, re.IGNORECASE):
+                insights["potential_weaknesses"].append(weakness)
+        
+        # Generate recommendations based on case type
+        if 'employment' in case_type.lower():
+            insights["recommended_actions"] = [
+                "File ACAS early conciliation",
+                "Gather witness statements",
+                "Document timeline of events",
+                "Preserve all relevant communications"
+            ]
+        elif 'contract' in case_type.lower():
+            insights["recommended_actions"] = [
+                "Review contract terms thoroughly",
+                "Gather technical evidence",
+                "Assess damages calculation",
+                "Consider alternative dispute resolution"
+            ]
+        
+        return insights
+
+    @staticmethod
+    def _assess_case_strength(description: str, case_type: str) -> Dict[str, Any]:
+        """Assess overall case strength"""
+        strength_factors = {
+            "evidence_strength": 0,
+            "legal_precedent": 0,
+            "timeline_clarity": 0,
+            "documentation_quality": 0
+        }
+        
+        # Evidence strength indicators
+        evidence_indicators = [
+            r'comprehensive\s+(?:report|analysis)',
+            r'detailed\s+(?:documentation|records)',
+            r'witness\s+(?:statements|testimony)',
+            r'expert\s+(?:analysis|testimony)'
+        ]
+        
+        evidence_score = sum(1 for pattern in evidence_indicators if re.search(pattern, description, re.IGNORECASE))
+        strength_factors["evidence_strength"] = min(evidence_score * 25, 100)
+        
+        # Timeline clarity
+        timeline_indicators = [
+            r'on\s+\d{1,2}\s+[A-Z][a-z]+\s+\d{4}',
+            r'exactly\s+\d+\s+days',
+            r'at\s+\d{1,2}:\d{2}\s+[AP]M'
+        ]
+        
+        timeline_score = sum(1 for pattern in timeline_indicators if re.search(pattern, description, re.IGNORECASE))
+        strength_factors["timeline_clarity"] = min(timeline_score * 20, 100)
+        
+        # Calculate overall strength
+        overall_score = sum(strength_factors.values()) / len(strength_factors)
+        
+        if overall_score >= 75:
+            strength_level = "Strong"
+        elif overall_score >= 50:
+            strength_level = "Moderate"
+        else:
+            strength_level = "Weak"
+        
+        return {
+            "overall_score": round(overall_score, 1),
+            "strength_level": strength_level,
+            "factor_scores": strength_factors,
+            "confidence_level": min(overall_score / 100, 0.95)
+        }

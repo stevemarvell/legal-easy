@@ -72,6 +72,10 @@ const Admin: React.FC = () => {
   const [caseAnalysisResult, setCaseAnalysisResult] = useState<CaseAnalysisResult | null>(null);
   const [caseAnalysisError, setCaseAnalysisError] = useState<string | null>(null);
 
+  const [caseDetailsLoading, setCaseDetailsLoading] = useState(false);
+  const [caseDetailsResult, setCaseDetailsResult] = useState<any | null>(null);
+  const [caseDetailsError, setCaseDetailsError] = useState<string | null>(null);
+
   const handleRegenerateIndex = async () => {
     setCorpusLoading(true);
     setCorpusError(null);
@@ -117,6 +121,23 @@ const Admin: React.FC = () => {
       setCaseAnalysisError(err.response?.data?.detail || 'Failed to regenerate case analysis');
     } finally {
       setCaseAnalysisLoading(false);
+    }
+  };
+
+  const handleTestCaseDetailsAnalysis = async () => {
+    setCaseDetailsLoading(true);
+    setCaseDetailsError(null);
+    setCaseDetailsResult(null);
+
+    try {
+      // Test with case-001 which has detailed description
+      const response = await apiClient.get('/api/cases/case-001/details-analysis');
+      setCaseDetailsResult(response.data);
+    } catch (err: any) {
+      console.error('Failed to analyze case details:', err);
+      setCaseDetailsError(err.response?.data?.detail || 'Failed to analyze case details');
+    } finally {
+      setCaseDetailsLoading(false);
     }
   };
 
@@ -558,6 +579,122 @@ const Admin: React.FC = () => {
                     </Box>
                   </Box>
                 )}
+              </Alert>
+            )}
+          </CardContent>
+        </Card>
+
+        {/* Case Details Analysis Testing */}
+        <Card sx={{ mb: 4 }}>
+          <CardContent>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+              <AnalyticsIcon color="primary" sx={{ mr: 1 }} />
+              <Typography variant="h5" component="h2">
+                Case Details Analysis
+              </Typography>
+            </Box>
+
+            <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
+              Test the new case details analysis feature that extracts legal elements, timeline, 
+              parties, issues, evidence, and strategic insights from case descriptions.
+            </Typography>
+
+            <Box sx={{ mb: 3 }}>
+              <Typography variant="h6" gutterBottom>
+                Test Analysis
+              </Typography>
+              <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+                This will analyze case-001 (Sarah Chen vs TechCorp) to demonstrate the detailed 
+                analysis capabilities including legal element extraction, timeline analysis, 
+                and case strength assessment.
+              </Typography>
+
+              <Button
+                variant="contained"
+                color="secondary"
+                size="large"
+                startIcon={caseDetailsLoading ? <CircularProgress size={20} /> : <AnalyticsIcon />}
+                onClick={handleTestCaseDetailsAnalysis}
+                disabled={caseDetailsLoading}
+              >
+                {caseDetailsLoading ? 'Analyzing Case Details...' : 'Test Case Details Analysis'}
+              </Button>
+            </Box>
+
+            {/* Error Display */}
+            {caseDetailsError && (
+              <Alert severity="error" sx={{ mb: 3 }} icon={<ErrorIcon />}>
+                <Typography variant="body2">
+                  <strong>Error:</strong> {caseDetailsError}
+                </Typography>
+              </Alert>
+            )}
+
+            {/* Success Result */}
+            {caseDetailsResult && (
+              <Alert severity="success" sx={{ mb: 3 }} icon={<CheckIcon />}>
+                <Typography variant="body2" gutterBottom>
+                  <strong>Analysis Complete:</strong> {caseDetailsResult.case_title}
+                </Typography>
+
+                <Box sx={{ mt: 2 }}>
+                  <Typography variant="caption" color="text.secondary" display="block">
+                    Analysis Results:
+                  </Typography>
+                  
+                  <List dense>
+                    <ListItem>
+                      <ListItemIcon><InfoIcon color="primary" /></ListItemIcon>
+                      <ListItemText 
+                        primary="Legal Elements" 
+                        secondary={`${caseDetailsResult.legal_elements?.contracts?.length || 0} contracts, ${caseDetailsResult.legal_elements?.statutes?.length || 0} statutes, ${caseDetailsResult.legal_elements?.monetary_amounts?.length || 0} monetary amounts`}
+                      />
+                    </ListItem>
+                    
+                    <ListItem>
+                      <ListItemIcon><InfoIcon color="primary" /></ListItemIcon>
+                      <ListItemText 
+                        primary="Timeline Analysis" 
+                        secondary={`${caseDetailsResult.timeline_analysis?.total_events_found || 0} events found, span: ${caseDetailsResult.timeline_analysis?.timeline_span || 'N/A'}`}
+                      />
+                    </ListItem>
+                    
+                    <ListItem>
+                      <ListItemIcon><InfoIcon color="primary" /></ListItemIcon>
+                      <ListItemText 
+                        primary="Case Strength" 
+                        secondary={`${caseDetailsResult.case_strength?.strength_level || 'N/A'} (${caseDetailsResult.case_strength?.overall_score || 0}% confidence: ${Math.round((caseDetailsResult.case_strength?.confidence_level || 0) * 100)}%)`}
+                      />
+                    </ListItem>
+                    
+                    <ListItem>
+                      <ListItemIcon><InfoIcon color="primary" /></ListItemIcon>
+                      <ListItemText 
+                        primary="Risk Assessment" 
+                        secondary={`Overall risk: ${caseDetailsResult.risk_assessment?.overall_risk_level || 'N/A'}`}
+                      />
+                    </ListItem>
+                  </List>
+
+                  {caseDetailsResult.strategic_insights?.key_strengths?.length > 0 && (
+                    <Box sx={{ mt: 2 }}>
+                      <Typography variant="caption" color="text.secondary" display="block">
+                        Key Strengths:
+                      </Typography>
+                      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5, mt: 0.5 }}>
+                        {caseDetailsResult.strategic_insights.key_strengths.map((strength: string, index: number) => (
+                          <Chip
+                            key={index}
+                            label={strength}
+                            size="small"
+                            color="success"
+                            variant="outlined"
+                          />
+                        ))}
+                      </Box>
+                    </Box>
+                  )}
+                </Box>
               </Alert>
             )}
           </CardContent>

@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, Path
 from typing import List
-from app.models.case import Case, CaseStatistics
+from app.models.case import Case, CaseStatistics, CaseDetailsAnalysis
 from app.models.playbook import ComprehensiveCaseAnalysis
 from app.services.data_service import DataService
 from app.services.playbook_service import PlaybookService
@@ -561,6 +561,231 @@ async def get_case_research_links(
         raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to get research links: {str(e)}")
+
+
+@router.get(
+    "/{case_id}/details-analysis",
+    summary="Get detailed case analysis from case description",
+    description="""
+    Analyze case details from the comprehensive case description to extract:
+    - Legal elements (contracts, statutes, monetary amounts)
+    - Timeline analysis with key events
+    - Parties analysis and relationships
+    - Legal issues identification
+    - Evidence analysis
+    - Risk assessment
+    - Strategic insights and recommendations
+    - Case strength assessment
+    
+    This analysis is based on the detailed case description and provides
+    structured insights for legal strategy and case management.
+    """,
+    responses={
+        200: {
+            "description": "Case details analysis completed successfully",
+            "content": {
+                "application/json": {
+                    "example": {
+                        "case_id": "case-001",
+                        "case_title": "Wrongful Dismissal - Sarah Chen vs TechCorp Solutions",
+                        "case_type": "Employment Dispute",
+                        "analysis_timestamp": "2024-01-15T10:30:00Z",
+                        "legal_elements": {
+                            "contracts": ["Employment Agreement"],
+                            "statutes": ["Public Interest Disclosure Act 1998"],
+                            "monetary_amounts": ["£20,000", "£35,000"]
+                        },
+                        "timeline_analysis": {
+                            "events": [
+                                {
+                                    "date": "15 March 2022",
+                                    "event": "Employment commenced",
+                                    "type": "key_event"
+                                }
+                            ],
+                            "timeline_span": "365 days (12 months)"
+                        },
+                        "case_strength": {
+                            "overall_score": 75.5,
+                            "strength_level": "Strong",
+                            "confidence_level": 0.85
+                        }
+                    }
+                }
+            }
+        },
+        404: {
+            "description": "Case not found",
+            "content": {
+                "application/json": {
+                    "example": {"detail": "Case not found"}
+                }
+            }
+        }
+    }
+)
+async def get_case_details_analysis(
+    case_id: str = Path(..., description="Unique identifier of the case to analyze", example="case-001")
+):
+    """Get detailed analysis of case based on case description"""
+    try:
+        from app.services.case_analysis_service import CaseAnalysisService
+        
+        analysis = CaseAnalysisService.analyze_case_details(case_id)
+        
+        if "error" in analysis:
+            if "not found" in analysis["error"].lower():
+                raise HTTPException(status_code=404, detail=analysis["error"])
+            else:
+                raise HTTPException(status_code=500, detail=analysis["error"])
+        
+        return analysis
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to analyze case details: {str(e)}")
+
+
+@router.post(
+    "/{case_id}/analyze-details",
+    response_model=CaseDetailsAnalysis,
+    summary="Analyze comprehensive case details",
+    description="""
+    Perform comprehensive case details analysis based on the case description.
+    
+    This endpoint analyzes all aspects of a case including:
+    - Legal issues identification and applicable legislation
+    - Parties analysis with roles and relationships
+    - Timeline extraction with key dates and events
+    - Risk assessment with identified risk factors
+    - Evidence analysis and strength assessment
+    - Legal precedents identification
+    - Strategic recommendations and priority actions
+    - Case strength assessment with confidence scoring
+    
+    The analysis is performed using AI to extract structured insights from the
+    comprehensive case description, providing legal professionals with detailed
+    analysis for case strategy and management.
+    
+    **Use cases:**
+    - Comprehensive case evaluation
+    - Strategic planning and case preparation
+    - Risk assessment and mitigation planning
+    - Evidence gathering prioritization
+    - Legal research direction
+    """,
+    responses={
+        200: {
+            "description": "Case details analysis completed successfully",
+            "content": {
+                "application/json": {
+                    "example": {
+                        "case_id": "case-001",
+                        "case_type": "Employment Dispute",
+                        "analysis_timestamp": "2024-01-15T10:30:00Z",
+                        "legal_analysis": {
+                            "primary_legal_issues": ["Wrongful dismissal", "Retaliation", "Safety violations"],
+                            "applicable_legislation": ["Employment Standards Act", "Occupational Health and Safety Act"],
+                            "complexity_score": 7
+                        },
+                        "parties_analysis": {
+                            "total_parties": 4,
+                            "parties_detail": [
+                                {"name": "Sarah Chen", "role": "Claimant", "mentioned_in_description": True},
+                                {"name": "TechCorp Solutions Ltd.", "role": "Respondent", "mentioned_in_description": True}
+                            ],
+                            "complexity_indicator": "Medium"
+                        },
+                        "timeline_analysis": {
+                            "dates_identified": ["2022-03-15", "2024-01-10"],
+                            "key_events": ["Employment commenced", "Dismissal occurred"],
+                            "timeline_complexity": 5
+                        },
+                        "risk_assessment": {
+                            "risk_factors": ["Retaliation claim", "Safety violation reporting"],
+                            "overall_risk_level": "Medium",
+                            "risk_score": 6
+                        },
+                        "evidence_analysis": {
+                            "evidence_types": ["Employment contract", "Email correspondence", "Safety reports"],
+                            "evidence_strength": "Moderate",
+                            "evidence_score": 6
+                        },
+                        "legal_precedents": {
+                            "relevant_precedents": ["Similar wrongful dismissal cases", "Retaliation precedents"],
+                            "precedent_strength": "Medium"
+                        },
+                        "strategic_recommendations": {
+                            "strategic_recommendations": ["Gather additional evidence", "Review safety documentation"],
+                            "priority_actions": ["Document timeline", "Collect witness statements"]
+                        },
+                        "case_strength": {
+                            "strength_factors": ["Clear timeline", "Safety violation documentation"],
+                            "weakness_factors": ["Limited witness testimony"],
+                            "overall_strength": "Moderate",
+                            "strength_score": 6
+                        }
+                    }
+                }
+            }
+        },
+        404: {
+            "description": "Case not found",
+            "content": {
+                "application/json": {
+                    "example": {"detail": "Case with ID case-999 not found"}
+                }
+            }
+        },
+        400: {
+            "description": "Case has no description for analysis",
+            "content": {
+                "application/json": {
+                    "example": {"detail": "Case case-001 has no description available for analysis"}
+                }
+            }
+        },
+        500: {
+            "description": "Analysis failed",
+            "content": {
+                "application/json": {
+                    "example": {"detail": "Failed to analyze case details: Internal error"}
+                }
+            }
+        }
+    }
+)
+async def analyze_case_details(
+    case_id: str = Path(..., description="Unique identifier of the case to analyze", example="case-001")
+):
+    """Perform comprehensive case details analysis based on case description"""
+    try:
+        # Load case data to verify it exists and has description
+        cases = DataService.load_cases()
+        case = next((c for c in cases if c.get('id') == case_id), None)
+        
+        if case is None:
+            raise HTTPException(status_code=404, detail=f"Case with ID {case_id} not found")
+        
+        # Check if case has description for analysis
+        description = case.get('description', '')
+        if not description:
+            raise HTTPException(
+                status_code=400, 
+                detail=f"Case {case_id} has no description available for analysis"
+            )
+        
+        # Perform comprehensive case details analysis using AIService
+        from app.services.ai_service import AIService
+        analysis = AIService.analyze_case_details(case_id, case.get('case_type', ''), description)
+        
+        return analysis
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to analyze case details: {str(e)}")
 
 
 @router.post(

@@ -477,3 +477,347 @@ class TestAIServiceIntegration:
         # Should extract date
         assert len(result['key_dates']) > 0
         assert "2024-12-15" in result['key_dates']
+
+class TestAIServiceCaseDetailsAnalysis:
+    """Test AIService case details analysis functionality"""
+    
+    def test_analyze_case_details_basic_structure(self):
+        """Test that analyze_case_details returns proper structure"""
+        case_description = """
+        Sarah Chen commenced employment with TechCorp Solutions Ltd. on 15 March 2022 
+        as a Senior Safety Engineer under a comprehensive employment agreement. 
+        On 10 January 2024, Sarah was dismissed from her position after reporting 
+        safety violations to management. She alleges wrongful dismissal and retaliation.
+        """
+        
+        result = AIService.analyze_case_details("case-001", "Employment Dispute", case_description)
+        
+        # Verify basic structure
+        assert result['case_id'] == 'case-001'
+        assert result['case_type'] == 'Employment Dispute'
+        assert 'analysis_timestamp' in result
+        
+        # Verify all analysis components are present
+        assert 'legal_analysis' in result
+        assert 'parties_analysis' in result
+        assert 'timeline_analysis' in result
+        assert 'risk_assessment' in result
+        assert 'evidence_analysis' in result
+        assert 'legal_precedents' in result
+        assert 'strategic_recommendations' in result
+        assert 'case_strength' in result
+        
+        # Verify legal analysis structure
+        legal_analysis = result['legal_analysis']
+        assert 'primary_legal_issues' in legal_analysis
+        assert 'applicable_legislation' in legal_analysis
+        assert 'complexity_score' in legal_analysis
+        assert isinstance(legal_analysis['primary_legal_issues'], list)
+        assert isinstance(legal_analysis['applicable_legislation'], list)
+        assert 1 <= legal_analysis['complexity_score'] <= 10
+        
+        # Verify parties analysis structure
+        parties_analysis = result['parties_analysis']
+        assert 'total_parties' in parties_analysis
+        assert 'parties_detail' in parties_analysis
+        assert 'complexity_indicator' in parties_analysis
+        assert isinstance(parties_analysis['total_parties'], int)
+        assert isinstance(parties_analysis['parties_detail'], list)
+        assert parties_analysis['complexity_indicator'] in ['Low', 'Medium', 'High']
+        
+        # Verify timeline analysis structure
+        timeline_analysis = result['timeline_analysis']
+        assert 'dates_identified' in timeline_analysis
+        assert 'key_events' in timeline_analysis
+        assert 'timeline_complexity' in timeline_analysis
+        assert isinstance(timeline_analysis['dates_identified'], list)
+        assert isinstance(timeline_analysis['key_events'], list)
+        assert 1 <= timeline_analysis['timeline_complexity'] <= 10
+
+    def test_analyze_legal_issues_employment_dispute(self):
+        """Test legal issues analysis for employment dispute"""
+        case_description = """
+        Employee was wrongfully dismissed after reporting safety violations.
+        There are allegations of retaliation and discrimination.
+        """
+        
+        result = AIService._analyze_legal_issues(case_description, "Employment Dispute")
+        
+        assert 'primary_legal_issues' in result
+        assert 'applicable_legislation' in result
+        assert 'complexity_score' in result
+        
+        # Should identify employment-related issues
+        issues = result['primary_legal_issues']
+        issues_text = ' '.join(issues).lower()
+        assert any(keyword in issues_text for keyword in ['wrongful', 'dismissal', 'retaliation', 'discrimination'])
+        
+        # Should include employment legislation
+        legislation = result['applicable_legislation']
+        legislation_text = ' '.join(legislation).lower()
+        assert any(keyword in legislation_text for keyword in ['employment', 'human rights', 'safety'])
+        
+        # Complexity score should be reasonable
+        assert 3 <= result['complexity_score'] <= 10
+
+    def test_analyze_legal_issues_contract_breach(self):
+        """Test legal issues analysis for contract breach"""
+        case_description = """
+        There was a material breach of contract when the supplier failed to deliver
+        goods on time, causing significant damages to the business.
+        """
+        
+        result = AIService._analyze_legal_issues(case_description, "Contract Breach")
+        
+        issues = result['primary_legal_issues']
+        issues_text = ' '.join(issues).lower()
+        assert any(keyword in issues_text for keyword in ['breach', 'contract', 'damages'])
+        
+        legislation = result['applicable_legislation']
+        legislation_text = ' '.join(legislation).lower()
+        assert any(keyword in legislation_text for keyword in ['contract', 'commercial', 'sale'])
+
+    def test_analyze_parties_with_multiple_parties(self):
+        """Test parties analysis with multiple parties"""
+        case_description = """
+        Sarah Chen filed a complaint against TechCorp Solutions Ltd.
+        Marcus Rodriguez, the HR Director, was involved in the dismissal decision.
+        Jennifer Walsh, the direct supervisor, provided testimony.
+        """
+        
+        result = AIService._analyze_parties(case_description)
+        
+        assert 'total_parties' in result
+        assert 'parties_detail' in result
+        assert 'complexity_indicator' in result
+        
+        # Should identify multiple parties
+        assert result['total_parties'] >= 2
+        
+        # Should have party details
+        parties_detail = result['parties_detail']
+        assert len(parties_detail) > 0
+        
+        for party in parties_detail:
+            assert 'name' in party
+            assert 'role' in party
+            assert 'mentioned_in_description' in party
+            assert isinstance(party['mentioned_in_description'], bool)
+        
+        # Should determine appropriate complexity
+        if result['total_parties'] <= 2:
+            assert result['complexity_indicator'] == 'Low'
+        elif result['total_parties'] <= 4:
+            assert result['complexity_indicator'] == 'Medium'
+        else:
+            assert result['complexity_indicator'] == 'High'
+
+    def test_analyze_timeline_with_dates_and_events(self):
+        """Test timeline analysis with dates and events"""
+        case_description = """
+        Employment commenced on 15 March 2022. Safety violations were reported
+        in November 2023. The employee was terminated on 10 January 2024.
+        A complaint was filed on 15 January 2024.
+        """
+        
+        result = AIService._analyze_timeline(case_description)
+        
+        assert 'dates_identified' in result
+        assert 'key_events' in result
+        assert 'timeline_complexity' in result
+        
+        # Should identify dates
+        dates = result['dates_identified']
+        assert len(dates) > 0
+        
+        # Should identify events
+        events = result['key_events']
+        assert len(events) > 0
+        
+        # Timeline complexity should be reasonable
+        assert 2 <= result['timeline_complexity'] <= 10
+
+    def test_assess_case_risks_employment_dispute(self):
+        """Test risk assessment for employment dispute"""
+        case_description = """
+        Employee alleges retaliation after reporting safety violations.
+        There are potential discrimination claims and wrongful dismissal.
+        """
+        
+        result = AIService._assess_case_risks(case_description, "Employment Dispute")
+        
+        assert 'risk_factors' in result
+        assert 'overall_risk_level' in result
+        assert 'risk_score' in result
+        
+        # Should identify employment-related risks
+        risk_factors = result['risk_factors']
+        risk_text = ' '.join(risk_factors).lower()
+        assert any(keyword in risk_text for keyword in ['retaliation', 'discrimination', 'wrongful'])
+        
+        # Risk level should be valid
+        assert result['overall_risk_level'] in ['Low', 'Medium', 'High']
+        
+        # Risk score should be in valid range
+        assert 2 <= result['risk_score'] <= 10
+
+    def test_analyze_evidence_types(self):
+        """Test evidence analysis"""
+        case_description = """
+        The case involves employment contract documentation, email correspondence
+        between parties, safety reports filed by the employee, and witness
+        statements from colleagues. Performance reviews are also available.
+        """
+        
+        result = AIService._analyze_evidence(case_description)
+        
+        assert 'evidence_types' in result
+        assert 'evidence_strength' in result
+        assert 'evidence_score' in result
+        
+        # Should identify various evidence types
+        evidence_types = result['evidence_types']
+        evidence_text = ' '.join(evidence_types).lower()
+        assert any(keyword in evidence_text for keyword in ['contract', 'email', 'safety', 'witness', 'performance'])
+        
+        # Evidence strength should be valid
+        assert result['evidence_strength'] in ['Limited', 'Moderate', 'Strong']
+        
+        # Evidence score should be in valid range
+        assert 3 <= result['evidence_score'] <= 10
+
+    def test_identify_precedents_by_case_type(self):
+        """Test precedent identification by case type"""
+        case_description = "Standard employment dispute case"
+        
+        employment_result = AIService._identify_precedents(case_description, "Employment Dispute")
+        contract_result = AIService._identify_precedents(case_description, "Contract Breach")
+        debt_result = AIService._identify_precedents(case_description, "Debt Claim")
+        
+        # Each case type should have relevant precedents
+        employment_precedents = ' '.join(employment_result['relevant_precedents']).lower()
+        assert any(keyword in employment_precedents for keyword in ['employment', 'wrongful', 'dismissal'])
+        
+        contract_precedents = ' '.join(contract_result['relevant_precedents']).lower()
+        assert any(keyword in contract_precedents for keyword in ['contract', 'breach'])
+        
+        debt_precedents = ' '.join(debt_result['relevant_precedents']).lower()
+        assert any(keyword in debt_precedents for keyword in ['debt', 'collection'])
+        
+        # All should have valid precedent strength
+        for result in [employment_result, contract_result, debt_result]:
+            assert result['precedent_strength'] in ['Low', 'Medium', 'High']
+
+    def test_generate_strategic_recommendations_by_case_type(self):
+        """Test strategic recommendations by case type"""
+        case_description = "Standard case requiring strategic analysis"
+        
+        employment_result = AIService._generate_strategic_recommendations(case_description, "Employment Dispute")
+        contract_result = AIService._generate_strategic_recommendations(case_description, "Contract Breach")
+        debt_result = AIService._generate_strategic_recommendations(case_description, "Debt Claim")
+        
+        # Each should have recommendations and priority actions
+        for result in [employment_result, contract_result, debt_result]:
+            assert 'strategic_recommendations' in result
+            assert 'priority_actions' in result
+            assert len(result['strategic_recommendations']) > 0
+            assert len(result['priority_actions']) > 0
+        
+        # Employment recommendations should be employment-specific
+        employment_recs = ' '.join(employment_result['strategic_recommendations']).lower()
+        assert any(keyword in employment_recs for keyword in ['employment', 'safety', 'witness'])
+        
+        # Contract recommendations should be contract-specific
+        contract_recs = ' '.join(contract_result['strategic_recommendations']).lower()
+        assert any(keyword in contract_recs for keyword in ['contract', 'breach', 'damages'])
+
+    def test_assess_case_strength_with_indicators(self):
+        """Test case strength assessment with various indicators"""
+        strong_case_description = """
+        Clear documented evidence of wrongful dismissal with witness testimony.
+        Employment contract clearly establishes terms. Safety violations are
+        well documented and supported by reports.
+        """
+        
+        weak_case_description = """
+        Unclear circumstances surrounding dismissal. Limited evidence available.
+        Disputed facts and insufficient documentation. Questionable witness accounts.
+        """
+        
+        strong_result = AIService._assess_case_strength(strong_case_description, "Employment Dispute")
+        weak_result = AIService._assess_case_strength(weak_case_description, "Employment Dispute")
+        
+        # Both should have valid structure
+        for result in [strong_result, weak_result]:
+            assert 'strength_factors' in result
+            assert 'weakness_factors' in result
+            assert 'overall_strength' in result
+            assert 'strength_score' in result
+            assert result['overall_strength'] in ['Weak', 'Moderate', 'Strong']
+            assert 1 <= result['strength_score'] <= 10
+        
+        # Strong case should have higher score than weak case
+        assert strong_result['strength_score'] >= weak_result['strength_score']
+
+    def test_determine_party_role_assignment(self):
+        """Test party role determination"""
+        case_description = """
+        Sarah Chen (claimant) filed a complaint against TechCorp Solutions Ltd.
+        Marcus Rodriguez is the HR Director. ABC Corporation Ltd. is involved.
+        """
+        
+        # Test different party types and positions
+        claimant_role = AIService._determine_party_role("Sarah Chen", case_description, 0)
+        corporate_role = AIService._determine_party_role("TechCorp Solutions Ltd.", case_description, 1)
+        hr_role = AIService._determine_party_role("Marcus Rodriguez", case_description, 2)
+        
+        assert claimant_role == "Claimant"
+        assert corporate_role in ["Respondent", "Corporate Entity"]
+        assert hr_role in ["Third Party", "Respondent"]
+
+    def test_case_details_analysis_integration(self):
+        """Test full case details analysis integration"""
+        case_description = """
+        Sarah Chen commenced employment with TechCorp Solutions Ltd. on 15 March 2022
+        as a Senior Safety Engineer. She reported safety violations to management in
+        November 2023. On 10 January 2024, Sarah was dismissed from her position.
+        She alleges wrongful dismissal and retaliation. The case involves employment
+        contract documentation, email correspondence, and witness statements.
+        """
+        
+        result = AIService.analyze_case_details("case-001", "Employment Dispute", case_description)
+        
+        # Verify comprehensive analysis was performed
+        assert result['case_id'] == 'case-001'
+        assert result['case_type'] == 'Employment Dispute'
+        
+        # Verify legal analysis found employment issues
+        legal_issues = result['legal_analysis']['primary_legal_issues']
+        issues_text = ' '.join(legal_issues).lower()
+        assert any(keyword in issues_text for keyword in ['wrongful', 'dismissal', 'retaliation'])
+        
+        # Verify parties were identified
+        assert result['parties_analysis']['total_parties'] >= 2
+        
+        # Verify timeline has dates and events
+        assert len(result['timeline_analysis']['dates_identified']) > 0
+        assert len(result['timeline_analysis']['key_events']) > 0
+        
+        # Verify risk assessment identified employment risks
+        risk_factors = result['risk_assessment']['risk_factors']
+        risk_text = ' '.join(risk_factors).lower()
+        assert any(keyword in risk_text for keyword in ['retaliation', 'wrongful', 'dismissal'])
+        
+        # Verify evidence analysis found relevant evidence
+        evidence_types = result['evidence_analysis']['evidence_types']
+        evidence_text = ' '.join(evidence_types).lower()
+        assert any(keyword in evidence_text for keyword in ['contract', 'email', 'witness'])
+        
+        # Verify strategic recommendations are employment-specific
+        recommendations = result['strategic_recommendations']['strategic_recommendations']
+        recs_text = ' '.join(recommendations).lower()
+        assert any(keyword in recs_text for keyword in ['employment', 'safety', 'witness', 'document'])
+        
+        # Verify case strength assessment
+        assert result['case_strength']['overall_strength'] in ['Weak', 'Moderate', 'Strong']
+        assert 1 <= result['case_strength']['strength_score'] <= 10
